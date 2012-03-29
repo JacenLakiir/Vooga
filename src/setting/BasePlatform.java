@@ -8,8 +8,12 @@ public class BasePlatform extends Platform {
 		super(owner, imgSrc, x, y);
 	}
 
-	public void hitFromBottomAction() {
-		
-	}
+	public void hitFromBottomAction() {	}
+
+	public void hitFromTopAction() {	}
+
+	public void hitFromLeftAction() {	}
+
+	public void hitFromRightAction() {	}
 
 }

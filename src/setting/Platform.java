@@ -29,5 +29,8 @@ public abstract class Platform extends Sprite {
 	}
 	
 	public abstract void hitFromBottomAction();
+	public abstract void hitFromTopAction();
+	public abstract void hitFromLeftAction();
+	public abstract void hitFromRightAction();
 
 }
