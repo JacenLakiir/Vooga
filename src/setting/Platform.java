@@ -7,18 +7,22 @@
 
 package setting;
 
+import java.awt.image.BufferedImage;
+
+import characterSprites.CartesianSprite;
+
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Sprite;
 
-public abstract class Platform extends Sprite {
+public abstract class Platform extends CartesianSprite {
 	
 	protected Game owner;
 	
 	/*
 	 * Constructor for a Concrete Platform
 	 */
-	public Platform (Game owner, String imgSrc, double x, double y) {
-		super(owner.getImage(imgSrc, true), x, y);
+	public Platform (Game owner) {
+		super();
 		this.owner = owner;
 	}
 	
@@ -27,6 +31,11 @@ public abstract class Platform extends Sprite {
 	 */
 	public Platform () {
 	}
+	
+	public void set(BufferedImage[] images, double x, double y) {
+        this.setImages(images);
+        this.setLocation(x, y);
+    }
 	
 	public abstract void hitFromBottomAction();
 	public abstract void hitFromTopAction();
