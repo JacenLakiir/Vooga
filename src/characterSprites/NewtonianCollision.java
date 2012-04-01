@@ -69,6 +69,9 @@ public class NewtonianCollision extends CollisionGroup{
                     a = -a;
                 }
                 uy1 += a * collisionTime;
+                if ((vy1>0 && uy1<0) || (vy1<0) && (uy1>0)) {
+                    uy1 = 0;
+                }
             }
             s1.setVelocity(ux1, uy1);
         }
@@ -96,6 +99,9 @@ public class NewtonianCollision extends CollisionGroup{
                     a = -a;
                 }
                 ux1 += a * collisionTime;
+                if ((vx1>0 && ux1<0) || (vx1<0) && (ux1>0)) {
+                    ux1 = 0;
+                }
             }
             s1.setVelocity(ux1, uy1);
         }

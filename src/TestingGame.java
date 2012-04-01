@@ -28,12 +28,16 @@ public class TestingGame extends Game{
         
         BufferedImage[] images = this.getImages("resources/Mario1.png", 1, 1);
         Player mario = new Player(this);
-        mario.set(images, 40, 0);
+        mario.set(images, 25, 20);
 
         images = this.getImages("resources/Bar.png", 1, 1);
         Character floor = new Character();
         floor.setMovable(false);
-        floor.set(images, 0, 420);
+        floor.set(images, 0, 440);
+        Character ceiling = new Character();
+        ceiling.setMovable(false);
+        ceiling.set(images, 70, -20);
+
         
         images = this.getImages("resources/Block1.png", 1, 1);
         Character block1 = new Character();
@@ -45,10 +49,21 @@ public class TestingGame extends Game{
         block2.setMovable(false);
         block2.set(images, 300, 200);
         
+        images = this.getImages("resources/Wall.png", 1, 1);
+        Character wall1 = new Character();
+        wall1.setMovable(false);
+        wall1.set(images, 0, 0);
+        Character wall2 = new Character();
+        wall2.setMovable(false);
+        wall2.set(images, 620, 0);
+
         SpriteGroup blocks = new SpriteGroup("block");
         blocks.add(floor);
+        blocks.add(ceiling);
         blocks.add(block1);
         blocks.add(block2);
+        blocks.add(wall1);
+        blocks.add(wall2);
         
         SpriteGroup players = new SpriteGroup("player");
         players.add(mario);

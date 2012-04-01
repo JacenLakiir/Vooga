@@ -4,10 +4,10 @@ package characterSprites;
 public class NewtonianSprite extends CartesianSprite{
     protected double 
     mass = 10, 
-    coefOfFrictionInX = 0.4,
+    coefOfFrictionInX = 0,
     coefOfFrictionInY = 0, 
-    coefOfRestitutionInX = 0.2, 
-    coefOfRestitutionInY = 0,
+    coefOfRestitutionInX = 1, 
+    coefOfRestitutionInY = 1,
     coefOfViscosity = 0,
     stdGravity = 0.004;
     protected boolean   
