@@ -1,7 +1,7 @@
-package characterSprites.enemyAI;
+package characterSprites;
 
 import com.golden.gamedev.object.sprite.AdvanceSprite;
-
+import characterSprites.cartesianSystem.*;
 
 @SuppressWarnings("serial")
 public abstract class CartesianSprite extends AdvanceSprite{

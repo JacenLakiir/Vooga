@@ -1,4 +1,4 @@
-package characterSprites.enemyAI;
+package characterSprites.cartesianSystem;
 
 public class Displacement extends Vector{
     public Displacement(double x, double y) {

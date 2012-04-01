@@ -1,4 +1,4 @@
-package characterSprites.enemyAI;
+package characterSprites;
 import characterSprites.enemyAI.AttackState;
 import characterSprites.enemyAI.DeadState;
 import characterSprites.enemyAI.EnemyState;

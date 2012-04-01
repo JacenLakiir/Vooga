@@ -1,4 +1,4 @@
-package characterSprites.enemyAI;
+package characterSprites;
 
 import java.awt.event.KeyEvent;
 

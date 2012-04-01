@@ -1,4 +1,4 @@
-package characterSprites.enemyAI;
+package characterSprites.cartesianSystem;
 
 public abstract class Vector{
     
