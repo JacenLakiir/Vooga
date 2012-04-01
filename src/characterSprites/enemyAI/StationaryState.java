@@ -5,11 +5,12 @@ import characterSprites.Enemy;
 /**
  * @author Eric Mercer
  */
-public class DeadState implements EnemyState
+public class StationaryState implements EnemyState
 {
+
     private Enemy enemy;
     
-    public DeadState (Enemy e)
+    public StationaryState (Enemy e)
     {
         enemy = e;
     }
@@ -17,6 +18,8 @@ public class DeadState implements EnemyState
     @Override
     public void update (long milliSec)
     {
-        enemy.setActive(false);
+        // not implemented yet
+        
+        // can switch to attack or dead
     }
 }
