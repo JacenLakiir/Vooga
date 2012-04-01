@@ -1,4 +1,5 @@
-package characterSprites;
+package characterSprites.cartesianSystem;
+
 import com.golden.gamedev.object.Timer;
 
 
