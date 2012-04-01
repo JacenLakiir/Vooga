@@ -1,8 +1,6 @@
-import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import KeyConfiguration.KeyConfig;
 import com.golden.gamedev.Game;
-import com.golden.gamedev.engine.input.AWTInput;
 
 
 @SuppressWarnings("serial")

@@ -12,7 +12,7 @@ public class Character extends NewtonianSprite{
     
     @Override
     public void update(long milliSec) {
-        
+     
         super.update(milliSec);
     }
 }
