@@ -1,9 +1,12 @@
-package characterSprites;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
 
 
 public class NewtonianCollision extends CollisionGroup{
+    
+    public NewtonianCollision() {
+        this.pixelPerfectCollision = true;
+    }
 
     @Override
     public void collided(Sprite s1, Sprite s2) {

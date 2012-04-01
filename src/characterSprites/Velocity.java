@@ -1,4 +1,3 @@
-package characterSprites;
 
 public class Velocity extends Vector{
 

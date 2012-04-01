@@ -3,9 +3,6 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import characterSprites.Character;
-import characterSprites.NewtonianCollision;
-import characterSprites.Player;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.Background;
@@ -28,7 +25,7 @@ public class TestingGame extends Game{
 
         
         BufferedImage[] images = this.getImages("resources/Mario1.png", 1, 1);
-        Character mario = new Player(this);
+        Player mario = new Player(this);
         mario.set(images, 40, 0);
 
         images = this.getImages("resources/Bar.png", 1, 1);
@@ -36,8 +33,20 @@ public class TestingGame extends Game{
         floor.setMovable(false);
         floor.set(images, 0, 420);
         
+        images = this.getImages("resources/Block1.png", 1, 1);
+        Character block1 = new Character();
+        block1.setMovable(false);
+        block1.set(images, 100, 200);
+        
+        images = this.getImages("resources/Block2.png", 1, 1);
+        Character block2 = new Character();
+        block2.setMovable(false);
+        block2.set(images, 300, 200);
+        
         SpriteGroup blocks = new SpriteGroup("block");
         blocks.add(floor);
+        blocks.add(block1);
+        blocks.add(block2);
         
         SpriteGroup players = new SpriteGroup("player");
         players.add(mario);

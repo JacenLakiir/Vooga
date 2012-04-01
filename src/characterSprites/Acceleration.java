@@ -1,4 +1,3 @@
-package characterSprites;
 
 public class Acceleration extends Vector{
     public Acceleration(double x, double y) {

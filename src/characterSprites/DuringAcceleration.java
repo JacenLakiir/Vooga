@@ -1,4 +1,3 @@
-package characterSprites;
 import com.golden.gamedev.object.Timer;
 
 

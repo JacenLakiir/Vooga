@@ -1,4 +1,3 @@
-package characterSprites;
 
 import com.golden.gamedev.object.sprite.AdvanceSprite;
 
@@ -28,6 +27,10 @@ public abstract class CartesianSprite extends AdvanceSprite{
     protected void updateMovement(long t) {
         vel.addFromAcceleration(acc, t);
         disp.addFromVelocity(vel, t);
+        System.out.println("acc:   " + acc.getX());
+        System.out.println("vel:   " + vel.getX());
+        System.out.println("disp:  " + disp.getX());
+
         acc.reset();
         moveToDisplacement();
     }
@@ -35,6 +38,8 @@ public abstract class CartesianSprite extends AdvanceSprite{
     private void moveToDisplacement() {
         double dx = disp.getX() - this.getX();
         double dy = 480 - disp.getY() - this.getY();    // need to change!!!!
+//        this.moveY(dy);
+//        this.moveX(dx);
         this.move(dx, dy);
     }
 

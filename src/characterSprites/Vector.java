@@ -1,4 +1,3 @@
-package characterSprites;
 
 public abstract class Vector{
     

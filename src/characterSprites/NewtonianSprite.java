@@ -1,11 +1,10 @@
-package characterSprites;
 
 
 @SuppressWarnings("serial")
 public class NewtonianSprite extends CartesianSprite{
     protected double 
     mass = 10, 
-    coefOfFrictionInX = 0,
+    coefOfFrictionInX = 0.2,
     coefOfFrictionInY = 0, 
     coefOfRestitutionInX = 0.2, 
     coefOfRestitutionInY = 0,
@@ -74,7 +73,6 @@ public class NewtonianSprite extends CartesianSprite{
             vel.set(ux1, uy1);
         }
         this.forceX(this.getOldX());
-        this.forceY(this.getOldY());
     }
 
     protected void collidedInYDirectionWith(NewtonianSprite s) {
@@ -105,13 +103,11 @@ public class NewtonianSprite extends CartesianSprite{
                 if (vx1 > 0) {
                     a = -a;
                 }
-                System.out.println(a + "     " + stdGravity);
-
+                
                 ux1 += a * collisionTime;
             }
             vel.set(ux1, uy1);
         }
-        this.forceX(this.getOldX());
         this.forceY(this.getOldY());
     }
 
