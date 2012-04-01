@@ -10,6 +10,7 @@ import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ColorBackground;
 import characterSprites.Character;
+import characterSprites.Enemy;
 import characterSprites.NewtonianCollision;
 import characterSprites.Player;
 
@@ -25,11 +26,14 @@ public class TestingGame extends Game{
         
         background = new ColorBackground(Color.gray, 640, 480);
         playfield.setBackground(background);
-
         
         BufferedImage[] images = this.getImages("resources/Mario1.png", 1, 1);
         Player mario = new Player(this);
         mario.set(images, 40, 0);
+        
+        images = this.getImages("resources/Mario1.png", 1, 1);
+        Enemy badMario = new Enemy(this, 75);
+        badMario.set(images, 300, 0);
 
         images = this.getImages("resources/Bar.png", 1, 1);
         Character floor = new Character();
@@ -51,14 +55,15 @@ public class TestingGame extends Game{
         blocks.add(block1);
         blocks.add(block2);
         
-        SpriteGroup players = new SpriteGroup("player");
-        players.add(mario);
+        SpriteGroup characters = new SpriteGroup("characters");
+        characters.add(mario);
+        characters.add(badMario);
         
         playfield.addGroup(blocks);
-        playfield.addGroup(players);
+        playfield.addGroup(characters);
         
         NewtonianCollision collision = new NewtonianCollision();
-        playfield.addCollisionGroup(players, blocks, collision);
+        playfield.addCollisionGroup(characters, blocks, collision);
     }
 
     @Override
