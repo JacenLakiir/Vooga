@@ -13,8 +13,6 @@ import characterSprites.Character;
 import characterSprites.NewtonianCollision;
 import characterSprites.Player;
 
-
-
 public class TestingGame extends Game{
 
     PlayField        playfield;  

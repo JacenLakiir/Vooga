@@ -1,6 +1,6 @@
 package characterSprites.cartesianSystem;
+
 import com.golden.gamedev.object.Timer;
-import characterSprites.cartesianSystem.*;
 
 
 public class DuringAcceleration extends Acceleration{
