@@ -9,8 +9,9 @@ import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ColorBackground;
-import characterSprites.enemyAI;
-
+import characterSprites.Character;
+import characterSprites.NewtonianCollision;
+import characterSprites.Player;
 
 
 public class TestingGame extends Game{

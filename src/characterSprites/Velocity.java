@@ -1,4 +1,4 @@
-package characterSprites.enemyAI;
+package characterSprites;
 
 public class Velocity extends Vector{
 

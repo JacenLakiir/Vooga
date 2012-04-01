@@ -1,4 +1,4 @@
-package characterSprites.enemyAI;
+package characterSprites;
 
 @SuppressWarnings("serial")
 public class NewtonianSprite extends CartesianSprite{

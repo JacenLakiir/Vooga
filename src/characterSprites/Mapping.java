@@ -1,4 +1,4 @@
-package characterSprites.enemyAI;
+package characterSprites;
 
 public abstract class Mapping {
 
