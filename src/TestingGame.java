@@ -3,6 +3,9 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import characterSprites.Character;
+import characterSprites.NewtonianCollision;
+import characterSprites.Player;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.Background;
