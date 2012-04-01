@@ -10,11 +10,4 @@ public class BreakableDecorator extends PlatformDecorator {
 		decoratedPlatform.setActive(false);
 		decoratedPlatform.hitFromBottomAction();
 	}
-
-	public void hitFromTopAction() {	}
-
-	public void hitFromLeftAction() {	}
-
-	public void hitFromRightAction() {	}
-
 }

@@ -14,6 +14,22 @@ public abstract class PlatformDecorator extends Platform {
 		this.decoratedPlatform = decoratedPlatform;
 	}
 	
+	public void hitFromBottomAction() {	
+		decoratedPlatform.hitFromBottomAction();
+	}
+
+	public void hitFromTopAction() {
+		decoratedPlatform.hitFromTopAction();
+	}
+
+	public void hitFromLeftAction() {	
+		decoratedPlatform.hitFromLeftAction();
+	}
+
+	public void hitFromRightAction() {	
+		decoratedPlatform.hitFromRightAction();
+	}
+	
 	/*
 	 * The following methods allow the PlatformDecorator to act as a ConcretePlatform
 	 * (Sprite) by allowing access to the inner sprites methods.
