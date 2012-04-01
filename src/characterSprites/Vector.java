@@ -1,3 +1,4 @@
+package characterSprites.enemyAI;
 
 public abstract class Vector{
     

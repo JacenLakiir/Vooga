@@ -1,3 +1,5 @@
+package characterSprites.enemyAI;
+
 import java.awt.event.KeyEvent;
 
 import com.golden.gamedev.Game;

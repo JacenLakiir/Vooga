@@ -1,3 +1,5 @@
+package characterSprites.enemyAI;
+
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
 

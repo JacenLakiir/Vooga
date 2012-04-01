@@ -1,3 +1,4 @@
+package characterSprites.enemyAI;
 
 import com.golden.gamedev.object.sprite.AdvanceSprite;
 
