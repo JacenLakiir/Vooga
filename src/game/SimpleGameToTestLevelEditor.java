@@ -8,13 +8,13 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import levelEditor.VoogaUtilities;
 
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.*;
 import com.golden.gamedev.object.background.*;
-import editor.VoogaUtilities;
 
 public class SimpleGameToTestLevelEditor extends Game {
 	

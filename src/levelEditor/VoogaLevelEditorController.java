@@ -1,7 +1,7 @@
 /**
  * @author Michael Zhou (Dominator008)
  */
-package editor;
+package levelEditor;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,7 +1,7 @@
 /**
  * @author Michael Zhou (Dominator008)
  */
-package editor;
+package levelEditor;
 
 import game.SpriteWrapper;
 import java.awt.*;
