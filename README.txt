@@ -46,6 +46,6 @@ Data / Resource Files Required:
 
 Instructions:
 	- Configure buildpath to include all JARs in the 'lib' folder
-	- Run 'LevelEditorMain.java' in src/editor package for the level editor
+	- Run 'LevelEditorMain.java' in src/levelEditor package for the level editor
 	- Run 'SimpleGameToTestLevelEditor.java' in src/game package to see our framework load a level from a saved level file created in the level editor
 	- Run 'DemoGame1.java' and 'DemoGame2.java' in src/game package to see two sample games coded by hand that showcase some of the features we've implemented so far
