@@ -11,7 +11,7 @@ import com.golden.gamedev.Game;
 /**
  * @author ericmercer (JacenLakiir)
  */
-public class Enemy extends Character
+public class Enemy extends NPC
 {
     private EnemyState stationaryState;
     private EnemyState patrolState;

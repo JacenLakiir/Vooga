@@ -10,7 +10,7 @@ import com.golden.gamedev.Game;
 
 
 @SuppressWarnings("serial")
-public abstract class Player extends Character{
+public class Player extends Character{
     protected double strengthUp, strengthDown, strengthLeft, strengthRight;
     
     public Player(Game game) {
@@ -66,7 +66,8 @@ public abstract class Player extends Character{
     public void shoot() {
     }
     
-    public abstract void specialSkill();
+    public void specialSkill() {
+    }
     
     public void setStrengthUp(double s) {
         strengthUp = s;

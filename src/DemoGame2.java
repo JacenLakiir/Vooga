@@ -41,7 +41,6 @@ public class DemoGame2 extends Game{
 
         images = this.getImages("resources/Water.png", 1, 1);
         Brick water = new Water(this);
-        water.setMovable(false);
         water.setPenetrable(true);
         water.setDensity(1);
         water.setDragCoefficient(.2);
@@ -50,57 +49,56 @@ public class DemoGame2 extends Game{
 
         images = this.getImages("resources/Bar.png", 1, 1);
         Brick floor = new Brick(this);
-        floor.setMovable(false);
         floor.setImages(images);
         floor.setLocation(0, 440);
         
         Brick ceiling = new Brick(this);
-        ceiling.setMovable(false);
         ceiling.setImages(images);
         ceiling.setLocation(70, -20);
+        
+        images = this.getImages("resources/SmallBar.png", 1, 1);
+        Brick middleBar = new Brick(this);
+        middleBar.setImages(images);
+        middleBar.setLocation(260, 260);
 
+        images = this.getImages("resources/Wall.png", 1, 1);
+        Brick wall1 = new Brick(this);
+        wall1.setImages(images);
+        wall1.setLocation(0, 0);
+        
+        Brick wall2 = new Brick(this);
+        wall2.setImages(images);
+        wall2.setLocation(620, 0);
+        
         images = this.getImages("resources/Block1.png", 1, 1);
         Brick block1 = new Brick(this);
-        block1.setMovable(false);
+//        block1.setMovable(true);
+//        block1.setDensity(0.8);
+        block1.setMass(6);
         block1.setImages(images);
         block1.setLocation(100, 200);
 
         images = this.getImages("resources/Block2.png", 1, 1);
         Brick block2 = new Brick(this);
-        block2.setMovable(false);
+//        block2.setMovable(true);
+//        block2.setDensity(1.005);
+        block2.setMass(6);
         block2.setImages(images);
         block2.setLocation(160, 200);
-        
-        images = this.getImages("resources/SmallBar.png", 1, 1);
-        Brick middleBar = new Brick(this);
-        middleBar.setMovable(false);
-        middleBar.setImages(images);
-        middleBar.setLocation(260, 260);
-
-
-        images = this.getImages("resources/Wall.png", 1, 1);
-        Brick wall1 = new Brick(this);
-        wall1.setMovable(false);
-        wall1.setImages(images);
-        wall1.setLocation(0, 0);
-        
-        Brick wall2 = new Brick(this);
-        wall2.setMovable(false);
-        wall2.setImages(images);
-        wall2.setLocation(620, 0);
 
         SpriteGroup blocks = new SpriteGroup("block");
         blocks.add(water);
         blocks.add(floor);
         blocks.add(ceiling);
-        blocks.add(block1);
-        blocks.add(block2);
         blocks.add(middleBar);
         blocks.add(wall1);
         blocks.add(wall2);
+        blocks.add(block1);
+        blocks.add(block2);
 
         SpriteGroup characters = new SpriteGroup("characters");
         characters.add(mario);
+        
 
         playfield.addGroup(blocks);
         playfield.addGroup(characters);
