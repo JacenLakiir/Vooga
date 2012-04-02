@@ -18,7 +18,7 @@ public class PlatformGame extends Game {
 	
     private PlayField myPlayfield;  
     private Background myBackground;
-    private AbstractGameScroller myGameScroller;
+    private GameScroller myGameScroller;
     
     private SpriteGroup myPlayers;
     private SpriteGroup myCharacters;

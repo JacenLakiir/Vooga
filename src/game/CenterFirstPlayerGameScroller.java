@@ -6,7 +6,7 @@ package game;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.SpriteGroup;
 
-public class CenterFirstPlayerGameScroller extends AbstractGameScroller {
+public class CenterFirstPlayerGameScroller extends GameScroller {
 
 	public CenterFirstPlayerGameScroller(SpriteGroup chars, Background bkg) {
 		super(chars, bkg);
