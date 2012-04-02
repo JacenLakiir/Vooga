@@ -30,4 +30,11 @@ public class AttackAttribute extends AttributeDecorator {
 	    return collectableItemSprite.defensePower();
     }
 
+    @Override
+    public void specialSkill ()
+    {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

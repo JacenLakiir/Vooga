@@ -32,4 +32,11 @@ public class DefenseAttribute extends AttributeDecorator {
 
     }
 
+    @Override
+    public void specialSkill ()
+    {
+        // TODO Auto-generated method stub
+        
+    }
+
 }
