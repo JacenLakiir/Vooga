@@ -22,15 +22,18 @@ Project Length:
 - ??? [Estimate evaluation]
 
 Discussed with:
+- Jim Posen & Ethan Goh (assigned UTAs)
 - ???
 
 Resources:
+- GTGE library (http://code.google.com/p/gtge/)
 - ???
 
 Files Used to Start and Test:
 - ???
 
 Data / Resource Files Required:
+- golden_0_2_3 JAR
 - ???
 
 Impressions:
