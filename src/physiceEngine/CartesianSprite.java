@@ -1,7 +1,10 @@
-package characterSprites;
+/**
+ * @author Kuang Han
+ */
+
+package physiceEngine;
 
 import com.golden.gamedev.object.sprite.AdvanceSprite;
-import characterSprites.cartesianSystem.*;
 
 @SuppressWarnings("serial")
 public abstract class CartesianSprite extends AdvanceSprite{
@@ -34,7 +37,6 @@ public abstract class CartesianSprite extends AdvanceSprite{
 //        if (disp.getX() == 0) {
 //            System.out.println("Went crazy");
 //        }
-        acc.reset();
         moveToDisplacement();
     }
 
@@ -72,7 +74,7 @@ public abstract class CartesianSprite extends AdvanceSprite{
         disp.set(x, y);
     }
 
-    public Acceleration getInstantAcceleration() {
+    public Acceleration getAcceleration() {
         return acc;
     }
 

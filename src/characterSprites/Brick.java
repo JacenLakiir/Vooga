@@ -5,24 +5,17 @@
 package characterSprites;
 
 import com.golden.gamedev.Game;
+
 import physiceEngine.NewtonianSprite;
 
-
-
-
 @SuppressWarnings("serial")
-public abstract class Character extends NewtonianSprite implements GameElement{
+public class Brick extends NewtonianSprite implements GameElement{
     protected Game myGame;
     
-    public Character(Game game) {
+    public Brick(Game game) {
         myGame = game;
     }
-    
-    @Override
-    public void update(long milliSec) {
-        super.update(milliSec);
-    }
-    
+
     public void setGame(Game game) {
         myGame = game;
     }
