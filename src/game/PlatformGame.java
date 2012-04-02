@@ -1,3 +1,7 @@
+/**
+ * @author Glenn Rivkees (grivkees)
+ */
+
 package game;
 
 import java.awt.Graphics2D;
@@ -6,7 +10,6 @@ import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
-import com.golden.gamedev.object.background.ImageBackground;
 import com.golden.gamedev.object.background.ParallaxBackground;
 
 import collision.*;
@@ -39,7 +42,7 @@ public class PlatformGame extends Game {
 				//new ImageBackground(bgImg, bgImg.getWidth(), bgImg.getHeight())
     	} );
 		myPlayfield.setBackground(myBackground);
-		myGameScroller = new GameScroller(myPlayers, myBackground);
+		myGameScroller = new CenterFirstPlayerGameScroller(myPlayers, myBackground);
 		
 		// Collisions
 		myPlayfield.addCollisionGroup(myPlayers, mySetting, new CharacterPlatformCollision());

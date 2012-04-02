@@ -1,4 +1,8 @@
-package characterSprites.cartesianSystem;
+/**
+ * @author Kuang Han
+ */
+
+package physicsEngine;
 
 public class Acceleration extends Vector{
     public Acceleration(double x, double y) {

@@ -1,20 +1,21 @@
+/**
+ * @author Glenn Rivkees (grivkees)
+ */
 package game;
 
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.SpriteGroup;
 
-public class GameScroller {
+public abstract class GameScroller {
 	
-	private SpriteGroup myCharacters;
-	private Background myBackground;
+	protected SpriteGroup myPlayers;
+	protected Background myBackground;
 	
-	public GameScroller (SpriteGroup chars, Background bkg) {
-		myCharacters = chars;
+	public GameScroller (SpriteGroup players, Background bkg) {
+		myPlayers = players;
 		myBackground = bkg;
 	}
 	
-	public void scroll () {
-		
-	}
+	public abstract void scroll ();
 
 }

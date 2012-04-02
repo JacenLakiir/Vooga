@@ -9,12 +9,11 @@ package setting;
 
 import java.awt.image.BufferedImage;
 
-import characterSprites.CartesianSprite;
+import physicsEngine.NewtonianSprite;
 
 import com.golden.gamedev.Game;
-import com.golden.gamedev.object.Sprite;
 
-public abstract class Platform extends CartesianSprite {
+public abstract class Platform extends NewtonianSprite {
 	
 	protected Game owner;
 	
@@ -31,6 +30,7 @@ public abstract class Platform extends CartesianSprite {
 	 */
 	public Platform () {
 	}
+
 	
 	public void set(BufferedImage[] images, double x, double y) {
         this.setImages(images);

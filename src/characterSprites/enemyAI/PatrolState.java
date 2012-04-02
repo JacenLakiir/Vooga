@@ -3,7 +3,7 @@ package characterSprites.enemyAI;
 import characterSprites.Enemy;
 
 /**
- * @author Eric Mercer
+ * @author Eric Mercer (JacenLakiir)
  */
 public class PatrolState implements EnemyState
 {
