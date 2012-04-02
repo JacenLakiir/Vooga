@@ -21,6 +21,8 @@ public class Enemy extends Character
     private Game myGame;
     private EnemyState myState;
     private EnemyState myPreviousState;
+    private Attack myAttack;
+    
     private Double myStartX;
     private double myPatrolRadius;
 
@@ -46,6 +48,11 @@ public class Enemy extends Character
         myState.update(milliSec);
         super.update(milliSec);
     }
+    
+    public void fight ()
+    {
+        myAttack.useAttack();
+    }
         
     public void setState (EnemyState state)
     {
@@ -53,9 +60,9 @@ public class Enemy extends Character
         myState = state;
     }
     
-    public void setAttack(Attack a)
+    public void setAttack(Attack attack)
     {
-        return;
+        myAttack = attack;
     }
     
     public double getStartX ()
@@ -78,6 +85,7 @@ public class Enemy extends Character
         return myPreviousState;
     }
     
+        
     /* each state needs its own getter so that transitions don't need to
      * instantiate a new state object when setting the current state
      */

@@ -17,7 +17,8 @@ public class AttackState implements EnemyState
     @Override
     public void update (long milliSec)
     {
-        // not implemented yet
+        // not implemented properly yet
+        enemy.fight();
         
         // can switch to dead or previous state (patrol or stationary)
     }

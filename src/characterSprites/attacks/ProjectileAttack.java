@@ -1,5 +1,8 @@
 package characterSprites.attacks;
 
+/**
+ * @author Eric Mercer (JacenLakiir)
+ */
 public class ProjectileAttack implements Attack
 {
     
