@@ -6,7 +6,7 @@ package physicsEngine;
 
 import com.golden.gamedev.object.sprite.AdvanceSprite;
 
-@SuppressWarnings("serial")
+@SuppressWarnings("serial") 
 public abstract class CartesianSprite extends AdvanceSprite{
     protected Acceleration acc;
 //    protected DuringAcceleration duringAcc;

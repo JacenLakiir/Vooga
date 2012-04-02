@@ -15,6 +15,7 @@ public abstract class Character extends NewtonianSprite implements GameElement{
     protected Game myGame;
     
     public Character(Game game) {
+        super();
         myGame = game;
     }
     

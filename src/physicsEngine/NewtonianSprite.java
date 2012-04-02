@@ -109,5 +109,8 @@ public class NewtonianSprite extends CartesianSprite{
         this.dragCoef = coef;
     }
 
+    public void setMass(double m) {
+        this.mass = m;
+    }
 
 }

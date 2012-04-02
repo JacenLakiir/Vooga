@@ -29,7 +29,7 @@ public class DemoGame1 extends Game{
     Background       background;
     KeyConfig        keyConfig;
     @Override
-    public void initResources() {
+    public void initResources() { 
         playfield = new PlayField();
         
         background = new ColorBackground(Color.gray, 640, 480);
@@ -45,35 +45,29 @@ public class DemoGame1 extends Game{
 
         images = this.getImages("resources/Bar.png", 1, 1);
         Brick floor = new Brick(this);
-        floor.setMovable(false);
         floor.setImages(images);
         floor.setLocation(0, 440);
         
         Brick ceiling = new Brick(this);
-        ceiling.setMovable(false);
         ceiling.setImages(images);
         ceiling.setLocation(70, -20);
 
         images = this.getImages("resources/Block1.png", 1, 1);
         Brick block1 = new Brick(this);
-        block1.setMovable(false);
         block1.setImages(images);
         block1.setLocation(100, 200);
         
         images = this.getImages("resources/Block2.png", 1, 1);
         Brick block2 = new Brick(this);
-        block2.setMovable(false);
         block2.setImages(images);
         block2.setLocation(300, 200);
         
         images = this.getImages("resources/Wall.png", 1, 1);
         Brick wall1 = new Brick(this);
-        wall1.setMovable(false);
         wall1.setImages(images);
         wall1.setLocation(0, 0);
         
         Brick wall2 = new Brick(this);
-        wall2.setMovable(false);
         wall2.setImages(images);
         wall2.setLocation(620, 0);
         
