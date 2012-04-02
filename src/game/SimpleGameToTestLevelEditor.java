@@ -77,7 +77,7 @@ public class SimpleGameToTestLevelEditor extends Game {
 	}
 
 	public void render(Graphics2D arg0) {
-		myGameScroller.scroll();
+		//myGameScroller.scroll();
 		myPlayfield.render(arg0);	
 	}
     
