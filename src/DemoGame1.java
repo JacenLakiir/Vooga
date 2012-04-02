@@ -8,9 +8,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import mario.Mario;
-import mario.MarioCollision;
-import mario.Water;
 
+import physicsEngine.NewtonianCollision;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
@@ -22,7 +21,7 @@ import com.golden.gamedev.object.background.ColorBackground;
 import characterSprites.Brick;
 import characterSprites.Player;
 
-public class TestingGame2 extends Game{
+public class DemoGame1 extends Game{
 
     PlayField        playfield;  
     Background       background;
@@ -30,23 +29,18 @@ public class TestingGame2 extends Game{
     @Override
     public void initResources() {
         playfield = new PlayField();
-
+        
         background = new ColorBackground(Color.gray, 640, 480);
         playfield.setBackground(background);
-
+        
         BufferedImage[] images = this.getImages("resources/Mario1.png", 1, 1);
         Player mario = new Mario(this);
         mario.setImages(images);
         mario.setLocation(25, 20);
-
-        images = this.getImages("resources/Water.png", 1, 1);
-        Brick water = new Water(this);
-        water.setMovable(false);
-        water.setPenetrable(true);
-        water.setDensity(1);
-        water.setDragCoefficient(.2);
-        water.setImages(images); 
-        water.setLocation(0, 240);
+        
+//        images = this.getImages("resources/Mario1.png", 1, 1);
+//        Enemy badMario = new Enemy(this, 75);
+//        badMario.set(images, 300, 0);
 
         images = this.getImages("resources/Bar.png", 1, 1);
         Brick floor = new Brick(this);
@@ -64,20 +58,13 @@ public class TestingGame2 extends Game{
         block1.setMovable(false);
         block1.setImages(images);
         block1.setLocation(100, 200);
-
+        
         images = this.getImages("resources/Block2.png", 1, 1);
         Brick block2 = new Brick(this);
         block2.setMovable(false);
         block2.setImages(images);
-        block2.setLocation(160, 200);
+        block2.setLocation(300, 200);
         
-        images = this.getImages("resources/SmallBar.png", 1, 1);
-        Brick middleBar = new Brick(this);
-        middleBar.setMovable(false);
-        middleBar.setImages(images);
-        middleBar.setLocation(260, 260);
-
-
         images = this.getImages("resources/Wall.png", 1, 1);
         Brick wall1 = new Brick(this);
         wall1.setMovable(false);
@@ -88,24 +75,53 @@ public class TestingGame2 extends Game{
         wall2.setMovable(false);
         wall2.setImages(images);
         wall2.setLocation(620, 0);
+        
+        floor.setCoefficientOfFrictionInX(0);        
+        floor.setCoefficientOfFrictionInY(0);
+        floor.setCoefficientOfRestitutionInX(1);
+        floor.setCoefficientOfRestitutionInY(1);
+
+        ceiling.setCoefficientOfFrictionInX(0);        
+        ceiling.setCoefficientOfFrictionInY(0);
+        ceiling.setCoefficientOfRestitutionInX(1);
+        ceiling.setCoefficientOfRestitutionInY(1);
+
+        block1.setCoefficientOfFrictionInX(0);        
+        block1.setCoefficientOfFrictionInY(0);
+        block1.setCoefficientOfRestitutionInX(1);
+        block1.setCoefficientOfRestitutionInY(1);
+
+        block2.setCoefficientOfFrictionInX(0);        
+        block2.setCoefficientOfFrictionInY(0);
+        block2.setCoefficientOfRestitutionInX(1);
+        block2.setCoefficientOfRestitutionInY(1);
+
+        wall1.setCoefficientOfFrictionInX(0);        
+        wall1.setCoefficientOfFrictionInY(0);
+        wall1.setCoefficientOfRestitutionInX(1);
+        wall1.setCoefficientOfRestitutionInY(1);
+
+        wall2.setCoefficientOfFrictionInX(0);        
+        wall2.setCoefficientOfFrictionInY(0);
+        wall2.setCoefficientOfRestitutionInX(1);
+        wall2.setCoefficientOfRestitutionInY(1);
 
         SpriteGroup blocks = new SpriteGroup("block");
-        blocks.add(water);
         blocks.add(floor);
         blocks.add(ceiling);
         blocks.add(block1);
         blocks.add(block2);
-        blocks.add(middleBar);
         blocks.add(wall1);
         blocks.add(wall2);
-
+        
         SpriteGroup characters = new SpriteGroup("characters");
         characters.add(mario);
-
+//        characters.add(badMario);
+        
         playfield.addGroup(blocks);
         playfield.addGroup(characters);
-
-        MarioCollision collision = new MarioCollision();
+        
+        NewtonianCollision collision = new NewtonianCollision();
         playfield.addCollisionGroup(characters, blocks, collision);
     }
 
@@ -118,10 +134,10 @@ public class TestingGame2 extends Game{
     public void update(long t) {
         playfield.update(t);
     }
-
+    
     public static void main(String[] args) {
         GameLoader game = new GameLoader();
-        game.setup(new TestingGame2(), new Dimension(640,480), false);
+        game.setup(new DemoGame1(), new Dimension(640,480), false);
         game.start();
     }
 

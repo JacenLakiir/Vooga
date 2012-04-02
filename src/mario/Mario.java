@@ -34,7 +34,7 @@ public class Mario extends Player{
 
     @Override
     public void checkDead() {
-        if (this.getX()<0 || this.getX()>640 || this.getY()>500) {
+        if (this.getX()<-10 || this.getX()>650 || this.getY()>500) {
             System.out.println("Dead");
             myGame.stop();
             return;

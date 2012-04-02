@@ -31,9 +31,9 @@ public abstract class CartesianSprite extends AdvanceSprite{
     protected void updateMovement(long t) {
         vel.addFromAcceleration(acc, t);
         disp.addFromVelocity(vel, t);
-        System.out.println(String.format("accX: %4f   accY: %4f", acc.getX(), acc.getY()));
-        System.out.println(String.format("velX: %4f   velY: %4f", vel.getX(), vel.getY()));
-        System.out.println(String.format("dispX:%4f   dispY:%4f", disp.getX(), disp.getY()));
+//        System.out.println(String.format("accX: %4f   accY: %4f", acc.getX(), acc.getY()));
+//        System.out.println(String.format("velX: %4f   velY: %4f", vel.getX(), vel.getY()));
+//        System.out.println(String.format("dispX:%4f   dispY:%4f", disp.getX(), disp.getY()));
 //        if (disp.getX() == 0) {
 //            System.out.println("Went crazy");
 //        }
