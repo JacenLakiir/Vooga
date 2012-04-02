@@ -37,10 +37,6 @@ public class DemoGame1 extends Game{
         Player mario = new Mario(this);
         mario.setImages(images);
         mario.setLocation(25, 20);
-        
-//        images = this.getImages("resources/Mario1.png", 1, 1);
-//        Enemy badMario = new Enemy(this, 75);
-//        badMario.set(images, 300, 0);
 
         images = this.getImages("resources/Bar.png", 1, 1);
         Brick floor = new Brick(this);
@@ -116,7 +112,6 @@ public class DemoGame1 extends Game{
         
         SpriteGroup characters = new SpriteGroup("characters");
         characters.add(mario);
-//        characters.add(badMario);
         
         playfield.addGroup(blocks);
         playfield.addGroup(characters);
