@@ -5,6 +5,7 @@ package characterSprites.enemyAI;
  */
 public interface EnemyState
 {
-    
+   
+    public void update (long milliSec);
     
 }

@@ -1,3 +1,6 @@
+/**
+ * @author Ian McMahon
+ */
 package setting;
 
 public class BreakableDecorator extends PlatformDecorator {

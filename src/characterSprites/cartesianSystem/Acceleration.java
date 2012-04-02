@@ -1,4 +1,4 @@
-package characterSprites;
+package characterSprites.cartesianSystem;
 
 public class Acceleration extends Vector{
     public Acceleration(double x, double y) {

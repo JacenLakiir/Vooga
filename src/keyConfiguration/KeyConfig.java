@@ -1,4 +1,4 @@
-package KeyConfiguration;
+package keyConfiguration;
 
 import java.awt.event.KeyEvent;
 import java.util.HashMap;

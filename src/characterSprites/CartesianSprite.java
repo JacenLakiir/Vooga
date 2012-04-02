@@ -1,7 +1,7 @@
 package characterSprites;
 
 import com.golden.gamedev.object.sprite.AdvanceSprite;
-
+import characterSprites.cartesianSystem.*;
 
 @SuppressWarnings("serial")
 public abstract class CartesianSprite extends AdvanceSprite{
@@ -28,10 +28,12 @@ public abstract class CartesianSprite extends AdvanceSprite{
     protected void updateMovement(long t) {
         vel.addFromAcceleration(acc, t);
         disp.addFromVelocity(vel, t);
-        System.out.println("acc:   " + acc.getX());
-        System.out.println("vel:   " + vel.getX());
-        System.out.println("disp:  " + disp.getX());
-
+        System.out.println(String.format("accX: %4f   accY: %4f", acc.getX(), acc.getY()));
+        System.out.println(String.format("velX: %4f   velY: %4f", vel.getX(), vel.getY()));
+        System.out.println(String.format("dispX:%4f   dispY:%4f", disp.getX(), disp.getY()));
+//        if (disp.getX() == 0) {
+//            System.out.println("Went crazy");
+//        }
         acc.reset();
         moveToDisplacement();
     }
@@ -39,8 +41,6 @@ public abstract class CartesianSprite extends AdvanceSprite{
     private void moveToDisplacement() {
         double dx = disp.getX() - this.getX();
         double dy = 480 - disp.getY() - this.getY();    // need to change!!!!
-//        this.moveY(dy);
-//        this.moveX(dx);
         this.move(dx, dy);
     }
 

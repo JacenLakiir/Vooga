@@ -1,4 +1,4 @@
-package characterSprites;
+package characterSprites.cartesianSystem;
 
 public class Velocity extends Vector{
 
