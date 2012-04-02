@@ -1,3 +1,6 @@
+/**
+ * @author Glenn Rivkees (grivkees)
+ */
 package game;
 
 import com.golden.gamedev.object.Background;
