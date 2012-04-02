@@ -1,5 +1,6 @@
 package characterSprites;
 
+import characterSprites.attacks.Attack;
 import characterSprites.enemyAI.AttackState;
 import characterSprites.enemyAI.DeadState;
 import characterSprites.enemyAI.EnemyState;
@@ -50,6 +51,11 @@ public class Enemy extends Character
     {
         myPreviousState = myState;
         myState = state;
+    }
+    
+    public void setAttack(Attack a)
+    {
+        return;
     }
     
     public double getStartX ()
