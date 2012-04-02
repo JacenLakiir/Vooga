@@ -9,10 +9,9 @@ package setting;
 
 import java.awt.image.BufferedImage;
 
-import characterSprites.NewtonianSprite;
+import physiceEngine.NewtonianSprite;
 
 import com.golden.gamedev.Game;
-import com.golden.gamedev.object.Sprite;
 
 public abstract class Platform extends NewtonianSprite {
 	

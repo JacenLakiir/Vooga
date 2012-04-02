@@ -23,14 +23,13 @@ public class Enemy extends Character
 
     public Enemy (Game game, double patrolRadius)
     {
-        super();
+        super(game);
         
         standState = new StationaryState(this);
         patrolState = new PatrolState(this);
         attackState = new AttackState(this);
         deadState = new DeadState(this);
         
-        myGame = game;
         myState = (patrolRadius != 0) ? patrolState : standState;
         myStartX = null;
         myPatrolRadius = patrolRadius;

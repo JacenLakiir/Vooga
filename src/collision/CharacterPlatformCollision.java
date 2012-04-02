@@ -1,7 +1,7 @@
 package collision;
 
+import physiceEngine.NewtonianSprite;
 import setting.Platform;
-import characterSprites.NewtonianSprite;
 
 /**
  * @author Ian McMahon
