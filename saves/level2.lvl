@@ -1,0 +1,110 @@
+{
+  "myBackGroundSrc": "resources/StarDust.jpg",
+  "mySpriteMap": [
+    [
+      {
+        "x": 506,
+        "y": 129
+      },
+      {
+        "myImagesrc": "resources/Mario1.png",
+        "mySprite": {
+          "a": {
+            "x": 0.0,
+            "y": 0.0,
+            "d": 640,
+            "e": 480,
+            "f": {
+              "x": 0,
+              "y": 0,
+              "width": 640,
+              "height": 480
+            }
+          },
+          "x": 0.0,
+          "y": 0.0,
+          "d": 0.0,
+          "e": 0.0,
+          "f": 0.0,
+          "g": 0.0,
+          "width": 40,
+          "height": 40,
+          "m": 0,
+          "o": 0,
+          "p": true,
+          "q": false
+        }
+      }
+    ],
+    [
+      {
+        "x": 20,
+        "y": 200
+      },
+      {
+        "myImagesrc": "resources/Mario1.png",
+        "mySprite": {
+          "a": {
+            "x": 0.0,
+            "y": 0.0,
+            "d": 640,
+            "e": 480,
+            "f": {
+              "x": 0,
+              "y": 0,
+              "width": 640,
+              "height": 480
+            }
+          },
+          "x": 0.0,
+          "y": 0.0,
+          "d": 0.0,
+          "e": 0.0,
+          "f": 0.0,
+          "g": 0.0,
+          "width": 40,
+          "height": 40,
+          "m": 0,
+          "o": 0,
+          "p": true,
+          "q": false
+        }
+      }
+    ],
+    [
+      {
+        "x": 0,
+        "y": 60
+      },
+      {
+        "myImagesrc": "resources/Mario1.png",
+        "mySprite": {
+          "a": {
+            "x": 0.0,
+            "y": 0.0,
+            "d": 640,
+            "e": 480,
+            "f": {
+              "x": 0,
+              "y": 0,
+              "width": 640,
+              "height": 480
+            }
+          },
+          "x": 0.0,
+          "y": 0.0,
+          "d": 0.0,
+          "e": 0.0,
+          "f": 0.0,
+          "g": 0.0,
+          "width": 40,
+          "height": 40,
+          "m": 0,
+          "o": 0,
+          "p": true,
+          "q": false
+        }
+      }
+    ]
+  ]
+}
