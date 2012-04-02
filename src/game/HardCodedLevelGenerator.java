@@ -5,9 +5,9 @@ package game;
 
 import java.util.*;
 import java.awt.Point;
-import levelEditor.VoogaUtilities;
 
 import com.golden.gamedev.object.Sprite;
+import editor.VoogaUtilities;
 
 public class HardCodedLevelGenerator {
 
