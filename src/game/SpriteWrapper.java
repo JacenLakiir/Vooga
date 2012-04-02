@@ -1,3 +1,6 @@
+/**
+ * @author Michael Zhou (Dominator008)
+ */
 package game;
 
 import leveleditor.VoogaUtilities;

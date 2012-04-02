@@ -1,3 +1,6 @@
+/**
+ * @author Michael Zhou (Dominator008)
+ */
 package game;
 
 import java.awt.Dimension;
@@ -42,7 +45,7 @@ public class SimpleGameToTestLevelEditor extends Game {
 	myHero = myPlayfield.getExtraGroup().getActiveSprite(); // RANDOM
 	myBackground = new ImageBackground(getImage(loadedState.myBackGroundSrc));
 	myPlayfield.setBackground(myBackground);
-	myGameScroller = new GameScroller(myPlayers, myBackground);
+	//myGameScroller = new GameScroller(myPlayers, myBackground);
     }
     
 	public void initResources() {
