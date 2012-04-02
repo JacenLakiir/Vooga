@@ -1,3 +1,7 @@
+/**
+ * @author Ian McMahon
+ */
+
 package collision;
 
 import setting.Platform;

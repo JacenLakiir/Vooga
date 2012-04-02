@@ -1,3 +1,7 @@
+/**
+ * @author Ian McMahon
+ */
+
 package setting;
 
 import java.awt.Graphics2D;
