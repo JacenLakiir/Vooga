@@ -7,10 +7,12 @@ import characterSprites.enemyAI.PatrolState;
 import characterSprites.enemyAI.StationaryState;
 import com.golden.gamedev.Game;
 
-@SuppressWarnings("serial")
+/**
+ * @author ericmercer (JacenLakiir)
+ */
 public class Enemy extends Character
 {
-    private EnemyState standState;
+    private EnemyState stationaryState;
     private EnemyState patrolState;
     private EnemyState attackState;
     private EnemyState deadState;
@@ -25,12 +27,13 @@ public class Enemy extends Character
     {
         super(game);
         
-        standState = new StationaryState(this);
+        stationaryState = new StationaryState(this);
         patrolState = new PatrolState(this);
         attackState = new AttackState(this);
         deadState = new DeadState(this);
         
-        myState = (patrolRadius != 0) ? patrolState : standState;
+        myGame = game;
+        myState = (patrolRadius != 0) ? patrolState : stationaryState;
         myStartX = null;
         myPatrolRadius = patrolRadius;
     }
@@ -42,7 +45,7 @@ public class Enemy extends Character
         myState.update(milliSec);
         super.update(milliSec);
     }
-    
+        
     public void setState (EnemyState state)
     {
         myPreviousState = myState;
@@ -59,13 +62,38 @@ public class Enemy extends Character
         return myPatrolRadius;
     }
     
-    protected EnemyState getState ()
+    public EnemyState getCurrentState ()
     {
         return myState;
     }
     
-    protected EnemyState getPreviousState ()
+    public EnemyState getPreviousState ()
     {
         return myPreviousState;
     }
+    
+    /* each state needs its own getter so that transitions don't need to
+     * instantiate a new state object when setting the current state
+     */
+  
+    public EnemyState getStationaryState ()
+    {
+        return stationaryState;
+    }
+
+    public EnemyState getPatrolState ()
+    {
+        return patrolState;
+    }
+
+    public EnemyState getAttackState ()
+    {
+        return attackState;
+    }
+
+    public EnemyState getDeadState ()
+    {
+        return deadState;
+    }
+    
 }

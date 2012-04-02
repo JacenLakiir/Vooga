@@ -2,7 +2,7 @@
  * @author Kuang Han
  */
 
-package physiceEngine;
+package physicsEngine;
 
 public abstract class Vector{
     

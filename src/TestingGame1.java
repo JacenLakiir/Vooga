@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 
 import mario.Mario;
 
-import physiceEngine.NewtonianCollision;
+import physicsEngine.NewtonianCollision;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;

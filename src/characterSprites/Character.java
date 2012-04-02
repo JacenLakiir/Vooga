@@ -5,7 +5,7 @@
 package characterSprites;
 
 import com.golden.gamedev.Game;
-import physiceEngine.NewtonianSprite;
+import physicsEngine.NewtonianSprite;
 
 
 

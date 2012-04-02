@@ -2,7 +2,7 @@
  * @author Kuang Han
  */
 
-package physiceEngine;
+package physicsEngine;
 
 @SuppressWarnings("serial")
 public class NewtonianSprite extends CartesianSprite{

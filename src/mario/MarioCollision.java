@@ -4,7 +4,7 @@
 
 package mario;
 
-import physiceEngine.NewtonianCollision;
+import physicsEngine.NewtonianCollision;
 import characterSprites.Brick;
 
 import com.golden.gamedev.object.Sprite;

@@ -2,7 +2,7 @@
  * @author Kuang Han
  */
 
-package physiceEngine;
+package physicsEngine;
 
 public class Acceleration extends Vector{
     public Acceleration(double x, double y) {

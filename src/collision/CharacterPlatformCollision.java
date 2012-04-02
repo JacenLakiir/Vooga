@@ -1,6 +1,6 @@
 package collision;
 
-import physiceEngine.NewtonianSprite;
+import physicsEngine.NewtonianSprite;
 import setting.Platform;
 
 /**

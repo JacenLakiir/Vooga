@@ -1,7 +1,7 @@
 package characterSprites.enemyAI;
 
 /**
- * @author Eric Mercer
+ * @author Eric Mercer (JacenLakiir)
  */
 public interface EnemyState
 {

@@ -2,7 +2,7 @@
  * @author Kuang Han
  */
 
-package physiceEngine;
+package physicsEngine;
 
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;

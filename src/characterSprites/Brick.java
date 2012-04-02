@@ -6,7 +6,7 @@ package characterSprites;
 
 import com.golden.gamedev.Game;
 
-import physiceEngine.NewtonianSprite;
+import physicsEngine.NewtonianSprite;
 
 @SuppressWarnings("serial")
 public class Brick extends NewtonianSprite implements GameElement{

@@ -2,7 +2,7 @@
  * @author Kuang Han
  */
 
-package physiceEngine;
+package physicsEngine;
 
 public class Displacement extends Vector{
     public Displacement(double x, double y) {

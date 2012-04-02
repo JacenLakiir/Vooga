@@ -9,7 +9,7 @@ package setting;
 
 import java.awt.image.BufferedImage;
 
-import physiceEngine.NewtonianSprite;
+import physicsEngine.NewtonianSprite;
 
 import com.golden.gamedev.Game;
 
