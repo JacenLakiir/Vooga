@@ -5,7 +5,7 @@ package game;
 
 import java.util.*;
 import java.awt.Point;
-import leveleditor.VoogaUtilities;
+import levelEditor.VoogaUtilities;
 
 import com.golden.gamedev.object.Sprite;
 

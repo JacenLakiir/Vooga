@@ -9,7 +9,7 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
-import leveleditor.VoogaUtilities;
+import levelEditor.VoogaUtilities;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
