@@ -33,19 +33,6 @@ public class Player extends Character{
     }
     
     public void checkKeyboardInput() {
-//        if (myGame.keyDown(KeyEvent.VK_UP)) {
-//            keyUpPressed();
-//        }
-//        if (myGame.keyDown(KeyEvent.VK_DOWN)) {
-//            keyDownPressed();
-//        }
-////        if (myGame.keyDown(KeyEvent.VK_LEFT)) {
-////            keyLeftPressed();
-////        }
-//        if (myGame.keyDown(KeyEvent.VK_RIGHT)) {
-//            keyRightPressed();
-//        }
-        
         for(Key key : keyList){
             if(myGame.keyDown(key.getValue())){
                 key.notifyObserver();

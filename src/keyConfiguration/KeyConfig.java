@@ -68,18 +68,4 @@ public class KeyConfig {
         bufferedOut.write(gson.toJson(keyMap));
         bufferedOut.close();
     }
-    
-//    public static void main(String[] args){
-//        KeyConfig keyConfig = new KeyConfig();
-//        try {
-//            String fileName = "configurations/keyConfig.json";
-//            keyConfig.parseKeyConfig(fileName);
-//            keyConfig.setCustomKey(fileName, KeyEvent.VK_A, "left");
-//            keyConfig.outputJsonFile(fileName);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 }  

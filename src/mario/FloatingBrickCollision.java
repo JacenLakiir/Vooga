@@ -7,6 +7,6 @@ import physicsEngine.NewtonianCollision;
 public class FloatingBrickCollision extends NewtonianCollision{
     
     public void collided(Sprite mario, Sprite brick) {        
-        supe
+//        supe
     }
 }
