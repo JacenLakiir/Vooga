@@ -2,7 +2,7 @@
  * @author Kuang Han
  */
 
-package physicsengine;
+package collision;
 
 import physicsengine.NewtonianSprite;
 
@@ -36,7 +36,7 @@ public class NewtonianCollision extends CollisionGroup{
         //            ((NewtonianSprite)s1).collidedTopToBottomWith((NewtonianSprite)s2);
         //            ((NewtonianSprite)s2).collidedBottomToTopWith((NewtonianSprite)s1);
         //        }
-        if (((NewtonianSprite)s1).isPenetrable || ((NewtonianSprite)s2).isPenetrable) {
+        if (((NewtonianSprite)s1).isPenetrable() || ((NewtonianSprite)s2).isPenetrable()) {
 //            System.out.println("In water");
             checkBuoyancy((NewtonianSprite)s1, (NewtonianSprite)s2);
             checkViscosity((NewtonianSprite)s1, (NewtonianSprite)s2);

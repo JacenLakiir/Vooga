@@ -11,6 +11,7 @@ public class BasePlatform extends Platform {
 	public BasePlatform (Game owner) {
 		super(owner);
 		this.isUnmovable = true;
+		this.isPenetrable = false;
 	}
 
 	public void hitFromBottomAction() {	}

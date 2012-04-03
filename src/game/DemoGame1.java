@@ -1,5 +1,4 @@
 package game;
-
 /**
  * @author Kuang Han
  */
@@ -13,7 +12,9 @@ import keyconfiguration.KeyConfig;
 
 import mario.Mario;
 
-import physicsengine.NewtonianCollision;
+import setting.*;
+
+import collision.NewtonianCollision;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
@@ -22,7 +23,6 @@ import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ColorBackground;
 
-import charactersprites.Brick;
 import charactersprites.Player;
 
 public class DemoGame1 extends Game{
@@ -31,7 +31,7 @@ public class DemoGame1 extends Game{
     Background       background;
     KeyConfig        keyConfig;
     @Override
-    public void initResources() {
+    public void initResources() { 
         playfield = new PlayField();
         
         background = new ColorBackground(Color.gray, 640, 480);
@@ -46,36 +46,30 @@ public class DemoGame1 extends Game{
         mario.setLocation(25, 20);
 
         images = this.getImages("resources/Bar.png", 1, 1);
-        Brick floor = new Brick(this);
-        floor.setMovable(false);
+        Platform floor = new BasePlatform(this);
         floor.setImages(images);
         floor.setLocation(0, 440);
         
-        Brick ceiling = new Brick(this);
-        ceiling.setMovable(false);
+        Platform ceiling = new BasePlatform(this);
         ceiling.setImages(images);
         ceiling.setLocation(70, -20);
 
         images = this.getImages("resources/Block1.png", 1, 1);
-        Brick block1 = new Brick(this);
-        block1.setMovable(false);
+        Platform block1 = new BasePlatform(this);
         block1.setImages(images);
         block1.setLocation(100, 200);
         
         images = this.getImages("resources/Block2.png", 1, 1);
-        Brick block2 = new Brick(this);
-        block2.setMovable(false);
+        Platform block2 = new BasePlatform(this);
         block2.setImages(images);
         block2.setLocation(300, 200);
         
         images = this.getImages("resources/Wall.png", 1, 1);
-        Brick wall1 = new Brick(this);
-        wall1.setMovable(false);
+        Platform wall1 = new BasePlatform(this);
         wall1.setImages(images);
         wall1.setLocation(0, 0);
         
-        Brick wall2 = new Brick(this);
-        wall2.setMovable(false);
+        Platform wall2 = new BasePlatform(this);
         wall2.setImages(images);
         wall2.setLocation(620, 0);
         
@@ -142,5 +136,6 @@ public class DemoGame1 extends Game{
         game.setup(new DemoGame1(), new Dimension(640,480), false);
         game.start();
     }
+
 
 }

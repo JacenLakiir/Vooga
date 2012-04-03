@@ -36,8 +36,96 @@ public abstract class PlatformDecorator extends Platform {
 	
 	/*
 	 * The following methods allow the PlatformDecorator to act as a ConcretePlatform
-	 * (Sprite) by allowing access to the inner sprites methods.
+	 * (Sprite) by allowing access to the inner sprite's methods.
 	 */
+	
+	public void set(BufferedImage[] images, double x, double y) {
+        decoratedPlatform.setImages(images);
+        decoratedPlatform.setLocation(x, y);
+    }
+	
+	private void addGravity() {
+        if (decoratedPlatform.isUnmovable() == false) {
+        	decoratedPlatform.addAcceleration(0, -stdGravity);
+        }
+    }
+    
+    public void givenAForceOf(double fx, double fy) {
+    	decoratedPlatform.givenAForceOf(fx, fy);
+    }
+
+    public double getMass() {
+        return decoratedPlatform.getMass();
+    }
+
+    public double getCoefficintOfFrictionInXDirection() {
+        return decoratedPlatform.getCoefficintOfFrictionInXDirection();
+    }
+
+    public double getCoefficintOfFrictionInYDirection() {
+        return decoratedPlatform.getCoefficintOfFrictionInYDirection();
+    }
+
+    public double getCoefficintOfRestitutionInXDirection() {
+        return decoratedPlatform.getCoefficintOfRestitutionInXDirection();
+    }
+
+    public double getCoefficintOfRestitutionInYDirection() {
+        return decoratedPlatform.getCoefficintOfRestitutionInYDirection();
+    }
+
+    public boolean isUnmovable() {
+        return decoratedPlatform.isUnmovable();
+    }
+
+    public boolean isPenetrable() {
+        return decoratedPlatform.isPenetrable();
+    }
+
+    public double getGravitationalAcceleration() {
+        return decoratedPlatform.getGravitationalAcceleration();
+    }
+
+    public void setMovable(boolean movable) {
+    	decoratedPlatform.setMovable(movable); 
+    }
+    
+    public void setPenetrable(boolean penetrable) {
+    	decoratedPlatform.setPenetrable(penetrable);
+    }
+    
+    public double getDragCoefficient() {
+        return decoratedPlatform.getDragCoefficient();
+    }
+
+    public double getDensity() {
+        return decoratedPlatform.getDensity();
+    }
+    
+    public void setDensity(double density) {
+    	decoratedPlatform.setDensity(density);
+    }
+    
+    public void setCoefficientOfFrictionInX(double coef) {
+    	decoratedPlatform.setCoefficientOfFrictionInX(coef);
+    }
+    
+    public void setCoefficientOfFrictionInY(double coef) {
+    	decoratedPlatform.setCoefficientOfFrictionInY(coef);
+    }
+    
+    public void setCoefficientOfRestitutionInX(double coef) {
+    	decoratedPlatform.setCoefficientOfRestitutionInX(coef);
+    }
+    
+    public void setCoefficientOfRestitutionInY(double coef) {
+    	decoratedPlatform.setCoefficientOfRestitutionInY(coef);
+    }
+    
+    public void setDragCoefficient(double coef) {
+        decoratedPlatform.setDragCoefficient(coef);
+    }
+	
 	
 	public void addHorizontalSpeed(long elapsedTime, double accel, double maxSpeed){
 		decoratedPlatform.addHorizontalSpeed(elapsedTime, accel, maxSpeed);
@@ -181,6 +269,10 @@ public abstract class PlatformDecorator extends Platform {
 	
 	public void setImage(BufferedImage image){
 		decoratedPlatform.setImage(image);
+	}
+	
+	public void setImages(BufferedImage[] images){
+		decoratedPlatform.setImages(images);
 	}
 	
 	public void setImmutable(boolean b){

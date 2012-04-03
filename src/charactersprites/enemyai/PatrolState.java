@@ -15,7 +15,6 @@ public class PatrolState implements EnemyState
         enemy = e;
     }
 
-    @Override
     public void update (long milliSec)
     {
         if (enemy.getVelocity().getY() != 0)   return;

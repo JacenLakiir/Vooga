@@ -13,7 +13,7 @@ import physicsengine.NewtonianSprite;
 
 import com.golden.gamedev.Game;
 
-public abstract class Platform extends NewtonianSprite {
+public abstract class Platform extends NewtonianSprite{
 	
 	protected Game owner;
 	
@@ -37,9 +37,18 @@ public abstract class Platform extends NewtonianSprite {
         this.setLocation(x, y);
     }
 	
+	 public void setGame(Game game) {
+	        owner = game;
+	    }
+
+	    public Game getGame() {
+	        return owner;
+	    }
+	
 	public abstract void hitFromBottomAction();
 	public abstract void hitFromTopAction();
 	public abstract void hitFromLeftAction();
 	public abstract void hitFromRightAction();
 
 }
+

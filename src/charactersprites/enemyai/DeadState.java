@@ -14,7 +14,6 @@ public class DeadState implements EnemyState
         enemy = e;
     }
 
-    @Override
     public void update (long milliSec)
     {
         enemy.setActive(false);

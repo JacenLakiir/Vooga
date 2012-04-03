@@ -14,7 +14,7 @@ public class AttackState implements EnemyState
         enemy = e;
     }
 
-    @Override
+
     public void update (long milliSec)
     {
         // not implemented properly yet

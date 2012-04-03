@@ -13,4 +13,8 @@ public class BreakableDecorator extends PlatformDecorator {
 		decoratedPlatform.setActive(false);
 		decoratedPlatform.hitFromBottomAction();
 	}
+	
+	public void animateBreak(){
+		//Write this
+	}
 }

@@ -11,7 +11,7 @@ public class BasicAttack implements Attack
         // currently empty constructor
     }
     
-    @Override
+    
     public void useAttack ()
     {
         // TODO Auto-generated method stub

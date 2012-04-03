@@ -15,7 +15,6 @@ public class StationaryState implements EnemyState
         enemy = e;
     }
 
-    @Override
     public void update (long milliSec)
     {
         // not implemented yet

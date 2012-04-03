@@ -11,7 +11,7 @@ import physicsengine.NewtonianSprite;
 
 
 @SuppressWarnings("serial")
-public abstract class Character extends NewtonianSprite implements GameElement{
+public abstract class Character extends NewtonianSprite{
     protected Game myGame;
     
     public Character(Game game) {
