@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 import charactersprites.Player;
 
+import com.golden.gamedev.Game;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 /**
@@ -21,15 +22,19 @@ import com.google.gson.reflect.TypeToken;
  *
  */
 public class KeyConfig {
-    HashMap<String, Integer> keyMap = new HashMap<String, Integer>();
-    List<Key> keyList = new ArrayList<Key>();
-    Player player;
-    public KeyConfig(Player player){
+    private HashMap<String, Integer> keyMap = new HashMap<String, Integer>();
+    private List<Key> keyList = new ArrayList<Key>();
+    private Player player;
+    private Game myGame;
+    public KeyConfig(Player player, Game game){
+        myGame = game;
         this.player = player;
     }
     public void initialization(){
         
     }
+    
+
     
     public HashMap<String, Integer> getKeyMap(){
         return keyMap;
@@ -52,7 +57,7 @@ public class KeyConfig {
             e.printStackTrace();
         }
          for(String action : keyMap.keySet()){
-             keyList.add(new Key(keyMap.get(action), action, player));
+             keyList.add(new Key(keyMap.get(action), action, player, myGame));
          }
     }
         

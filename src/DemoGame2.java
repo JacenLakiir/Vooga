@@ -38,7 +38,7 @@ public class DemoGame2 extends Game{
 
         BufferedImage[] images = this.getImages("resources/Mario1.png", 1, 1);
         Player mario = new Mario(this);
-        keyConfig = new KeyConfig(mario);
+        keyConfig = new KeyConfig(mario,this);
         keyConfig.parseKeyConfig("configurations/keyConfig.json");
         mario.setKeyList(keyConfig.getKeyList());
         mario.setImages(images);

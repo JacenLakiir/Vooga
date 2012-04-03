@@ -34,7 +34,7 @@ public class Player extends Character{
     
     public void checkKeyboardInput() {
         for(Key key : keyList){
-            if(myGame.keyDown(key.getValue())){
+            if(key.isKeyDown()){
                 key.notifyObserver();
             }
         }

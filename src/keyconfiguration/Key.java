@@ -1,5 +1,7 @@
 package keyconfiguration;
 
+import com.golden.gamedev.Game;
+
 import charactersprites.Player;
 
 /**
@@ -11,13 +13,17 @@ public class Key {
     private int keyValue;
     private String action;
     private KeyObserver observer;
-    private Player player;
+    private Game myGame;
     
-    public Key(int value, String actionName, Player player){
+    public Key(int value, String actionName, Player player, Game game){
         keyValue = value;
         action = actionName;
-        this.player = player;
         observer = new KeyObserver(player);
+        myGame = game;
+    }
+    
+    public boolean isKeyDown(){
+        return myGame.keyDown(keyValue);
     }
     
     public String getAction(){
