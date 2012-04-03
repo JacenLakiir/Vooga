@@ -2,7 +2,7 @@ package mario;
 
 import com.golden.gamedev.object.Sprite;
 
-import physicsEngine.NewtonianCollision;
+import physicsengine.NewtonianCollision;
 
 public class FloatingBrickCollision extends NewtonianCollision{
     

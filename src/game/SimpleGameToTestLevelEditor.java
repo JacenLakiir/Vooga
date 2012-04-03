@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import levelEditor.VoogaUtilities;
+import leveleditor.VoogaUtilities;
 
 
 import com.golden.gamedev.Game;

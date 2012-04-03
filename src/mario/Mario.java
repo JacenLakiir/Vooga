@@ -4,7 +4,7 @@
 
 package mario;
 
-import characterSprites.Player;
+import charactersprites.Player;
 
 import com.golden.gamedev.Game;
 

@@ -3,7 +3,7 @@
  */
 package game;
 
-import levelEditor.VoogaUtilities;
+import leveleditor.VoogaUtilities;
 import com.golden.gamedev.object.Sprite;
 
 public class SpriteWrapper {

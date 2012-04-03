@@ -7,7 +7,7 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import keyConfiguration.KeyConfig;
+import keyconfiguration.KeyConfig;
 
 import mario.Mario;
 import mario.MarioCollision;
@@ -21,8 +21,8 @@ import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ColorBackground;
 
-import characterSprites.Brick;
-import characterSprites.Player;
+import charactersprites.Brick;
+import charactersprites.Player;
 
 public class DemoGame2 extends Game{
 

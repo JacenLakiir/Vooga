@@ -2,7 +2,7 @@ package items;
 
 import com.golden.gamedev.Game;
 
-import characterSprites.CollectibleItemSprite;
+import charactersprites.CollectibleItemSprite;
 /**
  * @author Kathleen Oshima
  */

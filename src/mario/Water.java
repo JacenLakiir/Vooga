@@ -6,7 +6,7 @@ package mario;
 
 import com.golden.gamedev.Game;
 
-import characterSprites.Brick;
+import charactersprites.Brick;
 
 @SuppressWarnings("serial")
 public class Water extends Brick{
