@@ -24,7 +24,7 @@ public abstract class CartesianSprite extends AdvanceSprite{
     @Override
     public void update(long milliSec) {
         //subclass.update(long elapsedTime);
-        updateMovement(milliSec);
+    	super.update(milliSec);
     }
 
     @Override

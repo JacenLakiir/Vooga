@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.Sprite;
+import com.golden.gamedev.object.Timer;
 
 public abstract class PlatformDecorator extends Platform {
 	
@@ -16,6 +17,7 @@ public abstract class PlatformDecorator extends Platform {
 	
 	public PlatformDecorator(Platform decoratedPlatform) {
 		this.decoratedPlatform = decoratedPlatform;
+		this.owner = decoratedPlatform.owner;
 	}
 	
 	public void hitFromBottomAction() {	
@@ -305,6 +307,86 @@ public abstract class PlatformDecorator extends Platform {
 	
 	public void setY(double ys){
 		decoratedPlatform.setY(ys);
+	}
+	
+	public Timer getAnimationTimer(){
+		return decoratedPlatform.getAnimationTimer();
+	}
+	
+	public int getFinishAnimationFrame(){
+		return decoratedPlatform.getFinishAnimationFrame();
+	}
+	
+	public int getFrame(){
+		return decoratedPlatform.getFrame();
+	}
+	
+	public BufferedImage getImage(int i){
+		return decoratedPlatform.getImage(i);
+	}
+	
+	public BufferedImage[] getImages(){
+		return decoratedPlatform.getImages();
+	}
+	
+	public int getStartAnimationFrame(){
+		return decoratedPlatform.getStartAnimationFrame();
+	}
+	
+	public boolean isAnimate(){
+		return decoratedPlatform.isAnimate();
+	}
+	
+	public boolean isLoopAnim(){
+		return decoratedPlatform.isLoopAnim();
+	}
+	
+	public void setAnimate(boolean b){
+		decoratedPlatform.setAnimate(b);
+	}
+	
+	public void setAnimationFrame(int start, int finish){
+		decoratedPlatform.setAnimationFrame(start, finish);
+	}
+	
+	public void setAnimationTimer(Timer t){
+		decoratedPlatform.setAnimationTimer(t);
+	}
+	
+	public void setFrame(int i){
+		decoratedPlatform.setFrame(i);
+	}
+	
+	public void setLoopAnim(boolean b){
+		decoratedPlatform.setLoopAnim(b);
+	}
+	
+	public int[] getAnimationFram(){
+		return decoratedPlatform.getAnimationFrame();
+	}
+	
+	public int getDirection(){
+		return decoratedPlatform.getDirection();
+	}
+	
+	public int getStatus(){
+		return decoratedPlatform.getStatus();
+	}
+	
+	public void setAnimation(int stat, int dir){
+		decoratedPlatform.setAnimation(stat, dir);
+	}
+	
+	public void setAnimationFrame(int[] animation){
+		decoratedPlatform.setAnimationFrame(animation);
+	}
+	
+	public void setDirection(int dir){
+		decoratedPlatform.setDirection(dir);
+	}
+	
+	public void setStatus(int stat){
+		decoratedPlatform.setStatus(stat);
 	}
 	
 	public void update(long elapsedTime){
