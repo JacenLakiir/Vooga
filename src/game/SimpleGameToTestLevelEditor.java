@@ -8,7 +8,6 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import leveleditor.VoogaUtilities;
 
 
 import com.golden.gamedev.Game;
@@ -36,14 +35,14 @@ public class SimpleGameToTestLevelEditor extends Game {
     }
 
     private void hardCodedLoadLevel() {
-	LevelState loadedState = VoogaUtilities.loadLevel(new File("saves/level2.lvl"));
+	LevelState loadedState = LevelState.loadFile(new File("saves/level2.lvl"));
 	for (Point p: loadedState.mySpriteMap.keySet()) {
 	    Sprite tocreate = loadedState.mySpriteMap.get(p).getSprite();
 	    tocreate.setLocation(p.x, p.y);
 	    myPlayfield.add(tocreate);
 	}
 	myHero = myPlayfield.getExtraGroup().getActiveSprite(); // RANDOM
-	myBackground = new ImageBackground(getImage(loadedState.myBackGroundSrc));
+	myBackground = new ImageBackground(getImage(loadedState.myBackgroundSrc));
 	myPlayfield.setBackground(myBackground);
 	//myGameScroller = new GameScroller(myPlayers, myBackground);
     }
