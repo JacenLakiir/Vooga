@@ -5,6 +5,7 @@
 package charactersprites;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 import keyconfiguration.Key;
@@ -17,14 +18,20 @@ import com.golden.gamedev.Game;
 public class Player extends Character{
     protected double strengthUp, strengthDown, strengthLeft, strengthRight;
     private List<Key> keyList;
+    //added by Kathleen
+    protected ArrayList<CollectibleItem> myInventory;
+    protected double myHitPoints;
+    
     public Player(Game game) {
         super(game);
+        myInventory = new ArrayList<CollectibleItem>();
     }
     
     @Override
     public void update(long milliSec) {
         checkKeyboardInput();
         super.update(milliSec);  
+        updateAbilities();
         checkDead();
     }
     
@@ -94,4 +101,21 @@ public class Player extends Character{
         strengthRight = s;
     }
 
+    public ArrayList<CollectibleItem> getMyInventory() {
+    	return myInventory;
+    }
+    
+    public double getMyHP() {
+    	return myHitPoints;
+    }
+    
+	public void updateAbilities() {
+		for (CollectibleItem item : myInventory) {
+			if (item.isInUse()) {
+				item.attackPower();
+				item.defensePower();
+			}
+		}
+	}
+    
 }
