@@ -8,12 +8,15 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import keyconfiguration.KeyConfig;
-
 import mario.Mario;
 
+import keyconfiguration.KeyConfig;
 
+
+import charactersprites.Character;
+import charactersprites.GameElement;
 import collision.CharacterPlatformCollision;
+import collision.UniversalCollision;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
@@ -29,10 +32,10 @@ public class DemoGame2 extends Game{
 
     PlayField        playfield;  
     Background       background;
-    KeyConfig        keyConfig;
+    KeyConfig        keyConfig ,keyConfig1;
     @Override
     public void initResources() {
-        
+               
         playfield = new PlayField();
         background = new ColorBackground(Color.gray, 640, 480);
         playfield.setBackground(background);
@@ -43,13 +46,13 @@ public class DemoGame2 extends Game{
         mario.setKeyList(keyConfig.getInputKeyList());
         mario.setImages(images);
         mario.setLocation(25, 20);
-
-        images = this.getImages("resources/Water2.png", 1, 1);
-        Platform water = new PenetrableDecorator(new BasePlatform(this), 0.2);
-        water.setDensity(1);
-        water.setDragCoefficient(.2);
-        water.setImages(images); 
-        water.setLocation(0, 240);
+        
+        Mario mario1 = new Mario(this);
+        keyConfig1 = new KeyConfig(mario,this);
+        keyConfig1.parseKeyConfig("configurations/keyConfig.json");
+        mario1.setKeyList(keyConfig1.getKeyList());
+        mario1.setImages(images);
+        mario1.setLocation(300, 20);
 
         images = this.getImages("resources/Bar.png", 1, 1);
         Platform floor = new BasePlatform(this);
@@ -76,19 +79,34 @@ public class DemoGame2 extends Game{
         
         images = this.getImages("resources/Block1.png", 1, 1);
         Platform block1 = new ItemDecorator(new BasePlatform(this));
-//        block1.setMovable(true);
-//        block1.setDensity(0.8);
         block1.setMass(6);
+        block1.setMovable(false);
         block1.setImages(images);
         block1.setLocation(100, 200);
 
         images = this.getImages("resources/Block2.png", 1, 1);
         Platform block2 = new BreakableDecorator(new BasePlatform(this));
-//        block2.setMovable(true);
-//        block2.setDensity(1.005);
         block2.setMass(6);
+        block2.setMovable(false);
         block2.setImages(images);
         block2.setLocation(160, 200);
+        
+        images = this.getImages("resources/Water2.png", 1, 1);
+        @SuppressWarnings("serial")
+        Platform water = new BasePlatform(this)
+        {
+            @Override
+            public void afterCollidedWith(GameElement e, int collisionSide) {
+                if (e instanceof Mario) {
+                    ((Mario) e).setStrength(0.2);
+                }
+            }
+        };
+        water.setPenetrable(true);
+        water.setDensity(1);
+        water.setDragCoefficient(.2);
+        water.setImages(images); 
+        water.setLocation(0, 240);
 
         SpriteGroup blocks = new SpriteGroup("block");
         blocks.add(water);
@@ -102,13 +120,14 @@ public class DemoGame2 extends Game{
 
         SpriteGroup characters = new SpriteGroup("characters");
         characters.add(mario);
-        
+//        characters.add(mario1);
 
         playfield.addGroup(blocks);
         playfield.addGroup(characters);
 
-        CharacterPlatformCollision collision = new CharacterPlatformCollision();
+        UniversalCollision collision = new UniversalCollision();
         playfield.addCollisionGroup(characters, blocks, collision);
+
     }
 
     @Override

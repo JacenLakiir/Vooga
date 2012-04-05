@@ -14,6 +14,8 @@ import com.golden.gamedev.Game;
 /**
  * @author ericmercer (JacenLakiir)
  */
+
+@SuppressWarnings("serial")
 public class NPC extends Character
 {
     private State stationaryState;

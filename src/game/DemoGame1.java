@@ -8,13 +8,15 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import mario.Mario;
+
+import physicsengine.NewtonianCollision;
+
 import keyconfiguration.KeyConfig;
 
-import mario.Mario;
 
 import setting.*;
 
-import collision.NewtonianCollision;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;

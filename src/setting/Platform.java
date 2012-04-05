@@ -11,44 +11,37 @@ import java.awt.image.BufferedImage;
 
 import physicsengine.NewtonianSprite;
 
+import charactersprites.GameElement;
+
 import com.golden.gamedev.Game;
 
-public abstract class Platform extends NewtonianSprite{
-	
-	protected Game owner;
-	
-	/*
-	 * Constructor for a Concrete Platform
-	 */
-	public Platform (Game owner) {
-		super();
-		this.owner = owner;
-	}
-	
-	/*
-	 * Constructor for a Platform Decorator 
-	 */
-	public Platform () {
-	}
+public abstract class Platform extends GameElement{
 
-	
-	public void set(BufferedImage[] images, double x, double y) {
+    /*
+     * Constructor for a Concrete Platform
+     */
+    public Platform (Game owner) {
+        super(owner);
+    }
+
+    /*
+     * Constructor for a Platform Decorator 
+     */
+    public Platform () {
+        super();
+    }
+
+
+    public void set(BufferedImage[] images, double x, double y) {
         this.setImages(images);
         this.setLocation(x, y);
     }
-	
-	 public void setGame(Game game) {
-	        owner = game;
-	    }
 
-	    public Game getGame() {
-	        return owner;
-	    }
-	
-	public abstract void hitFromBottomAction();
-	public abstract void hitFromTopAction();
-	public abstract void hitFromLeftAction();
-	public abstract void hitFromRightAction();
+
+    //	public abstract void hitFromBottomAction();
+    //	public abstract void hitFromTopAction();
+    //	public abstract void hitFromLeftAction();
+    //	public abstract void hitFromRightAction();
 
 }
 
