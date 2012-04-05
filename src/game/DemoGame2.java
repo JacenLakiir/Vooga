@@ -45,7 +45,7 @@ public class DemoGame2 extends Game{
         mario.setImages(images);
         mario.setLocation(25, 20);
 
-        images = this.getImages("resources/Water.png", 1, 1);
+        images = this.getImages("resources/Water2.png", 1, 1);
         Platform water = new PenetrableDecorator(new BasePlatform(this), 0.2);
         water.setDensity(1);
         water.setDragCoefficient(.2);
@@ -76,7 +76,7 @@ public class DemoGame2 extends Game{
         wall2.setLocation(620, 0);
         
         images = this.getImages("resources/Block1.png", 1, 1);
-        Platform block1 = new BasePlatform(this);
+        Platform block1 = new ItemDecorator(new BasePlatform(this));
 //        block1.setMovable(true);
 //        block1.setDensity(0.8);
         block1.setMass(6);

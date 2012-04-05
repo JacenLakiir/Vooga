@@ -26,6 +26,7 @@ public class CharacterPlatformCollision extends NewtonianCollision{
             ((Mario)arg0).setStrengthRight(((PenetrableDecorator)arg1).getStrength());
         }
 		else{
+			revertPosition1();
 			if(collisionSide == BOTTOM_TOP_COLLISION){
 				((Platform) arg1).hitFromTopAction();
 			}
