@@ -2,9 +2,8 @@
  * @author Kuang Han
  */
 
-package collision;
+package physicsengine;
 
-import physicsengine.NewtonianSprite;
 
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionGroup;
@@ -15,46 +14,29 @@ public class NewtonianCollision extends CollisionGroup{
     protected double collisionTime = 10;   // elapsedTime!!!!
 
     public NewtonianCollision() {
+        super();
         this.pixelPerfectCollision = true;
     }
 
     @Override
     public void collided(Sprite s1, Sprite s2) {        
-        //        if ((this.collisionSide & CollisionGroup.LEFT_RIGHT_COLLISION) != 0) {
-        //            ((NewtonianSprite)s1).collidedLeftToRightWith((NewtonianSprite)s2);
-        //            ((NewtonianSprite)s2).collidedRightToLeftWith((NewtonianSprite)s1);
-        //        }
-        //        if  ((this.collisionSide & CollisionGroup.RIGHT_LEFT_COLLISION) != 0) {
-        //            ((NewtonianSprite)s1).collidedRightToLeftWith((NewtonianSprite)s2);
-        //            ((NewtonianSprite)s2).collidedLeftToRightWith((NewtonianSprite)s1);
-        //        }
-        //        if ((this.collisionSide & CollisionGroup.BOTTOM_TOP_COLLISION) != 0) {
-        //            ((NewtonianSprite)s1).collidedBottomToTopWith((NewtonianSprite)s2);
-        //            ((NewtonianSprite)s2).collidedTopToBottomWith((NewtonianSprite)s1);
-        //        }
-        //        if ((this.collisionSide & CollisionGroup.TOP_BOTTOM_COLLISION) != 0) {
-        //            ((NewtonianSprite)s1).collidedTopToBottomWith((NewtonianSprite)s2);
-        //            ((NewtonianSprite)s2).collidedBottomToTopWith((NewtonianSprite)s1);
-        //        }
         if (((NewtonianSprite)s1).isPenetrable() || ((NewtonianSprite)s2).isPenetrable()) {
-//            System.out.println("In water");
             checkBuoyancy((NewtonianSprite)s1, (NewtonianSprite)s2);
             checkViscosity((NewtonianSprite)s1, (NewtonianSprite)s2);
             checkBuoyancy((NewtonianSprite)s2, (NewtonianSprite)s1);
             checkViscosity((NewtonianSprite)s2, (NewtonianSprite)s1);
         }
         else {
-//            System.out.println("Collided");
             if (((NewtonianSprite)s1).isUnmovable() && ((NewtonianSprite)s2).isUnmovable()) {
                 System.err.println("Two unmovable block collided!!!");
             }
-            if (((this.collisionSide & CollisionGroup.LEFT_RIGHT_COLLISION) != 0) || 
-                    (this.collisionSide & CollisionGroup.RIGHT_LEFT_COLLISION) != 0) {
+            if (((this.collisionSide & LEFT_RIGHT_COLLISION) != 0) || 
+                    (this.collisionSide & RIGHT_LEFT_COLLISION) != 0) {
                 checkCollisionInXDirection((NewtonianSprite) s1, (NewtonianSprite) s2);
                 checkCollisionInXDirection((NewtonianSprite) s2, (NewtonianSprite) s1);
             }
-            if (((this.collisionSide & CollisionGroup.BOTTOM_TOP_COLLISION) != 0) ||
-                    (this.collisionSide & CollisionGroup.TOP_BOTTOM_COLLISION) != 0) {
+            if (((this.collisionSide & BOTTOM_TOP_COLLISION) != 0) ||
+                    (this.collisionSide & TOP_BOTTOM_COLLISION) != 0) {
                 checkCollisionInYDirection((NewtonianSprite) s1, (NewtonianSprite) s2);
                 checkCollisionInYDirection((NewtonianSprite) s2, (NewtonianSprite) s1);
             }
@@ -81,21 +63,6 @@ public class NewtonianCollision extends CollisionGroup{
         
     }
     
-//    protected void checkViscosity(NewtonianSprite s1, NewtonianSprite s2) {
-//        // All wrong!!
-//        if (s1.isUnmovable()) return;
-//        double fc = s2.getDragCoefficient(),
-//                ax = s1.getAcceleration().getX(),
-//                ay = s1.getAcceleration().getY();
-//        double fx = fc * ax*ax;
-//        if (ax > 0) fx *= (-1);
-//        double fy = fc * ay*ay;
-//        if (ay > 0) fy *= (-1); 
-//        System.out.println("fx = " + fx);
-//        System.out.println("fy = " + fy);
-//        s1.wasExertedAForceOf(fx, fy);
-//    }
-
     protected void checkCollisionInXDirection(NewtonianSprite s1, NewtonianSprite s2) {
         if (s1.isUnmovable()) return;
         double vx1 = s1.getVelocity().getX(), vx2 = s2.getVelocity().getX(), 

@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import charactersprites.CollectibleItemSprite;
+import charactersprites.GameElement;
 
 public class ItemDecorator extends PlatformDecorator{
 	private Queue<CollectibleItemSprite> itemList;
@@ -21,15 +22,16 @@ public class ItemDecorator extends PlatformDecorator{
 		return itemList.remove();
 	}
 
-	public void hitFromBottomAction(){
+	@Override
+	public void afterHitFromBottomBy(GameElement e){
 		if(!itemList.isEmpty()){
 			CollectibleItemSprite item = removeItem();
 			item.setLocation(getX()+getWidth(), getY()+getHeight());
 		}
 		else{
-			setImages(owner.getImages("resources/Block3.png", 1, 1));
+			setImages(myGame.getImages("resources/Block3.png", 1, 1));
 		}
-		decoratedPlatform.hitFromBottomAction();
+		decoratedPlatform.afterHitFromBottomBy(e);
 	}
 	
 }

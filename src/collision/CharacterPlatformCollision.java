@@ -1,5 +1,6 @@
 package collision;
 
+import physicsengine.NewtonianCollision;
 import mario.Mario;
 import setting.PenetrableDecorator;
 import setting.Platform;
@@ -28,16 +29,16 @@ public class CharacterPlatformCollision extends NewtonianCollision{
 		else{
 			revertPosition1();
 			if(collisionSide == BOTTOM_TOP_COLLISION){
-				((Platform) arg1).hitFromTopAction();
+				((Platform) arg1).afterHitFromTopBy((Platform) arg0);
 			}
 			else if(collisionSide == TOP_BOTTOM_COLLISION){
-				((Platform) arg1).hitFromBottomAction();
+				((Platform) arg1).afterHitFromBottomBy((Platform) arg0);
 			}
 			else if(collisionSide == LEFT_RIGHT_COLLISION){
-				((Platform) arg1).hitFromRightAction();
+				((Platform) arg1).afterHitFromRightBy((Platform) arg0);
 			}
 			else if(collisionSide == RIGHT_LEFT_COLLISION){
-				((Platform) arg1).hitFromLeftAction();
+				((Platform) arg1).afterHitFromLeftBy((Platform) arg0);
 			}
 		}		
 	}

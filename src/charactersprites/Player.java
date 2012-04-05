@@ -42,10 +42,22 @@ public class Player extends Character{
     }
     
     public void checkKeyboardInput(long milliSec) {
-        for(Key key : keyList){
-            if(key.isKeyDown(milliSec)){
-                key.notifyObserver();
-            }
+//        for(Key key : keyList){
+//            if(key.isKeyDown(milliSec)){
+//                key.notifyObserver();
+//            }
+//        }
+        if (myGame.keyDown(KeyEvent.VK_UP)) {
+            keyUpPressed();
+        }
+        if (myGame.keyDown(KeyEvent.VK_DOWN)) {
+            keyDownPressed();
+        }
+        if (myGame.keyDown(KeyEvent.VK_LEFT)) {
+            keyLeftPressed();
+        }
+        if (myGame.keyDown(KeyEvent.VK_RIGHT)) {
+            keyRightPressed();
         }
     }
     
@@ -85,11 +97,9 @@ public class Player extends Character{
         specialSkill();
     }
    
-    public void shoot() {
-    }
+    public void shoot() {}
     
-    public void specialSkill() {
-    }
+    public void specialSkill() {}
     
     public void setStrengthUp(double s) {
         strengthUp = s;
@@ -105,6 +115,13 @@ public class Player extends Character{
     
     public void setStrengthRight(double s) {
         strengthRight = s;
+    }
+    
+    public void setStrength(double s) {
+        this.setStrengthDown(s);
+        this.setStrengthLeft(s);
+        this.setStrengthRight(s);
+        this.setStrengthUp(s);
     }
 
     public ArrayList<CollectibleItem> getMyInventory() {
