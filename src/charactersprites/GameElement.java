@@ -1,3 +1,7 @@
+/**
+ * @author Kuang Han
+ */
+
 package charactersprites;
 
 import collision.UniversalCollision;

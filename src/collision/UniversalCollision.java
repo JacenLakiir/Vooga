@@ -1,3 +1,8 @@
+/**
+ * @author Kuang Han
+ */
+
+
 package collision;
 
 import charactersprites.GameElement;
@@ -7,6 +12,8 @@ import com.golden.gamedev.object.Sprite;
 import physicsengine.NewtonianCollision;
 
 public class UniversalCollision extends NewtonianCollision{
+    
+    
 
     @Override
     public void collided(Sprite s1, Sprite s2) { 
