@@ -3,7 +3,7 @@ package charactersprites.attacks;
 /**
  * @author Eric Mercer (JacenLakiir)
  */
-public class BasicAttack implements Attack
+public class BasicAttack implements AttackBehavior
 {
     
     public BasicAttack ()
@@ -15,7 +15,6 @@ public class BasicAttack implements Attack
     public void useAttack ()
     {
         // TODO Auto-generated method stub
-        
     }
 
 }
