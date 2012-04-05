@@ -59,7 +59,6 @@ public class Key {
                     }
                     isValid[i] = true;
                     lastUpdate = milliSec;
-                    System.out.println(milliSec + "  " + lastUpdate);
                     if(i > 0){
                         for(int j = 0; j < i; j++){
                             if(!isValid[j]){
