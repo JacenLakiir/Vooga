@@ -2,19 +2,21 @@ package items;
 
 import com.golden.gamedev.Game;
 
-import charactersprites.CollectibleItemSprite;
+import charactersprites.CollectibleItem;
 /**
  * @author Kathleen Oshima
  */
 public class DefenseAttribute extends AttributeDecorator {
 
+	private boolean isInUse;
+	
 	public DefenseAttribute(Game game) {
 	    super(game);
-	    // TODO Auto-generated constructor stub
-    }
+	    isInUse = true;
+	}
 
 	private double defensePower;
-	private CollectibleItemSprite collectableItemSprite;
+	private CollectibleItem collectableItem;
 
 
 	public void setDefensePower(double defensePower) {
@@ -23,12 +25,12 @@ public class DefenseAttribute extends AttributeDecorator {
 	
 	@Override
     public double attackPower() {
-	    return collectableItemSprite.attackPower();
+	    return collectableItem.attackPower();
     }
 
 	@Override
     public double defensePower() {
-		return defensePower + collectableItemSprite.defensePower();
+		return defensePower + collectableItem.defensePower();
 
     }
 
@@ -37,6 +39,16 @@ public class DefenseAttribute extends AttributeDecorator {
     {
         // TODO Auto-generated method stub
         
+    }
+
+	@Override
+    public boolean isInUse() {
+	   return isInUse;
+    }
+
+	@Override
+    public double hitPoints() {
+	    return myHitPoints;
     }
 
 }
