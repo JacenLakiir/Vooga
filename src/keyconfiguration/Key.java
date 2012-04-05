@@ -1,5 +1,7 @@
 package keyconfiguration;
 
+import java.util.ArrayList;
+
 import com.golden.gamedev.Game;
 
 import charactersprites.Player;
@@ -10,27 +12,83 @@ import charactersprites.Player;
  *
  */
 public class Key {
-    private int keyValue;
+    private String keyValue;
     private String action;
     private KeyObserver observer;
     private Game myGame;
+    private static long LATENCY = 10;
+    private long lastUpdate = 0;
+    private boolean[] isValid;
+    private  String[] values;
+    private boolean isInitial  = true;
     
-    public Key(int value, String actionName, Player player, Game game){
+    public Key(String value, String actionName, Player player, Game game){
         keyValue = value;
+        values = keyValue.split(",");
+        isValid = new boolean[values.length];
+        invalidate();
         action = actionName;
         observer = new KeyObserver(player);
         myGame = game;
     }
+
+    private void invalidate() {
+        isInitial = true;
+        for(int i = 0; i < isValid.length; i++){
+            isValid[i] = false;
+        }
+    }
     
-    public boolean isKeyDown(){
-        return myGame.keyDown(keyValue);
+    public boolean isKeyDown(long milliSec){
+   
+        if(values.length == 1){
+            if (myGame.keyDown(Integer.parseInt(values[0]))){ 
+                return true;
+            } 
+        }
+        if(values.length > 1){
+            for(int i = 0; i < values.length; i++){
+                if(isInitial){
+                    lastUpdate = milliSec;
+                    isInitial = false;
+                }
+                if(myGame.keyDown(Integer.parseInt(values[i]))){
+                    if((milliSec - lastUpdate) > LATENCY){
+                        invalidate();
+                        return false;
+                    }
+                    isValid[i] = true;
+                    lastUpdate = milliSec;
+                    System.out.println(milliSec + "  " + lastUpdate);
+                    if(i > 0){
+                        for(int j = 0; j < i; j++){
+                            if(!isValid[j]){
+                                invalidate();
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            boolean keyDown = true;
+            for(boolean valid : isValid){
+                keyDown &= valid;
+            }
+            if(keyDown){
+                invalidate();
+                return true;
+            }else{
+                return false;
+            }
+        }
+        return false;
     }
     
     public String getAction(){
         return action;
     }
     
-    public int getValue(){
+    public String getValue(){
         return keyValue;
     }
     

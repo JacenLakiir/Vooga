@@ -1,5 +1,4 @@
 package keyconfiguration;
-import java.awt.event.KeyEvent;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,7 +21,7 @@ import com.google.gson.reflect.TypeToken;
  *
  */
 public class KeyConfig {
-    private HashMap<String, Integer> keyMap = new HashMap<String, Integer>();
+    private HashMap<String, String> keyMap = new HashMap<String, String>();
     private List<Key> keyList = new ArrayList<Key>();
     private Player player;
     private Game myGame;
@@ -36,7 +35,7 @@ public class KeyConfig {
     
 
     
-    public HashMap<String, Integer> getKeyMap(){
+    public HashMap<String, String> getKeyMap(){
         return keyMap;
     }
     
@@ -50,10 +49,9 @@ public class KeyConfig {
         try {
             scanner = new Scanner(new File(fileName));
             String wholeFile = scanner.useDelimiter("\\A").next();
-            Type collectionType = new TypeToken<HashMap<String,Integer>>(){}.getType();
+            Type collectionType = new TypeToken<HashMap<String,String>>(){}.getType();
             keyMap = gson.fromJson(wholeFile, collectionType);
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
          for(String action : keyMap.keySet()){
@@ -62,7 +60,7 @@ public class KeyConfig {
     }
         
     
-    public void setCustomKey(String fileName, Integer customKey, String action) throws FileNotFoundException {
+    public void setCustomKey(String fileName, String customKey, String action) throws FileNotFoundException {
         keyMap.put(action, customKey);
     }
     

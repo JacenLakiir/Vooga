@@ -4,12 +4,11 @@
 
 package charactersprites;
 
-import java.awt.event.KeyEvent;
 import java.util.List;
 
 import keyconfiguration.Key;
 import keyconfiguration.KeyAnnotation;
-
+import com.golden.gamedev.engine.timer.SystemTimer;
 import com.golden.gamedev.Game;
 
 
@@ -17,13 +16,14 @@ import com.golden.gamedev.Game;
 public class Player extends Character{
     protected double strengthUp, strengthDown, strengthLeft, strengthRight;
     private List<Key> keyList;
+    private SystemTimer timer = new SystemTimer();
     public Player(Game game) {
         super(game);
     }
     
     @Override
     public void update(long milliSec) {
-        checkKeyboardInput();
+        checkKeyboardInput(timer.getTime());
         super.update(milliSec);  
         checkDead();
     }
@@ -32,9 +32,9 @@ public class Player extends Character{
         keyList = list;
     }
     
-    public void checkKeyboardInput() {
+    public void checkKeyboardInput(long milliSec) {
         for(Key key : keyList){
-            if(key.isKeyDown()){
+            if(key.isKeyDown(milliSec)){
                 key.notifyObserver();
             }
         }
@@ -43,6 +43,10 @@ public class Player extends Character{
     public void checkDead() {
     }
     
+    @KeyAnnotation(action = "sequence")
+    public void sequenceKey(){
+        this.addAcceleration(strengthDown*stdGravity*3, strengthUp*stdGravity*3);
+    }
     
     @KeyAnnotation(action = "up")
     public void keyUpPressed() {

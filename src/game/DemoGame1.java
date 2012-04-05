@@ -128,6 +128,7 @@ public class DemoGame1 extends Game{
 
     @Override
     public void update(long t) {
+        System.out.println(t);
         playfield.update(t);
     }
     
