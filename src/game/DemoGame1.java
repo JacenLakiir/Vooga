@@ -41,7 +41,7 @@ public class DemoGame1 extends Game{
         Player mario = new Mario(this);
         keyConfig = new KeyConfig(mario,this);
         keyConfig.parseKeyConfig("configurations/keyConfig.json");
-        mario.setKeyList(keyConfig.getKeyList());
+        mario.setKeyList(keyConfig.getInputKeyList());
         mario.setImages(images);
         mario.setLocation(25, 20);
 

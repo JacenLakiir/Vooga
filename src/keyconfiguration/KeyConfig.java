@@ -1,74 +1,66 @@
 package keyconfiguration;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.reflect.Type;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
-
 import charactersprites.Player;
-
 import com.golden.gamedev.Game;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+
 /**
  * 
  * @author Hui Dong
  *
  */
-public class KeyConfig {
-    private HashMap<String, String> keyMap = new HashMap<String, String>();
-    private List<Key> keyList = new ArrayList<Key>();
-    private Player player;
-    private Game myGame;
-    public KeyConfig(Player player, Game game){
+public  class KeyConfig {
+    KeyConfigModel keyModel;
+    protected Game myGame;
+    protected Player myPlayer;
+    public KeyConfig(Player player, Game game) {
+        myPlayer = player;
         myGame = game;
-        this.player = player;
-    }
-    public void initialization(){
-        
+        keyModel = parseKeyConfig("configurations/keyConfig.json");
     }
     
 
-    
-    public HashMap<String, String> getKeyMap(){
-        return keyMap;
-    }
-    
-    public List<Key> getKeyList(){
-        return keyList;
-    }
-    
-    public void parseKeyConfig(String fileName){
-         Gson gson = new Gson();
-         Scanner scanner;
-        try {
-            scanner = new Scanner(new File(fileName));
-            String wholeFile = scanner.useDelimiter("\\A").next();
-            Type collectionType = new TypeToken<HashMap<String,String>>(){}.getType();
-            keyMap = gson.fromJson(wholeFile, collectionType);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+    private List<Key> constructInputKeyList(HashMap<String, String> keyMap){
+        List<Key> keys = new ArrayList<Key>();
+        for(String action : keyMap.keySet()){
+            int length = keyMap.get(action).split(",").length;
+            if(length == 1)
+                keys.add(new SingleInputKey(keyMap.get(action), action, myPlayer, myGame));
+            if(length > 1)
+                keys.add(new SequentialInputKey(keyMap.get(action), action, myPlayer, myGame));                
         }
-         for(String action : keyMap.keySet()){
-             keyList.add(new Key(keyMap.get(action), action, player, myGame));
-         }
-    }
-        
-    
-    public void setCustomKey(String fileName, String customKey, String action) throws FileNotFoundException {
-        keyMap.put(action, customKey);
+        return keys;
     }
     
-    public void outputJsonFile(String fileName) throws IOException{
-        Gson gson = new Gson();
-        FileWriter out = new FileWriter(fileName);
-        BufferedWriter bufferedOut = new BufferedWriter(out);
-        bufferedOut.write(gson.toJson(keyMap));
-        bufferedOut.close();
+    private List<Key> constructSystemKeyList(HashMap<String, String> keyMap){
+        List<Key> keys = new ArrayList<Key>();
+        for(String action : keyMap.keySet()){
+            keys.add(new SystemKey(keyMap.get(action), action, myPlayer,myGame));
+        }
+        return keys;
+    }
+
+    public List<Key> getInputKeyList() {
+        return constructInputKeyList(keyModel.getInputKeyMap());
+    }
+  
+    
+    public List<Key> getSystemKeyList() {
+        return constructSystemKeyList(keyModel.getSystemKeyMap());
+    }
+    
+    
+    public KeyConfigModel parseKeyConfig(String fileName) {
+        return KeyConfigModel.parseKeyConfig(fileName);
+    }
+
+    public void customizeKey(String action, String keyValue){
+        keyModel.customizeKey(action, keyValue);
+    }
+    
+    public void outputJsonFile(String fileName) {
+        keyModel.outputJsonFile(fileName);
     }
 }  

@@ -20,7 +20,6 @@ public class Player extends Character{
     protected double strengthUp, strengthDown, strengthLeft, strengthRight;
     private List<Key> keyList;
     private SystemTimer timer = new SystemTimer();
-    //added by Kathleen
     protected ArrayList<CollectibleItem> myInventory;
     protected double myHitPoints;
     
@@ -54,7 +53,8 @@ public class Player extends Character{
     
     @KeyAnnotation(action = "sequence")
     public void sequenceKey(){
-        this.addAcceleration(strengthDown*stdGravity*3, strengthUp*stdGravity*3);
+        System.out.println("Sequential Key Triggered");
+        this.setImages(myGame.getImages("resources/Mushroom.png",1,1));
     }
     
     @KeyAnnotation(action = "up")
