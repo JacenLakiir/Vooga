@@ -7,6 +7,7 @@
         "y": 0
       },
       {
+        "myName": "W-Gundam",
         "myImagesrc": "resources/W-Gundam.png",
         "mySprite": {
           "a": {
@@ -42,6 +43,7 @@
         "y": 238
       },
       {
+        "myName": "Mario",
         "myImagesrc": "resources/Mario1.png",
         "mySprite": {
           "a": {
@@ -77,6 +79,7 @@
         "y": 200
       },
       {
+        "myName": "Mario",
         "myImagesrc": "resources/Mario1.png",
         "mySprite": {
           "a": {
@@ -112,6 +115,7 @@
         "y": 60
       },
       {
+        "myName": "Mario",
         "myImagesrc": "resources/Mario1.png",
         "mySprite": {
           "a": {

@@ -6,15 +6,28 @@ package game;
 import leveleditor.VoogaUtilities;
 import com.golden.gamedev.object.Sprite;
 
-public class SpriteWrapper {
+public class SpriteWrapper implements Comparable<SpriteWrapper> {
     
+    private String myName;
     private String myImagesrc;
     private Sprite mySprite;
     
-    public SpriteWrapper(Sprite sprite, String imgsrc) {
+    public SpriteWrapper(Sprite sprite, String name, String imgsrc) {
+	myName = name;
 	mySprite = sprite;
 	myImagesrc = imgsrc;
 	reconstruct();
+    }
+    
+    public SpriteWrapper(SpriteWrapper another) {
+	myName = another.myName;
+	myImagesrc = another.myImagesrc;
+	mySprite = new Sprite();
+	reconstruct();
+    }
+    
+    public String getName() {
+	return myName;
     }
     
     public String getImageSrc() {
@@ -27,6 +40,10 @@ public class SpriteWrapper {
     
     public void reconstruct() {
 	mySprite.setImage(VoogaUtilities.getImageFromString(myImagesrc));
+    }
+
+    public int compareTo(SpriteWrapper o) {
+	return myName.compareTo(o.myName);
     }
     
 }

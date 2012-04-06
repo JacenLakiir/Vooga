@@ -3,10 +3,11 @@
   "mySpriteMap": [
     [
       {
-        "x": 377,
-        "y": 1035
+        "x": 524,
+        "y": 332
       },
       {
+        "myName": "Mario",
         "myImagesrc": "resources/Mario1.png",
         "mySprite": {
           "a": {
@@ -38,10 +39,11 @@
     ],
     [
       {
-        "x": 571,
-        "y": 1033
+        "x": 373,
+        "y": 238
       },
       {
+        "myName": "Mario",
         "myImagesrc": "resources/Mario1.png",
         "mySprite": {
           "a": {
@@ -73,11 +75,12 @@
     ],
     [
       {
-        "x": 164,
-        "y": 988
+        "x": 20,
+        "y": 200
       },
       {
-        "myImagesrc": "resources/W-Gundam.png",
+        "myName": "Mario",
+        "myImagesrc": "resources/Mario1.png",
         "mySprite": {
           "a": {
             "x": 0.0,
@@ -97,8 +100,8 @@
           "e": 0.0,
           "f": 0.0,
           "g": 0.0,
-          "width": 169,
-          "height": 97,
+          "width": 40,
+          "height": 40,
           "m": 0,
           "o": 0,
           "p": true,
@@ -108,10 +111,11 @@
     ],
     [
       {
-        "x": 444,
-        "y": 945
+        "x": 0,
+        "y": 60
       },
       {
+        "myName": "Mario",
         "myImagesrc": "resources/Mario1.png",
         "mySprite": {
           "a": {
