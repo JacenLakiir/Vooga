@@ -11,9 +11,6 @@ public abstract class KeyObserver {
     public KeyObserver(Player player){
         this.player = player;
     }
-    public void Update(){
-        
-    }
     
     public abstract void getActoinMethods(String action);
     
