@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 
 import setting.BasePlatform;
 import setting.BreakableDecorator;
+import setting.ItemDecorator;
 import setting.MovingDecorator;
 import setting.Platform;
 
@@ -76,14 +77,21 @@ public class DemoGame3 extends Game {
 
 		CollectibleItem coin = new CollectibleInventoryItem(this);
 		coin.setImages(this.getImages("resources/Coin.png", 1, 1));
-		coin.setLocation(260, 100);
+		coin.setActive(false);
 		myPlayfield.addItem(coin);
-		
-		
-        Platform middleBar = new MovingDecorator(new BasePlatform(this), 260, 240, 260, 60, 0.05);
-        middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
-        myPlayfield.addSetting(middleBar);
 
+		ItemDecorator block1 = new ItemDecorator(new BasePlatform(this));
+		block1.setMass(6);
+		block1.setMovable(false);
+		block1.setImages(this.getImages("resources/Block1.png", 1, 1));
+		block1.setLocation(100, 200);
+		block1.addItem(coin);
+		myPlayfield.addSetting(block1);
+		
+		Platform middleBar = new MovingDecorator(new BasePlatform(this), 260,
+		        240, 260, 60, 0.05);
+		middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
+		myPlayfield.addSetting(middleBar);
 
 	}
 

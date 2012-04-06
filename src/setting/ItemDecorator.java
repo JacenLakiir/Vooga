@@ -29,7 +29,8 @@ public class ItemDecorator extends PlatformDecorator{
 	public void afterHitFromBottomBy(GameElement e){
 		if(!itemList.isEmpty()){
 			CollectibleItem item = removeItem();
-			item.setLocation(getX()+getWidth(), getY()+getHeight());
+			item.setActive(true);
+			item.setLocation(getX(), getY()-getHeight());
 		}
 		else{
 			setImages(myGame.getImages("resources/Block3.png", 1, 1));
