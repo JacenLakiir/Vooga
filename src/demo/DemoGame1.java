@@ -1,4 +1,4 @@
-package game;
+package demo;
 /**
  * @author Kuang Han
  */
@@ -10,11 +10,16 @@ import java.awt.image.BufferedImage;
 
 import mario.Mario;
 
+import physicsengine.NewtonianCollision;
+
 import keyconfiguration.KeyConfig;
 
 
-import charactersprites.Character;
-import collision.CharacterPlatformCollision;
+import setting.*;
+import voogaobject.GameElementCollision;
+import voogaobject.GamePlayField;
+
+
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
@@ -24,35 +29,26 @@ import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ColorBackground;
 
 import charactersprites.Player;
-import setting.*;
-import voogaobject.GameElement;
-import voogaobject.GameElementCollision;
-import voogaobject.GamePlayField;
 
-public class DemoGame2 extends Game{
+public class DemoGame1 extends Game{
 
     GamePlayField    playfield;  
     Background       background;
-    KeyConfig        keyConfig ,keyConfig1;
+    KeyConfig        keyConfig;
     @Override
-    public void initResources() {
-               
+    public void initResources() { 
         playfield = new GamePlayField();
+        
         background = new ColorBackground(Color.gray, 640, 480);
         playfield.setBackground(background);
-
+        
         BufferedImage[] images = this.getImages("resources/Mario1.png", 1, 1);
         Player mario = new Mario(this);
         keyConfig = new KeyConfig(mario,this);
+        keyConfig.parseKeyConfig("configurations/keyConfig.json");
         mario.setKeyList(keyConfig.getInputKeyList());
         mario.setImages(images);
         mario.setLocation(25, 20);
-        
-        Mario mario1 = new Mario(this);
-        keyConfig1 = new KeyConfig(mario1,this);
-        mario1.setKeyList(keyConfig1.getInputKeyList());
-        mario1.setImages(images);
-        mario1.setLocation(300, 20);
 
         images = this.getImages("resources/Bar.png", 1, 1);
         Platform floor = new BasePlatform(this);
@@ -62,12 +58,17 @@ public class DemoGame2 extends Game{
         Platform ceiling = new BasePlatform(this);
         ceiling.setImages(images);
         ceiling.setLocation(70, -20);
-        
-        images = this.getImages("resources/SmallBar.png", 1, 1);
-        Platform middleBar = new BasePlatform(this);
-        middleBar.setImages(images);
-        middleBar.setLocation(260, 260);
 
+        images = this.getImages("resources/Block1.png", 1, 1);
+        Platform block1 = new BasePlatform(this);
+        block1.setImages(images);
+        block1.setLocation(100, 200);
+        
+        images = this.getImages("resources/Block2.png", 1, 1);
+        Platform block2 = new BasePlatform(this);
+        block2.setImages(images);
+        block2.setLocation(300, 200);
+        
         images = this.getImages("resources/Wall.png", 1, 1);
         Platform wall1 = new BasePlatform(this);
         wall1.setImages(images);
@@ -77,54 +78,50 @@ public class DemoGame2 extends Game{
         wall2.setImages(images);
         wall2.setLocation(620, 0);
         
-        images = this.getImages("resources/Block1.png", 1, 1);
-        Platform block1 = new ItemDecorator(new BasePlatform(this));
-        block1.setMass(6);
-        block1.setMovable(false);
-        block1.setImages(images);
-        block1.setLocation(100, 200);
+        floor.setCoefficientOfFrictionInX(0);        
+        floor.setCoefficientOfFrictionInY(0);
+        floor.setCoefficientOfRestitutionInX(1);
+        floor.setCoefficientOfRestitutionInY(1);
 
-        images = this.getImages("resources/Block2.png", 1, 1);
-        Platform block2 = new BreakableDecorator(new BasePlatform(this));
-        block2.setMass(6);
-        block2.setMovable(false);
-        block2.setImages(images);
-        block2.setLocation(160, 200);
-        
-        images = this.getImages("resources/Water2.png", 1, 1);
-        @SuppressWarnings("serial")
-        Platform water = new BasePlatform(this)
-        {
-            @Override
-            public void afterCollidedWith(GameElement e, int collisionSide) {
-                if (e instanceof Mario) {
-                    ((Mario) e).setStrength(0.2);
-                }
-            }
-        };
-        water.setPenetrable(true);
-        water.setDensity(1);
-        water.setDragCoefficient(.2);
-        water.setImages(images); 
-        water.setLocation(0, 240);
+        ceiling.setCoefficientOfFrictionInX(0);        
+        ceiling.setCoefficientOfFrictionInY(0);
+        ceiling.setCoefficientOfRestitutionInX(1);
+        ceiling.setCoefficientOfRestitutionInY(1);
+
+        block1.setCoefficientOfFrictionInX(0);        
+        block1.setCoefficientOfFrictionInY(0);
+        block1.setCoefficientOfRestitutionInX(1);
+        block1.setCoefficientOfRestitutionInY(1);
+
+        block2.setCoefficientOfFrictionInX(0);        
+        block2.setCoefficientOfFrictionInY(0);
+        block2.setCoefficientOfRestitutionInX(1);
+        block2.setCoefficientOfRestitutionInY(1);
+
+        wall1.setCoefficientOfFrictionInX(0);        
+        wall1.setCoefficientOfFrictionInY(0);
+        wall1.setCoefficientOfRestitutionInX(1);
+        wall1.setCoefficientOfRestitutionInY(1);
+
+        wall2.setCoefficientOfFrictionInX(0);        
+        wall2.setCoefficientOfFrictionInY(0);
+        wall2.setCoefficientOfRestitutionInX(1);
+        wall2.setCoefficientOfRestitutionInY(1);
 
         SpriteGroup blocks = new SpriteGroup("block");
-        blocks.add(water);
         blocks.add(floor);
         blocks.add(ceiling);
-        blocks.add(middleBar);
-        blocks.add(wall1);
-        blocks.add(wall2);
         blocks.add(block1);
         blocks.add(block2);
-
+        blocks.add(wall1);
+        blocks.add(wall2);
+        
         SpriteGroup characters = new SpriteGroup("characters");
         characters.add(mario);
-//        characters.add(mario1);
-
+        
         playfield.addGroup(blocks);
         playfield.addGroup(characters);
-
+        
         GameElementCollision collision = new GameElementCollision();
         collision.addSpriteGroup(blocks);
         collision.addSpriteGroup(characters);
@@ -141,10 +138,10 @@ public class DemoGame2 extends Game{
     public void update(long t) {
         playfield.update(t);
     }
-
+    
     public static void main(String[] args) {
         GameLoader game = new GameLoader();
-        game.setup(new DemoGame2(), new Dimension(640,480), false);
+        game.setup(new DemoGame1(), new Dimension(640,480), false);
         game.start();
     }
 
