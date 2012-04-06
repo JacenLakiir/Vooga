@@ -88,7 +88,7 @@ public class DemoGame3 extends Game {
 		myPlayfield.addSetting(block1);
 		
 		Platform middleBar = new MovingDecorator(new BasePlatform(this), 260,
-		        240, 260, 60, 0.05);
+		        240, 700, 60, 0.05);
 		middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
 		myPlayfield.addSetting(middleBar);
 

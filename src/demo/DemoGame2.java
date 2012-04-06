@@ -68,15 +68,15 @@ public class DemoGame2 extends Game{
         ceiling.setImages(images);
         ceiling.setLocation(70, -20);
         
-        images = this.getImages("resources/Coin.png", 1, 1);
-        CollectibleItem coin = new CollectibleInventoryItem(this);
-        coin.setImages(images);
-        coin.setLocation(260, 100);
+//        images = this.getImages("resources/Coin.png", 1, 1);
+//        CollectibleItem coin = new CollectibleInventoryItem(this);
+//        coin.setImages(images);
+//        coin.setLocation(260, 100);
         
         images = this.getImages("resources/SmallBar.png", 1, 1);
-        Platform middleBar = new BasePlatform(this);
+        Platform middleBar = new MovingDecorator(new BasePlatform(this), 260, 240, 260, 60, 0.05);
         middleBar.setImages(images);
-        middleBar.setLocation(260, 260);
+
 
         images = this.getImages("resources/Wall.png", 1, 1);
         Platform wall1 = new BasePlatform(this);
@@ -131,13 +131,13 @@ public class DemoGame2 extends Game{
         SpriteGroup characters = new SpriteGroup("characters");
         characters.add(mario);
 //        characters.add(mario1);
-        
-        SpriteGroup items = new SpriteGroup("items");
-        items.add(coin);
+//        
+//        SpriteGroup items = new SpriteGroup("items");
+//        items.add(coin);
 
         playfield.addGroup(blocks);
         playfield.addGroup(characters);
-        playfield.addGroup(items);
+//        playfield.addGroup(items);
 
         GameElementCollision collision = new GameElementCollision();
         collision.addSpriteGroup(blocks);
@@ -148,7 +148,7 @@ public class DemoGame2 extends Game{
 //        playerItemCollision.addSpriteGroup(items);
         
         playfield.addCollisionGroup(collision);
-        playfield.addCollisionGroup(characters, items, new PlayerCollectibleItemCollision());
+//        playfield.addCollisionGroup(characters, items, new PlayerCollectibleItemCollision());
     }
 
     @Override
