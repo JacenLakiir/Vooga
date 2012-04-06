@@ -51,7 +51,6 @@ public class PatrolState implements State
     {
         if (myStartX == null || myStartY == null)
         {
-            System.out.println("Location stored");
             myStartX = myNPC.getX();
             myStartY = myNPC.getY();
         }

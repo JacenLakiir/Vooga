@@ -10,9 +10,12 @@ public class EvasiveState implements State
     
     private NPC myNPC;
     
-    public EvasiveState (NPC npc)
+    private double myEvasionRadius;
+    
+    public EvasiveState (NPC npc, double evasionRadius)
     {
         myNPC = npc;
+        myEvasionRadius = evasionRadius;
     }
 
     @Override
@@ -27,5 +30,5 @@ public class EvasiveState implements State
         // TODO Auto-generated method stub
         return false;
     }
-
+    
 }

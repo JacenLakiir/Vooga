@@ -14,6 +14,7 @@ public class DeadState implements State
         myNPC = npc;
     }
 
+    @Override
     public void execute (long milliSec)
     {
         myNPC.setActive(false);
@@ -24,4 +25,5 @@ public class DeadState implements State
     {
         return false;
     }
+    
 }

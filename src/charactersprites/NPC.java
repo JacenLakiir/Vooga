@@ -52,7 +52,7 @@ public class NPC extends Character
         myAttack.useAttack();
     }
         
-    public void setState (List<State> state)
+    public void setCurrentStates (List<State> state)
     {
         myCurrentStates.clear();
         myCurrentStates.addAll(state);
@@ -68,7 +68,7 @@ public class NPC extends Character
         myPossibleStates.add(state);
     }
     
-    public List<State> getCurrentState ()
+    public List<State> getCurrentStates ()
     {
         return myCurrentStates;
     }
