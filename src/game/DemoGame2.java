@@ -3,6 +3,9 @@ package game;
  * @author Kuang Han
  */
 
+import items.CollectibleInventoryItem;
+import items.CollectibleItem;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -14,6 +17,7 @@ import mario.Mario;
 
 
 import collision.CharacterPlatformCollision;
+import collision.PlayerCollectibleItemCollision;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
@@ -51,11 +55,17 @@ public class DemoGame2 extends Game{
         water.setDragCoefficient(.2);
         water.setImages(images); 
         water.setLocation(0, 240);
-
+        
         images = this.getImages("resources/Bar.png", 1, 1);
         Platform floor = new BasePlatform(this);
         floor.setImages(images);
         floor.setLocation(0, 440);
+        
+        images = this.getImages("resources/Coin.png", 1, 1);
+        CollectibleItem coin = new CollectibleInventoryItem(this);
+        coin.setImages(images);
+        coin.setAttackPower(2);
+        coin.setLocation(100, 100);
         
         Platform ceiling = new BasePlatform(this);
         ceiling.setImages(images);
@@ -104,12 +114,18 @@ public class DemoGame2 extends Game{
         SpriteGroup characters = new SpriteGroup("characters");
         characters.add(mario);
         
+        SpriteGroup items = new SpriteGroup("items");
+        items.add(coin);
 
         playfield.addGroup(blocks);
         playfield.addGroup(characters);
+//        playfield.addGroup(items);
 
         CharacterPlatformCollision collision = new CharacterPlatformCollision();
+        PlayerCollectibleItemCollision playerItemCollision = new PlayerCollectibleItemCollision();
+        
         playfield.addCollisionGroup(characters, blocks, collision);
+        playfield.addCollisionGroup(characters, items, playerItemCollision);
     }
 
     @Override

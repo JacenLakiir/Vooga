@@ -1,25 +1,18 @@
 package items;
 
-
 import com.golden.gamedev.Game;
-/**
- * @author Kathleen Oshima
- */
-public class HPAttribute extends AttributeDecorator {
 
-	private boolean isInUse;
-	private double hitPoints;
-	private CollectibleItem collectibleItem;
-	
-	public HPAttribute(Game game) {
+public class CollectibleInstantItem extends CollectibleItem {
+
+	public CollectibleInstantItem(Game game) {
 	    super(game);
-	    isInUse = true;
     }
 
 	@Override
     public boolean setIsInUse() {
-	    return isInUse;
+	    return false;
     }
+
 
 	@Override
     public double attackPower() {
@@ -35,8 +28,11 @@ public class HPAttribute extends AttributeDecorator {
 
 	@Override
     public double hitPoints() {
-	    return hitPoints + collectibleItem.hitPoints();
+	    // TODO Auto-generated method stub
+	    return 0;
     }
-	
 
+	
+	
+	
 }

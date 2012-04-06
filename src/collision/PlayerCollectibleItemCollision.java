@@ -1,16 +1,18 @@
 package collision;
 
+import items.CollectibleItem;
+
 import java.awt.Graphics2D;
 
-import charactersprites.CollectibleItem;
 import charactersprites.Player;
 
 import com.golden.gamedev.object.CollisionManager;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.SpriteGroup;
+import com.golden.gamedev.object.collision.BasicCollisionGroup;
 import com.golden.gamedev.object.collision.CollisionGroup;
 
-public class PlayerCollectibleItemCollision extends CollisionGroup {
+public class PlayerCollectibleItemCollision extends BasicCollisionGroup {
 
 	private static CollisionManager collisionType;
 	private static SpriteGroup PlAYER_GROUP;
@@ -32,6 +34,9 @@ public class PlayerCollectibleItemCollision extends CollisionGroup {
 	public static void update(long elapsedTime) {
 		PlAYER_GROUP.update(elapsedTime);
 		COLLECTIBLE_GROUP.update(elapsedTime);
+		
+		collisionType.checkCollision();
+
 	}
 	
 	public static void render(Graphics2D g) {

@@ -4,6 +4,8 @@
 
 package charactersprites;
 
+import items.CollectibleItem;
+
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -111,9 +113,8 @@ public class Player extends Character{
     
 	public void updateAbilities() {
 		for (CollectibleItem item : myInventory) {
-			if (item.isInUse()) {
-				item.attackPower();
-				item.defensePower();
+			if (item.setIsInUse()) {
+				item.decorate();
 			}
 		}
 	}
