@@ -3,6 +3,8 @@ package items;
 import java.awt.image.BufferedImage;
 
 import physicsengine.NewtonianSprite;
+import setting.Platform;
+import voogaobject.GameElement;
 
 import charactersprites.Player;
 
@@ -16,20 +18,19 @@ public abstract class CollectibleItem extends NewtonianSprite {
 
 	protected Game game;
 	private boolean isInUse;
-	private double attackPower;
-	private double defensePower;
+	private double attackPower, defensePower, hitPoints, level;
 	
 	//Constructor for a collectible item
 	public CollectibleItem(Game game) {
 		super();
-		this.game = game;
+//		this.game = game;
 	}
 	
-
-	public void decorate() {
+	public void decorate(Player player) {
 		attackPower();
 		defensePower();
 		hitPoints();
+		level();
 	}
 
 	public void set(BufferedImage[] images, double x, double y) {
@@ -45,6 +46,14 @@ public abstract class CollectibleItem extends NewtonianSprite {
 		this.defensePower = defensePower;
 	}
 	
+	public void setHitPoints(double hitPoints) {
+		this.hitPoints = hitPoints;
+	}
+	
+	public void setLevel(double level) {
+		this.level = level;
+	}
+	
 	public boolean setIsInUse() {
 		return isInUse;
 	}
@@ -54,8 +63,9 @@ public abstract class CollectibleItem extends NewtonianSprite {
     }
 
 
-	public abstract double attackPower();
-	public abstract double defensePower();
-	public abstract double hitPoints();
+	public abstract void attackPower();
+	public abstract void defensePower();
+	public abstract void hitPoints();
+	public abstract void level();
 
 }

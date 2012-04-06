@@ -6,6 +6,8 @@
 package voogaobject;
 
 
+import collision.PlayerCollectibleItemCollision;
+
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.CollisionManager;
 import com.golden.gamedev.object.PlayField;
@@ -27,6 +29,7 @@ public class GamePlayField extends PlayField{
         myCollisionGroups = (GameElementCollision[]) Utility.expand(myCollisionGroups,1);
         myCollisionGroups[myCollisionGroups.length - 1] = collisionGroup;
     }
+    
     
     @Override
     protected void checkCollisions() {

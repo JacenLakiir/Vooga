@@ -3,7 +3,12 @@ package items;
 import com.golden.gamedev.Game;
 
 public class CollectibleInstantItem extends CollectibleItem {
-
+	
+	private double attackPower;
+	private double defensePower;
+	private double hitPoints;
+	private double level;
+	
 	public CollectibleInstantItem(Game game) {
 	    super(game);
     }
@@ -14,22 +19,44 @@ public class CollectibleInstantItem extends CollectibleItem {
     }
 
 
-	@Override
-    public double attackPower() {
-	    // TODO Auto-generated method stub
-	    return 0;
+    public double attackPower(double currPower) {
+	    return attackPower + currPower;
+    }
+
+    public double defensePower(double currPower) {
+	    return defensePower + currPower;
+    }
+
+    public double hitPoints(double currHP) {
+	    return hitPoints + currHP;
+    }
+
+    public double level(double currLevel) {
+		return level + currLevel;
     }
 
 	@Override
-    public double defensePower() {
+    public void attackPower() {
 	    // TODO Auto-generated method stub
-	    return 0;
+	    
     }
 
 	@Override
-    public double hitPoints() {
+    public void defensePower() {
 	    // TODO Auto-generated method stub
-	    return 0;
+	    
+    }
+
+	@Override
+    public void hitPoints() {
+	    // TODO Auto-generated method stub
+	    
+    }
+
+	@Override
+    public void level() {
+	    // TODO Auto-generated method stub
+	    
     }
 
 	
