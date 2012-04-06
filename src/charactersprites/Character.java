@@ -4,31 +4,18 @@
 
 package charactersprites;
 
+import voogaobject.GameElement;
+
 import com.golden.gamedev.Game;
-import physicsengine.NewtonianSprite;
-
-
 
 
 @SuppressWarnings("serial")
-public abstract class Character extends NewtonianSprite{
-    protected Game myGame;
-    
+public abstract class Character extends GameElement{
     public Character(Game game) {
+        super(game);
+    }
+    
+    public Character() {
         super();
-        myGame = game;
-    }
-    
-    @Override
-    public void update(long milliSec) {
-        super.update(milliSec);
-    }
-    
-    public void setGame(Game game) {
-        myGame = game;
-    }
-
-    public Game getGame() {
-        return myGame;
     }
 }

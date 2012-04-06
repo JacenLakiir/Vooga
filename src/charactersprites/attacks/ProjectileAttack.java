@@ -3,7 +3,7 @@ package charactersprites.attacks;
 /**
  * @author Eric Mercer (JacenLakiir)
  */
-public class ProjectileAttack implements Attack
+public class ProjectileAttack implements AttackBehavior
 {
     
     public ProjectileAttack ()

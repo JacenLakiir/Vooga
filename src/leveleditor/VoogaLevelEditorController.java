@@ -18,7 +18,7 @@ public class VoogaLevelEditorController {
     
     protected void initialize(File file) {
 	myModel.loadLevel(file);
-	myView.setUpBackground(myModel.myLevelState.myBackGroundSrc);
+	myView.setUpBackground(myModel.myLevelState.myBackgroundSrc);
 	myView.loadSprites(myModel.myLevelState.mySpriteMap);
     }
     

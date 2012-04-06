@@ -1,28 +1,36 @@
 /**
- * @author Michael Zhou (Dominator008)
+ * @author Michael Zhou (Dominator008), Siyang Chen
  */
 package leveleditor;
+
 import game.LevelState;
 import game.SpriteWrapper;
-
 import java.awt.Point;
 import java.io.File;
-import java.util.*;
+import java.util.Map;
 
-public class VoogaLevelEditorModel {
 
+public class VoogaLevelEditorModel
+{
     protected LevelState myLevelState;
-    
-    public VoogaLevelEditorModel() {}
-    
-    protected void loadLevel(File file) {
-	myLevelState = VoogaUtilities.loadLevel(file);
+
+
+    public VoogaLevelEditorModel ()
+    {}
+
+
+    protected void loadLevel (File file)
+    {
+        myLevelState = LevelState.loadFile(file);
     }
-    
-    protected void saveLevel(String path, String backgroundimgsrc,
-	    Map<Point, SpriteWrapper> spritemap) {
-	LevelState level = new LevelState(backgroundimgsrc, spritemap);
-	VoogaUtilities.saveLevel(level, path);
+
+
+    protected void saveLevel (String path,
+                              String backgroundimgsrc,
+                              Map<Point, SpriteWrapper> spritemap)
+    {
+        LevelState level = new LevelState(backgroundimgsrc, spritemap);
+        level.save(path);
     }
-    
+
 }

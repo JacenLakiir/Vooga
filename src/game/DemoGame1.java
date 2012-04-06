@@ -8,13 +8,18 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import keyconfiguration.KeyConfig;
-
 import mario.Mario;
 
-import setting.*;
+import physicsengine.NewtonianCollision;
 
-import collision.NewtonianCollision;
+import keyconfiguration.KeyConfig;
+
+
+import setting.*;
+import voogaobject.GameElementCollision;
+import voogaobject.GamePlayField;
+
+
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
@@ -27,12 +32,12 @@ import charactersprites.Player;
 
 public class DemoGame1 extends Game{
 
-    PlayField        playfield;  
+    GamePlayField    playfield;  
     Background       background;
     KeyConfig        keyConfig;
     @Override
     public void initResources() { 
-        playfield = new PlayField();
+        playfield = new GamePlayField();
         
         background = new ColorBackground(Color.gray, 640, 480);
         playfield.setBackground(background);
@@ -41,7 +46,7 @@ public class DemoGame1 extends Game{
         Player mario = new Mario(this);
         keyConfig = new KeyConfig(mario,this);
         keyConfig.parseKeyConfig("configurations/keyConfig.json");
-        mario.setKeyList(keyConfig.getKeyList());
+        mario.setKeyList(keyConfig.getInputKeyList());
         mario.setImages(images);
         mario.setLocation(25, 20);
 
@@ -117,8 +122,11 @@ public class DemoGame1 extends Game{
         playfield.addGroup(blocks);
         playfield.addGroup(characters);
         
-        NewtonianCollision collision = new NewtonianCollision();
-        playfield.addCollisionGroup(characters, blocks, collision);
+        GameElementCollision collision = new GameElementCollision();
+        collision.addSpriteGroup(blocks);
+        collision.addSpriteGroup(characters);
+        
+        playfield.addCollisionGroup(collision);
     }
 
     @Override

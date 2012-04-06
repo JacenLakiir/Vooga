@@ -14,12 +14,12 @@ public class BasePlatform extends Platform {
 		this.isPenetrable = false;
 	}
 
-	public void hitFromBottomAction() {	}
-
-	public void hitFromTopAction() {	}
-
-	public void hitFromLeftAction() {	}
-
-	public void hitFromRightAction() {	}
+//	public void hitFromBottomAction() {	}
+//
+//	public void hitFromTopAction() {	}
+//
+//	public void hitFromLeftAction() {	}
+//
+//	public void hitFromRightAction() {	}
 
 }

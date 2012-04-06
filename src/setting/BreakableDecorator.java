@@ -3,6 +3,8 @@
  */
 package setting;
 
+import voogaobject.GameElement;
+
 import com.golden.gamedev.object.Timer;
 import com.golden.gamedev.object.sprite.VolatileSprite;
 
@@ -13,16 +15,17 @@ public class BreakableDecorator extends PlatformDecorator {
 		super(decoratedPlatform);
 	}
 
-	public void hitFromBottomAction() {
+	@Override
+	public void afterHitFromBottomBy(GameElement e) {
 		animateBreak();
 		//decoratedPlatform.setActive(false);
-		decoratedPlatform.hitFromBottomAction();
+		decoratedPlatform.afterHitFromBottomBy(e);
 	}
 	
 	public void animateBreak(){
 		if(!broken){
 			broken = true;
-			setImages(owner.getImages("resources/Block2Break.png", 8, 1));
+			setImages(myGame.getImages("resources/Block2Break.png", 8, 1));
 			getAnimationTimer().setDelay(20);
 			setAnimate(true);
 		}
