@@ -11,8 +11,11 @@ public abstract class GameScroller {
 	protected SpriteGroup myPlayers;
 	protected Background myBackground;
 	
-	public GameScroller (SpriteGroup players, Background bkg) {
+	public void setPlayers(SpriteGroup players) {
 		myPlayers = players;
+	}
+	
+	public void setBackground(Background bkg) {
 		myBackground = bkg;
 	}
 	

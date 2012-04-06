@@ -1,50 +1,31 @@
 /**
- * @author Glenn Rivkees (grivkees)
+  * @author Glenn Rivkees (grivkees)
  */
 
 package game;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
+import com.golden.gamedev.object.background.ColorBackground;
 import com.golden.gamedev.object.background.ParallaxBackground;
 import collision.*;
 
 
 public class PlatformGame extends Game
 {
-    private PlayField myPlayfield;
-    private Background myBackground;
-    private GameScroller myGameScroller;
-
-    private SpriteGroup myPlayers;
-    private SpriteGroup myCharacters;
-    private SpriteGroup mySetting;
+    private AdvancedPlayField myPlayfield;
 
 
     public void initResources ()
     {
-        // TODO LOAD STUFF GOES HERE
-
-        int LEVEL_WIDTH = 10000;
-        int LEVEL_HIGHT = 500;
-
-        // Sprite Loading
-        myPlayers = myPlayfield.addGroup(new SpriteGroup("Player Group"));
-        myCharacters = myPlayfield.addGroup(new SpriteGroup("Character Group"));
-        mySetting = myPlayfield.addGroup(new SpriteGroup("Setting Group"));
-
-        // Background Load
-        myBackground =
-            new ParallaxBackground(new Background[] { new Background(LEVEL_WIDTH,
-                                                                     LEVEL_HIGHT) //,
-            //new ImageBackground(bgImg, bgImg.getWidth(), bgImg.getHeight())
-            });
-        myPlayfield.setBackground(myBackground);
-        myGameScroller =
-            new CenterFirstPlayerGameScroller(myPlayers, myBackground);
+    	// Playfield Init
+    	myPlayfield = new AdvancedPlayField(10000, 500);
+    	myPlayfield.setBackground(new ColorBackground(Color.gray, 640, 480));
+    	myPlayfield.setGameScroller(new CenterFirstPlayerGameScroller());
 
         // Collisions
         myPlayfield.addCollisionGroup(myPlayers,
@@ -63,7 +44,6 @@ public class PlatformGame extends Game
 
     public void render (Graphics2D arg0)
     {
-        myGameScroller.scroll();
         myPlayfield.render(arg0);
     }
 }
