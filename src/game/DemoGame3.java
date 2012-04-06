@@ -54,7 +54,7 @@ public class DemoGame3 extends Game {
         
         Platform temp2 = new BasePlatform(this);
         temp2.setImages(this.getImages("resources/Bar.png", 1, 1));
-        temp2.setLocation(700, 440);
+        temp2.setLocation(600, 440);
         myPlayfield.addSetting(temp2);
         
         Platform block2 = new BreakableDecorator(new BasePlatform(this));
