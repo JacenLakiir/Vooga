@@ -12,7 +12,6 @@ import items.CollectibleItem;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 
 import setting.BasePlatform;
 import setting.BreakableDecorator;
