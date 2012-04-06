@@ -3,7 +3,6 @@ README: Vooga - Group 2
 ===============================
 
 Names:
-
 	- Siyang Chen (sc146)
 	- Hui Dong (hd37)
 	- Kevin Han (kh156)
@@ -40,7 +39,7 @@ Resources:
 		http://www.javazoom.net/javalayer/javalayer.html
 
 Files Used to Start and Test:
-	- None
+	- LoadSaveTest.java (src/test package)
 
 Data / Resource Files Required:
 	- 'configurations' folder (JSON files for keyboard input)
