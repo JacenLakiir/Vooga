@@ -32,7 +32,7 @@ public class ItemDecorator extends PlatformDecorator{
 			item.setActive(true);
 			item.setLocation(getX(), getY()-getHeight());
 		}
-		else{
+		if (itemList.size() == 0){
 			setImages(myGame.getImages("resources/Block3.png", 1, 1));
 		}
 		decoratedPlatform.afterHitFromBottomBy(e);
