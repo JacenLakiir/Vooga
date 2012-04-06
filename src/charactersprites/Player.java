@@ -41,23 +41,23 @@ public class Player extends Character{
     }
     
     public void checkKeyboardInput(long milliSec) {
-//        for(Key key : keyList){
-//            if(key.isKeyDown(milliSec)){
-//                key.notifyObserver();
-//            }
+        for(Key key : keyList){
+            if(key.isKeyDown(milliSec)){
+                key.notifyObserver();
+            }
+        }
+//        if (myGame.keyDown(KeyEvent.VK_UP)) {
+//            keyUpPressed();
 //        }
-        if (myGame.keyDown(KeyEvent.VK_UP)) {
-            keyUpPressed();
-        }
-        if (myGame.keyDown(KeyEvent.VK_DOWN)) {
-            keyDownPressed();
-        }
-        if (myGame.keyDown(KeyEvent.VK_LEFT)) {
-            keyLeftPressed();
-        }
-        if (myGame.keyDown(KeyEvent.VK_RIGHT)) {
-            keyRightPressed();
-        }
+//        if (myGame.keyDown(KeyEvent.VK_DOWN)) {
+//            keyDownPressed();
+//        }
+//        if (myGame.keyDown(KeyEvent.VK_LEFT)) {
+//            keyLeftPressed();
+//        }
+//        if (myGame.keyDown(KeyEvent.VK_RIGHT)) {
+//            keyRightPressed();
+//        }
     }
     
     public void checkDead() {

@@ -47,11 +47,11 @@ public class DemoGame2 extends Game{
         mario.setImages(images);
         mario.setLocation(25, 20);
         
-//        Mario mario1 = new Mario(this);
-//        keyConfig1 = new KeyConfig(mario1,this);
-//        mario1.setKeyList(keyConfig1.getInputKeyList());
-//        mario1.setImages(images);
-//        mario1.setLocation(300, 20);
+        Mario mario1 = new Mario(this);
+        keyConfig1 = new KeyConfig(mario1,this);
+        mario1.setKeyList(keyConfig1.getInputKeyList());
+        mario1.setImages(images);
+        mario1.setLocation(300, 20);
 
         images = this.getImages("resources/Bar.png", 1, 1);
         Platform floor = new BasePlatform(this);
