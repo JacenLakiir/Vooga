@@ -37,11 +37,5 @@ public abstract class Platform extends GameElement{
         this.setLocation(x, y);
     }
 
-
-    //	public abstract void hitFromBottomAction();
-    //	public abstract void hitFromTopAction();
-    //	public abstract void hitFromLeftAction();
-    //	public abstract void hitFromRightAction();
-
 }
 

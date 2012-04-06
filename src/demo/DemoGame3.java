@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 
 import setting.BasePlatform;
 import setting.BreakableDecorator;
+import setting.MovingDecorator;
 import setting.Platform;
 
 import keyconfiguration.KeyConfig;
@@ -77,6 +78,12 @@ public class DemoGame3 extends Game {
 		coin.setImages(this.getImages("resources/Coin.png", 1, 1));
 		coin.setLocation(260, 100);
 		myPlayfield.addItem(coin);
+		
+		
+        Platform middleBar = new MovingDecorator(new BasePlatform(this), 260, 240, 260, 60, 0.05);
+        middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
+        myPlayfield.addSetting(middleBar);
+
 
 	}
 
