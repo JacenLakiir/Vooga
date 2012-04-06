@@ -80,7 +80,8 @@ public class GameElementCollision extends NewtonianCollision{
 
 
     @Override
-    public void collided(Sprite s1, Sprite s2) { 
+    public void collided(Sprite s1, Sprite s2) {
+//        System.out.println(this.collisionSide);
         switch (this.collisionSide) {
         case RIGHT_LEFT_COLLISION:{
             ((GameElement)s1).beforeCollidedWith((GameElement)s2, RIGHT_LEFT_COLLISION);

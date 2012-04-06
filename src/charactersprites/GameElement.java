@@ -36,15 +36,19 @@ public abstract class GameElement extends NewtonianSprite{
         switch (collisionSide) {
             case GameElementCollision.RIGHT_LEFT_COLLISION:{
                 beforeHitFromRightBy(e);
+                break;
             }
             case GameElementCollision.LEFT_RIGHT_COLLISION:{
                 beforeHitFromLeftBy(e);
+                break;
             }
             case GameElementCollision.BOTTOM_TOP_COLLISION:{
-                beforeHitFromBottomBy(e);
+                beforeHitFromBottomBy(e);                
+                break;
             }
             case GameElementCollision.TOP_BOTTOM_COLLISION:{
                 beforeHitFromTopBy(e);
+                break;
             }
         }
     }
@@ -53,15 +57,19 @@ public abstract class GameElement extends NewtonianSprite{
         switch (collisionSide) {
             case GameElementCollision.RIGHT_LEFT_COLLISION:{
                 afterHitFromRightBy(e);
+                break;
             }
             case GameElementCollision.LEFT_RIGHT_COLLISION:{
                 afterHitFromLeftBy(e);
+                break;
             }
             case GameElementCollision.BOTTOM_TOP_COLLISION:{
                 afterHitFromBottomBy(e);
+                break;
             }
             case GameElementCollision.TOP_BOTTOM_COLLISION:{
                 afterHitFromTopBy(e);
+                break;
             }
         }
     }
