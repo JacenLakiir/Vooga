@@ -14,9 +14,7 @@ import keyconfiguration.KeyConfig;
 
 
 import charactersprites.Character;
-import charactersprites.GameElement;
 import collision.CharacterPlatformCollision;
-import collision.GameElementCollision;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
@@ -27,6 +25,9 @@ import com.golden.gamedev.object.background.ColorBackground;
 
 import charactersprites.Player;
 import setting.*;
+import voogaobject.GameElement;
+import voogaobject.GameElementCollision;
+import voogaobject.GamePlayField;
 
 public class DemoGame2 extends Game{
 

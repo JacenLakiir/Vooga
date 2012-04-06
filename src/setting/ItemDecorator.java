@@ -3,8 +3,9 @@ package setting;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import voogaobject.GameElement;
+
 import charactersprites.CollectibleItemSprite;
-import charactersprites.GameElement;
 
 public class ItemDecorator extends PlatformDecorator{
 	private Queue<CollectibleItemSprite> itemList;

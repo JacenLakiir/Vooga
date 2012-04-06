@@ -4,6 +4,8 @@
 
 package charactersprites;
 
+import voogaobject.GameElement;
+
 import com.golden.gamedev.Game;
 
 

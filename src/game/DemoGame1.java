@@ -16,9 +16,10 @@ import keyconfiguration.KeyConfig;
 
 
 import setting.*;
+import voogaobject.GameElementCollision;
+import voogaobject.GamePlayField;
 
 
-import collision.GameElementCollision;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;

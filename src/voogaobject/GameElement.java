@@ -2,9 +2,8 @@
  * @author Kuang Han
  */
 
-package charactersprites;
+package voogaobject;
 
-import collision.GameElementCollision;
 
 import com.golden.gamedev.Game;
 

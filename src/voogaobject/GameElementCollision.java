@@ -3,12 +3,11 @@
  */
 
 
-package collision;
+package voogaobject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import charactersprites.GameElement;
 
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.SpriteGroup;

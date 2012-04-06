@@ -3,9 +3,8 @@
  */
 
 
-package game;
+package voogaobject;
 
-import collision.GameElementCollision;
 
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.CollisionManager;
