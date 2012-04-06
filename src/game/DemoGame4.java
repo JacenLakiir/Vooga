@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 
 import keyconfiguration.KeyConfig;
 
+import mario.Goomba;
 import mario.Mario;
 
 import setting.*;
@@ -21,6 +22,7 @@ import com.golden.gamedev.object.background.ColorBackground;
 
 import charactersprites.NPC;
 import charactersprites.Player;
+import charactersprites.ai.MoveState;
 import charactersprites.ai.PatrolState;
 
 /**
@@ -50,16 +52,22 @@ public class DemoGame4 extends Game{
         mario.setLocation(25, 20);
         
         images = this.getImages("resources/Goomba.png", 1, 1);
-        NPC goomba1 = new NPC(this);
+        NPC goomba1 = new Goomba(this);
         goomba1.setImages(images);
-        goomba1.setLocation(250, 20);
+        goomba1.setLocation(350, 20);
         goomba1.setMovable(true);
         
-        NPC goomba2 = new NPC(this);
+        NPC goomba2 = new Goomba(this);
         goomba2.addPossibleState(new PatrolState(goomba2, 75));
         goomba2.setImages(images);
-        goomba2.setLocation(400, 20);
+        goomba2.setLocation(500, 20);
         goomba2.setMovable(true);
+        
+        NPC goomba3 = new Goomba(this);
+        goomba3.addPossibleState(new MoveState(goomba3, 1, true));
+        goomba3.setImages(images);
+        goomba3.setLocation(300, 20);
+        goomba3.setMovable(true);
         
         images = this.getImages("resources/Bar.png", 1, 1);
         Platform floor = new BasePlatform(this);
@@ -105,6 +113,7 @@ public class DemoGame4 extends Game{
         characters.add(mario);
         characters.add(goomba1);
         characters.add(goomba2);
+        characters.add(goomba3);
         
         playfield.addGroup(blocks);
         playfield.addGroup(characters);
