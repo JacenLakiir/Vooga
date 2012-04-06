@@ -20,8 +20,8 @@ public class DeadState implements State
     }
 
     @Override
-    public void determineNextState ()
+    public boolean isActive ()
     {
-        // dead, cannot transition
+        return false;
     }
 }

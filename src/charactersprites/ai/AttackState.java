@@ -16,14 +16,14 @@ public class AttackState implements State
 
     public void execute (long milliSec)
     {
-        // not implemented properly yet
+        // not implemented yet
         myNPC.fight();
     }
 
     @Override
-    public void determineNextState ()
+    public boolean isActive ()
     {
-        // can switch to dead or previous state (patrol or stationary)        
+        return false;
     }
     
 }

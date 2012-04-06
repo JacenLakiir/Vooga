@@ -10,32 +10,51 @@ public class PatrolState implements State
 
     private NPC myNPC;
     
-    public PatrolState (NPC npc)
+    private double myPatrolRadius;
+    private Double myStartX;
+    private Double myStartY;
+    
+    public PatrolState (NPC npc, double patrolRadius)
     {
         myNPC = npc;
+        myPatrolRadius = patrolRadius;
     }
 
     public void execute (long milliSec)
     {
-        if (myNPC.getVelocity().getY() != 0)   return;
-        
-        int dir = myNPC.getDirection();
-        if (dir == -1)
-        {
-            if (myNPC.getX() < myNPC.getStartX() - myNPC.getPatrolRadius())
-                myNPC.setDirection(1);
-        }
-        else if (dir == 1)
-        {
-            if (myNPC.getX() > myNPC.getStartX() + myNPC.getPatrolRadius())
-                myNPC.setDirection(-1);
-        }
+        storeStartLocation();
+        updateDirection();
         myNPC.move(myNPC.getDirection(), 0);
     }
-
+    
     @Override
-    public void determineNextState ()
+    public boolean isActive ()
     {
-        // can switch to attack or dead
+        return (myNPC.getY() == myNPC.getOldY());
     }
+
+    private void updateDirection ()
+    {
+        int dir = myNPC.getDirection();
+        
+        if (dir == -1 && myNPC.getX() < myStartX - myPatrolRadius)
+        {
+            myNPC.setDirection(1);
+        }
+        else if (dir == 1 && myNPC.getX() > myStartX + myPatrolRadius)
+        {
+            myNPC.setDirection(-1);
+        }
+    }
+
+    private void storeStartLocation ()
+    {
+        if (myStartX == null || myStartY == null)
+        {
+            System.out.println("Location stored");
+            myStartX = myNPC.getX();
+            myStartY = myNPC.getY();
+        }
+    }
+
 }

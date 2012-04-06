@@ -22,9 +22,10 @@ public class EvasiveState implements State
     }
 
     @Override
-    public void determineNextState ()
+    public boolean isActive ()
     {
         // TODO Auto-generated method stub
+        return false;
     }
 
 }

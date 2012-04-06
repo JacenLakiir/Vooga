@@ -8,6 +8,6 @@ public interface State
    
     public void execute (long milliSec);
     
-    public void determineNextState ();
+    public boolean isActive ();
     
 }
