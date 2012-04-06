@@ -13,6 +13,9 @@ import setting.Platform;
 import charactersprites.*;
 import charactersprites.Character;
 
+import collision.PlayerCollectibleItemCollision;
+import collision.SideScrollerBoundsCollision;
+
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
@@ -39,6 +42,10 @@ public class AdvancedPlayField extends PlayField {
     	Characters = this.addGroup(new SpriteGroup("Character Group"));
     	Setting = this.addGroup(new SpriteGroup("Setting Group"));
     	Items = this.addGroup(new SpriteGroup("Setting Group"));
+    	
+    	// Add Bounds Collsion
+    	this.addCollisionGroup(this.getPlayers(),
+		        null, new SideScrollerBoundsCollision(this.getBackground()));
     }
 	
 	/*
