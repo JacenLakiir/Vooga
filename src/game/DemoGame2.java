@@ -16,7 +16,7 @@ import keyconfiguration.KeyConfig;
 import charactersprites.Character;
 import charactersprites.GameElement;
 import collision.CharacterPlatformCollision;
-import collision.UniversalCollision;
+import collision.GameElementCollision;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
@@ -30,13 +30,13 @@ import setting.*;
 
 public class DemoGame2 extends Game{
 
-    PlayField        playfield;  
+    GamePlayField    playfield;  
     Background       background;
     KeyConfig        keyConfig ,keyConfig1;
     @Override
     public void initResources() {
                
-        playfield = new PlayField();
+        playfield = new GamePlayField();
         background = new ColorBackground(Color.gray, 640, 480);
         playfield.setBackground(background);
 
@@ -126,9 +126,11 @@ public class DemoGame2 extends Game{
         playfield.addGroup(blocks);
         playfield.addGroup(characters);
 
-        UniversalCollision collision = new UniversalCollision();
-        playfield.addCollisionGroup(characters, blocks, collision);
-
+        GameElementCollision collision = new GameElementCollision();
+        collision.addSpriteGroup(blocks);
+        collision.addSpriteGroup(characters);
+        
+        playfield.addCollisionGroup(collision);
     }
 
     @Override

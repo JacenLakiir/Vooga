@@ -18,6 +18,8 @@ import keyconfiguration.KeyConfig;
 import setting.*;
 
 
+import collision.GameElementCollision;
+
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.Background;
@@ -29,12 +31,12 @@ import charactersprites.Player;
 
 public class DemoGame1 extends Game{
 
-    PlayField        playfield;  
+    GamePlayField    playfield;  
     Background       background;
     KeyConfig        keyConfig;
     @Override
     public void initResources() { 
-        playfield = new PlayField();
+        playfield = new GamePlayField();
         
         background = new ColorBackground(Color.gray, 640, 480);
         playfield.setBackground(background);
@@ -119,8 +121,11 @@ public class DemoGame1 extends Game{
         playfield.addGroup(blocks);
         playfield.addGroup(characters);
         
-        NewtonianCollision collision = new NewtonianCollision();
-        playfield.addCollisionGroup(characters, blocks, collision);
+        GameElementCollision collision = new GameElementCollision();
+        collision.addSpriteGroup(blocks);
+        collision.addSpriteGroup(characters);
+        
+        playfield.addCollisionGroup(collision);
     }
 
     @Override

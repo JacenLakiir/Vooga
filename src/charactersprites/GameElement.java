@@ -4,7 +4,7 @@
 
 package charactersprites;
 
-import collision.UniversalCollision;
+import collision.GameElementCollision;
 
 import com.golden.gamedev.Game;
 
@@ -34,16 +34,16 @@ public abstract class GameElement extends NewtonianSprite{
     
     public void beforeCollidedWith(GameElement e, int collisionSide) {
         switch (collisionSide) {
-            case UniversalCollision.RIGHT_LEFT_COLLISION:{
+            case GameElementCollision.RIGHT_LEFT_COLLISION:{
                 beforeHitFromRightBy(e);
             }
-            case UniversalCollision.LEFT_RIGHT_COLLISION:{
+            case GameElementCollision.LEFT_RIGHT_COLLISION:{
                 beforeHitFromLeftBy(e);
             }
-            case UniversalCollision.BOTTOM_TOP_COLLISION:{
+            case GameElementCollision.BOTTOM_TOP_COLLISION:{
                 beforeHitFromBottomBy(e);
             }
-            case UniversalCollision.TOP_BOTTOM_COLLISION:{
+            case GameElementCollision.TOP_BOTTOM_COLLISION:{
                 beforeHitFromTopBy(e);
             }
         }
@@ -51,16 +51,16 @@ public abstract class GameElement extends NewtonianSprite{
     
     public void afterCollidedWith(GameElement e, int collisionSide) {
         switch (collisionSide) {
-            case UniversalCollision.RIGHT_LEFT_COLLISION:{
+            case GameElementCollision.RIGHT_LEFT_COLLISION:{
                 afterHitFromRightBy(e);
             }
-            case UniversalCollision.LEFT_RIGHT_COLLISION:{
+            case GameElementCollision.LEFT_RIGHT_COLLISION:{
                 afterHitFromLeftBy(e);
             }
-            case UniversalCollision.BOTTOM_TOP_COLLISION:{
+            case GameElementCollision.BOTTOM_TOP_COLLISION:{
                 afterHitFromBottomBy(e);
             }
-            case UniversalCollision.TOP_BOTTOM_COLLISION:{
+            case GameElementCollision.TOP_BOTTOM_COLLISION:{
                 afterHitFromTopBy(e);
             }
         }
