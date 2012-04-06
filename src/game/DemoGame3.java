@@ -32,7 +32,7 @@ public class DemoGame3 extends Game {
     	// Playfield Init
     	myPlayfield = new AdvancedPlayField(10000, 500);
     	myPlayfield.setBackground(new ColorBackground(Color.gray));
-    	myPlayfield.setGameScroller(new CenterFirstPlayerGameScroller());
+    	myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
 
         // Collisions
         myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
