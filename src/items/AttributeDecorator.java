@@ -2,7 +2,6 @@ package items;
 
 import com.golden.gamedev.Game;
 
-import charactersprites.CollectibleItem;
 /**
  * @author Kathleen Oshima
  */

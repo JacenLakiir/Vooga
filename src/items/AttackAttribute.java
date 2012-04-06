@@ -2,7 +2,6 @@ package items;
 
 import com.golden.gamedev.Game;
 
-import charactersprites.CollectibleItem;
 /**
  * @author Kathleen Oshima
  */
@@ -40,7 +39,7 @@ public class AttackAttribute extends AttributeDecorator {
     }
 
 	@Override
-    public boolean isInUse() {
+    public boolean setIsInUse() {
 	    return isInUse;
     }
 

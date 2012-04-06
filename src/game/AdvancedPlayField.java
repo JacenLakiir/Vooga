@@ -4,6 +4,8 @@
 
 package game;
 
+import items.CollectibleItem;
+
 import java.awt.Graphics2D;
 
 import setting.Platform;

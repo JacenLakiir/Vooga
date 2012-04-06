@@ -1,6 +1,5 @@
 package items;
 
-import charactersprites.CollectibleItem;
 
 import com.golden.gamedev.Game;
 /**
@@ -18,7 +17,7 @@ public class HPAttribute extends AttributeDecorator {
     }
 
 	@Override
-    public boolean isInUse() {
+    public boolean setIsInUse() {
 	    return isInUse;
     }
 

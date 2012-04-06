@@ -5,6 +5,8 @@
 package charactersprites;
 
 
+import items.CollectibleItem;
+
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,7 @@ public class Player extends Character{
     private List<Key> keyList;
     private SystemTimer timer = new SystemTimer();
     protected ArrayList<CollectibleItem> myInventory;
-    protected double myHitPoints;
+    protected double myHitPoints, myAttackPower, myDefensePower, myLevel;
     
     public Player(Game game) {
         super(game);
@@ -132,11 +134,22 @@ public class Player extends Character{
     	return myHitPoints;
     }
     
+    public double getMyLevel() {
+    	return myLevel;
+    }
+    
+    public double getMyAttackPower() {
+    	return myAttackPower;
+    }
+    
+    public double getMyDefensePower() {
+    	return myDefensePower;
+    }
+    
 	public void updateAbilities() {
 		for (CollectibleItem item : myInventory) {
 			if (item.isInUse()) {
-				item.attackPower();
-				item.defensePower();
+				item.decorate(this);
 			}
 		}
 	}

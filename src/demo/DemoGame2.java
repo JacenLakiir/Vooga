@@ -3,6 +3,10 @@ package demo;
  * @author Kuang Han
  */
 
+import items.CollectibleInstantItem;
+import items.CollectibleInventoryItem;
+import items.CollectibleItem;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -15,6 +19,7 @@ import keyconfiguration.KeyConfig;
 
 import charactersprites.Character;
 import collision.CharacterPlatformCollision;
+import collision.PlayerCollectibleItemCollision;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
@@ -62,6 +67,11 @@ public class DemoGame2 extends Game{
         Platform ceiling = new BasePlatform(this);
         ceiling.setImages(images);
         ceiling.setLocation(70, -20);
+        
+        images = this.getImages("resources/Coin.png", 1, 1);
+        CollectibleItem coin = new CollectibleInventoryItem(this);
+        coin.setImages(images);
+        coin.setLocation(260, 100);
         
         images = this.getImages("resources/SmallBar.png", 1, 1);
         Platform middleBar = new BasePlatform(this);
@@ -121,15 +131,24 @@ public class DemoGame2 extends Game{
         SpriteGroup characters = new SpriteGroup("characters");
         characters.add(mario);
 //        characters.add(mario1);
+        
+        SpriteGroup items = new SpriteGroup("items");
+        items.add(coin);
 
         playfield.addGroup(blocks);
         playfield.addGroup(characters);
+        playfield.addGroup(items);
 
         GameElementCollision collision = new GameElementCollision();
         collision.addSpriteGroup(blocks);
         collision.addSpriteGroup(characters);
         
+//        PlayerCollectibleItemCollision playerItemCollision = new PlayerCollectibleItemCollision();
+//        playerItemCollision.addSpriteGroup(characters);
+//        playerItemCollision.addSpriteGroup(items);
+        
         playfield.addCollisionGroup(collision);
+        playfield.addCollisionGroup(characters, items, new PlayerCollectibleItemCollision());
     }
 
     @Override
