@@ -2,8 +2,10 @@
  * @author Glenn Rivkees (grivkees)
  */
 
-package game;
+package demo;
 
+import game.AdvancedPlayField;
+import game.KeepLeftFirstPlayerGameScroller;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;

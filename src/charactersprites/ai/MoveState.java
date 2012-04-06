@@ -5,19 +5,24 @@ import charactersprites.NPC;
 /**
  * @author Eric Mercer (JacenLakiir)
  */
-public class DeadState implements State
+public class MoveState implements State
 {
+
     private NPC myNPC;
     
-    public DeadState (NPC npc)
+    private double mySpeed;
+        
+    public MoveState (NPC npc, double speed, boolean isMovingLeft)
     {
         myNPC = npc;
+        mySpeed = speed;
+        myNPC.setDirection(isMovingLeft ? -1 : 1);
     }
-
+    
     @Override
     public void execute (long milliSec)
     {
-        myNPC.setActive(false);
+        myNPC.move(myNPC.getDirection() * mySpeed, 0);
     }
 
     @Override

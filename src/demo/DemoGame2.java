@@ -1,4 +1,4 @@
-package game;
+package demo;
 /**
  * @author Kuang Han
  */

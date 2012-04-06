@@ -24,6 +24,7 @@ public class VoogaLevelEditor extends JFrame {
     private Map<JLabel, String> mySpriteLabelSrcMap;
     private Map<JLabel, String> myUniqueSpriteLabelSrcMap;
     protected VoogaLevelEditorModel myModel;
+    protected VoogaLevelEditor myView;
     protected VoogaLevelEditorController myController;
     private GridBagConstraints myConstraints;
     public JPanel myCanvaspane, mySpritepane;
@@ -32,6 +33,7 @@ public class VoogaLevelEditor extends JFrame {
     public VoogaLevelEditor(VoogaLevelEditorModel model, 
 	    VoogaLevelEditorController controller) {
 	myModel = model;
+	myView = this;
 	myController = controller;
 	setTitle("Vooga Level Editor (Demo Version)");
 	setGlassPane(new JPanel());
@@ -95,17 +97,26 @@ public class VoogaLevelEditor extends JFrame {
     
     private class MoveSpriteListener implements MouseInputListener, MouseMotionListener {
         
+	Point prel = null;
+	
 	public void mouseMoved(MouseEvent e) {}
 
 	public void mouseDragged(MouseEvent e) {
 	    if (!SwingUtilities.isLeftMouseButton(e)) return;
 		Component jl = e.getComponent();
 		Point p = jl.getParent().getMousePosition();
-		if (p == null || p.x < 0 || p.y < 0) return;
-		jl.setLocation(jl.getParent().getMousePosition());
+		if (p == null) return;
+		if (prel == null) prel = jl.getMousePosition();
+		Point newP = new Point(p.x - prel.x, p.y - prel.y);
+		if (newP.x < 0) newP.x = 0;
+		if (newP.y < 0) newP.y = 0;
+		jl.setLocation(newP);
 	}
 	
-	public void mouseReleased(MouseEvent e) {}
+	public void mouseReleased(MouseEvent e) {
+	    prel = null;
+	    ((JLabel) e.getComponent()).setBorder(BorderFactory.createEmptyBorder());
+	}
 
 	public void mouseEntered(MouseEvent e) {}
 
@@ -115,16 +126,24 @@ public class VoogaLevelEditor extends JFrame {
 
 	@Override
 	public void mousePressed(final MouseEvent e) {
+	    ((JLabel) e.getComponent()).setBorder(BorderFactory.createLineBorder(Color.YELLOW));
 	    if (SwingUtilities.isRightMouseButton(e)) {
-		JPopupMenu deleteMenu = new JPopupMenu();
+		JPopupMenu editMenu = new JPopupMenu();
+		JMenuItem myEditItem = new JMenuItem("Edit");
+		editMenu.add(myEditItem);
+		myEditItem.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent event) {
+			SpriteEditPanel.getInstance(myModel, myView, myController);
+		    }
+		});
 		JMenuItem myDeleteItem = new JMenuItem("Delete");
-		deleteMenu.add(myDeleteItem);
-		deleteMenu.show(e.getComponent(), e.getX(), e.getY());
+		editMenu.add(myDeleteItem);
 		myDeleteItem.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent event) {
 			deleteSpriteLabelFromCanvas((JLabel) e.getComponent());
 		    }
 		});
+		editMenu.show(e.getComponent(), e.getX(), e.getY());
 	    }
 	}
 

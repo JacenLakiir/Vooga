@@ -1,40 +1,41 @@
-package game;
-/**
- * @author Kuang Han
- */
+package demo;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import mario.Mario;
-
-import physicsengine.NewtonianCollision;
-
 import keyconfiguration.KeyConfig;
 
+import mario.Goomba;
+import mario.Mario;
 
 import setting.*;
 import voogaobject.GameElementCollision;
 import voogaobject.GamePlayField;
 
-
-
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.Background;
-import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ColorBackground;
 
+import charactersprites.NPC;
 import charactersprites.Player;
+import charactersprites.ai.MoveState;
+import charactersprites.ai.PatrolState;
 
-public class DemoGame1 extends Game{
+/**
+ * @author Eric Mercer (JacenLakiir)
+ * 
+ * For testing NPC AI
+ */
+public class DemoGame4 extends Game{
 
     GamePlayField    playfield;  
     Background       background;
     KeyConfig        keyConfig;
+    
     @Override
     public void initResources() { 
         playfield = new GamePlayField();
@@ -49,7 +50,25 @@ public class DemoGame1 extends Game{
         mario.setKeyList(keyConfig.getInputKeyList());
         mario.setImages(images);
         mario.setLocation(25, 20);
-
+        
+        images = this.getImages("resources/Goomba.png", 1, 1);
+        NPC goomba1 = new Goomba(this);
+        goomba1.setImages(images);
+        goomba1.setLocation(350, 20);
+        goomba1.setMovable(true);
+        
+        NPC goomba2 = new Goomba(this);
+        goomba2.addPossibleState(new PatrolState(goomba2, 75));
+        goomba2.setImages(images);
+        goomba2.setLocation(500, 20);
+        goomba2.setMovable(true);
+        
+        NPC goomba3 = new Goomba(this);
+        goomba3.addPossibleState(new MoveState(goomba3, 1, true));
+        goomba3.setImages(images);
+        goomba3.setLocation(300, 20);
+        goomba3.setMovable(true);
+        
         images = this.getImages("resources/Bar.png", 1, 1);
         Platform floor = new BasePlatform(this);
         floor.setImages(images);
@@ -60,14 +79,18 @@ public class DemoGame1 extends Game{
         ceiling.setLocation(70, -20);
 
         images = this.getImages("resources/Block1.png", 1, 1);
-        Platform block1 = new BasePlatform(this);
+        Platform block1 = new ItemDecorator(new BasePlatform(this));
+        block1.setMass(6);
+        block1.setMovable(false);
         block1.setImages(images);
         block1.setLocation(100, 200);
-        
+
         images = this.getImages("resources/Block2.png", 1, 1);
-        Platform block2 = new BasePlatform(this);
+        Platform block2 = new BreakableDecorator(new BasePlatform(this));
+        block2.setMass(6);
+        block2.setMovable(false);
         block2.setImages(images);
-        block2.setLocation(300, 200);
+        block2.setLocation(160, 200);
         
         images = this.getImages("resources/Wall.png", 1, 1);
         Platform wall1 = new BasePlatform(this);
@@ -77,36 +100,6 @@ public class DemoGame1 extends Game{
         Platform wall2 = new BasePlatform(this);
         wall2.setImages(images);
         wall2.setLocation(620, 0);
-        
-        floor.setCoefficientOfFrictionInX(0);        
-        floor.setCoefficientOfFrictionInY(0);
-        floor.setCoefficientOfRestitutionInX(1);
-        floor.setCoefficientOfRestitutionInY(1);
-
-        ceiling.setCoefficientOfFrictionInX(0);        
-        ceiling.setCoefficientOfFrictionInY(0);
-        ceiling.setCoefficientOfRestitutionInX(1);
-        ceiling.setCoefficientOfRestitutionInY(1);
-
-        block1.setCoefficientOfFrictionInX(0);        
-        block1.setCoefficientOfFrictionInY(0);
-        block1.setCoefficientOfRestitutionInX(1);
-        block1.setCoefficientOfRestitutionInY(1);
-
-        block2.setCoefficientOfFrictionInX(0);        
-        block2.setCoefficientOfFrictionInY(0);
-        block2.setCoefficientOfRestitutionInX(1);
-        block2.setCoefficientOfRestitutionInY(1);
-
-        wall1.setCoefficientOfFrictionInX(0);        
-        wall1.setCoefficientOfFrictionInY(0);
-        wall1.setCoefficientOfRestitutionInX(1);
-        wall1.setCoefficientOfRestitutionInY(1);
-
-        wall2.setCoefficientOfFrictionInX(0);        
-        wall2.setCoefficientOfFrictionInY(0);
-        wall2.setCoefficientOfRestitutionInX(1);
-        wall2.setCoefficientOfRestitutionInY(1);
 
         SpriteGroup blocks = new SpriteGroup("block");
         blocks.add(floor);
@@ -118,6 +111,9 @@ public class DemoGame1 extends Game{
         
         SpriteGroup characters = new SpriteGroup("characters");
         characters.add(mario);
+        characters.add(goomba1);
+        characters.add(goomba2);
+        characters.add(goomba3);
         
         playfield.addGroup(blocks);
         playfield.addGroup(characters);
@@ -141,7 +137,7 @@ public class DemoGame1 extends Game{
     
     public static void main(String[] args) {
         GameLoader game = new GameLoader();
-        game.setup(new DemoGame1(), new Dimension(640,480), false);
+        game.setup(new DemoGame4(), new Dimension(640,480), false);
         game.start();
     }
 

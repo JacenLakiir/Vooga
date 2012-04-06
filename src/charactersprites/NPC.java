@@ -33,9 +33,7 @@ public class NPC extends Character
     }
     
     public void update (long milliSec)
-    {       
-        myCurrentStates.clear();
-        
+    {               
         for (State s : myPossibleStates)
             if (s.isActive())
                 myCurrentStates.add(s);
@@ -44,12 +42,19 @@ public class NPC extends Character
             s.execute(milliSec);
             
         super.update(milliSec);
-
+        
+        myCurrentStates.clear();
     }
     
     public void fight ()
     {
         myAttack.useAttack();
+    }
+    
+    public void setCurrentState (State state)
+    {
+        myCurrentStates.clear();
+        myCurrentStates.add(state);
     }
         
     public void setCurrentStates (List<State> state)
