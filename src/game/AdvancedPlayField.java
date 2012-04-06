@@ -30,7 +30,7 @@ public class AdvancedPlayField extends PlayField {
      */
     public AdvancedPlayField (int width, int height) {
     	super(new ParallaxBackground (
-				new Background[] { new Background(width, height) } 
+				new Background[] { new Background(width, height), new Background() } 
 				) 
 		);
     	Players = this.addGroup(new SpriteGroup("Player Group"));
@@ -68,7 +68,7 @@ public class AdvancedPlayField extends PlayField {
         } else {
         	bkg[1] = backgr;
         }
-        this.setBackground(new ParallaxBackground(bkg));
+        super.setBackground(new ParallaxBackground(bkg));
     }
     
     /*
@@ -85,6 +85,22 @@ public class AdvancedPlayField extends PlayField {
     }
     public void addSetting (Platform p) {
     	Setting.add(p);
+    }
+    
+    /*
+     * Get Groups
+     */
+    public SpriteGroup getPlayers () {
+    	return Players;
+    }
+    public SpriteGroup getCharacters() {
+    	return Characters;
+    }
+    public SpriteGroup getItems () {
+    	return Items;
+    }
+    public SpriteGroup getSetting () {
+    	return Setting;
     }
 	
 	

@@ -18,7 +18,7 @@ public  class KeyConfig {
     public KeyConfig(Player player, Game game) {
         myPlayer = player;
         myGame = game;
-        keyModel = parseKeyConfig("configurations/keyConfig.json");
+        keyModel = parseKeyConfig("configurations/KeyConfig.json");
     }
     
 
