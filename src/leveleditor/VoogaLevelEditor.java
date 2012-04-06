@@ -21,8 +21,8 @@ import com.golden.gamedev.object.Sprite;
 public class VoogaLevelEditor extends JFrame {
     private JLabel myBackGroundLabel;
     private String myBackGroundImgSrc;
-    private Map<JLabel, String> mySpriteLabelSrcMap;
-    private Map<JLabel, String> myUniqueSpriteLabelSrcMap;
+    private Map<JLabel, SpriteWrapper> myLabelWrapperMap;
+    private Map<JLabel, SpriteWrapper> myUniqueLabelWrapperMap;
     protected VoogaLevelEditorModel myModel;
     protected VoogaLevelEditor myView;
     protected VoogaLevelEditorController myController;
@@ -62,7 +62,6 @@ public class VoogaLevelEditor extends JFrame {
 	this.setLocation(0, 0);
 	this.getContentPane().setBackground(Color.GRAY);
     }
-    private String currentSrc = null;
     
     private class CopySpriteListener implements MouseInputListener {
 
@@ -88,7 +87,7 @@ public class VoogaLevelEditor extends JFrame {
 	    JLabel label = (JLabel) e.getComponent();
 	    TransferHandler handler = new ImageSelection();
 	    label.setTransferHandler(handler);
-	    currentSrc = myUniqueSpriteLabelSrcMap.get(label);
+	   // currentSrc = myUniqueSpriteLabelSrcMap.get(label);
 	    //System.out.println("preparing to copy: " + currentSrc);
 	    handler.exportAsDrag(label, e, DnDConstants.ACTION_COPY);
 	}
@@ -150,6 +149,19 @@ public class VoogaLevelEditor extends JFrame {
     }
 
     private class ImageDropTargetListener extends DropTargetAdapter {
+	
+	private DataFlavor spriteWrapperFlavor;
+	
+	public ImageDropTargetListener() {
+	    String spriteWrapperType = DataFlavor.javaJVMLocalObjectMimeType +
+		    ";class=" + SpriteWrapper.class.getName();
+	    try {
+		spriteWrapperFlavor = new DataFlavor(spriteWrapperType);
+	    } catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	    }
+	}
+	
 	@Override
 	public void dragEnter(DropTargetDragEvent event) {}
 
@@ -159,8 +171,7 @@ public class VoogaLevelEditor extends JFrame {
 	    event.acceptDrop(DnDConstants.ACTION_COPY_OR_MOVE);
 	    Transferable transferable = event.getTransferable();
 	    //DataFlavor[] flavors = transferable.getTransferDataFlavors();
-	    if (transferable.isDataFlavorSupported(DataFlavor.imageFlavor)) {
-		//System.out.println("is flavor");
+	    if (transferable.isDataFlavorSupported(spriteWrapperFlavor)) {
 		TransferHandler handler = new ImageSelection();
 		handler.importData(myCanvaspane, transferable);
 	    }
@@ -170,15 +181,28 @@ public class VoogaLevelEditor extends JFrame {
     }
 
     public class ImageSelection extends TransferHandler implements Transferable {
-	private final DataFlavor flavors[] = { DataFlavor.imageFlavor };
+	
+	private final DataFlavor flavors[] = new DataFlavor[1];
 	//private JLabel source;
-	private Image image;
+	private SpriteWrapper spritewrapper;
+	private DataFlavor spriteWrapperFlavor;
+	
+	public ImageSelection() {
+	    String spriteWrapperType = DataFlavor.javaJVMLocalObjectMimeType +
+		    ";class=" + SpriteWrapper.class.getName();
+	    try {
+		spriteWrapperFlavor = new DataFlavor(spriteWrapperType);
+		flavors[0] = spriteWrapperFlavor;
+	    } catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	    }
+	}
 
 	public int getSourceActions(JComponent c) {
 	    return TransferHandler.COPY;
 	}
 
-	public boolean canImport(JComponent comp, DataFlavor flavor[]) {
+	public boolean canImport(JComponent comp, String flavor[]) {
 	    //System.out.println("canImport called");
 	   //System.out.println(myCanvaspane.getLocation());
 	    if (!(comp instanceof JLabel)) {
@@ -196,15 +220,12 @@ public class VoogaLevelEditor extends JFrame {
 
 	public Transferable createTransferable(JComponent comp) {
 	    //source = null;
-	    image = null;
+	    spritewrapper = null;
 	    if (comp instanceof JLabel) {
 		JLabel label = (JLabel) comp;
-		Icon icon = label.getIcon();
-		if (icon instanceof ImageIcon) {
-		    image = ((ImageIcon) icon).getImage();
-		    //source = label;
-		    return this;
-		}
+		spritewrapper = myUniqueLabelWrapperMap.get(label);
+		//source = label;
+		return this;
 	    }
 	    return null;
 	}
@@ -219,8 +240,8 @@ public class VoogaLevelEditor extends JFrame {
 		//System.out.println("t printed");
 		if (t.isDataFlavorSupported(flavors[0])) {
 		    try {
-			image = (Image) t.getTransferData(flavors[0]);
-			ImageIcon icon = new ImageIcon(image);
+			spritewrapper = (SpriteWrapper) t.getTransferData(flavors[0]);
+			ImageIcon icon = new ImageIcon(spritewrapper.getImageSrc());
 			label.setIcon(icon);
 			label.setTransferHandler(new ImageSelection());
 			label.addMouseListener(new MoveSpriteListener());
@@ -228,9 +249,9 @@ public class VoogaLevelEditor extends JFrame {
 			myCanvaspane.add(label, 0);
 			label.setBounds(myCanvaspane.getMousePosition().x,
 				myCanvaspane.getMousePosition().y,
-				image.getWidth(null), image.getHeight(null));
+				icon.getIconWidth(), icon.getIconHeight());
 			//System.out.println("importing!!! " + currentSrc);
-			mySpriteLabelSrcMap.put(label, currentSrc);
+			myLabelWrapperMap.put(label, spritewrapper);
 			return true;
 		    } catch (UnsupportedFlavorException ignored) {
 			ignored.printStackTrace();
@@ -244,7 +265,7 @@ public class VoogaLevelEditor extends JFrame {
 
 	public Object getTransferData(DataFlavor flavor) {
 	    if (isDataFlavorSupported(flavor)) {
-		return image;
+		return spritewrapper;
 	    }
 	    return null;
 	}
@@ -254,7 +275,7 @@ public class VoogaLevelEditor extends JFrame {
 	}
 
 	public boolean isDataFlavorSupported(DataFlavor flavor) {
-	    return flavor.equals(DataFlavor.imageFlavor);
+	    return flavor.equals(spriteWrapperFlavor);
 	}
     }
     
@@ -375,21 +396,21 @@ public class VoogaLevelEditor extends JFrame {
     }
     
     protected void loadSprites(Map<Point, SpriteWrapper> spritemap) {
-	if (mySpriteLabelSrcMap != null) {
-	    for (JLabel l: mySpriteLabelSrcMap.keySet()) {
+	if (myLabelWrapperMap != null) {
+	    for (JLabel l: myLabelWrapperMap.keySet()) {
 		l.setVisible(false);
 		//System.out.println("clearing out l!!!!!!!!");
 		myCanvaspane.remove(l);
 	    }
-	    mySpriteLabelSrcMap.clear();
+	    myLabelWrapperMap.clear();
 	    mySpritepane.removeAll();
 	    mySpritepane.revalidate();
 	    myCanvaspane.revalidate();
 	}
-	else mySpriteLabelSrcMap = new HashMap<JLabel, String>();
-	if (myUniqueSpriteLabelSrcMap != null) myUniqueSpriteLabelSrcMap.clear();
-	else myUniqueSpriteLabelSrcMap = new HashMap<JLabel, String>();
-	Set<String> myUniqueSrcSet = new TreeSet<String>();
+	else myLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
+	if (myUniqueLabelWrapperMap != null) myUniqueLabelWrapperMap.clear();
+	else myUniqueLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
+	Set<SpriteWrapper> myUniqueSrcSet = new TreeSet<SpriteWrapper>();
 	for (Point p: spritemap.keySet()) {
 	    Sprite sp = spritemap.get(p).getSprite();
 	    BufferedImage currentImage = sp.getImage();
@@ -402,16 +423,19 @@ public class VoogaLevelEditor extends JFrame {
 	    myCanvaspane.add(label, 0);
 	    label.setBounds(p.x, p.y,
 		   currentImage.getWidth(), currentImage.getHeight());
-	    mySpriteLabelSrcMap.put(label, spritemap.get(p).getImageSrc());
-	    myUniqueSrcSet.add(spritemap.get(p).getImageSrc());
+	    myLabelWrapperMap.put(label, spritemap.get(p));
+	    myUniqueSrcSet.add(spritemap.get(p));
 	}
 	mySpritepane.setLayout(new GridLayout(myUniqueSrcSet.size(), 1));
-	for (String src: myUniqueSrcSet) {
+	for (SpriteWrapper wrapper: myUniqueSrcSet) {
 	    CopySpriteListener listener = new CopySpriteListener();
-	    JLabel label = new JLabel(new ImageIcon(src));
+	    JLabel label = new JLabel(wrapper.getName(), new ImageIcon(wrapper.getImageSrc()), JLabel.CENTER);
+	    label.setVerticalTextPosition(JLabel.TOP);
+	    label.setHorizontalTextPosition(JLabel.CENTER);
+	    label.setForeground(Color.YELLOW);
 	    mySpritepane.add(label);
 	    label.addMouseListener(listener);
-	    myUniqueSpriteLabelSrcMap.put(label, src);
+	    myUniqueLabelWrapperMap.put(label, wrapper);
 	}
 	mySpritepane.revalidate();
     }
@@ -419,13 +443,10 @@ public class VoogaLevelEditor extends JFrame {
     protected void prepareForSave(String path) {
 	if (myBackGroundImgSrc == null) return;
 	HashMap<Point, SpriteWrapper> spritemap = new HashMap<Point, SpriteWrapper>();
-	for (JLabel l: mySpriteLabelSrcMap.keySet()) {
+	for (JLabel l: myLabelWrapperMap.keySet()) {
 	    //System.out.println(mySpriteLabelSrcMap.get(l));
-	    BufferedImage bimg =
-		    VoogaUtilities.getImageFromString(mySpriteLabelSrcMap.get(l));
-	    Sprite created = new Sprite(bimg);
 	    spritemap.put(l.getLocation(), 
-		    new SpriteWrapper(created, mySpriteLabelSrcMap.get(l)));
+		    new SpriteWrapper(myLabelWrapperMap.get(l)));
 	}
 	myModel.saveLevel(path, myBackGroundImgSrc, spritemap);
     }
@@ -434,7 +455,7 @@ public class VoogaLevelEditor extends JFrame {
 	l.setVisible(false);
 	myCanvaspane.remove(l);
 	myCanvaspane.revalidate();
-	mySpriteLabelSrcMap.remove(l);
+	myLabelWrapperMap.remove(l);
     }
     
 }
