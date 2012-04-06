@@ -9,7 +9,7 @@ import com.golden.gamedev.Game;
  *
  */
 public class SequentialInputKey extends Key{
-    private static long LATENCY = 1000;
+    private static long LATENCY = 400;
     private long lastUpdate = 0;
     private boolean[] iskeyPressed;
     private  String[] values;
