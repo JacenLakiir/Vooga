@@ -20,7 +20,6 @@ public class Player extends Character{
     protected double strengthUp, strengthDown, strengthLeft, strengthRight;
     private List<Key> keyList;
     private SystemTimer timer = new SystemTimer();
-    //added by Kathleen
     protected ArrayList<CollectibleItem> myInventory;
     protected double myHitPoints;
     
@@ -42,23 +41,23 @@ public class Player extends Character{
     }
     
     public void checkKeyboardInput(long milliSec) {
-//        for(Key key : keyList){
-//            if(key.isKeyDown(milliSec)){
-//                key.notifyObserver();
-//            }
+        for(Key key : keyList){
+            if(key.isKeyDown(milliSec)){
+                key.notifyObserver();
+            }
+        }
+//        if (myGame.keyDown(KeyEvent.VK_UP)) {
+//            keyUpPressed();
 //        }
-        if (myGame.keyDown(KeyEvent.VK_UP)) {
-            keyUpPressed();
-        }
-        if (myGame.keyDown(KeyEvent.VK_DOWN)) {
-            keyDownPressed();
-        }
-        if (myGame.keyDown(KeyEvent.VK_LEFT)) {
-            keyLeftPressed();
-        }
-        if (myGame.keyDown(KeyEvent.VK_RIGHT)) {
-            keyRightPressed();
-        }
+//        if (myGame.keyDown(KeyEvent.VK_DOWN)) {
+//            keyDownPressed();
+//        }
+//        if (myGame.keyDown(KeyEvent.VK_LEFT)) {
+//            keyLeftPressed();
+//        }
+//        if (myGame.keyDown(KeyEvent.VK_RIGHT)) {
+//            keyRightPressed();
+//        }
     }
     
     public void checkDead() {
@@ -66,7 +65,8 @@ public class Player extends Character{
     
     @KeyAnnotation(action = "sequence")
     public void sequenceKey(){
-        this.addAcceleration(strengthDown*stdGravity*3, strengthUp*stdGravity*3);
+        System.out.println("Sequential Key Triggered");
+        this.setImages(myGame.getImages("resources/Mushroom.png",1,1));
     }
     
     @KeyAnnotation(action = "up")

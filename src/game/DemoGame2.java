@@ -43,15 +43,13 @@ public class DemoGame2 extends Game{
         BufferedImage[] images = this.getImages("resources/Mario1.png", 1, 1);
         Player mario = new Mario(this);
         keyConfig = new KeyConfig(mario,this);
-        keyConfig.parseKeyConfig("configurations/keyConfig.json");
-        mario.setKeyList(keyConfig.getKeyList());
+        mario.setKeyList(keyConfig.getInputKeyList());
         mario.setImages(images);
         mario.setLocation(25, 20);
         
         Mario mario1 = new Mario(this);
-        keyConfig1 = new KeyConfig(mario,this);
-        keyConfig1.parseKeyConfig("configurations/keyConfig.json");
-        mario1.setKeyList(keyConfig1.getKeyList());
+        keyConfig1 = new KeyConfig(mario1,this);
+        mario1.setKeyList(keyConfig1.getInputKeyList());
         mario1.setImages(images);
         mario1.setLocation(300, 20);
 
