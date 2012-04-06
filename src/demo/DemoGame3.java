@@ -47,6 +47,8 @@ public class DemoGame3 extends Game {
 		        myPlayfield.getItems(), new PlayerCollectibleItemCollision());
 
 		// Sprite Init / Or load funcitonality
+		// SpriteGroups already exist in AdvancedPlayfield
+		// use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
 
 		Player temp = new Mario(this);
 		temp.setKeyList(new KeyConfig(temp, this).getInputKeyList());
