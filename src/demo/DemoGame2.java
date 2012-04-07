@@ -31,7 +31,7 @@ import com.golden.gamedev.object.background.ColorBackground;
 import charactersprites.Player;
 import setting.*;
 import voogaobject.GameElement;
-import voogaobject.GameElementCollision;
+import voogaobject.MergedCollision;
 import voogaobject.GamePlayField;
 
 public class DemoGame2 extends Game{
@@ -139,7 +139,7 @@ public class DemoGame2 extends Game{
         playfield.addGroup(characters);
 //        playfield.addGroup(items);
 
-        GameElementCollision collision = new GameElementCollision();
+        MergedCollision collision = new MergedCollision();
         collision.addSpriteGroup(blocks);
         collision.addSpriteGroup(characters);
         

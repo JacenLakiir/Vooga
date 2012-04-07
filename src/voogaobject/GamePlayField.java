@@ -15,7 +15,7 @@ import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.util.Utility;
 
 public class GamePlayField extends PlayField{
-    protected GameElementCollision[] myCollisionGroups = new GameElementCollision[0];
+    protected MergedCollision[] myCollisionGroups = new MergedCollision[0];
     
     public GamePlayField() {
         super();
@@ -25,8 +25,8 @@ public class GamePlayField extends PlayField{
         super(background);
     }
     
-    public void addCollisionGroup(GameElementCollision collisionGroup) {
-        myCollisionGroups = (GameElementCollision[]) Utility.expand(myCollisionGroups,1);
+    public void addCollisionGroup(MergedCollision collisionGroup) {
+        myCollisionGroups = (MergedCollision[]) Utility.expand(myCollisionGroups,1);
         myCollisionGroups[myCollisionGroups.length - 1] = collisionGroup;
     }
     
@@ -49,7 +49,7 @@ public class GamePlayField extends PlayField{
     public boolean removeCollisionGroup(CollisionManager collisionGroup) {
         for (int i = 0; i < myCollisionGroups.length; i++) {
             if (myCollisionGroups[i].equals(collisionGroup)) {
-                myCollisionGroups = (GameElementCollision[]) Utility.cut(myCollisionGroups, i);
+                myCollisionGroups = (MergedCollision[]) Utility.cut(myCollisionGroups, i);
                 return true; 
             }
         }

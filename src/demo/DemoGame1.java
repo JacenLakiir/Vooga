@@ -16,7 +16,7 @@ import keyconfiguration.KeyConfig;
 
 
 import setting.*;
-import voogaobject.GameElementCollision;
+import voogaobject.MergedCollision;
 import voogaobject.GamePlayField;
 
 
@@ -122,7 +122,7 @@ public class DemoGame1 extends Game{
         playfield.addGroup(blocks);
         playfield.addGroup(characters);
         
-        GameElementCollision collision = new GameElementCollision();
+        MergedCollision collision = new MergedCollision();
         collision.addSpriteGroup(blocks);
         collision.addSpriteGroup(characters);
         
