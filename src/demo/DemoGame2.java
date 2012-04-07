@@ -3,14 +3,11 @@ package demo;
  * @author Kuang Han
  */
 
-import items.CollectibleInstantItem;
-import items.CollectibleInventoryItem;
-import items.CollectibleItem;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+
 
 import mario.Mario;
 
@@ -18,6 +15,7 @@ import keyconfiguration.KeyConfig;
 
 
 import charactersprites.Character;
+import charactersprites.GameElement;
 import collision.CharacterPlatformCollision;
 import collision.PlayerCollectibleItemCollision;
 
@@ -30,7 +28,6 @@ import com.golden.gamedev.object.background.ColorBackground;
 
 import charactersprites.Player;
 import setting.*;
-import voogaobject.GameElement;
 import voogaobject.MergedCollision;
 import voogaobject.GamePlayField;
 

@@ -7,7 +7,8 @@
  */
 
 package collision;
-import voogaobject.GameElement;
+
+import charactersprites.GameElement;
 
 import com.golden.gamedev.object.Sprite;
 

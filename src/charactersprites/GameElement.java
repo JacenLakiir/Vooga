@@ -2,15 +2,23 @@
  * @author Kuang Han
  */
 
-package physicsengine;
+package charactersprites;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import physicsengine.Acceleration;
+import physicsengine.Displacement;
+import physicsengine.DuringAcceleration;
+import physicsengine.Velocity;
+import voogaobject.MergedCollision;
+
+
+import com.golden.gamedev.Game;
 import com.golden.gamedev.object.sprite.AdvanceSprite;
 
 @SuppressWarnings("serial") 
-public abstract class NewtonianSprite extends AdvanceSprite{
+public abstract class GameElement extends AdvanceSprite{
     protected Acceleration acc;
     protected List<DuringAcceleration> duringAccList;
     protected Velocity vel;
@@ -27,8 +35,9 @@ public abstract class NewtonianSprite extends AdvanceSprite{
     protected double stdGravity = 0.004;
     protected boolean isUnmovable = false;
     protected boolean isPenetrable = false;
+    protected Game myGame;
 
-    public NewtonianSprite() {
+    public GameElement() {
         super();
         acc = new Acceleration(0, 0);
         vel = new Velocity(0, 0);
@@ -50,6 +59,12 @@ public abstract class NewtonianSprite extends AdvanceSprite{
 //                }
 //            }
 //        }));
+        myGame = null;
+    }
+    
+    public GameElement(Game game) {
+        this();
+        myGame = game;
     }
 
     @Override
@@ -275,5 +290,71 @@ public abstract class NewtonianSprite extends AdvanceSprite{
     public void setMass(double m) {
         this.mass = m;
     }
+
+    public void setGame(Game game) {
+        myGame = game;
+    }
+
+    public Game getGame() {
+        return myGame;
+    }
+
+    public void beforeCollidedWith(GameElement e, int collisionSide) {
+        switch (collisionSide) {
+            case MergedCollision.RIGHT_LEFT_COLLISION:{
+                beforeHitFromRightBy(e);
+                break;
+            }
+            case MergedCollision.LEFT_RIGHT_COLLISION:{
+                beforeHitFromLeftBy(e);
+                break;
+            }
+            case MergedCollision.BOTTOM_TOP_COLLISION:{
+                beforeHitFromBottomBy(e);                
+                break;
+            }
+            case MergedCollision.TOP_BOTTOM_COLLISION:{
+                beforeHitFromTopBy(e);
+                break;
+            }
+        }
+    }
+
+    public void afterCollidedWith(GameElement e, int collisionSide) {
+        switch (collisionSide) {
+            case MergedCollision.RIGHT_LEFT_COLLISION:{
+                afterHitFromRightBy(e);
+                break;
+            }
+            case MergedCollision.LEFT_RIGHT_COLLISION:{
+                afterHitFromLeftBy(e);
+                break;
+            }
+            case MergedCollision.BOTTOM_TOP_COLLISION:{
+                afterHitFromBottomBy(e);
+                break;
+            }
+            case MergedCollision.TOP_BOTTOM_COLLISION:{
+                afterHitFromTopBy(e);
+                break;
+            }
+        }
+    }
+
+    public void beforeHitFromLeftBy(GameElement e) {}
+
+    public void beforeHitFromRightBy(GameElement e) {}
+
+    public void beforeHitFromTopBy(GameElement e) {}
+
+    public void beforeHitFromBottomBy(GameElement e) {}
+
+    public void afterHitFromLeftBy(GameElement e) {}
+
+    public void afterHitFromRightBy(GameElement e) {}
+
+    public void afterHitFromTopBy(GameElement e) {}
+
+    public void afterHitFromBottomBy(GameElement e) {}
 
 }

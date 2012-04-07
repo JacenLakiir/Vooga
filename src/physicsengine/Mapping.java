@@ -4,10 +4,12 @@
 
 package physicsengine;
 
+import charactersprites.GameElement;
+
 public abstract class Mapping {
-    private NewtonianSprite owner;
+    private GameElement owner;
     
-    public Mapping(NewtonianSprite owner) {
+    public Mapping(GameElement owner) {
         this.owner = owner;
     }
 
@@ -15,7 +17,7 @@ public abstract class Mapping {
     
     public abstract double getYforTime(int t) ;
     
-    public NewtonianSprite getOwner() {
+    public GameElement getOwner() {
         return owner;
     }
 }

@@ -1,7 +1,7 @@
 package setting;
 
-import physicsengine.NewtonianSprite;
-import voogaobject.GameElement;
+
+import charactersprites.GameElement;
 
 import com.golden.gamedev.Game;
 

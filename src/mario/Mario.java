@@ -4,7 +4,7 @@
 
 package mario;
 
-import voogaobject.GameElement;
+import charactersprites.GameElement;
 import charactersprites.Player;
 
 import com.golden.gamedev.Game;

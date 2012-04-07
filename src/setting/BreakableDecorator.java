@@ -3,7 +3,8 @@
  */
 package setting;
 
-import voogaobject.GameElement;
+
+import charactersprites.GameElement;
 
 import com.golden.gamedev.object.Timer;
 import com.golden.gamedev.object.sprite.VolatileSprite;

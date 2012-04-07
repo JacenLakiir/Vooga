@@ -2,10 +2,9 @@ package items;
 
 import java.awt.image.BufferedImage;
 
-import physicsengine.NewtonianSprite;
 import setting.Platform;
-import voogaobject.GameElement;
 
+import charactersprites.GameElement;
 import charactersprites.Player;
 
 import com.golden.gamedev.Game;
@@ -14,7 +13,7 @@ import com.golden.gamedev.Game;
  * @author Kathleen Oshima
  */
 @SuppressWarnings("serial")
-public abstract class CollectibleItem extends NewtonianSprite {
+public abstract class CollectibleItem extends GameElement {
 
 	protected Game game;
 	private boolean isInUse;
