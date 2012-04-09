@@ -72,7 +72,7 @@ public class SimpleGameToTestLevelEditor extends GameObject {
 	public void update(long arg0) {
 		myPlayfield.update(arg0);
 		if(keyDown(KeyEvent.VK_ESCAPE)){
-		    
+		    ESC();
 		}
 		
 		if (keyDown(KeyEvent.VK_UP)) {
@@ -96,7 +96,7 @@ public class SimpleGameToTestLevelEditor extends GameObject {
 	}
     
     public void ESC(){
-        engine.nextState(0);
+        engine.nextGameID = GameEngine2D.PAUSE;
         finish();
     }
 

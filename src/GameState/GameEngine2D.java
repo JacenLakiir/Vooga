@@ -2,30 +2,34 @@ package GameState;
 
 
 import java.awt.Dimension;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.GameObject;
 
 public class GameEngine2D extends GameEngine{
-    State current;
-    
-    public GameEngine2D(){
-        current = new MenuState(this);
+    private static Map<Integer, GameObject> map = new HashMap<Integer, GameObject>();
+    public static final int GAME = 2;
+    public static final int PAUSE = 3;
+    public static final int MENU = 1;
+    public static final int EXIT = 4;
+    public void initResources(){
+        map.put(MENU, new Menu(this));
+        map.put(GAME, new SimpleGameToTestLevelEditor(this));
+        map.put(PAUSE, new Pause(this));
+        nextGameID = MENU;
     }
     
-    public void setState(State s){
-        current = s;
+    public void setGameID(int id){
+        nextGameID = id;
     }
-    
-    public void nextState(int gameID){
-        nextGameID = gameID;
-        current.nextState(this, gameID);
-    }
+
     
     @Override
-    public GameObject getGame(int arg0) {
-        return current.getGameObject();
+    public GameObject getGame(int gameID) {
+        return map.get(nextGameID);
     }
     
     public static void main(String[] args){

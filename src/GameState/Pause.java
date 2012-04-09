@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;
@@ -11,13 +13,22 @@ import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
 
 public class Pause extends GameObject{
-    private int gameID = 0;
+    private static Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    static{
+        map.put(0, GameEngine2D.GAME);
+        map.put(1, GameEngine2D.MENU);
+    }
+    private int optionID = 0;
     GameEngine2D engine;
     private Background background;
     private BufferedImage arrow;
 
+    
+    
+    
     public Pause(GameEngine arg0) {
         super(arg0);
+        engine = (GameEngine2D) arg0;
     }
 
     @Override
@@ -34,8 +45,7 @@ public class Pause extends GameObject{
         graphic.drawString("CONTINUE", 320, 240);
         graphic.drawString("RESTART", 320, 260);
         graphic.drawString("Menu", 320, 280);        
-        graphic.drawString("EXIT", 320, 300);
-        graphic.drawImage(arrow, 300, 230 + gameID*20, null);
+        graphic.drawImage(arrow, 300, 230 + optionID*20, null);
     }
 
     @Override
@@ -51,20 +61,26 @@ public class Pause extends GameObject{
         }    }
 
     private void  down(){
-        if(gameID < 3){
-            gameID++;
+        if(optionID < 2){
+            optionID++;
         }
     }
     
     private void up(){
-        if(gameID > 0){
-            gameID--;
+        if(optionID > 0){
+            optionID--;
         }
     }
     
     private void enter(){
-        System.out.println(gameID);
-        engine.nextState(gameID);
+        int id = map.get(optionID);
+        engine.nextGameID = map.get(optionID);
+        if(optionID == 1){
+            engine.initResources();
+        }
+        
         finish();
     }
+    
+    
 }
