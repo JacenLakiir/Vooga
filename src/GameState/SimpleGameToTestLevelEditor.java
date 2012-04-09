@@ -1,7 +1,10 @@
 /**
  * @author Michael Zhou (Dominator008)
  */
-package game;
+package GameState;
+
+import game.GameScroller;
+import game.LevelState;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -11,11 +14,19 @@ import java.io.File;
 
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameLoader;
+import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.*;
 import com.golden.gamedev.object.background.*;
 
-public class SimpleGameToTestLevelEditor extends Game {
+public class SimpleGameToTestLevelEditor extends GameObject {
+    private GameEngine2D engine;
+
+    public SimpleGameToTestLevelEditor(GameEngine2D arg0) {
+        super(arg0);
+        engine = arg0;
+    }
 
     private PlayField myPlayfield;  
     private Background myBackground;
@@ -27,12 +38,12 @@ public class SimpleGameToTestLevelEditor extends Game {
     private Sprite myHero;
     private int LEVEL_WIDTH = 1000;
     private int LEVEL_HEIGHT = 500;
-
-    public static void main(String[] args) {
-        GameLoader game = new GameLoader();
-        game.setup(new SimpleGameToTestLevelEditor(), new Dimension(800,600), false);
-	game.start();
-    }
+	
+//    public static void main(String[] args) {
+//        GameLoader game = new GameLoader();
+//        game.setup(new SimpleGameToTestLevelEditor(), new Dimension(800,600), false);
+//	game.start();
+//    }
 
     private void hardCodedLoadLevel() {
 	LevelState loadedState = LevelState.loadFile(new File("saves/level2.lvl"));
@@ -51,15 +62,19 @@ public class SimpleGameToTestLevelEditor extends Game {
 		// TODO LOAD STUFF GOES HERE
 		myPlayfield = new PlayField();
 	    	hardCodedLoadLevel();
-		super.initEngine();
+//		super.initEngine();
 		// Sprite Loading
 		myPlayers = myPlayfield.addGroup( new SpriteGroup("Player Group") );
 		myCharacters = myPlayfield.addGroup( new SpriteGroup("Character Group") );
 		mySetting = myPlayfield.addGroup( new SpriteGroup("Setting Group") );
 	}
-
+	
 	public void update(long arg0) {
 		myPlayfield.update(arg0);
+		if(keyDown(KeyEvent.VK_ESCAPE)){
+		    
+		}
+		
 		if (keyDown(KeyEvent.VK_UP)) {
 		    myHero.setVerticalSpeed(-0.5);
 		}
@@ -80,7 +95,9 @@ public class SimpleGameToTestLevelEditor extends Game {
 		myPlayfield.render(arg0);	
 	}
     
-    
+    public void ESC(){
+        engine.nextState(0);
+        finish();
+    }
 
 }
-

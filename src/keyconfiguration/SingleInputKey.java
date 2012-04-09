@@ -9,9 +9,12 @@ import com.golden.gamedev.Game;
  *
  */
 public class SingleInputKey extends Key{
+    private Game myGame;    
     public SingleInputKey(String value, String actionName, Player player,
             Game game) {
-        super(value, actionName, player, game);
+        keyValue = value;
+        action = actionName;
+        myGame = game;        
         observer = new InputKeyObserver(player);
     }
 

@@ -6,6 +6,7 @@ package demo;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 import mario.Mario;
@@ -18,6 +19,7 @@ import keyconfiguration.KeyConfig;
 import setting.*;
 import voogaobject.GameElementCollision;
 import voogaobject.GamePlayField;
+
 
 
 

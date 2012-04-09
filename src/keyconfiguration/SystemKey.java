@@ -3,6 +3,7 @@ package keyconfiguration;
 import charactersprites.Player;
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameEngine;
 /**
  * 
  * @author Hui Dong
@@ -10,13 +11,15 @@ import com.golden.gamedev.Game;
  */
 public class SystemKey extends Key{
 
-    public SystemKey(String value, String actionName, Player player, Game game) {
-        super(value, actionName, player, game);
+    private GameEngine myEngine;
+    
+    public SystemKey(String value, String actionName, Game game) {
+        
     }
 
     @Override
     public boolean isKeyDown(long milliSec) {
-        return false;
+        return myEngine.keyDown(Integer.parseInt(keyValue));
     }
 
 }

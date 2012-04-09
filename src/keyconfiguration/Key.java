@@ -11,16 +11,8 @@ import charactersprites.Player;
  */
 public abstract class Key {
     protected String keyValue;
-    private String action;
+    protected String action;
     protected KeyObserver observer;
-    protected Game myGame;    
-    public Key(String value, String actionName, Player player, Game game){
-        keyValue = value;
-        action = actionName;
-        myGame = game;
-    }
-
-    
     public abstract boolean isKeyDown(long milliSec);
     
     public String getAction(){

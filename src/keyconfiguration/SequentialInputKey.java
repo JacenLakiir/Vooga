@@ -14,10 +14,12 @@ public class SequentialInputKey extends Key{
     private boolean[] iskeyPressed;
     private  String[] values;
     private boolean isInitial  = true;
-    
+    private Game myGame;    
     public SequentialInputKey(String value, String actionName, Player player,
             Game game) {
-        super(value, actionName, player, game);
+        keyValue = value;
+        action = actionName;
+        myGame = game;
         values = keyValue.split(",");
         iskeyPressed = new boolean[values.length];
         invalidate();
