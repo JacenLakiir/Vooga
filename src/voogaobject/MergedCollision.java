@@ -9,16 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import charactersprites.GameElement;
+
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.collision.CollisionShape;
 
 import physicsengine.NewtonianCollision;
 
-public class GameElementCollision extends NewtonianCollision{
+public class MergedCollision extends NewtonianCollision{
     protected List<GameElement> myList;
 
-    public GameElementCollision() {
+    public MergedCollision() {
         myList = new ArrayList<GameElement>();
     }
 

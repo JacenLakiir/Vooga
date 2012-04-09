@@ -9,9 +9,9 @@ package setting;
 
 import java.awt.image.BufferedImage;
 
-import physicsengine.NewtonianSprite;
-import voogaobject.GameElement;
 
+
+import charactersprites.GameElement;
 
 import com.golden.gamedev.Game;
 
@@ -36,12 +36,6 @@ public abstract class Platform extends GameElement{
         this.setImages(images);
         this.setLocation(x, y);
     }
-
-
-    //	public abstract void hitFromBottomAction();
-    //	public abstract void hitFromTopAction();
-    //	public abstract void hitFromLeftAction();
-    //	public abstract void hitFromRightAction();
 
 }
 

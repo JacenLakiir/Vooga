@@ -6,7 +6,9 @@ import items.CollectibleItem;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import voogaobject.GameElement;
+import charactersprites.GameElement;
+
+
 
 
 public class ItemDecorator extends PlatformDecorator{
@@ -29,9 +31,10 @@ public class ItemDecorator extends PlatformDecorator{
 	public void afterHitFromBottomBy(GameElement e){
 		if(!itemList.isEmpty()){
 			CollectibleItem item = removeItem();
-			item.setLocation(getX()+getWidth(), getY()+getHeight());
+			item.setActive(true);
+			item.setLocation(getX(), getY()-getHeight());
 		}
-		else{
+		if (itemList.size() == 0){
 			setImages(myGame.getImages("resources/Block3.png", 1, 1));
 		}
 		decoratedPlatform.afterHitFromBottomBy(e);

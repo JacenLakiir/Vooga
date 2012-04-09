@@ -4,7 +4,7 @@
 
 package mario;
 
-import voogaobject.GameElement;
+import charactersprites.GameElement;
 import charactersprites.Player;
 
 import com.golden.gamedev.Game;
@@ -35,11 +35,12 @@ public class Mario extends Player{
 
     @Override
     public void checkDead() {
-        if (this.getX()<-10 || this.getX()>650 || this.getY()>500) {
-            System.out.println("Dead");
-            myGame.stop();
-            return;
-        }
+    	
+//        if (this.getX()<-10 || this.getX()>650 || this.getY()>500) {
+//            System.out.println("Dead");
+//            myGame.stop();
+//            return;
+//        }
     }
     
     @Override
