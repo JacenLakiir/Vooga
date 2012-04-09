@@ -19,7 +19,7 @@ public class GameEngine2D extends GameEngine{
     }
     
     public void nextState(int gameID){
-        nextGameID = gameID;
+        nextGameID++;
         current.nextState(this, gameID);
     }
     
