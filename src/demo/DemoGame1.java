@@ -8,11 +8,13 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 import mario.Mario;
 
 import physicsengine.NewtonianCollision;
 
+import keyconfiguration.Key;
 import keyconfiguration.KeyConfig;
 
 
@@ -37,6 +39,7 @@ public class DemoGame1 extends Game{
     GamePlayField    playfield;  
     Background       background;
     KeyConfig        keyConfig;
+    List<Key>        keyList;
     @Override
     public void initResources() { 
         playfield = new GamePlayField();
@@ -47,8 +50,7 @@ public class DemoGame1 extends Game{
         BufferedImage[] images = this.getImages("resources/Mario1.png", 1, 1);
         Player mario = new Mario(this);
         keyConfig = new KeyConfig(mario,this);
-        keyConfig.parseKeyConfig("configurations/keyConfig.json");
-        mario.setKeyList(keyConfig.getInputKeyList());
+        keyList = keyConfig.getKeyList();
         mario.setImages(images);
         mario.setLocation(25, 20);
 
@@ -139,6 +141,15 @@ public class DemoGame1 extends Game{
     @Override
     public void update(long t) {
         playfield.update(t);
+        checkKeyboardInput(t);
+    }
+    
+    public void checkKeyboardInput(long milliSec) {
+        for(Key key : keyList){
+            if(key.isKeyDown(milliSec)){
+                key.notifyObserver();
+            }
+        }
     }
     
     public static void main(String[] args) {

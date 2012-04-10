@@ -6,6 +6,7 @@ import java.util.List;
 import charactersprites.Player;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameEngine;
+import com.golden.gamedev.GameObject;
 
 /**
  * 
@@ -13,7 +14,7 @@ import com.golden.gamedev.GameEngine;
  *
  */
 public  class KeyConfig {
-    KeyConfigModel keyModel;
+    private KeyConfigModel keyModel;
     protected Game myGame;
     protected Player myPlayer;
     public KeyConfig(Player player, Game game) {
@@ -47,13 +48,20 @@ public  class KeyConfig {
         return keys;
     }
 
-    public List<Key> getInputKeyList() {
-        return constructInputKeyList(keyModel.getInputKeyMap());
-    }
-  
+//    public List<Key> getInputKeyList() {
+//        return constructKeyList(keyModel.getInputKeyMap());
+//    }
+//  
+//    
+//    public List<Key> getSystemKeyList() {
+//        return constructKeyList(keyModel.getSystemKeyMap());
+//    }
     
-    public List<Key> getSystemKeyList() {
-        return constructSystemKeyList(keyModel.getSystemKeyMap());
+    public List<Key> getKeyList(){
+        List<Key> keys = new ArrayList<Key> ();
+        keys.addAll(constructInputKeyList(keyModel.getInputKeyMap()));
+        keys.addAll(constructSystemKeyList(keyModel.getSystemKeyMap()));
+        return keys;
     }
     
     

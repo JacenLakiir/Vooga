@@ -71,4 +71,10 @@ public class SequentialInputKey extends Key{
         }
         
     }
+
+
+    @Override
+    public void notifyObserver() {
+        observer.getActoinMethods(action);
+    }
 }

@@ -23,8 +23,6 @@ public abstract class Key {
         return keyValue;
     }
     
-    public void notifyObserver(){
-        observer.getActoinMethods(action);
-    }
+    public abstract void notifyObserver();
     
 }

@@ -4,16 +4,17 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import charactersprites.GameElement;
 import charactersprites.Player;
 
 public class InputKeyObserver extends KeyObserver{
-
-    public InputKeyObserver(Player player) {
-        super(player);
+    private GameElement element;
+    public InputKeyObserver(GameElement element) {
+        this.element = element;
     }
     
     public void getActoinMethods(String action){
-        Class<?> c = Player.class;
+        Class<?> c = element.getClass();
         Method[] methods = c.getMethods();
         for(Method m : methods){
             Annotation annotation = m.getAnnotation(KeyAnnotation.class);
@@ -21,7 +22,7 @@ public class InputKeyObserver extends KeyObserver{
                 KeyAnnotation key = (KeyAnnotation) annotation;
                 if(key.action().equals(action)){
                     try {
-                        m.invoke(player);
+                        m.invoke(element);
                     } catch (IllegalArgumentException e) {
                         e.printStackTrace();
                     } catch (IllegalAccessException e) {
@@ -33,4 +34,5 @@ public class InputKeyObserver extends KeyObserver{
             }
         }
     }
+
 }
