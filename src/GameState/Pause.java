@@ -16,7 +16,8 @@ public class Pause extends GameObject{
     private static Map<Integer, Integer> map = new HashMap<Integer, Integer>();
     static{
         map.put(0, GameEngine2D.GAME);
-        map.put(1, GameEngine2D.MENU);
+        map.put(1, GameEngine2D.GAME);
+        map.put(2, GameEngine2D.MENU);
     }
     private int optionID = 0;
     GameEngine2D engine;
@@ -50,15 +51,16 @@ public class Pause extends GameObject{
 
     @Override
     public void update(long arg0) {
-        if(keyDown(KeyEvent.VK_ENTER)){
+        if(keyPressed(KeyEvent.VK_ENTER)){
             enter();
         }
-        if(keyDown(KeyEvent.VK_UP)){
+        if(keyPressed(KeyEvent.VK_UP)){
             up();
         }
-        if(keyDown(KeyEvent.VK_DOWN)){
+        if(keyPressed(KeyEvent.VK_DOWN)){
             down();
-        }    }
+        }    
+      }
 
     private void  down(){
         if(optionID < 2){
@@ -75,7 +77,7 @@ public class Pause extends GameObject{
     private void enter(){
         int id = map.get(optionID);
         engine.nextGameID = map.get(optionID);
-        if(optionID == 1){
+        if(optionID != 0){
             engine.initResources();
         }
         

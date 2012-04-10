@@ -15,11 +15,19 @@ public class GameEngine2D extends GameEngine{
     public static final int PAUSE = 3;
     public static final int MENU = 1;
     public static final int EXIT = 4;
+    private static int gameid = 1;
+    public GameEngine2D(){
+        nextGameID = MENU;
+    }
+    
+//    public static void registerGame(GameObject object){
+//        map.put(gameid++, object);
+//    }
+//    
     public void initResources(){
         map.put(MENU, new Menu(this));
         map.put(GAME, new SimpleGameToTestLevelEditor(this));
         map.put(PAUSE, new Pause(this));
-        nextGameID = MENU;
     }
     
     public void setGameID(int id){
