@@ -32,7 +32,6 @@ public class Player extends Character{
     
     @Override
     public void update(long milliSec) {
-        checkKeyboardInput(timer.getTime());
         super.update(milliSec);  
         updateAbilities();
         checkDead();
@@ -41,26 +40,7 @@ public class Player extends Character{
     public void setKeyList(List<Key> list){
         keyList = list;
     }
-    
-    public void checkKeyboardInput(long milliSec) {
-//        for(Key key : keyList){
-//            if(key.isKeyDown(milliSec)){
-//                key.notifyObserver();
-//            }
-//        }
-//        if (myGame.keyDown(KeyEvent.VK_UP)) {
-//            keyUpPressed();
-//        }
-//        if (myGame.keyDown(KeyEvent.VK_DOWN)) {
-//            keyDownPressed();
-//        }
-//        if (myGame.keyDown(KeyEvent.VK_LEFT)) {
-//            keyLeftPressed();
-//        }
-//        if (myGame.keyDown(KeyEvent.VK_RIGHT)) {
-//            keyRightPressed();
-//        }
-    }
+   
     
     public void checkDead() {
     }
