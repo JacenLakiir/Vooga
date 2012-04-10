@@ -11,15 +11,24 @@ import com.golden.gamedev.GameEngine;
  */
 public class SystemKey extends Key{
 
-    private GameEngine myEngine;
+    private Game myGame;
     
     public SystemKey(String value, String actionName, Game game) {
-        
+        keyValue = value;
+        action = actionName;
+        myGame = game;        
+        observer = new SystemKeyObserver(game);
     }
 
     @Override
     public boolean isKeyDown(long milliSec) {
-        return myEngine.keyDown(Integer.parseInt(keyValue));
+        return myGame.keyPressed(Integer.parseInt(keyValue));
+    }
+
+    @Override
+    public void notifyObserver() {
+        observer.getActoinMethods(action);
+
     }
 
 }

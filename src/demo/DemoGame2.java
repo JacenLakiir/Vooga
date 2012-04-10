@@ -7,10 +7,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 
 import mario.Mario;
 
+import keyconfiguration.Key;
 import keyconfiguration.KeyConfig;
 
 
@@ -36,6 +38,7 @@ public class DemoGame2 extends Game{
     GamePlayField    playfield;  
     Background       background;
     KeyConfig        keyConfig ,keyConfig1;
+    List<Key>        keyList;
     @Override
     public void initResources() {
                
@@ -45,14 +48,14 @@ public class DemoGame2 extends Game{
 
         BufferedImage[] images = this.getImages("resources/Mario1.png", 1, 1);
         Player mario = new Mario(this);
-        keyConfig = new KeyConfig(mario,this);
-        mario.setKeyList(keyConfig.getInputKeyList());
+        keyConfig = new KeyConfig(mario, this);
+        keyList = keyConfig.getKeyList();
         mario.setImages(images);
         mario.setLocation(25, 20);
         
         Mario mario1 = new Mario(this);
         keyConfig1 = new KeyConfig(mario1,this);
-        mario1.setKeyList(keyConfig1.getInputKeyList());
+        mario1.setKeyList(keyConfig1.getKeyList());
         mario1.setImages(images);
         mario1.setLocation(300, 20);
 
@@ -156,6 +159,15 @@ public class DemoGame2 extends Game{
     @Override
     public void update(long t) {
         playfield.update(t);
+        checkKeyboardInput(t);
+    }
+    
+    public void checkKeyboardInput(long milliSec) {
+        for(Key key : keyList){
+            if(key.isKeyDown(milliSec)){
+                key.notifyObserver();
+            }
+        }
     }
 
     public static void main(String[] args) {

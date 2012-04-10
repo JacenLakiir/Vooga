@@ -1,9 +1,4 @@
 package keyconfiguration;
-
-import com.golden.gamedev.Game;
-
-import charactersprites.Player;
-
 /**
  * 
  * @author Hui Dong
@@ -23,8 +18,6 @@ public abstract class Key {
         return keyValue;
     }
     
-    public void notifyObserver(){
-        observer.getActoinMethods(action);
-    }
+    public abstract void notifyObserver();
     
 }
