@@ -20,10 +20,6 @@ public class GameEngine2D extends GameEngine{
         nextGameID = MENU;
     }
     
-//    public static void registerGame(GameObject object){
-//        map.put(gameid++, object);
-//    }
-//    
     public void initResources(){
         map.put(MENU, new Menu(this));
         map.put(GAME, new SimpleGameToTestLevelEditor(this));
