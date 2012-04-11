@@ -1,8 +1,11 @@
 package mario;
 
 import java.util.List;
-import voogaobject.GameElement;
+
+
 import com.golden.gamedev.Game;
+
+import charactersprites.GameElement;
 import charactersprites.NPC;
 import charactersprites.ai.DeadState;
 import charactersprites.ai.State;

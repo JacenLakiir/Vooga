@@ -13,6 +13,7 @@ import items.CollectibleItem;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.util.List;
 
 import setting.BasePlatform;
 import setting.BreakableDecorator;
@@ -20,6 +21,7 @@ import setting.ItemDecorator;
 import setting.MovingDecorator;
 import setting.Platform;
 
+import keyconfiguration.Key;
 import keyconfiguration.KeyConfig;
 import mario.Mario;
 
@@ -34,7 +36,7 @@ import com.golden.gamedev.object.background.ColorBackground;
 public class DemoGame3 extends Game {
 
 	private AdvancedPlayField myPlayfield;
-
+	private List<Key> keyList;
 	public void initResources() {
 		// Playfield Init
 		myPlayfield = new AdvancedPlayField(10000, 500);
@@ -53,7 +55,7 @@ public class DemoGame3 extends Game {
 		// use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
 
 		Player temp = new Mario(this);
-		temp.setKeyList(new KeyConfig(temp, this).getInputKeyList());
+        keyList = new KeyConfig(temp, this).getKeyList();
 		temp.setImages(this.getImages("resources/Mario1.png", 1, 1));
 		temp.setLocation(25, 20);
 		myPlayfield.addPlayer(temp);
@@ -98,8 +100,17 @@ public class DemoGame3 extends Game {
 
 	public void update(long arg0) {
 		myPlayfield.update(arg0);
+		checkKeyboardInput(arg0);
 	}
-
+	
+	public void checkKeyboardInput(long milliSec) {
+	        for(Key key : keyList){
+	            if(key.isKeyDown(milliSec)){
+	                key.notifyObserver();
+	            }
+	        }
+	}
+	
 	public void render(Graphics2D arg0) {
 		myPlayfield.render(arg0);
 	}

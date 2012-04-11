@@ -1,5 +1,6 @@
 package keyconfiguration;
 
+import charactersprites.GameElement;
 import charactersprites.Player;
 
 import com.golden.gamedev.Game;
@@ -14,14 +15,16 @@ public class SequentialInputKey extends Key{
     private boolean[] iskeyPressed;
     private  String[] values;
     private boolean isInitial  = true;
-    
-    public SequentialInputKey(String value, String actionName, Player player,
+    private Game myGame;    
+    public SequentialInputKey(String value, String actionName, GameElement element,
             Game game) {
-        super(value, actionName, player, game);
+        keyValue = value;
+        action = actionName;
+        myGame = game;
         values = keyValue.split(",");
         iskeyPressed = new boolean[values.length];
         invalidate();
-        observer = new InputKeyObserver(player);
+        observer = new InputKeyObserver(element);
     }
   
     
@@ -68,5 +71,11 @@ public class SequentialInputKey extends Key{
             return false;
         }
         
+    }
+
+
+    @Override
+    public void notifyObserver() {
+        observer.getActoinMethods(action);
     }
 }

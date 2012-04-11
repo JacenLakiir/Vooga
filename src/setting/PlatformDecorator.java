@@ -7,8 +7,10 @@ package setting;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import voogaobject.GameElement;
 
+
+
+import charactersprites.GameElement;
 
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.Sprite;

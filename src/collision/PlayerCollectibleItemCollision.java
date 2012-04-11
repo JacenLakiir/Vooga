@@ -6,9 +6,9 @@ import java.awt.Graphics2D;
 
 import physicsengine.NewtonianCollision;
 
-import voogaobject.GameElement;
-import voogaobject.GameElementCollision;
+import voogaobject.MergedCollision;
 
+import charactersprites.GameElement;
 import charactersprites.Player;
 
 import com.golden.gamedev.object.CollisionManager;

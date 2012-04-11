@@ -1,5 +1,6 @@
 package keyconfiguration;
 
+import charactersprites.GameElement;
 import charactersprites.Player;
 
 import com.golden.gamedev.Game;
@@ -9,13 +10,22 @@ import com.golden.gamedev.Game;
  *
  */
 public class SingleInputKey extends Key{
-    public SingleInputKey(String value, String actionName, Player player,
+    private Game myGame;   
+    private GameElement element;
+    public SingleInputKey(String value, String actionName, GameElement element,
             Game game) {
-        super(value, actionName, player, game);
-        observer = new InputKeyObserver(player);
+        keyValue = value;
+        action = actionName;
+        myGame = game;        
+        observer = new InputKeyObserver(element);
     }
 
     public boolean isKeyDown(long milliSec){
         return myGame.keyDown(Integer.parseInt(keyValue));
+    }
+
+    @Override
+    public void notifyObserver() {
+        observer.getActoinMethods(action);        
     }
 }
