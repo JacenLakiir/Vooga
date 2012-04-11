@@ -47,15 +47,6 @@ public  class KeyConfig {
         }
         return keys;
     }
-
-//    public List<Key> getInputKeyList() {
-//        return constructKeyList(keyModel.getInputKeyMap());
-//    }
-//  
-//    
-//    public List<Key> getSystemKeyList() {
-//        return constructKeyList(keyModel.getSystemKeyMap());
-//    }
     
     public List<Key> getKeyList(){
         List<Key> keys = new ArrayList<Key> ();

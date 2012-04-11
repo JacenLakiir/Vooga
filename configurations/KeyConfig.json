@@ -1,1 +1,1 @@
-{"inputKeyMap":{"left":"37","right":"39","up":"38","down":"40","sequence":"37,37,40"},"systemKeyMap":{"ESC":"27"}}
+{"inputKeyMap":{"left":"37","right":"39","up":"38","down":"40","sequence":"37,37,40"},"systemKeyMap":{"ESC":"27","up":"38","down","40","enter":"10"}}
