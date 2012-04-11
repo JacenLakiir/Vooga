@@ -4,6 +4,7 @@ import charactersprites.GameElement;
 import charactersprites.Player;
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 /**
  * 
  * @author Hui Dong
@@ -15,9 +16,9 @@ public class SequentialInputKey extends Key{
     private boolean[] iskeyPressed;
     private  String[] values;
     private boolean isInitial  = true;
-    private Game myGame;    
+    private GameObject myGame;    
     public SequentialInputKey(String value, String actionName, GameElement element,
-            Game game) {
+            GameObject game) {
         keyValue = value;
         action = actionName;
         myGame = game;

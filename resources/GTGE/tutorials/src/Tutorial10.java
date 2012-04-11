@@ -16,7 +16,7 @@ import com.golden.gamedev.object.collision.*;
  *
  * Objective: show the basic usage of GTGE collision check.
  */
-public class Tutorial10 extends Game {
+public class Tutorial10 extends GameObject {
 
 
     Background           background;

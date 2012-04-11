@@ -12,6 +12,7 @@ import java.io.File;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
+import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.*;
 import com.golden.gamedev.object.background.*;
 

@@ -12,7 +12,7 @@ import com.golden.gamedev.object.*;
  *
  * Objective: show sprite basic usage.
  */
-public class Tutorial7_1 extends Game {
+public class Tutorial7_1 extends GameObject {
 
 
     Sprite   sprite1;

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import setting.Platform;
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 
 public class CollectibleInventoryItem extends CollectibleItem {
 
@@ -15,7 +16,7 @@ public class CollectibleInventoryItem extends CollectibleItem {
 	private ArrayList<Double> newPowers = new ArrayList<Double>();
 	private CollectibleItem collectibleItem;
 	
-	public CollectibleInventoryItem(Game game) {
+	public CollectibleInventoryItem(GameObject game) {
 	    super(game);
 	    this.isUnmovable = true;
 		this.isPenetrable = true;    }

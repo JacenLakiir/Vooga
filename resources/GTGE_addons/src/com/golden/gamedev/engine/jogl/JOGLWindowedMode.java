@@ -69,7 +69,7 @@ public class JOGLWindowedMode implements BaseGraphics {
 	    this.size = d;
 
         // sets game frame
-		frame = new Frame("Golden T Game Engine");
+		frame = new Frame("Golden T GameObject Engine");
 
 		try {
 			frame.setIconImage(ImageUtil.getImage(WindowExitListener.class.getResource("Icon.png")));

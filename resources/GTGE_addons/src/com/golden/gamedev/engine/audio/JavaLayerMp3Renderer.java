@@ -29,7 +29,7 @@ import com.golden.gamedev.engine.BaseAudioRenderer;
  *
  * How-to-use <code>JavaLayerMp3Renderer</code> in GTGE Frame Work :
  * <pre>
- *    public class YourGame extends Game {
+ *    public class YourGameObject extends GameObject {
  *
  *       protected void initEngine() {
  *          super.initEngine();

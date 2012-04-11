@@ -12,7 +12,7 @@ import com.golden.gamedev.object.*;
 /**
  * Comprehensive use of GTGE game engines.
  *
- * Game class hold all game engines :
+ * GameObject class hold all game engines :
  * - Graphics Engine (bsGraphics)
  * - Input Engine    (bsInput)
  * - Timer Engine    (bsTimer)
@@ -21,9 +21,9 @@ import com.golden.gamedev.object.*;
  * - Sound Engine    (bsSound)
  * - Music Engine    (bsMusic)
  *
- * Objective: show the basic use of all engines inside the Game class.
+ * Objective: show the basic use of all engines inside the GameObject class.
  */
-public class Tutorial6 extends Game {
+public class Tutorial6 extends GameObject {
 
 
     BufferedImage   image;
@@ -70,7 +70,7 @@ public class Tutorial6 extends Game {
         setFPS(25);
 
 
-        // Game Font Manager
+        // GameObject Font Manager
         font = fontManager.getFont(getImages("resources/smallfont.png", 8, 12),
                                    " !\"#$%&'()*+,-./0123456789:;<=>?" +
                                    "@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_" +
@@ -128,7 +128,7 @@ public class Tutorial6 extends Game {
         g.fillRect(0, 0, getWidth(), getHeight());
 
         font.drawString(g, "====================", 10, 7);
-        font.drawString(g, "Testing Game Engines", 10, 17);
+        font.drawString(g, "Testing GameObject Engines", 10, 17);
         font.drawString(g, "====================", 10, 27);
 
         font.drawString(g, "Image Engine (bsLoader)", 10, 45);
@@ -177,9 +177,9 @@ public class Tutorial6 extends Game {
  /*************************** GAME CLASS INSIDES *****************************/
  /****************************************************************************/
 
-// Basically Game class is a big wrapper for all GTGE game engines
-// These are the ACTUAL/REAL functions in the Game class!
-// The Game class DIRECTLY calls the engine's functions
+// Basically GameObject class is a big wrapper for all GTGE game engines
+// These are the ACTUAL/REAL functions in the GameObject class!
+// The GameObject class DIRECTLY calls the engine's functions
 // We use this kind of wrapper to simplify engines functions poll
 // So rather than use    : bsLoader.getImage("image.png");
 // You can directly call : getImage("image.png");

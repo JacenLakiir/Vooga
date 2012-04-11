@@ -16,7 +16,7 @@ import com.golden.gamedev.object.collision.*;
  *
  * Objective: show how to use playfield to automate all things!
  */
-public class Tutorial11 extends Game {
+public class Tutorial11 extends GameObject {
 
 
     PlayField        playfield;         // the game playfield

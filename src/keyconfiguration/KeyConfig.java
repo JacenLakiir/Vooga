@@ -15,17 +15,14 @@ import com.golden.gamedev.GameObject;
  */
 public  class KeyConfig {
     private KeyConfigModel keyModel;
-    protected Game myGame;
+    protected GameObject myGame;
     protected Player myPlayer;
-    public KeyConfig(Player player, Game game) {
+    public KeyConfig(Player player, GameObject game) {
         myPlayer = player;
         myGame = game;
         keyModel = parseKeyConfig("configurations/KeyConfig.json");
     }
-    
-    public KeyConfig(GameEngine engine){
-        myGame = engine;
-    }
+
     
 
     private List<Key> constructInputKeyList(HashMap<String, String> keyMap){

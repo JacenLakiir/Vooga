@@ -8,6 +8,7 @@ import charactersprites.GameElement;
 import charactersprites.Player;
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 
 /**
  * @author Kathleen Oshima
@@ -15,12 +16,12 @@ import com.golden.gamedev.Game;
 @SuppressWarnings("serial")
 public abstract class CollectibleItem extends GameElement {
 
-	protected Game game;
+	protected GameObject game;
 	private boolean isInUse;
 	private double attackPower, defensePower, hitPoints, level;
 	
 	//Constructor for a collectible item
-	public CollectibleItem(Game game) {
+	public CollectibleItem(GameObject game) {
 		super();
 //		this.game = game;
 	}

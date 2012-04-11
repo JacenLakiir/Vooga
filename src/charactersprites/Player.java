@@ -15,6 +15,7 @@ import keyconfiguration.Key;
 import keyconfiguration.KeyAnnotation;
 import com.golden.gamedev.engine.timer.SystemTimer;
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 
 
 @SuppressWarnings("serial")
@@ -25,7 +26,7 @@ public class Player extends Character{
     protected ArrayList<CollectibleItem> myInventory;
     protected double myHitPoints, myAttackPower, myDefensePower, myLevel;
     
-    public Player(Game game) {
+    public Player(GameObject game) {
         super(game);
         myInventory = new ArrayList<CollectibleItem>();
     }

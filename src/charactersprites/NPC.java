@@ -5,6 +5,7 @@ import java.util.List;
 import charactersprites.attacks.AttackBehavior;
 import charactersprites.ai.State;
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 
 /**
  * @author ericmercer (JacenLakiir)
@@ -18,14 +19,14 @@ public class NPC extends Character
     private List<State> myCurrentStates;
     private AttackBehavior myAttack;
     
-    public NPC (Game game)
+    public NPC (GameObject game)
     {
         super(game);
         myPossibleStates = new ArrayList<State>();
         myCurrentStates = new ArrayList<State>();
     }
     
-    public NPC (Game game, List<State> possibleStates)
+    public NPC (GameObject game, List<State> possibleStates)
     {
         super(game);
         myPossibleStates = possibleStates;

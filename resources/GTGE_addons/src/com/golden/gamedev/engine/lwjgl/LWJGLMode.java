@@ -160,7 +160,7 @@ public class LWJGLMode implements BaseGraphics, Comparator {
 		}
 
 		try {
-			Display.setTitle("Golden T Game Engine");
+			Display.setTitle("Golden T GameObject Engine");
 			Display.setFullscreen(fullscreen);
 			Display.setVSyncEnabled(vsync);
 			Display.create();

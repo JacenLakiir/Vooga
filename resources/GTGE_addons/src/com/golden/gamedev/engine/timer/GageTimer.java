@@ -21,7 +21,7 @@ import com.golden.gamedev.engine.BaseTimer;
  *
  * How-to-use <code>GageTimer</code> in GTGE Frame Work :
  * <pre>
- *    public class YourGame extends Game {
+ *    public class YourGameObject extends GameObject {
  *
  *       protected void initEngine() {
  *          // initialize timer engine

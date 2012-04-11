@@ -12,7 +12,7 @@ import com.golden.gamedev.object.collision.CollisionRect;
  * class that check collision between two <code>SpriteGroups</code>.
  * The collision check is the subclass responsibility. <p>
  *
- * In Golden T Game Engine (GTGE) Frame Work, sprites are grouped into
+ * In Golden T GameObject Engine (GTGE) Frame Work, sprites are grouped into
  * {@link SpriteGroup} and collision is checked between two sprite groups.
  * This technique reduces code programming, increases readability,
  * simplify collision event, and improves collision check. <p>

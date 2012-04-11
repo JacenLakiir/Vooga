@@ -15,7 +15,7 @@ import com.golden.gamedev.object.background.*;
  *
  * Objective: show how to group sprites
  */
-public class Tutorial9_1 extends Game {
+public class Tutorial9_1 extends GameObject {
 
 
     SpriteGroup       SPRITE_GROUP; // we use UPPERCASE var name for sprite group

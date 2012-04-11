@@ -7,11 +7,11 @@ import com.golden.gamedev.*;
 
 
 /**
- * Game in Fullscreen Mode Environment.
+ * GameObject in Fullscreen Mode Environment.
  *
  * Objective: show how to set up a fullscreen-mode game
  */
-public class Tutorial5_2 extends Game {
+public class Tutorial5_2 extends GameObject {
 
 
  /****************************************************************************/

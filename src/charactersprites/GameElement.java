@@ -15,6 +15,7 @@ import voogaobject.MergedCollision;
 
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.sprite.AdvanceSprite;
 
 @SuppressWarnings("serial") 
@@ -35,7 +36,7 @@ public abstract class GameElement extends AdvanceSprite{
     protected double stdGravity = 0.004;
     protected boolean isUnmovable = false;
     protected boolean isPenetrable = false;
-    protected Game myGame;
+    protected GameObject myGame;
 
     public GameElement() {
         super();
@@ -62,7 +63,7 @@ public abstract class GameElement extends AdvanceSprite{
         myGame = null;
     }
     
-    public GameElement(Game game) {
+    public GameElement(GameObject game) {
         this();
         myGame = game;
     }
@@ -291,11 +292,11 @@ public abstract class GameElement extends AdvanceSprite{
         this.mass = m;
     }
 
-    public void setGame(Game game) {
+    public void setGame(GameObject game) {
         myGame = game;
     }
 
-    public Game getGame() {
+    public GameObject getGame() {
         return myGame;
     }
 

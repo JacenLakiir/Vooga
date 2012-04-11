@@ -11,7 +11,7 @@ import com.golden.gamedev.object.*;
  *
  * Objective: Show how to use the Timer class to control sprite behaviour.
  */
-public class Tutorial7_3 extends Game {
+public class Tutorial7_3 extends GameObject {
 
 
     Sprite       sprite;

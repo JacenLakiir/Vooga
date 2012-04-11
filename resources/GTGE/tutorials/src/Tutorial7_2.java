@@ -15,7 +15,7 @@ import com.golden.gamedev.object.*;
  * - show an animated sprite
  * - move the sprite based on key input
  */
-public class Tutorial7_2 extends Game {
+public class Tutorial7_2 extends GameObject {
 
 
     AnimatedSprite    sprite;

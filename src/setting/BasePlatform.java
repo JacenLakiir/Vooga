@@ -5,10 +5,11 @@
 package setting;
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 
 public class BasePlatform extends Platform {
 	
-	public BasePlatform (Game owner) {
+	public BasePlatform (GameObject owner) {
 		super(owner);
 		this.isUnmovable = true;
 		this.isPenetrable = false;

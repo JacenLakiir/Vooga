@@ -5,12 +5,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 
 import charactersprites.Player;
 
 public  class SystemKeyObserver extends KeyObserver{
-    private Game myGame;
-    public SystemKeyObserver(Game game) {
+    private GameObject myGame;
+    public SystemKeyObserver(GameObject game) {
         myGame = game;
     }
 

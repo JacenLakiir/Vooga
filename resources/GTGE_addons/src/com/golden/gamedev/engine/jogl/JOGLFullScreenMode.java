@@ -88,7 +88,7 @@ public class JOGLFullScreenMode implements BaseGraphics, Comparator {
 	    }
 
         // setting up the game frame
-		frame = new Frame("Golden T Game Engine", CONFIG);
+		frame = new Frame("Golden T GameObject Engine", CONFIG);
 
 		try {
 			// set frame icon

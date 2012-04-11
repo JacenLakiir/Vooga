@@ -14,7 +14,7 @@ import com.golden.gamedev.object.background.*;
  *
  * Objective: show all available background types.
  */
-public class Tutorial8_2 extends Game {
+public class Tutorial8_2 extends GameObject {
 
 
     Sprite            sprite;

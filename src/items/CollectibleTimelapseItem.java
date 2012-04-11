@@ -1,10 +1,11 @@
 package items;
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 
 public class CollectibleTimelapseItem extends CollectibleItem {
 
-	public CollectibleTimelapseItem(Game game) {
+	public CollectibleTimelapseItem(GameObject game) {
 	    super(game);
 	    // TODO Auto-generated constructor stub
     }

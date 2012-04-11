@@ -15,7 +15,7 @@ import com.golden.gamedev.object.background.*;
  * - show how to create game background
  * - how to associate sprites with the background
  */
-public class Tutorial8_1 extends Game {
+public class Tutorial8_1 extends GameObject {
 
 
     Sprite            sprite1;

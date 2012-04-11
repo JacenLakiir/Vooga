@@ -13,7 +13,7 @@ import com.golden.gamedev.object.background.*;
  *
  * Objective: show how to set background view area.
  */
-public class Tutorial8_3 extends Game {
+public class Tutorial8_3 extends GameObject {
 
 
     AnimatedSprite        sprite;

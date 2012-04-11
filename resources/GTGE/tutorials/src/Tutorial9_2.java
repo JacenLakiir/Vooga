@@ -14,7 +14,7 @@ import com.golden.gamedev.object.background.*;
  *
  * Objective: show how to remove a sprite from a group.
  */
-public class Tutorial9_2 extends Game {
+public class Tutorial9_2 extends GameObject {
 
 
     SpriteGroup       SPRITE_GROUP;

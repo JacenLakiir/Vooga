@@ -1,5 +1,7 @@
 package demo;
 
+import gamestate.GameEngine2D;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -7,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 
 import keyconfiguration.Key;
+import keyconfiguration.KeyAnnotation;
 import keyconfiguration.KeyConfig;
 
 import mario.Goomba;
@@ -17,7 +20,9 @@ import voogaobject.MergedCollision;
 import voogaobject.GamePlayField;
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameLoader;
+import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ColorBackground;
@@ -32,7 +37,12 @@ import charactersprites.ai.PatrolState;
  * 
  * For testing NPC AI
  */
-public class DemoGame4 extends Game{
+public class DemoGame4 extends GameObject {
+    GameEngine2D engine;
+    public DemoGame4(GameEngine2D arg0) {
+        super(arg0);
+        engine = arg0;
+    }
 
     GamePlayField    playfield;  
     Background       background;
@@ -146,11 +156,12 @@ public class DemoGame4 extends Game{
         }
     }
     
-    public static void main(String[] args) {
-        GameLoader game = new GameLoader();
-        game.setup(new DemoGame4(), new Dimension(640,480), false);
-        game.start();
+    @KeyAnnotation(action = "ESC")
+    public void pause(){
+        engine.nextGameID = GameEngine2D.PAUSE;
+        finish();
     }
+    
 
 
 }

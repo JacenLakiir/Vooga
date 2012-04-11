@@ -22,7 +22,7 @@ import java.util.Random;
  * and can immediatelly start making the game with ease. <br>
  * Of course after the game is ready to distribute, to make it very small (4K)
  * you should rip out this class methods and pack it to your game
- * as a single class file, that's it, your 4K Game has been completed! <p>
+ * as a single class file, that's it, your 4K GameObject has been completed! <p>
  *
  * Although this class is intended to be a small applet game,
  * the game still can be extended to be an application game. <br>
@@ -31,7 +31,7 @@ import java.util.Random;
  *   public class AnyMiniApplet extends MiniApplet {
  *
  *       public static void main(String[] args) {
- *           Frame f = new Frame("Game Title");
+ *           Frame f = new Frame("GameObject Title");
  *           MiniApplet applet = new AnyMiniApplet();  // the game applet
  *           f.setResizable(false);         // make frame non-resizable
  *           f.add(applet);                 // add MiniApplet into the frame
@@ -67,7 +67,7 @@ public abstract class MiniApplet extends Applet implements Runnable,
     private BufferStrategy bufferStrategy;		// buffer strategy
 
 	/**
-	 * Game Frame-Per-Seconds (FPS).
+	 * GameObject Frame-Per-Seconds (FPS).
 	 */
 	protected int currentFPS;
     private int	 frameCount, delay = 20;

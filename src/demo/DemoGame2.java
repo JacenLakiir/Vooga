@@ -3,6 +3,8 @@ package demo;
  * @author Kuang Han
  */
 
+import gamestate.GameEngine2D;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -13,6 +15,7 @@ import java.util.List;
 import mario.Mario;
 
 import keyconfiguration.Key;
+import keyconfiguration.KeyAnnotation;
 import keyconfiguration.KeyConfig;
 
 
@@ -22,7 +25,9 @@ import collision.CharacterPlatformCollision;
 import collision.PlayerCollectibleItemCollision;
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameLoader;
+import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
@@ -33,12 +38,18 @@ import setting.*;
 import voogaobject.MergedCollision;
 import voogaobject.GamePlayField;
 
-public class DemoGame2 extends Game{
-
+public class DemoGame2 extends GameObject{
     GamePlayField    playfield;  
     Background       background;
     KeyConfig        keyConfig ,keyConfig1;
     List<Key>        keyList;
+    GameEngine2D       engine;
+    public DemoGame2(GameEngine2D arg0) {
+        super(arg0);
+        engine = arg0;
+    }
+
+
     @Override
     public void initResources() {
                
@@ -170,11 +181,12 @@ public class DemoGame2 extends Game{
         }
     }
 
-    public static void main(String[] args) {
-        GameLoader game = new GameLoader();
-        game.setup(new DemoGame2(), new Dimension(640,480), false);
-        game.start();
+    
+    @KeyAnnotation(action = "ESC")
+    public void pause(){
+        engine.nextGameID = GameEngine2D.PAUSE;
+        finish();
     }
-
+    
 
 }

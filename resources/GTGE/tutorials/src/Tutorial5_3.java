@@ -12,7 +12,7 @@ import com.golden.gamedev.GameLoader;
 public class Tutorial5_3 extends GameLoader {
 
 
-    protected Game createAppletGame() {
+    protected GameObject createAppletGame() {
         return new Tutorial5_1();
     }
 

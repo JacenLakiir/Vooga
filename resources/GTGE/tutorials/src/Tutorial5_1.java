@@ -6,11 +6,11 @@ import com.golden.gamedev.*;
 
 
 /**
- * Game in Windowed Mode Environment.
+ * GameObject in Windowed Mode Environment.
  *
  * Objective: show how to set up a windowed mode game
  */
-public class Tutorial5_1 extends Game {
+public class Tutorial5_1 extends GameObject {
 
 
  /****************************************************************************/

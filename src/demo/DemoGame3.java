@@ -6,6 +6,7 @@ package demo;
 
 import game.AdvancedPlayField;
 import game.KeepLeftFirstPlayerGameScroller;
+import gamestate.GameEngine2D;
 import items.CollectibleInventoryItem;
 import items.CollectibleItem;
 
@@ -21,6 +22,7 @@ import setting.MovingDecorator;
 import setting.Platform;
 
 import keyconfiguration.Key;
+import keyconfiguration.KeyAnnotation;
 import keyconfiguration.KeyConfig;
 import mario.Mario;
 
@@ -29,12 +31,19 @@ import collision.CharacterPlatformCollision;
 import collision.PlayerCollectibleItemCollision;
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameLoader;
+import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.background.ColorBackground;
 
-public class DemoGame3 extends Game {
+public class DemoGame3 extends GameObject {
+    GameEngine2D engine;
+	public DemoGame3(GameEngine2D arg0) {
+        super(arg0);
+        engine = arg0;
+    }
 
-	private AdvancedPlayField myPlayfield;
+    private AdvancedPlayField myPlayfield;
 	private List<Key> keyList;
 	public void initResources() {
 		// Playfield Init
@@ -113,10 +122,12 @@ public class DemoGame3 extends Game {
 		myPlayfield.render(arg0);
 	}
 
-	public static void main(String[] args) {
-		GameLoader game = new GameLoader();
-		game.setup(new DemoGame3(), new Dimension(640, 480), false);
-		game.start();
-	}
+    
+    @KeyAnnotation(action = "ESC")
+    public void pause(){
+        engine.nextGameID = GameEngine2D.PAUSE;
+        finish();
+    }
+    
 
 }

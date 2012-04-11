@@ -1,6 +1,7 @@
 package items;
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 
 public class CollectibleInstantItem extends CollectibleItem {
 	
@@ -9,7 +10,7 @@ public class CollectibleInstantItem extends CollectibleItem {
 	private double hitPoints;
 	private double level;
 	
-	public CollectibleInstantItem(Game game) {
+	public CollectibleInstantItem(GameObject game) {
 	    super(game);
     }
 

@@ -75,12 +75,14 @@ public class Pause extends GameObject{
     }
     
     private void enter(){
-        int id = map.get(optionID);
-        engine.nextGameID = map.get(optionID);
+        if(optionID ==1 || optionID == 0){
+            engine.continueGame();
+        }
         if(optionID != 0){
             engine.initResources();
         }
-        
+        if(optionID == 2)
+            engine.nextGameID = GameEngine2D.MENU;
         finish();
     }
     

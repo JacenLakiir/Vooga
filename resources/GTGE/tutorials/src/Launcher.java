@@ -30,12 +30,12 @@ public class Launcher extends JFrame implements ActionListener, Runnable {
 		JPanel pane = new JPanel(new GridLayout(0, 1));
 
 			// Tutorial 4
-			pane.add(createButton("4", "GTGE Game Skeleton", false));
+			pane.add(createButton("4", "GTGE GameObject Skeleton", false));
 
 			// Tutorial 5
-			pane.add(createButton("5_1", "Empty Game in Windowed Mode"));
-			pane.add(createButton("5_2", "Empty Game in Fullscreen Mode"));
-			pane.add(createButton("5_3", "Empty Game in Applet Mode (the game is embedded in Tutorial5_3.html)", false));
+			pane.add(createButton("5_1", "Empty GameObject in Windowed Mode"));
+			pane.add(createButton("5_2", "Empty GameObject in Fullscreen Mode"));
+			pane.add(createButton("5_3", "Empty GameObject in Applet Mode (the game is embedded in Tutorial5_3.html)", false));
 
 			// Tutorial 6
 			pane.add(createButton("6", "Show all GTGE game engines basic usage"));
@@ -101,7 +101,7 @@ public class Launcher extends JFrame implements ActionListener, Runnable {
 	}
 
 	public void run() {
-		Game gameObject = null;
+		GameObject gameObject = null;
 		Dimension dimension = new Dimension(640, 480);
 		boolean fullscreen = false;
 

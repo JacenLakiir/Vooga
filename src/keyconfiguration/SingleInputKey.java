@@ -4,16 +4,17 @@ import charactersprites.GameElement;
 import charactersprites.Player;
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 /**
  * 
  * @author Hui Dong
  *
  */
 public class SingleInputKey extends Key{
-    private Game myGame;   
+    private GameObject myGame;   
     private GameElement element;
     public SingleInputKey(String value, String actionName, GameElement element,
-            Game game) {
+            GameObject game) {
         keyValue = value;
         action = actionName;
         myGame = game;        

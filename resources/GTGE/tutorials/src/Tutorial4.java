@@ -6,11 +6,11 @@ import com.golden.gamedev.*;
 
 
 /**
- * The basic skeleton of Golden T Game Engine (GTGE).
+ * The basic skeleton of Golden T GameObject Engine (GTGE).
  *
  * Objective: show how to set up a new game.
  */
-public class Tutorial4 extends Game {
+public class Tutorial4 extends GameObject {
 
     public void initResources() {
         // initialize game variables

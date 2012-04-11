@@ -3,6 +3,8 @@ package demo;
  * @author Kuang Han
  */
 
+import gamestate.GameEngine2D;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -15,6 +17,7 @@ import mario.Mario;
 import physicsengine.NewtonianCollision;
 
 import keyconfiguration.Key;
+import keyconfiguration.KeyAnnotation;
 import keyconfiguration.KeyConfig;
 
 
@@ -26,7 +29,9 @@ import voogaobject.GamePlayField;
 
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameLoader;
+import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
@@ -34,13 +39,18 @@ import com.golden.gamedev.object.background.ColorBackground;
 
 import charactersprites.Player;
 
-public class DemoGame1 extends Game{
-
+public class DemoGame1 extends GameObject{
     GamePlayField    playfield;  
     Background       background;
     KeyConfig        keyConfig;
     List<Key>        keyList;
-    @Override
+    GameEngine2D       engine;
+    public DemoGame1(GameEngine2D arg0) {
+        super(arg0);
+        engine = arg0;
+    }
+
+
     public void initResources() { 
         playfield = new GamePlayField();
         
@@ -144,6 +154,12 @@ public class DemoGame1 extends Game{
         checkKeyboardInput(t);
     }
     
+    @KeyAnnotation(action = "ESC")
+    public void pause(){
+        engine.nextGameID = GameEngine2D.PAUSE;
+        finish();
+    }
+    
     public void checkKeyboardInput(long milliSec) {
         for(Key key : keyList){
             if(key.isKeyDown(milliSec)){
@@ -151,12 +167,4 @@ public class DemoGame1 extends Game{
             }
         }
     }
-    
-    public static void main(String[] args) {
-        GameLoader game = new GameLoader();
-        game.setup(new DemoGame1(), new Dimension(640,480), false);
-        game.start();
-    }
-
-
 }

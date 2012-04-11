@@ -39,7 +39,7 @@ import com.golden.gamedev.engine.graphics.WindowExitListener;
  *
  * Example how-to-use <code>OpenGLGameLoader</code> :
  * <pre>
- *    public class YourGame extends Game {
+ *    public class YourGameObject extends GameObject {
  *
  *       public static void main(String[] args) {
  *          <b>OpenGLGameLoader</b> game = new OpenGLGameLoader();
@@ -93,7 +93,7 @@ public class OpenGLGameLoader extends GameLoader {
 	 * Initializes OpenGL LWJGL graphics engine with specified size, mode, and
 	 * associates it with specified <code>Game</code> object.
 	 */
-	public void setupLWJGL(Game game, Dimension d,
+	public void setupLWJGL(GameObject game, Dimension d,
 						   boolean fullscreen, boolean vsync) {
 	try {
 		// validate java version first
@@ -104,7 +104,7 @@ public class OpenGLGameLoader extends GameLoader {
 				"Your machine only has Java "+JAVA_VERSION+" installed\n\n"+
 				"Please install the latest Java Runtime Edition (JRE)\n" +
 				"from http://www.java.com",
-				"Game Initialization", JOptionPane.ERROR_MESSAGE
+				"GameObject Initialization", JOptionPane.ERROR_MESSAGE
 			);
 
 			// don't bother to continue
@@ -130,7 +130,7 @@ public class OpenGLGameLoader extends GameLoader {
 			"Your machine does not support OpenGL via LWJGL!\n" +
 			"Caused by: " + e.toString() + "\n" +
 			"Fail back to Java2D Graphics Engine.",
-			"Game Initialization", JOptionPane.ERROR_MESSAGE
+			"GameObject Initialization", JOptionPane.ERROR_MESSAGE
 		);
 
 		if (gfx != null) {
@@ -144,7 +144,7 @@ public class OpenGLGameLoader extends GameLoader {
 	 * Initializes OpenGL LWJGL graphics engine with specified size, mode, using
 	 * vsync by default, and associates it with specified <code>Game</code> object.
 	 */
-	public void setupLWJGL(Game game, Dimension d, boolean fullscreen) {
+	public void setupLWJGL(GameObject game, Dimension d, boolean fullscreen) {
 		setupLWJGL(game, d, fullscreen, true);
 	}
 
@@ -157,7 +157,7 @@ public class OpenGLGameLoader extends GameLoader {
 	 * Initializes OpenGL JOGL graphics engine with specified size, mode, and
 	 * associates it with specified <code>Game</code> object.
 	 */
-	public void setupJOGL(Game game, Dimension d,
+	public void setupJOGL(GameObject game, Dimension d,
 						  boolean fullscreen, boolean vsync) {
 	boolean orig = fullscreen;
 	try {
@@ -169,7 +169,7 @@ public class OpenGLGameLoader extends GameLoader {
 				"Your machine only has Java "+JAVA_VERSION+" installed\n\n"+
 				"Please install the latest Java Runtime Edition (JRE)\n" +
 				"from http://www.java.com",
-				"Game Initialization", JOptionPane.ERROR_MESSAGE
+				"GameObject Initialization", JOptionPane.ERROR_MESSAGE
 			);
 
 			// don't bother to continue
@@ -249,7 +249,7 @@ public class OpenGLGameLoader extends GameLoader {
 			"Your machine does not support OpenGL via JOGL!\n" +
 			"Caused by: " + e.toString() + "\n" +
 			"Fail back to Java2D Graphics Engine.",
-			"Game Initialization", JOptionPane.ERROR_MESSAGE
+			"GameObject Initialization", JOptionPane.ERROR_MESSAGE
 		);
 
 		if (gfx != null) {
@@ -263,7 +263,7 @@ public class OpenGLGameLoader extends GameLoader {
 	 * Initializes OpenGL JOGL graphics engine with specified size, mode, using
 	 * vsync by default, and associates it with specified <code>Game</code> object.
 	 */
-	public void setupJOGL(Game game, Dimension d, boolean fullscreen) {
+	public void setupJOGL(GameObject game, Dimension d, boolean fullscreen) {
 		setupJOGL(game, d, fullscreen, true);
 	}
 
