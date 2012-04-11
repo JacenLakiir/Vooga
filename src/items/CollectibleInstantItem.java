@@ -1,5 +1,7 @@
 package items;
 
+import charactersprites.Player;
+
 import com.golden.gamedev.Game;
 
 public class CollectibleInstantItem extends CollectibleItem {
@@ -13,14 +15,19 @@ public class CollectibleInstantItem extends CollectibleItem {
 	    super(game);
     }
 
+	
 	@Override
-    public boolean setIsInUse() {
-	    return false;
-    }
+	public void decorate(Player player) {
+		player.setMyAttackPower(attackPower(player.getMyAttackPower()));
+		defensePower(player.getMyDefensePower());
+		hitPoints(player.getMyHP());
+		level(player.getMyLevel());
+	}
 
 
     public double attackPower(double currPower) {
-	    return attackPower + currPower;
+	    
+    	return attackPower + currPower;
     }
 
     public double defensePower(double currPower) {

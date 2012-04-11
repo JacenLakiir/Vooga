@@ -6,6 +6,7 @@ package demo;
 
 import game.AdvancedPlayField;
 import game.KeepLeftFirstPlayerGameScroller;
+import items.CollectibleInstantItem;
 import items.CollectibleInventoryItem;
 import items.CollectibleItem;
 
@@ -74,9 +75,10 @@ public class DemoGame3 extends Game {
 		block2.setLocation(160, 200);
 		myPlayfield.addSetting(block2);
 
-		CollectibleItem coin = new CollectibleInventoryItem(this);
+		CollectibleItem coin = new CollectibleInstantItem(this);
 		coin.setImages(this.getImages("resources/Coin.png", 1, 1));
 		coin.setActive(false);
+		coin.setAttackPower(3);
 		myPlayfield.addItem(coin);
 
 		ItemDecorator block1 = new ItemDecorator(new BasePlatform(this));

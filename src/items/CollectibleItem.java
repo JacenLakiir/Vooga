@@ -54,8 +54,8 @@ public abstract class CollectibleItem extends NewtonianSprite {
 		this.level = level;
 	}
 	
-	public boolean setIsInUse() {
-		return isInUse;
+	public void setIsInUse(boolean bool) {
+		isInUse = bool;
 	}
 	
 	public boolean isInUse() {

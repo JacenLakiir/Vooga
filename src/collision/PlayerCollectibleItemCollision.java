@@ -28,6 +28,7 @@ public class PlayerCollectibleItemCollision extends NewtonianCollision {
 		super.collided(character, item);
 	    character.setActive(true);
 	    item.setActive(false);
+	    ((CollectibleItem) item).setIsInUse(true);
 	    ((Player) character).getMyInventory().add((CollectibleItem) item);
     }
 
