@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import setting.Platform;
 
+import charactersprites.Player;
+
 import com.golden.gamedev.Game;
 
 public class CollectibleInventoryItem extends CollectibleItem {
@@ -12,36 +14,42 @@ public class CollectibleInventoryItem extends CollectibleItem {
 	private double defensePower;
 	private double hitPoints;
 	private double level;
+	private double points;
 	private ArrayList<Double> newPowers = new ArrayList<Double>();
 	private CollectibleItem collectibleItem;
 	
 	public CollectibleInventoryItem(Game game) {
 	    super(game);
-	    this.isUnmovable = true;
-		this.isPenetrable = true;    }
-
+	}
+	
+	
 	public ArrayList<Double> updatePower() {
 		return newPowers;
 	}
 	
 	@Override
-    public void attackPower() {
+    public void updatePlayerAttackPower(Player player) {
 	    newPowers.add(attackPower);
     }
 
 	@Override
-    public void defensePower( ) {
+    public void updatePlayerDefensePower(Player player ) {
 	    newPowers.add(defensePower);
 	 }
 
 	@Override
-    public void hitPoints() {
+    public void updatePlayerHitPoints(Player player) {
 	    newPowers.add(hitPoints);
     }
 
 	@Override
-	public void level() {
+	public void updatePlayerLevel(Player player) {
 		newPowers.add(level);
 	}
+
+	@Override
+    public void updatePlayerPoints(Player player) {
+		newPowers.add(points);
+    }
 	
 }

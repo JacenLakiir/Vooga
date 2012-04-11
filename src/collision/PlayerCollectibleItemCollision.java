@@ -31,24 +31,4 @@ public class PlayerCollectibleItemCollision extends NewtonianCollision {
 	    ((CollectibleItem) item).setIsInUse(true);
 	    ((Player) character).getMyInventory().add((CollectibleItem) item);
     }
-
-//	public CollisionManager makeCollision(SpriteGroup character, SpriteGroup colletibles) {
-//		collisionType = new PlayerCollectibleItemCollision();
-//		collisionType.setCollisionGroup(character, colletibles);
-//		return collisionType;
-//	}
-//
-//	public static void update(long elapsedTime) {
-//		PlAYER_GROUP.update(elapsedTime);
-//		COLLECTIBLE_GROUP.update(elapsedTime);
-//		
-//		collisionType.checkCollision();
-//
-//	}
-//	
-//	public static void render(Graphics2D g) {
-//		PlAYER_GROUP.render(g);
-//		COLLECTIBLE_GROUP.render(g);
-//	}
-	
 }

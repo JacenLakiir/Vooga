@@ -1,5 +1,7 @@
 package items;
 
+import charactersprites.Player;
+
 import com.golden.gamedev.Game;
 
 public class CollectibleTimelapseItem extends CollectibleItem {
@@ -10,22 +12,22 @@ public class CollectibleTimelapseItem extends CollectibleItem {
     }
 
 	@Override
-    public void attackPower() {
+    public void updatePlayerAttackPower(Player player) {
 	    // TODO Auto-generated method stub
     }
 
 	@Override
-    public void defensePower() {
+    public void updatePlayerDefensePower(Player player) {
 	    // TODO Auto-generated method stub
     }
 
 	@Override
-    public void hitPoints() {
+    public void upadatePlayerHitPoints(Player player) {
 	    // TODO Auto-generated method stub
     }
 
 	@Override
-    public void level() {
+    public void updatePlayerLevel(Player player) {
 	    // TODO Auto-generated method stub
     }
 

@@ -77,10 +77,11 @@ public class DemoGame3 extends Game {
 		block2.setLocation(160, 200);
 		myPlayfield.addSetting(block2);
 
-		CollectibleItem coin = new CollectibleInstantItem(this);
+		CollectibleInstantItem coin = new CollectibleInstantItem(this);
 		coin.setImages(this.getImages("resources/Coin.png", 1, 1));
 		coin.setActive(false);
-		coin.setAttackPower(3);
+		coin.setValue(3);
+		System.out.println(coin.getAttackPower());
 		myPlayfield.addItem(coin);
 
 		ItemDecorator block1 = new ItemDecorator(new BasePlatform(this));
