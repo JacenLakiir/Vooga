@@ -1,7 +1,7 @@
 /**
  * @author Michael Zhou (Dominator008)
  */
-package GameState;
+package gamestate;
 
 import game.GameScroller;
 import game.LevelState;
