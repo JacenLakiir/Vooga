@@ -9,10 +9,10 @@ import java.awt.Graphics2D;
 import java.util.List;
 import keyconfiguration.Key;
 import keyconfiguration.KeyConfig;
-import setting.BasePlatform;
-import setting.BreakableDecorator;
-import setting.ItemDecorator;
-import setting.Platform;
+import tiles.BaseTile;
+import tiles.BreakableDecorator;
+import tiles.ItemDecorator;
+import tiles.Tile;
 import charactersprites.NPC;
 import charactersprites.Player;
 import charactersprites.ai.MoveState;
@@ -67,12 +67,12 @@ public class DemoGame4 extends Game{
         goomba3.setMovable(true);
         myPlayfield.addCharacter(goomba3);
         
-        Platform floor = new BasePlatform(this);
+        Tile floor = new BaseTile(this);
         floor.setImages(this.getImages("resources/Bar.png", 1, 1));
         floor.setLocation(0, 440);
         myPlayfield.addSetting(floor);
         
-        Platform ceiling = new BasePlatform(this);
+        Tile ceiling = new BaseTile(this);
         ceiling.setImages(this.getImages("resources/Bar.png", 1, 1));
         ceiling.setLocation(70, -20);
         myPlayfield.addSetting(ceiling);
@@ -83,7 +83,7 @@ public class DemoGame4 extends Game{
         coin.setValue(3);
         myPlayfield.addItem(coin);
         
-        ItemDecorator block1 = new ItemDecorator(new BasePlatform(this));
+        ItemDecorator block1 = new ItemDecorator(new BaseTile(this));
         block1.setMass(6);
         block1.setMovable(false);
         block1.setImages(this.getImages("resources/Block1.png", 1, 1));
@@ -91,19 +91,19 @@ public class DemoGame4 extends Game{
         block1.addItem(coin);
         myPlayfield.addSetting(block1);
 
-        Platform block2 = new BreakableDecorator(new BasePlatform(this));
+        Tile block2 = new BreakableDecorator(new BaseTile(this));
         block2.setMass(6);
         block2.setMovable(false);
         block2.setImages(this.getImages("resources/Block2.png", 1, 1));
         block2.setLocation(160, 200);
         myPlayfield.addSetting(block2);
         
-        Platform wall1 = new BasePlatform(this);
+        Tile wall1 = new BaseTile(this);
         wall1.setImages(this.getImages("resources/Wall.png", 1, 1));
         wall1.setLocation(0, 0);
         myPlayfield.addSetting(wall1);
         
-        Platform wall2 = new BasePlatform(this);
+        Tile wall2 = new BaseTile(this);
         wall2.setImages(this.getImages("resources/Wall.png", 1, 1));
         wall2.setLocation(620, 0);
         myPlayfield.addSetting(wall2);

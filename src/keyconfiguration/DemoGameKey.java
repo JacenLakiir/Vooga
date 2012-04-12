@@ -14,7 +14,7 @@ import java.util.List;
 import keyconfiguration.KeyConfig;
 
 
-import setting.*;
+import tiles.*;
 import voogaobject.MergedCollision;
 import voogaobject.GamePlayField;
 
@@ -52,30 +52,30 @@ public class DemoGameKey extends Game{
         mario.setLocation(25, 20);
 
         images = this.getImages("resources/Bar.png", 1, 1);
-        Platform floor = new BasePlatform(this);
+        Tile floor = new BaseTile(this);
         floor.setImages(images);
         floor.setLocation(0, 440);
         
-        Platform ceiling = new BasePlatform(this);
+        Tile ceiling = new BaseTile(this);
         ceiling.setImages(images);
         ceiling.setLocation(70, -20);
 
         images = this.getImages("resources/Block1.png", 1, 1);
-        Platform block1 = new BasePlatform(this);
+        Tile block1 = new BaseTile(this);
         block1.setImages(images);
         block1.setLocation(100, 200);
         
         images = this.getImages("resources/Block2.png", 1, 1);
-        Platform block2 = new BasePlatform(this);
+        Tile block2 = new BaseTile(this);
         block2.setImages(images);
         block2.setLocation(300, 200);
         
         images = this.getImages("resources/Wall.png", 1, 1);
-        Platform wall1 = new BasePlatform(this);
+        Tile wall1 = new BaseTile(this);
         wall1.setImages(images);
         wall1.setLocation(0, 0);
         
-        Platform wall2 = new BasePlatform(this);
+        Tile wall2 = new BaseTile(this);
         wall2.setImages(images);
         wall2.setLocation(620, 0);
         

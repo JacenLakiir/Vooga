@@ -2,7 +2,7 @@ package items;
 
 import java.awt.image.BufferedImage;
 
-import setting.Platform;
+import tiles.Tile;
 
 import charactersprites.GameElement;
 import charactersprites.Player;

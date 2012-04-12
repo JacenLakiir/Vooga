@@ -8,7 +8,7 @@ import items.CollectibleItem;
 
 import java.awt.Graphics2D;
 
-import setting.Platform;
+import tiles.Tile;
 
 import charactersprites.*;
 import charactersprites.Character;
@@ -92,7 +92,7 @@ public class AdvancedPlayField extends PlayField {
     public void addItem (CollectibleItem ci) {
     	Items.add(ci);
     }
-    public void addSetting (Platform p) {
+    public void addSetting (Tile p) {
     	Setting.add(p);
     }
     

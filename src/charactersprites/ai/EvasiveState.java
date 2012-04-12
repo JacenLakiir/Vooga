@@ -18,13 +18,13 @@ public class EvasiveState implements State
         myEvasionRadius = evasionRadius;
     }
 
-    @Override
+    
     public void execute (long milliSec)
     {
         // TODO Auto-generated method stub
     }
 
-    @Override
+    
     public boolean isActive ()
     {
         // TODO Auto-generated method stub

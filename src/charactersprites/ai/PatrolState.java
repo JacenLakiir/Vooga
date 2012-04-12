@@ -27,7 +27,7 @@ public class PatrolState implements State
         myNPC.move(myNPC.getDirection(), 0);
     }
     
-    @Override
+    
     public boolean isActive ()
     {
         return (myNPC.getY() == myNPC.getOldY());

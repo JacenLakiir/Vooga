@@ -16,11 +16,11 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.List;
 
-import setting.BasePlatform;
-import setting.BreakableDecorator;
-import setting.ItemDecorator;
-import setting.MovingDecorator;
-import setting.Platform;
+import tiles.BaseTile;
+import tiles.BreakableDecorator;
+import tiles.ItemDecorator;
+import tiles.MovingDecorator;
+import tiles.Tile;
 
 import keyconfiguration.Key;
 import keyconfiguration.KeyConfig;
@@ -63,20 +63,20 @@ public class DemoGame3 extends Game {
 		temp.setMyHP(10);
 		myPlayfield.addPlayer(temp);
 
-		Platform temp1 = new BasePlatform(this);
+		Tile temp1 = new BaseTile(this);
 		temp1.setImages(this.getImages("resources/Bar.png", 1, 1));
 		temp1.setLocation(0, 440);
 		myPlayfield.addSetting(temp1);
 
-		Platform temp2 = new BasePlatform(this);
+		Tile temp2 = new BaseTile(this);
 		temp2.setImages(this.getImages("resources/Bar.png", 1, 1));
 		temp2.setLocation(600, 440);
 		myPlayfield.addSetting(temp2);
 
-		Platform block2 = new BreakableDecorator(new BasePlatform(this));
+		Tile block2 = new BreakableDecorator(new BaseTile(this));
 		block2.setMass(6);
 		block2.setMovable(false);
-		block2.setImages(this.getImages("resources/Block2.png", 1, 1));
+		block2.setImages(this.getImages("resources/Block2Break.png", 8, 1));
 		block2.setLocation(160, 200);
 		myPlayfield.addSetting(block2);
 
@@ -96,7 +96,7 @@ public class DemoGame3 extends Game {
 		poison.setHitPoints(-1/5.0);
 		myPlayfield.addItem(poison);
 		
-		ItemDecorator block1 = new ItemDecorator(new BasePlatform(this));
+		ItemDecorator block1 = new ItemDecorator(new BaseTile(this));
 		block1.setMass(6);
 		block1.setMovable(false);
 		block1.setImages(this.getImages("resources/Block1.png", 1, 1));
@@ -104,7 +104,7 @@ public class DemoGame3 extends Game {
 		block1.addItem(coin);
 		myPlayfield.addSetting(block1);
 		
-		Platform middleBar = new MovingDecorator(new BasePlatform(this), 260,
+		Tile middleBar = new MovingDecorator(new BaseTile(this), 260,
 		        240, 700, 60, 0.05);
 		middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
 		myPlayfield.addSetting(middleBar);

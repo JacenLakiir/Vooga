@@ -19,13 +19,13 @@ public class MoveState implements State
         myNPC.setDirection(isMovingLeft ? -1 : 1);
     }
     
-    @Override
+    
     public void execute (long milliSec)
     {
         myNPC.move(myNPC.getDirection() * mySpeed, 0);
     }
 
-    @Override
+    
     public boolean isActive ()
     {
         return true;

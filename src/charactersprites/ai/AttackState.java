@@ -20,7 +20,7 @@ public class AttackState implements State
         myNPC.fight();
     }
 
-    @Override
+    
     public boolean isActive ()
     {
         return false;

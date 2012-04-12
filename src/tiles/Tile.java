@@ -5,7 +5,7 @@
  * @author Ian McMahon
  */
 
-package setting;
+package tiles;
 
 import java.awt.image.BufferedImage;
 
@@ -15,19 +15,19 @@ import charactersprites.GameElement;
 
 import com.golden.gamedev.Game;
 
-public abstract class Platform extends GameElement{
+public abstract class Tile extends GameElement{
 
     /*
      * Constructor for a Concrete Platform
      */
-    public Platform (Game owner) {
+    public Tile (Game owner) {
         super(owner);
     }
 
     /*
      * Constructor for a Platform Decorator 
      */
-    public Platform () {
+    public Tile () {
         super();
     }
 

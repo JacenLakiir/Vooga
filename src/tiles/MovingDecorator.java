@@ -1,15 +1,14 @@
-package setting;
+package tiles;
 
 
 import charactersprites.GameElement;
 
-import com.golden.gamedev.Game;
 
-public class MovingDecorator extends PlatformDecorator{
+public class MovingDecorator extends TileDecorator{
 	private double startX, startY, endX, endY, speed;
 
 
-	public MovingDecorator(Platform decoratedPlatform, double startX, double startY, double endX, double endY, double speed) {
+	public MovingDecorator(Tile decoratedPlatform, double startX, double startY, double endX, double endY, double speed) {
 		super(decoratedPlatform);
 		setLocation(startX, startY);
 		setEndLocation(endX, endY);

@@ -28,7 +28,7 @@ import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ColorBackground;
 
 import charactersprites.Player;
-import setting.*;
+import tiles.*;
 import voogaobject.MergedCollision;
 import voogaobject.GamePlayField;
 
@@ -59,11 +59,11 @@ public class DemoGame2 extends Game{
         mario1.setLocation(300, 20);
 
         images = this.getImages("resources/Bar.png", 1, 1);
-        Platform floor = new BasePlatform(this);
+        Tile floor = new BaseTile(this);
         floor.setImages(images);
         floor.setLocation(0, 440);
         
-        Platform ceiling = new BasePlatform(this);
+        Tile ceiling = new BaseTile(this);
         ceiling.setImages(images);
         ceiling.setLocation(70, -20);
         
@@ -73,28 +73,28 @@ public class DemoGame2 extends Game{
 //        coin.setLocation(260, 100);
         
         images = this.getImages("resources/SmallBar.png", 1, 1);
-        Platform middleBar = new MovingDecorator(new BasePlatform(this), 260, 240, 260, 60, 0.05);
+        Tile middleBar = new MovingDecorator(new BaseTile(this), 260, 240, 260, 60, 0.05);
         middleBar.setImages(images);
 
 
         images = this.getImages("resources/Wall.png", 1, 1);
-        Platform wall1 = new BasePlatform(this);
+        Tile wall1 = new BaseTile(this);
         wall1.setImages(images);
         wall1.setLocation(0, 0);
         
-        Platform wall2 = new BasePlatform(this);
+        Tile wall2 = new BaseTile(this);
         wall2.setImages(images);
         wall2.setLocation(620, 0);
         
         images = this.getImages("resources/Block1.png", 1, 1);
-        Platform block1 = new ItemDecorator(new BasePlatform(this));
+        Tile block1 = new ItemDecorator(new BaseTile(this));
         block1.setMass(6);
         block1.setMovable(false);
         block1.setImages(images);
         block1.setLocation(100, 200);
 
         images = this.getImages("resources/Block2.png", 1, 1);
-        Platform block2 = new BreakableDecorator(new BasePlatform(this));
+        Tile block2 = new BreakableDecorator(new BaseTile(this));
         block2.setMass(6);
         block2.setMovable(false);
         block2.setImages(images);
@@ -102,7 +102,7 @@ public class DemoGame2 extends Game{
         
         images = this.getImages("resources/Water2.png", 1, 1);
         @SuppressWarnings("serial")
-        Platform water = new BasePlatform(this)
+        Tile water = new BaseTile(this)
         {
             @Override
             public void afterCollidedWith(GameElement e, int collisionSide) {

@@ -1,9 +1,9 @@
-package setting;
+package tiles;
 
-public class PenetrableDecorator extends PlatformDecorator{
+public class PenetrableDecorator extends TileDecorator{
 	private double strength;
 	
-	public PenetrableDecorator(Platform decoratedPlatform,  double strength) {
+	public PenetrableDecorator(Tile decoratedPlatform,  double strength) {
 		super(decoratedPlatform);
 		this.decoratedPlatform.setPenetrable(true);
 		this.strength = strength;

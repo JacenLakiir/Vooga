@@ -2,7 +2,7 @@ package items;
 
 import java.util.ArrayList;
 
-import setting.Platform;
+import tiles.Tile;
 
 import charactersprites.Player;
 

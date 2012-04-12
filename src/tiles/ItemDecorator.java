@@ -1,4 +1,4 @@
-package setting;
+package tiles;
 
 import items.CollectibleItem;
 
@@ -11,10 +11,10 @@ import charactersprites.GameElement;
 
 
 
-public class ItemDecorator extends PlatformDecorator{
+public class ItemDecorator extends TileDecorator{
 	private Queue<CollectibleItem> itemList;
 	
-	public ItemDecorator(Platform decoratedPlatform) {
+	public ItemDecorator(Tile decoratedPlatform) {
 		super(decoratedPlatform);
 		itemList = new LinkedList<CollectibleItem>();
 	}

@@ -81,7 +81,7 @@ public class VoogaLevelEditor extends JFrame {
 
 	public void mouseClicked(MouseEvent e) {}
 
-	@Override
+	
 	public void mousePressed(MouseEvent e) {
 	    //System.out.println("pressed called");
 	    JLabel label = (JLabel) e.getComponent();
@@ -123,7 +123,7 @@ public class VoogaLevelEditor extends JFrame {
 
 	public void mouseClicked(MouseEvent e) {}
 
-	@Override
+	
 	public void mousePressed(final MouseEvent e) {
 	    ((JLabel) e.getComponent()).setBorder(BorderFactory.createLineBorder(Color.YELLOW));
 	    if (SwingUtilities.isRightMouseButton(e)) {

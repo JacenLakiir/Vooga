@@ -14,13 +14,13 @@ public class DeadState implements State
         myNPC = npc;
     }
 
-    @Override
+    
     public void execute (long milliSec)
     {
         myNPC.setActive(false);
     }
 
-    @Override
+    
     public boolean isActive ()
     {
         return true;

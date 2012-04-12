@@ -2,7 +2,7 @@
  * @author Ian McMahon
  */
 
-package setting;
+package tiles;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -16,12 +16,12 @@ import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.Timer;
 
-public abstract class PlatformDecorator extends Platform {
+public abstract class TileDecorator extends Tile {
 
-    protected final Platform decoratedPlatform;
+    protected final Tile decoratedPlatform;
 
 
-    public PlatformDecorator(Platform decoratedPlatform) {
+    public TileDecorator(Tile decoratedPlatform) {
         this.decoratedPlatform = decoratedPlatform;
         this.myGame = decoratedPlatform.getGame();
     }
