@@ -3,7 +3,8 @@
  */
 package leveleditor;
 
-import game.SpriteWrapper;
+import gameMOVEthisSTUFFout.SpriteWrapper;
+
 import java.awt.*;
 import java.awt.datatransfer.*;
 import java.awt.dnd.*;

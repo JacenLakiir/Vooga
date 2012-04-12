@@ -1,7 +1,7 @@
 /**
  * @author Michael Zhou (Dominator008), Siyang Chen
  */
-package game;
+package gameMOVEthisSTUFFout;
 
 import java.awt.Point;
 import java.io.BufferedWriter;
