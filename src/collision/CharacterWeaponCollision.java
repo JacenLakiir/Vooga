@@ -1,7 +1,6 @@
 package collision;
 
 import items.CollectibleItem;
-import charactersprites.Player;
 
 import com.golden.gamedev.object.Sprite;
 

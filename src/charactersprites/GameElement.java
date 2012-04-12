@@ -11,8 +11,9 @@ import physicsengine.Acceleration;
 import physicsengine.Displacement;
 import physicsengine.DuringAcceleration;
 import physicsengine.Velocity;
-import voogaobject.MergedCollision;
 
+
+import collision.GameElementCollision;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.object.sprite.AdvanceSprite;
@@ -301,19 +302,19 @@ public abstract class GameElement extends AdvanceSprite{
 
     public void beforeCollidedWith(GameElement e, int collisionSide) {
         switch (collisionSide) {
-            case MergedCollision.RIGHT_LEFT_COLLISION:{
+            case GameElementCollision.RIGHT_LEFT_COLLISION:{
                 beforeHitFromRightBy(e);
                 break;
             }
-            case MergedCollision.LEFT_RIGHT_COLLISION:{
+            case GameElementCollision.LEFT_RIGHT_COLLISION:{
                 beforeHitFromLeftBy(e);
                 break;
             }
-            case MergedCollision.BOTTOM_TOP_COLLISION:{
+            case GameElementCollision.BOTTOM_TOP_COLLISION:{
                 beforeHitFromBottomBy(e);                
                 break;
             }
-            case MergedCollision.TOP_BOTTOM_COLLISION:{
+            case GameElementCollision.TOP_BOTTOM_COLLISION:{
                 beforeHitFromTopBy(e);
                 break;
             }
@@ -322,19 +323,19 @@ public abstract class GameElement extends AdvanceSprite{
 
     public void afterCollidedWith(GameElement e, int collisionSide) {
         switch (collisionSide) {
-            case MergedCollision.RIGHT_LEFT_COLLISION:{
+            case GameElementCollision.RIGHT_LEFT_COLLISION:{
                 afterHitFromRightBy(e);
                 break;
             }
-            case MergedCollision.LEFT_RIGHT_COLLISION:{
+            case GameElementCollision.LEFT_RIGHT_COLLISION:{
                 afterHitFromLeftBy(e);
                 break;
             }
-            case MergedCollision.BOTTOM_TOP_COLLISION:{
+            case GameElementCollision.BOTTOM_TOP_COLLISION:{
                 afterHitFromBottomBy(e);
                 break;
             }
-            case MergedCollision.TOP_BOTTOM_COLLISION:{
+            case GameElementCollision.TOP_BOTTOM_COLLISION:{
                 afterHitFromTopBy(e);
                 break;
             }
