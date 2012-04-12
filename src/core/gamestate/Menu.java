@@ -50,7 +50,7 @@ public class Menu extends MenuGameObject{
         graphic.setColor( Color.WHITE );
         graphic.drawString("DemoAI", 320, 240);
         graphic.drawString("DemoPlayField", 320, 260);     
-        graphic.drawString("EXIT", 320, 320);
+        graphic.drawString("EXIT", 320, 280);
         graphic.drawImage(arrow, 300, 230 + optionID*20, null);
     }
 
@@ -75,7 +75,7 @@ public class Menu extends MenuGameObject{
     
     @KeyAnnotation(action = "enter")
     public void nextGameObject(){
-        if(optionID == 3){
+        if(optionID == 2){
             finish();
             return;
         }

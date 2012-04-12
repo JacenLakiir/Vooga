@@ -18,7 +18,7 @@ public class SystemKey extends Key{
         keyValue = value;
         action = actionName;
         myGame = game;        
-        observer = new SystemKeyObserver(game);
+        observer = new KeyObserver(game);
     }
 
     @Override

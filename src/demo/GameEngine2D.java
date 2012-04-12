@@ -57,8 +57,5 @@ public class GameEngine2D extends GameEngine{
         GameLoader game = new GameLoader();
         game.setup(new GameEngine2D(), new Dimension(640,480), false); 
         game.start();
-    }
-    
-
-    
+    }  
 }

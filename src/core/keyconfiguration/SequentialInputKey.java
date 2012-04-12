@@ -25,7 +25,7 @@ public class SequentialInputKey extends Key{
         values = keyValue.split(",");
         iskeyPressed = new boolean[values.length];
         invalidate();
-        observer = new InputKeyObserver(element);
+        observer = new KeyObserver(element);
     }
   
     

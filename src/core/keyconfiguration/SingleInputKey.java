@@ -18,7 +18,7 @@ public class SingleInputKey extends Key{
         keyValue = value;
         action = actionName;
         myGame = game;        
-        observer = new InputKeyObserver(element);
+        observer = new KeyObserver(element);
     }
 
     public boolean isKeyDown(long milliSec){
