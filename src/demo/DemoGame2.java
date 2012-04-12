@@ -11,14 +11,8 @@ import java.util.List;
 
 
 
-import keyconfiguration.Key;
-import keyconfiguration.KeyConfig;
 
 
-import charactersprites.Character;
-import charactersprites.GameElement;
-import collision.CharacterPlatformCollision;
-import collision.PlayerCollectibleItemCollision;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
@@ -27,8 +21,15 @@ import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ColorBackground;
 
-import charactersprites.Player;
-import tiles.*;
+import core.characters.Character;
+import core.characters.GameElement;
+import core.characters.Player;
+import core.collision.CharacterPlatformCollision;
+import core.collision.PlayerCollectibleItemCollision;
+import core.keyconfiguration.Key;
+import core.keyconfiguration.KeyConfig;
+import core.tiles.*;
+
 import voogaobject.MergedCollision;
 import voogaobject.GamePlayField;
 

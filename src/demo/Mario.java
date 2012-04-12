@@ -4,10 +4,11 @@
 
 package demo;
 
-import charactersprites.GameElement;
-import charactersprites.Player;
 
 import com.golden.gamedev.Game;
+
+import core.characters.GameElement;
+import core.characters.Player;
 
 @SuppressWarnings("serial")
 public class Mario extends Player{

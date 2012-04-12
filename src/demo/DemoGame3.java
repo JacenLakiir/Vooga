@@ -4,38 +4,39 @@
 
 package demo;
 
-import items.CollectibleInstantItem;
-import items.CollectibleInventoryItem;
-import items.CollectibleItem;
-import items.CollectibleTimelapseItem;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.List;
 
-import playfield.AdvancedPlayField;
-import playfield.KeepLeftFirstPlayerGameScroller;
 
-import tiles.BaseTile;
-import tiles.BreakableDecorator;
-import tiles.ItemDecorator;
-import tiles.MovingDecorator;
-import tiles.Tile;
 
-import keyconfiguration.Key;
-import keyconfiguration.KeyConfig;
 
-import charactersprites.NPC;
-import charactersprites.Player;
-import charactersprites.ai.MoveState;
-import collision.CharacterPlatformCollision;
-import collision.GameElementCollision;
-import collision.PlayerCollectibleItemCollision;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.background.ColorBackground;
+
+import core.characters.NPC;
+import core.characters.Player;
+import core.characters.ai.MoveState;
+import core.collision.CharacterPlatformCollision;
+import core.collision.GameElementCollision;
+import core.collision.PlayerCollectibleItemCollision;
+import core.items.CollectibleInstantItem;
+import core.items.CollectibleInventoryItem;
+import core.items.CollectibleItem;
+import core.items.CollectibleTimelapseItem;
+import core.keyconfiguration.Key;
+import core.keyconfiguration.KeyConfig;
+import core.playfield.AdvancedPlayField;
+import core.playfield.KeepLeftFirstPlayerGameScroller;
+import core.tiles.BaseTile;
+import core.tiles.BreakableDecorator;
+import core.tiles.ItemDecorator;
+import core.tiles.MovingDecorator;
+import core.tiles.Tile;
 
 public class DemoGame3 extends Game {
 
