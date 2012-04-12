@@ -6,14 +6,17 @@ import com.golden.gamedev.object.Sprite;
 import core.items.CollectibleItem;
 import core.physicsengine.NewtonianCollision;
 
-
+/**
+ * @author Kathleen Oshima
+ */
 public class CharacterWeaponCollision extends NewtonianCollision {
 	@Override
-    public void collided(Sprite character, Sprite item) {
-		super.collided(character, item);
+    public void collided(Sprite character, Sprite weapon) {
+		super.collided(character, weapon);
 	    character.setActive(true);
+	    //implement this method with the npc 
 	    //character.updateHitPoints((CollectibleItem) item).getAttackPower())
-	    item.setActive(false);
-	    ((CollectibleItem) item).setIsInUse(true);
+	    weapon.setActive(false);
+//	    ((CollectibleItem) item).setIsInUse(true);
     }
 }

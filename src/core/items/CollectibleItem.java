@@ -31,6 +31,10 @@ public abstract class CollectibleItem extends GameElement {
 //		this.game = game;
 	}
 	
+	public CollectibleItem() {
+		super();
+	}
+	
 	public void decorate(Player player) {
 		updatePlayerPoints(player);
 		updatePlayerAttackPower(player);
@@ -94,7 +98,6 @@ public abstract class CollectibleItem extends GameElement {
 
     public void updatePlayerAttackPower(Player player) {
 	    player.setMyAttackPower(this.getAttackPower());
-	    
     }
 
     public void updatePlayerDefensePower(Player player) {

@@ -25,11 +25,15 @@ public class Player extends Character{
     private SystemTimer timer = new SystemTimer();
     protected ArrayList<CollectibleItem> myInventory;
     protected double myHitPoints, myAttackPower, myDefensePower, myLevel, myPoints;
+//    protected double baseHitPoints, baseAttackPower, baseDefensePower, baseLevel, basePoints;
+//    protected ArrayList<Double> baseAttributes;
     
     public Player(GameObject game) {
         super(game);
         myInventory = new ArrayList<CollectibleItem>();
-        
+//        for (double att : baseAttributes) {
+//        	att = 0;
+//        }
     }
     
     @Override
@@ -74,6 +78,11 @@ public class Player extends Character{
         this.addAcceleration(strengthRight*stdGravity, 0);
     }
     
+//    @KeyAnnotation(action = "space")
+//    public void keySpacePressed() {
+//    	useWeapon();
+//    }
+//    
     public void keyAPressed() {
         shoot();
     }
@@ -157,15 +166,17 @@ public class Player extends Character{
     	myPoints += value;
     }
     
+//    public void useWeapon() {
+//    	
+//    }
+    
     public void updateAbilities() {
-    	if (!myInventory.isEmpty()) {
-			for (CollectibleItem item : myInventory) {
-				if (item.isInUse()) {
-					item.decorate(this);
-					System.out.println("Coins: " + myPoints + " Attack Power: " + myAttackPower
-					        + " Defense Power: " + myDefensePower + " Hit Points: "
-					        + myHitPoints + " Level: " + myLevel);
-				}
+		for (CollectibleItem item : myInventory) {
+			if (item.isInUse()) {
+				item.decorate(this);
+				System.out.println("Coins: " + myPoints + " Attack Power: " + myAttackPower
+				        + " Defense Power: " + myDefensePower + " Hit Points: "
+				        + myHitPoints + " Level: " + myLevel);
 			}
 		}
 	}

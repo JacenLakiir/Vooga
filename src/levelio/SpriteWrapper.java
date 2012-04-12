@@ -1,7 +1,7 @@
 /**
  * @author Michael Zhou (Dominator008)
  */
-package levelIO;
+package levelio;
 
 import leveleditor.VoogaUtilities;
 import com.golden.gamedev.object.Sprite;
