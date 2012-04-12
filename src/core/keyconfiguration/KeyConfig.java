@@ -3,8 +3,6 @@ package core.keyconfiguration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import core.characters.GameElement;
 import com.golden.gamedev.GameObject;
 
 /**
@@ -14,12 +12,12 @@ import com.golden.gamedev.GameObject;
  */
 public  class KeyConfig {
     private KeyConfigModel keyModel;
-    protected GameObject myGame;
-    protected GameElement element;
-    public KeyConfig(GameElement player, GameObject game) {
-        element = player;
+    private GameObject myGame;
+    private boolean isSystemOnly = false;
+    public KeyConfig(GameObject game, boolean isSystemKeyOnly) {
         myGame = game;
         keyModel = parseKeyConfig("configurations/KeyConfig.json");
+        isSystemOnly = isSystemKeyOnly;
     }
 
     
@@ -29,9 +27,9 @@ public  class KeyConfig {
         for(String action : keyMap.keySet()){
             int length = keyMap.get(action).split(",").length;
             if(length == 1)
-                keys.add(new SingleInputKey(keyMap.get(action), action, element, myGame));
+                keys.add(new SingleInputKey(keyMap.get(action), action, myGame));
             if(length > 1)
-                keys.add(new SequentialInputKey(keyMap.get(action), action, element, myGame));                
+                keys.add(new SequentialInputKey(keyMap.get(action), action, myGame));                
         }
         return keys;
     }
@@ -46,7 +44,7 @@ public  class KeyConfig {
     
     public List<Key> getKeyList(){
         List<Key> keys = new ArrayList<Key> ();
-        if(element !=null)
+        if(!isSystemOnly)
             keys.addAll(constructInputKeyList(keyModel.getInputKeyMap()));
         keys.addAll(constructSystemKeyList(keyModel.getSystemKeyMap()));
         return keys;

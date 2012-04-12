@@ -42,8 +42,6 @@ public class DemoAI extends GameObject2D{
         engine = arg0;
     }
 
-
-
     @Override
     public void initResources()
     { 
@@ -52,7 +50,10 @@ public class DemoAI extends GameObject2D{
         myPlayfield.setBackground(new ColorBackground(Color.gray, 640, 480));
         
         Player mario = new Mario(this);
-        keyList = new KeyConfig(mario, this).getKeyList();
+        keyList = new KeyConfig(this,false).getKeyList();
+        //add the element or game you want the key to control
+        addInputKeyListener(mario);
+        addSystemInputKeyListener(this);
         mario.setImages(this.getImages("resources/Mario1.png", 1, 1));
         mario.setLocation(25, 20);
         myPlayfield.addPlayer(mario);
@@ -155,8 +156,6 @@ public class DemoAI extends GameObject2D{
         super.update(t);
         myPlayfield.update(t);
     }
-    
-
     
     @KeyAnnotation(action = "ESC")
     public void pause(){

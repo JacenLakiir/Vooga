@@ -6,11 +6,12 @@ import java.util.List;
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;
 
+import core.characters.GameElement;
 import core.keyconfiguration.Key;
 import core.keyconfiguration.KeyAnnotation;
 import demo.GameEngine2D;
 
-public class GameObject2D extends GameObject{
+public abstract class GameObject2D extends GameObject{
     protected List<Key>           keyList;
     GameEngine engine;
     public GameObject2D(GameEngine arg0) {
@@ -31,6 +32,18 @@ public class GameObject2D extends GameObject{
     @Override
     public void update(long arg0) {
         checkKeyboardInput(arg0);
+    }
+    
+    public void addInputKeyListener(GameElement element){
+        for(Key key : keyList){
+            key.addInputKeyListener(element);
+        }
+    }
+    
+    public void addSystemInputKeyListener(GameObject object){
+        for(Key key : keyList){
+            key.addSystemKeyListener(object);
+        }
     }
     
     private void checkKeyboardInput (long milliSec)
