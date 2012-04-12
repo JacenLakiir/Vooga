@@ -31,7 +31,7 @@ import core.tiles.Tile;
  * 
  * For testing NPC AI
  */
-public class DemoGame4 extends Game{
+public class DemoAI extends Game{
 
     private List<Key>           keyList;
     private AdvancedPlayField   myPlayfield;  
@@ -158,7 +158,7 @@ public class DemoGame4 extends Game{
     public static void main (String[] args)
     {
         GameLoader game = new GameLoader();
-        game.setup(new DemoGame4(), new Dimension(640,480), false);
+        game.setup(new DemoAI(), new Dimension(640,480), false);
         game.start();
     }
 
