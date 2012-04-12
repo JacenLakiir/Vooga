@@ -16,6 +16,7 @@ import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ParallaxBackground;
 
 import core.characters.*;
+import core.characters.Character;
 import core.collision.PlayerCollectibleItemCollision;
 import core.collision.SideScrollerBoundsCollision;
 import core.items.CollectibleItem;
