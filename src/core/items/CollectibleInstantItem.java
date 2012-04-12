@@ -4,7 +4,9 @@ package core.items;
 import com.golden.gamedev.Game;
 
 import core.characters.Player;
-
+/**
+ * @author Kathleen Oshima
+ */
 public class CollectibleInstantItem extends CollectibleItem {
 	
 	public CollectibleInstantItem(Game game) {

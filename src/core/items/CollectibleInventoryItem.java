@@ -8,7 +8,9 @@ import com.golden.gamedev.Game;
 
 import core.characters.Player;
 import core.tiles.Tile;
-
+/**
+ * @author Kathleen Oshima
+ */
 public class CollectibleInventoryItem extends CollectibleItem {
 
 	private double attackPower;
