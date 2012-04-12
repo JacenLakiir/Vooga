@@ -38,7 +38,7 @@ import core.tiles.ItemDecorator;
 import core.tiles.MovingDecorator;
 import core.tiles.Tile;
 
-public class DemoGame3 extends Game {
+public class DemoPlayfield extends Game {
 
 	private AdvancedPlayField myPlayfield;
 	private List<Key> keyList;
@@ -146,7 +146,7 @@ public class DemoGame3 extends Game {
 
 	public static void main(String[] args) {
 		GameLoader game = new GameLoader();
-		game.setup(new DemoGame3(), new Dimension(640, 480), false);
+		game.setup(new DemoPlayfield(), new Dimension(640, 480), false);
 		game.start();
 	}
 
