@@ -23,6 +23,7 @@ public class VoogaLevelEditor extends JFrame {
     private String myBackGroundImgSrc;
     private Map<JLabel, SpriteWrapper> myLabelWrapperMap;
     private Map<JLabel, SpriteWrapper> myUniqueLabelWrapperMap;
+    private Set<SpriteWrapper> myUniqueWrapperSet;
     protected VoogaLevelEditorModel myModel;
     protected VoogaLevelEditor myView;
     protected VoogaLevelEditorController myController;
@@ -97,6 +98,7 @@ public class VoogaLevelEditor extends JFrame {
     private class MoveSpriteListener implements MouseInputListener, MouseMotionListener {
         
 	Point prel = null;
+	String imagesrc = null;
 	
 	public void mouseMoved(MouseEvent e) {}
 
@@ -126,13 +128,14 @@ public class VoogaLevelEditor extends JFrame {
 	@Override
 	public void mousePressed(final MouseEvent e) {
 	    ((JLabel) e.getComponent()).setBorder(BorderFactory.createLineBorder(Color.YELLOW));
+	    imagesrc = myLabelWrapperMap.get((JLabel) e.getComponent()).getImageSrc();
 	    if (SwingUtilities.isRightMouseButton(e)) {
 		JPopupMenu editMenu = new JPopupMenu();
 		JMenuItem myEditItem = new JMenuItem("Edit");
 		editMenu.add(myEditItem);
 		myEditItem.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent event) {
-			SpriteEditPanel.getInstance(myModel, myView, myController);
+			SpriteEditPanel.getInstance(myModel, myView, myController, imagesrc);
 		    }
 		});
 		JMenuItem myDeleteItem = new JMenuItem("Delete");
@@ -320,6 +323,19 @@ public class VoogaLevelEditor extends JFrame {
 	    }
 	});
 	myMenu[1].add(myChangeBackground);
+	JMenuItem myCreateSpriteMunu = new JMenuItem("Create Sprite");
+	myCreateSpriteMunu.addActionListener(new ActionListener() {
+	    public void actionPerformed(ActionEvent event) {
+		File f = loadFile("Select Sprite Image...");
+		if (f == null) return;
+		try {
+		    createSprite(f.getCanonicalPath());
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+	    }
+	});
+	myMenu[1].add(myCreateSpriteMunu);
     }
     
     private File loadFile(String title) {
@@ -358,6 +374,7 @@ public class VoogaLevelEditor extends JFrame {
    		(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Canvas");
    	canvas.setBorder(border);
 	canvas.getViewport().add(myCanvaspane);
+	myLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
     }
 
     private void setUpSpritePane() {
@@ -375,6 +392,8 @@ public class VoogaLevelEditor extends JFrame {
    		(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Sprite Pane");
    	wrapper.setBorder(border);
 	wrapper.getViewport().add(mySpritepane);
+	myUniqueLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
+	myUniqueWrapperSet = new TreeSet<SpriteWrapper>();
     }
     
     protected void setUpBackground(String imagesrc) {
@@ -394,6 +413,10 @@ public class VoogaLevelEditor extends JFrame {
 	myBackGroundLabel.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight());
 	myBackGroundImgSrc = imagesrc;
     }
+
+    private void createSprite(String imagesrc) {
+	SpriteEditPanel spriteeditpane = SpriteEditPanel.getInstance(myModel, myView, myController, imagesrc);
+    }
     
     protected void loadSprites(Map<Point, SpriteWrapper> spritemap) {
 	if (myLabelWrapperMap != null) {
@@ -408,9 +431,9 @@ public class VoogaLevelEditor extends JFrame {
 	    myCanvaspane.revalidate();
 	}
 	else myLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
-	if (myUniqueLabelWrapperMap != null) myUniqueLabelWrapperMap.clear();
-	else myUniqueLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
-	Set<SpriteWrapper> myUniqueSrcSet = new TreeSet<SpriteWrapper>();
+	//if (myUniqueLabelWrapperMap != null) myUniqueLabelWrapperMap.clear();
+	//else myUniqueLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
+	myUniqueLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
 	for (Point p: spritemap.keySet()) {
 	    Sprite sp = spritemap.get(p).getSprite();
 	    BufferedImage currentImage = sp.getImage();
@@ -424,19 +447,24 @@ public class VoogaLevelEditor extends JFrame {
 	    label.setBounds(p.x, p.y,
 		   currentImage.getWidth(), currentImage.getHeight());
 	    myLabelWrapperMap.put(label, spritemap.get(p));
-	    myUniqueSrcSet.add(spritemap.get(p));
+	    myUniqueWrapperSet.add(spritemap.get(p));
 	}
-	mySpritepane.setLayout(new GridLayout(myUniqueSrcSet.size(), 1));
-	for (SpriteWrapper wrapper: myUniqueSrcSet) {
-	    CopySpriteListener listener = new CopySpriteListener();
-	    JLabel label = new JLabel(wrapper.getName(), new ImageIcon(wrapper.getImageSrc()), JLabel.CENTER);
-	    label.setVerticalTextPosition(JLabel.TOP);
-	    label.setHorizontalTextPosition(JLabel.CENTER);
-	    label.setForeground(Color.YELLOW);
-	    mySpritepane.add(label);
-	    label.addMouseListener(listener);
-	    myUniqueLabelWrapperMap.put(label, wrapper);
+	for (SpriteWrapper wrapper: myUniqueWrapperSet) {
+	    importSprite(wrapper);
 	}
+    }
+    
+    protected void importSprite(SpriteWrapper wrapper) {
+	myUniqueWrapperSet.add(wrapper);
+	mySpritepane.setLayout(new GridLayout(myUniqueWrapperSet.size(), 1));
+	CopySpriteListener listener = new CopySpriteListener();
+	JLabel label = new JLabel(wrapper.getName(), new ImageIcon(wrapper.getImageSrc()), JLabel.CENTER);
+	label.setVerticalTextPosition(JLabel.TOP);
+	label.setHorizontalTextPosition(JLabel.CENTER);
+	label.setForeground(Color.YELLOW);
+	mySpritepane.add(label);
+	label.addMouseListener(listener);
+	myUniqueLabelWrapperMap.put(label, wrapper);
 	mySpritepane.revalidate();
     }
     
