@@ -8,13 +8,8 @@ import com.golden.gamedev.GameObject;
  */
 public class SystemKey extends Key{
 
-    private GameObject myGame;
-    
     public SystemKey(String value, String actionName, GameObject game) {
-        keyValue = value;
-        action = actionName;
-        myGame = game;        
-        observer = new KeyObserver(game);
+        super(value, actionName, game);
     }
 
     @Override

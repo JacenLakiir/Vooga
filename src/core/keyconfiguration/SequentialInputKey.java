@@ -1,6 +1,5 @@
 package core.keyconfiguration;
 
-import core.characters.GameElement;
 import com.golden.gamedev.GameObject;
 /**
  * 
@@ -13,18 +12,12 @@ public class SequentialInputKey extends Key{
     private boolean[] iskeyPressed;
     private  String[] values;
     private boolean isInitial  = true;
-    private GameObject myGame;    
-    public SequentialInputKey(String value, String actionName, GameElement element,
-            GameObject game) {
-        keyValue = value;
-        action = actionName;
-        myGame = game;
+    public SequentialInputKey(String value, String actionName, GameObject game) {
+        super(value, actionName, game);
         values = keyValue.split(",");
         iskeyPressed = new boolean[values.length];
         invalidate();
-        observer = new KeyObserver(element);
     }
-  
     
     private void invalidate() {
         isInitial = true;

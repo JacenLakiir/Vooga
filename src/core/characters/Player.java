@@ -6,7 +6,6 @@ package core.characters;
 
 
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +20,6 @@ import core.keyconfiguration.KeyAnnotation;
 @SuppressWarnings("serial")
 public class Player extends Character{
     protected double strengthUp, strengthDown, strengthLeft, strengthRight;
-    private List<Key> keyList;
-    private SystemTimer timer = new SystemTimer();
     protected ArrayList<CollectibleItem> myInventory;
     protected double myHitPoints, myAttackPower, myDefensePower, myLevel, myPoints;
     
@@ -42,9 +39,6 @@ public class Player extends Character{
         }
     }
     
-    public void setKeyList(List<Key> list){
-        keyList = list;
-    }
    
     public void checkDead() {
     }

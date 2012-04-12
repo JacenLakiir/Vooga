@@ -74,7 +74,10 @@ public class DemoPlayfield extends GameObject2D {
 		// use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
 
 		Player temp = new Mario(this);
-        keyList = new KeyConfig(temp, this).getKeyList();
+        keyList = new KeyConfig(this,false).getKeyList();
+        //add the element or the game you want the key to control
+        addInputKeyListener(temp);
+        addSystemInputKeyListener(this);
 		temp.setImages(this.getImages("resources/Mario1.png", 1, 1));
 		temp.setLocation(25, 20);
 		temp.setMyHP(10);

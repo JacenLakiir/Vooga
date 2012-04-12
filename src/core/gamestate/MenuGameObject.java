@@ -22,7 +22,8 @@ public abstract class MenuGameObject extends GameObject{
 
     @Override
     public void initResources() {
-        keyList = new KeyConfig(null,this).getKeyList();
+        keyList = new KeyConfig(this, true).getKeyList();
+        addSystemInputKeyListener(this);
     }
 
     @Override
@@ -40,6 +41,12 @@ public abstract class MenuGameObject extends GameObject{
     public abstract void up();
     
     public abstract void nextGameObject();
+    
+    public void addSystemInputKeyListener(GameObject object){
+        for(Key key : keyList){
+            key.addSystemKeyListener(object);
+        }
+    }
     
     public void checkKeyboardInput(long milliSec) {
         for(Key key : keyList){

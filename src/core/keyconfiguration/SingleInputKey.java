@@ -1,6 +1,5 @@
 package core.keyconfiguration;
 
-import core.characters.GameElement;
 import com.golden.gamedev.GameObject;
 /**
  * 
@@ -8,21 +7,11 @@ import com.golden.gamedev.GameObject;
  *
  */
 public class SingleInputKey extends Key{
-    private GameObject myGame;   
-    public SingleInputKey(String value, String actionName, GameElement element,
-            GameObject game) {
-        keyValue = value;
-        action = actionName;
-        myGame = game;        
-        observer = new KeyObserver(element);
+    public SingleInputKey(String value, String actionName, GameObject game) {
+        super(value, actionName, game);
     }
 
     public boolean isKeyDown(long milliSec){
         return myGame.keyDown(Integer.parseInt(keyValue));
-    }
-
-    @Override
-    public void notifyObserver() {
-        observer.getActoinMethods(action);        
     }
 }
