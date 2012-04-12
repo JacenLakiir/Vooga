@@ -3,7 +3,6 @@
  */
 package leveleditor;
 
-import gameMOVEthisSTUFFout.SpriteWrapper;
 
 import java.awt.*;
 import java.awt.datatransfer.*;
@@ -16,6 +15,9 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.event.*;
+
+import levelIO.SpriteWrapper;
+
 import com.golden.gamedev.object.Sprite;
 
 @SuppressWarnings("serial")

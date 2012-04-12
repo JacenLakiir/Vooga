@@ -5,11 +5,12 @@ import java.util.List;
 
 import com.golden.gamedev.Game;
 
-import charactersprites.GameElement;
-import charactersprites.NPC;
-import charactersprites.Player;
-import charactersprites.ai.DeadState;
-import charactersprites.ai.State;
+import core.characters.GameElement;
+import core.characters.NPC;
+import core.characters.Player;
+import core.characters.ai.DeadState;
+import core.characters.ai.State;
+
 
 /**
  * @author Eric Mercer (JacenLakiir)

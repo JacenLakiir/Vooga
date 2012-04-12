@@ -1,36 +1,46 @@
-package demo;
+package core.keyconfiguration;
 /**
  * @author Kuang Han
  */
 
-import game.AdvancedPlayField;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.List;
+
+
+
+
+
+import voogaobject.MergedCollision;
+import voogaobject.GamePlayField;
+
+
+
+
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.Background;
+import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ColorBackground;
 
 import core.characters.Player;
-import core.collision.GameElementCollision;
-import core.keyconfiguration.Key;
 import core.keyconfiguration.KeyConfig;
-import core.tiles.BaseTile;
-import core.tiles.Tile;
+import core.tiles.*;
 
-public class DemoGame1 extends Game{
+import demo.Mario;
 
-    AdvancedPlayField    playfield;  
+public class DemoGameKey extends Game{
+
+    GamePlayField    playfield;  
     Background       background;
     KeyConfig        keyConfig;
     List<Key>        keyList;
     @Override
     public void initResources() { 
-        playfield = new AdvancedPlayField(10000, 50);
+        playfield = new GamePlayField();
         
         background = new ColorBackground(Color.gray, 640, 480);
         playfield.setBackground(background);
@@ -114,7 +124,11 @@ public class DemoGame1 extends Game{
         playfield.addGroup(blocks);
         playfield.addGroup(characters);
         
-        playfield.addCollisionGroup(blocks, characters, new GameElementCollision());
+        MergedCollision collision = new MergedCollision();
+        collision.addSpriteGroup(blocks);
+        collision.addSpriteGroup(characters);
+        
+        playfield.addCollisionGroup(collision);
     }
 
     @Override
@@ -136,9 +150,14 @@ public class DemoGame1 extends Game{
         }
     }
     
+    @KeyAnnotation(action = "ESC")
+    public void esc(){
+        System.out.println("ESC");
+    }
+    
     public static void main(String[] args) {
         GameLoader game = new GameLoader();
-        game.setup(new DemoGame1(), new Dimension(640,480), false);
+        game.setup(new DemoGameKey(), new Dimension(640,480), false);
         game.start();
     }
 
