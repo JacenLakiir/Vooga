@@ -56,6 +56,7 @@ public class DemoAI extends GameObject2D{
         addSystemInputKeyListener(this);
         mario.setImages(this.getImages("resources/Mario1.png", 1, 1));
         mario.setLocation(25, 20);
+        mario.setMyHP(10);
         myPlayfield.addPlayer(mario);
         
         NPC goomba1 = new Goomba(this);
