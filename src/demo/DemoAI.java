@@ -71,7 +71,6 @@ public class DemoAI extends GameObject2D
         
         NPC goomba3 = new Goomba(this);
         goomba3.addPossibleState(new MoveState(goomba3, 1, true));
-        goomba3.addPossibleState(new PatrolState(goomba3, 25));
         goomba3.setImages(this.getImages("resources/Goomba.png", 1, 1));
         goomba3.setLocation(275, 20);
         goomba3.setMovable(true);
