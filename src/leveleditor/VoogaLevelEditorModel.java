@@ -3,8 +3,9 @@
  */
 package leveleditor;
 
-import game.LevelState;
-import game.SpriteWrapper;
+import gameMOVEthisSTUFFout.LevelState;
+import gameMOVEthisSTUFFout.SpriteWrapper;
+
 import java.awt.Point;
 import java.io.File;
 import java.util.Map;

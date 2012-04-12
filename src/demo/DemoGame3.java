@@ -4,8 +4,6 @@
 
 package demo;
 
-import game.AdvancedPlayField;
-import game.KeepLeftFirstPlayerGameScroller;
 import items.CollectibleInstantItem;
 import items.CollectibleInventoryItem;
 import items.CollectibleItem;
@@ -15,6 +13,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.List;
+
+import playfield.AdvancedPlayField;
+import playfield.KeepLeftFirstPlayerGameScroller;
 
 import tiles.BaseTile;
 import tiles.BreakableDecorator;
