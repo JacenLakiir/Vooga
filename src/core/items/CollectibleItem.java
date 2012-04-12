@@ -41,6 +41,7 @@ public abstract class CollectibleItem extends GameElement {
 		updatePlayerDefensePower(player);
 		updatePlayerHitPoints(player);
 		updatePlayerLevel(player);
+		this.setIsInUse(false);
 	}
 
 	public void set(BufferedImage[] images, double x, double y) {
@@ -105,8 +106,8 @@ public abstract class CollectibleItem extends GameElement {
     }
 
     public void updatePlayerHitPoints(Player player) {
-	    player.setMyHP(this.getHitPoints());
-	    
+    	if (player.getMyHP() > 0) {
+    		player.setMyHP(this.getHitPoints()); }
     }
 
     public void updatePlayerLevel(Player player) {

@@ -21,7 +21,7 @@ import core.keyconfiguration.KeyAnnotation;
 public class Player extends Character{
     protected double strengthUp, strengthDown, strengthLeft, strengthRight;
     protected ArrayList<CollectibleItem> myInventory;
-    protected double myHitPoints, myAttackPower, myDefensePower, myLevel, myPoints;
+    protected double myAttackPower, myDefensePower, myLevel, myPoints;
 //    protected double baseHitPoints, baseAttackPower, baseDefensePower, baseLevel, basePoints;
 //    protected ArrayList<Double> baseAttributes;
     
@@ -35,9 +35,9 @@ public class Player extends Character{
     
     @Override
     public void update(long milliSec) {
-        super.update(milliSec);  
+//        checkDead();
         updateAbilities();
-        checkDead();
+        super.update(milliSec);  
         if (myHitPoints <= 0) {
         	System.out.println("dead");
         }
@@ -76,7 +76,7 @@ public class Player extends Character{
 //    public void keySpacePressed() {
 //    	useWeapon();
 //    }
-//    
+
     public void keyAPressed() {
         shoot();
     }
@@ -120,14 +120,6 @@ public class Player extends Character{
     	myInventory.remove(item);
     }
     
-    public double getMyHP() {
-    	return myHitPoints;
-    }
- 
-    public void setMyHP(double hp) {
-    	myHitPoints += hp;
-    }
-    
     public double getMyLevel() {
     	return myLevel;
     }
@@ -160,9 +152,6 @@ public class Player extends Character{
     	myPoints += value;
     }
     
-//    public void useWeapon() {
-//    	
-//    }
     
     public void updateAbilities() {
 		for (CollectibleItem item : myInventory) {

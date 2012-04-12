@@ -2,6 +2,7 @@ package core.items;
 
 
 import com.golden.gamedev.GameObject;
+import com.golden.gamedev.object.Timer;
 
 import core.characters.Player;
 
@@ -10,7 +11,14 @@ import core.characters.Player;
  */
 public class CollectibleTimelapseItem extends CollectibleItem {
 
-	public double time;
+	Timer timer;
+	Player player;
+	long timePassed;
+//	long endTimer = timePassed + 5000;
+	
+	public void update(long elapsedTime) {
+		timePassed = elapsedTime;
+	}
 	
 	public CollectibleTimelapseItem(GameObject game) {
 	    super(game);
@@ -18,23 +26,21 @@ public class CollectibleTimelapseItem extends CollectibleItem {
 
 	@Override
 	public void decorate(Player player) {
-		updatePlayerPoints(player);
-		updatePlayerAttackPower(player);
-		updatePlayerDefensePower(player);
-		updatePlayerHitPoints(player);
-		updatePlayerLevel(player);
-		if (time == 0) {
-			this.setIsInUse(false);
+		if (timer.action(timePassed))
+		{
+			updatePlayerPoints(player);
+			updatePlayerAttackPower(player);
+			updatePlayerDefensePower(player);
+			updatePlayerHitPoints(player);
+			updatePlayerLevel(player);
 		}
-		time -= 1;
+//		if (timer.action(endTimer)) {
+//			timer.setActive(false);
+//		}
 	}
 	
-	public void setTimer(double time) {
-		this.time = time;
-	}
-
-	public double getTimer() {
-		return time;
+	public void setTimer(int time) {
+		this.timer = new Timer(time);
 	}
 
 }

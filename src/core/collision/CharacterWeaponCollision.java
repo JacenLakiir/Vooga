@@ -2,6 +2,8 @@ package core.collision;
 
 
 import com.golden.gamedev.object.Sprite;
+import core.characters.Character;
+import core.characters.Player;
 
 import core.items.CollectibleItem;
 import core.physicsengine.NewtonianCollision;
@@ -15,8 +17,9 @@ public class CharacterWeaponCollision extends NewtonianCollision {
 		super.collided(character, weapon);
 	    character.setActive(true);
 	    //implement this method with the npc 
-	    //character.updateHitPoints((CollectibleItem) item).getAttackPower())
+	    ((CollectibleItem) weapon).updatePlayerHitPoints((Player) character);
+	    ((CollectibleItem) weapon).setIsInUse(false);
+	    
 	    weapon.setActive(false);
-//	    ((CollectibleItem) item).setIsInUse(true);
     }
 }

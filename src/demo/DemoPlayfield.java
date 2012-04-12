@@ -30,6 +30,7 @@ import core.items.CollectibleInstantItem;
 import core.items.CollectibleInventoryItem;
 import core.items.CollectibleItem;
 import core.items.CollectibleTimelapseItem;
+import core.items.Weapon;
 import core.keyconfiguration.Key;
 import core.keyconfiguration.KeyAnnotation;
 import core.keyconfiguration.KeyConfig;
@@ -69,6 +70,8 @@ public class DemoPlayfield extends GameObject2D {
         myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
                 myPlayfield.getCharacters(), new GameElementCollision());
 
+//        myPlayfield.addCollisionGroup(myPlayfield.get)
+        
 		// Sprite Init / Or load funcitonality
 		// SpriteGroups already exist in AdvancedPlayfield
 		// use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
@@ -119,8 +122,8 @@ public class DemoPlayfield extends GameObject2D {
 		poison.setActive(true);
 		poison.setMovable(false);
 		poison.setLocation(300, 400);
-		poison.setTimer(5);
-		poison.setHitPoints(-1/5.0);
+		poison.setTimer(1000);
+		poison.setHitPoints(-1);
 		myPlayfield.addItem(poison);
 		
 		ItemDecorator block1 = new ItemDecorator(new BaseTile(this));
