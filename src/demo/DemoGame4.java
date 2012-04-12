@@ -51,7 +51,7 @@ public class DemoGame4 extends Game{
         
         NPC goomba1 = new Goomba(this);
         goomba1.setImages(this.getImages("resources/Goomba.png", 1, 1));
-        goomba1.setLocation(350, 20);
+        goomba1.setLocation(325, 20);
         goomba1.setMovable(true);
         myPlayfield.addCharacter(goomba1);
         
@@ -65,7 +65,7 @@ public class DemoGame4 extends Game{
         NPC goomba3 = new Goomba(this);
         goomba3.addPossibleState(new MoveState(goomba3, 1, true));
         goomba3.setImages(this.getImages("resources/Goomba.png", 1, 1));
-        goomba3.setLocation(300, 20);
+        goomba3.setLocation(275, 20);
         goomba3.setMovable(true);
         myPlayfield.addCharacter(goomba3);
         
@@ -125,7 +125,8 @@ public class DemoGame4 extends Game{
                                       myPlayfield.getSetting(),
                                       new CharacterPlatformCollision());
         
-        // same flaws as the two collisions above
+        // same flaws as the two collisions above and uses GameElementCollision
+        // since no PlayerCharacterCollision or CharacterCharacterCollision exists
         myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
                                       myPlayfield.getCharacters(),
                                       new GameElementCollision());

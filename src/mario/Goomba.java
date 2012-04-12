@@ -7,6 +7,7 @@ import com.golden.gamedev.Game;
 
 import charactersprites.GameElement;
 import charactersprites.NPC;
+import charactersprites.Player;
 import charactersprites.ai.DeadState;
 import charactersprites.ai.State;
 
@@ -29,7 +30,7 @@ public class Goomba extends NPC
     @Override
     public void afterHitFromTopBy (GameElement e)
     {
-        if (e instanceof Mario)
+        if (e instanceof Player)
             setCurrentState(new DeadState(this));
     }
     
