@@ -1,9 +1,6 @@
 package core.keyconfiguration;
 
 import core.characters.GameElement;
-import core.characters.Player;
-
-import com.golden.gamedev.Game;
 import com.golden.gamedev.GameObject;
 /**
  * 

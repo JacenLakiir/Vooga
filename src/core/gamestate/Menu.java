@@ -2,10 +2,8 @@ package core.gamestate;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import core.keyconfiguration.KeyAnnotation;

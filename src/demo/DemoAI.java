@@ -17,6 +17,7 @@ import core.characters.ai.PatrolState;
 import core.collision.CharacterPlatformCollision;
 import core.collision.GameElementCollision;
 import core.collision.PlayerCollectibleItemCollision;
+import core.gamestate.GameObject2D;
 import core.items.CollectibleInstantItem;
 import core.keyconfiguration.Key;
 import core.keyconfiguration.KeyAnnotation;
@@ -33,9 +34,8 @@ import core.tiles.Tile;
  * 
  * For testing NPC AI
  */
-public class DemoAI extends GameObject{
+public class DemoAI extends GameObject2D{
     private GameEngine engine;
-    private List<Key>           keyList;
     private AdvancedPlayField   myPlayfield;  
     public DemoAI(GameEngine arg0) {
         super(arg0);
@@ -152,16 +152,11 @@ public class DemoAI extends GameObject{
     @Override
     public void update (long t)
     {
+        super.update(t);
         myPlayfield.update(t);
-        checkKeyboardInput(t);
     }
     
-    private void checkKeyboardInput (long milliSec)
-    {
-        for (Key key : keyList)
-            if (key.isKeyDown(milliSec))
-                key.notifyObserver();
-    }
+
     
     @KeyAnnotation(action = "ESC")
     public void pause(){

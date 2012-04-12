@@ -25,6 +25,7 @@ import core.characters.ai.MoveState;
 import core.collision.CharacterPlatformCollision;
 import core.collision.GameElementCollision;
 import core.collision.PlayerCollectibleItemCollision;
+import core.gamestate.GameObject2D;
 import core.items.CollectibleInstantItem;
 import core.items.CollectibleInventoryItem;
 import core.items.CollectibleItem;
@@ -40,9 +41,8 @@ import core.tiles.ItemDecorator;
 import core.tiles.MovingDecorator;
 import core.tiles.Tile;
 
-public class DemoPlayfield extends GameObject {
+public class DemoPlayfield extends GameObject2D {
     private AdvancedPlayField myPlayfield;
-    private List<Key> keyList;
     private GameEngine engine;
 	public DemoPlayfield(GameEngine arg0) {
         super(arg0);
@@ -136,17 +136,11 @@ public class DemoPlayfield extends GameObject {
 	}
 
 	public void update(long arg0) {
+	    super.update(arg0);
 		myPlayfield.update(arg0);
-		checkKeyboardInput(arg0);
 	}
 	
-	public void checkKeyboardInput(long milliSec) {
-	        for(Key key : keyList){
-	            if(key.isKeyDown(milliSec)){
-	                key.notifyObserver();
-	            }
-	        }
-	}
+
 	
 	public void render(Graphics2D arg0) {
 		myPlayfield.render(arg0);

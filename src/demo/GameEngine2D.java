@@ -7,7 +7,6 @@ import java.util.Map;
 
 import core.gamestate.Menu;
 import core.gamestate.Pause;
-import core.keyconfiguration.Key;
 
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameLoader;

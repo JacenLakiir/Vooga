@@ -5,9 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import core.characters.GameElement;
-import core.characters.Player;
-import com.golden.gamedev.Game;
-import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;
 
 /**
