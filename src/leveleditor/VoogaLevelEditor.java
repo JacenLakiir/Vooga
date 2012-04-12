@@ -3,7 +3,7 @@
  */
 package leveleditor;
 
-import game.SpriteWrapper;
+
 import java.awt.*;
 import java.awt.datatransfer.*;
 import java.awt.dnd.*;
@@ -15,6 +15,9 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.event.*;
+
+import levelIO.SpriteWrapper;
+
 import com.golden.gamedev.object.Sprite;
 
 @SuppressWarnings("serial")
@@ -82,7 +85,7 @@ public class VoogaLevelEditor extends JFrame {
 
 	public void mouseClicked(MouseEvent e) {}
 
-	@Override
+	
 	public void mousePressed(MouseEvent e) {
 	    //System.out.println("pressed called");
 	    JLabel label = (JLabel) e.getComponent();
@@ -125,7 +128,7 @@ public class VoogaLevelEditor extends JFrame {
 
 	public void mouseClicked(MouseEvent e) {}
 
-	@Override
+	
 	public void mousePressed(final MouseEvent e) {
 	    ((JLabel) e.getComponent()).setBorder(BorderFactory.createLineBorder(Color.YELLOW));
 	    imagesrc = myLabelWrapperMap.get((JLabel) e.getComponent()).getImageSrc();

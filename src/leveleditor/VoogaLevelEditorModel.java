@@ -3,11 +3,13 @@
  */
 package leveleditor;
 
-import game.LevelState;
-import game.SpriteWrapper;
+
 import java.awt.Point;
 import java.io.File;
 import java.util.Map;
+
+import levelIO.LevelState;
+import levelIO.SpriteWrapper;
 
 
 public class VoogaLevelEditorModel
