@@ -3,45 +3,33 @@ package demo;
  * @author Kuang Han
  */
 
+import game.AdvancedPlayField;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.List;
-
-
-import physicsengine.NewtonianCollision;
-
 import keyconfiguration.Key;
 import keyconfiguration.KeyConfig;
-
-
-import tiles.*;
-import voogaobject.MergedCollision;
-import voogaobject.GamePlayField;
-
-
-
-
+import tiles.BaseTile;
+import tiles.Tile;
+import charactersprites.Player;
+import collision.GameElementCollision;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.Background;
-import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ColorBackground;
 
-import charactersprites.Player;
-
 public class DemoGame1 extends Game{
 
-    GamePlayField    playfield;  
+    AdvancedPlayField    playfield;  
     Background       background;
     KeyConfig        keyConfig;
     List<Key>        keyList;
     @Override
     public void initResources() { 
-        playfield = new GamePlayField();
+        playfield = new AdvancedPlayField(10000, 50);
         
         background = new ColorBackground(Color.gray, 640, 480);
         playfield.setBackground(background);
@@ -125,11 +113,7 @@ public class DemoGame1 extends Game{
         playfield.addGroup(blocks);
         playfield.addGroup(characters);
         
-        MergedCollision collision = new MergedCollision();
-        collision.addSpriteGroup(blocks);
-        collision.addSpriteGroup(characters);
-        
-        playfield.addCollisionGroup(collision);
+        playfield.addCollisionGroup(blocks, characters, new GameElementCollision());
     }
 
     @Override

@@ -29,6 +29,7 @@ import charactersprites.NPC;
 import charactersprites.Player;
 import charactersprites.ai.MoveState;
 import collision.CharacterPlatformCollision;
+import collision.GameElementCollision;
 import collision.PlayerCollectibleItemCollision;
 
 import com.golden.gamedev.Game;
@@ -51,6 +52,12 @@ public class DemoGame3 extends Game {
 
 		myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
 		        myPlayfield.getItems(), new PlayerCollectibleItemCollision());
+		
+        myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
+                myPlayfield.getSetting(), new CharacterPlatformCollision());
+        
+        myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
+                myPlayfield.getCharacters(), new GameElementCollision());
 
 		// Sprite Init / Or load funcitonality
 		// SpriteGroups already exist in AdvancedPlayfield
@@ -62,6 +69,13 @@ public class DemoGame3 extends Game {
 		temp.setLocation(25, 20);
 		temp.setMyHP(10);
 		myPlayfield.addPlayer(temp);
+		
+		NPC goomba1 = new Goomba(this);
+        goomba1.addPossibleState(new MoveState(goomba1, 1, true));
+        goomba1.setImages(this.getImages("resources/Goomba.png", 1, 1));
+        goomba1.setLocation(200, 20);
+        goomba1.setMovable(true);
+        myPlayfield.addCharacter(goomba1);
 
 		Tile temp1 = new BaseTile(this);
 		temp1.setImages(this.getImages("resources/Bar.png", 1, 1));
