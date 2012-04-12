@@ -1,11 +1,11 @@
 package collision;
 
-import mario.Mario;
 import physicsengine.NewtonianCollision;
 import setting.PenetrableDecorator;
 import setting.Platform;
 import charactersprites.Character;
 import com.golden.gamedev.object.Sprite;
+import demo.Mario;
 
 public class CharacterPlatformCollision extends NewtonianCollision{
 	//Character groups should deal with what happens to the character after collision. 

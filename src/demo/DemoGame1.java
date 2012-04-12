@@ -10,7 +10,6 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
-import mario.Mario;
 
 import physicsengine.NewtonianCollision;
 

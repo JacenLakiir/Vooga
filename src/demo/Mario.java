@@ -2,7 +2,7 @@
  * @author Kuang Han
  */
 
-package mario;
+package demo;
 
 import charactersprites.GameElement;
 import charactersprites.Player;

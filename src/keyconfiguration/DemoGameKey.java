@@ -9,7 +9,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
-import mario.Mario;
 
 
 import keyconfiguration.KeyConfig;
@@ -30,6 +29,7 @@ import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ColorBackground;
 
 import charactersprites.Player;
+import demo.Mario;
 
 public class DemoGameKey extends Game{
 

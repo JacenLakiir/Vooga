@@ -24,9 +24,10 @@ import setting.Platform;
 
 import keyconfiguration.Key;
 import keyconfiguration.KeyConfig;
-import mario.Mario;
 
+import charactersprites.NPC;
 import charactersprites.Player;
+import charactersprites.ai.MoveState;
 import collision.CharacterPlatformCollision;
 import collision.PlayerCollectibleItemCollision;
 

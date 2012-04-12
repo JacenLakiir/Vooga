@@ -9,8 +9,6 @@ import java.awt.Graphics2D;
 import java.util.List;
 import keyconfiguration.Key;
 import keyconfiguration.KeyConfig;
-import mario.Goomba;
-import mario.Mario;
 import setting.BasePlatform;
 import setting.BreakableDecorator;
 import setting.ItemDecorator;

@@ -1,4 +1,4 @@
-package mario;
+package demo;
 
 import java.util.List;
 
