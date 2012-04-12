@@ -4,6 +4,9 @@ import charactersprites.Player;
 
 import com.golden.gamedev.Game;
 
+/**
+ * @author Kathleen Oshima
+ */
 public class CollectibleTimelapseItem extends CollectibleItem {
 
 	public CollectibleTimelapseItem(Game game) {
@@ -22,13 +25,20 @@ public class CollectibleTimelapseItem extends CollectibleItem {
     }
 
 	@Override
-    public void upadatePlayerHitPoints(Player player) {
+    public void updatePlayerHitPoints(Player player) {
 	    // TODO Auto-generated method stub
     }
 
 	@Override
     public void updatePlayerLevel(Player player) {
 	    // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void updatePlayerPoints (Player player)
+    {
+        // TODO Auto-generated method stub
+        
     }
 
 }
