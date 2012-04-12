@@ -1,18 +1,11 @@
 package collision;
 
-import physicsengine.NewtonianCollision;
-import charactersprites.*;
-import charactersprites.Character;
 import mario.Mario;
+import physicsengine.NewtonianCollision;
 import setting.PenetrableDecorator;
 import setting.Platform;
-
-/**
- * @author Ian McMahon
- */
-
+import charactersprites.Character;
 import com.golden.gamedev.object.Sprite;
-import com.golden.gamedev.object.collision.CollisionGroup;
 
 public class CharacterPlatformCollision extends NewtonianCollision{
 	//Character groups should deal with what happens to the character after collision. 
@@ -31,15 +24,19 @@ public class CharacterPlatformCollision extends NewtonianCollision{
 		else{
 			revertPosition1();
 			if(collisionSide == BOTTOM_TOP_COLLISION){
+			    ((Character) arg0).afterHitFromBottomBy((Platform) arg1);
 				((Platform) arg1).afterHitFromTopBy((Character) arg0);
 			}
 			else if(collisionSide == TOP_BOTTOM_COLLISION){
+	             ((Character) arg0).afterHitFromTopBy((Platform) arg1);
 				((Platform) arg1).afterHitFromBottomBy((Character) arg0);
 			}
 			else if(collisionSide == LEFT_RIGHT_COLLISION){
+	             ((Character) arg0).afterHitFromLeftBy((Platform) arg1);
 				((Platform) arg1).afterHitFromRightBy((Character) arg0);
 			}
 			else if(collisionSide == RIGHT_LEFT_COLLISION){
+	             ((Character) arg0).afterHitFromRightBy((Platform) arg1);
 				((Platform) arg1).afterHitFromLeftBy((Character) arg0);
 			}
 		}		
