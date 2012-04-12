@@ -5,7 +5,7 @@
 package demo;
 
 
-import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 
 import core.characters.GameElement;
 import core.characters.Player;
@@ -13,7 +13,7 @@ import core.characters.Player;
 @SuppressWarnings("serial")
 public class Mario extends Player{
 
-    public Mario(Game game) {
+    public Mario(GameObject game) {
         super(game);
         resetStrength();    
     }
@@ -50,7 +50,8 @@ public class Mario extends Player{
         if (e instanceof Goomba)
         {
             System.out.println("Dead");
-            myGame.stop();
+//            myGame.stop();
+            
             return;
         }
     }
@@ -61,7 +62,7 @@ public class Mario extends Player{
         if (e instanceof Goomba)
         {
             System.out.println("Dead");
-            myGame.stop();
+//            myGame.stop();
             return;
         }
     }
@@ -72,7 +73,7 @@ public class Mario extends Player{
         if (e instanceof Goomba)
         {
             System.out.println("Dead");
-            myGame.stop();
+//            myGame.stop();
             return;
         }
     }

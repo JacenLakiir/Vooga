@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 
 
 
-import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 
 import core.characters.GameElement;
 
@@ -21,7 +21,7 @@ public abstract class Tile extends GameElement{
     /*
      * Constructor for a Concrete Platform
      */
-    public Tile (Game owner) {
+    public Tile (GameObject owner) {
         super(owner);
     }
 

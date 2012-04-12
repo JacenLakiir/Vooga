@@ -5,12 +5,12 @@
 package core.characters;
 
 
-import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 
 
 @SuppressWarnings("serial")
 public abstract class Character extends GameElement{
-    public Character(Game game) {
+    public Character(GameObject game) {
         super(game);
     }
     

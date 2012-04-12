@@ -1,7 +1,7 @@
 package core.items;
 
 
-import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 
 import core.characters.Player;
 /**
@@ -9,7 +9,7 @@ import core.characters.Player;
  */
 public class CollectibleInstantItem extends CollectibleItem {
 	
-	public CollectibleInstantItem(Game game) {
+	public CollectibleInstantItem(GameObject game) {
 	    super(game);
     }
 

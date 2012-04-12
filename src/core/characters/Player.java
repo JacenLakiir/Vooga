@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.golden.gamedev.engine.timer.SystemTimer;
-import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 
 import core.items.CollectibleItem;
 import core.keyconfiguration.Key;
@@ -26,7 +26,7 @@ public class Player extends Character{
     protected ArrayList<CollectibleItem> myInventory;
     protected double myHitPoints, myAttackPower, myDefensePower, myLevel, myPoints;
     
-    public Player(Game game) {
+    public Player(GameObject game) {
         super(game);
         myInventory = new ArrayList<CollectibleItem>();
         
@@ -51,7 +51,6 @@ public class Player extends Character{
     
     @KeyAnnotation(action = "sequence")
     public void sequenceKey(){
-        System.out.println("Sequential Key Triggered");
         this.setImages(myGame.getImages("resources/Mushroom.png",1,1));
     }
     

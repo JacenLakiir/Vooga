@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 
 import core.characters.Player;
 import core.tiles.Tile;
@@ -21,7 +22,7 @@ public class CollectibleInventoryItem extends CollectibleItem {
 	private ArrayList<Double> newPowers = new ArrayList<Double>();
 	private CollectibleItem collectibleItem;
 	
-	public CollectibleInventoryItem(Game game) {
+	public CollectibleInventoryItem(GameObject game) {
 	    super(game);
 	}
 	

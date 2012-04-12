@@ -1,7 +1,7 @@
 package core.items;
 
 
-import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 
 import core.characters.Player;
 
@@ -12,7 +12,7 @@ public class CollectibleTimelapseItem extends CollectibleItem {
 
 	public double time;
 	
-	public CollectibleTimelapseItem(Game game) {
+	public CollectibleTimelapseItem(GameObject game) {
 	    super(game);
     }
 

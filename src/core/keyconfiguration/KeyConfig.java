@@ -3,11 +3,12 @@ package core.keyconfiguration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import core.characters.GameElement;
+import core.characters.Player;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;
-
-import core.characters.Player;
 
 /**
  * 
@@ -16,17 +17,14 @@ import core.characters.Player;
  */
 public  class KeyConfig {
     private KeyConfigModel keyModel;
-    protected Game myGame;
-    protected Player myPlayer;
-    public KeyConfig(Player player, Game game) {
-        myPlayer = player;
+    protected GameObject myGame;
+    protected GameElement element;
+    public KeyConfig(GameElement player, GameObject game) {
+        element = player;
         myGame = game;
         keyModel = parseKeyConfig("configurations/KeyConfig.json");
     }
-    
-    public KeyConfig(GameEngine engine){
-        myGame = engine;
-    }
+
     
 
     private List<Key> constructInputKeyList(HashMap<String, String> keyMap){
@@ -34,9 +32,9 @@ public  class KeyConfig {
         for(String action : keyMap.keySet()){
             int length = keyMap.get(action).split(",").length;
             if(length == 1)
-                keys.add(new SingleInputKey(keyMap.get(action), action, myPlayer, myGame));
+                keys.add(new SingleInputKey(keyMap.get(action), action, element, myGame));
             if(length > 1)
-                keys.add(new SequentialInputKey(keyMap.get(action), action, myPlayer, myGame));                
+                keys.add(new SequentialInputKey(keyMap.get(action), action, element, myGame));                
         }
         return keys;
     }
@@ -48,19 +46,11 @@ public  class KeyConfig {
         }
         return keys;
     }
-
-//    public List<Key> getInputKeyList() {
-//        return constructKeyList(keyModel.getInputKeyMap());
-//    }
-//  
-//    
-//    public List<Key> getSystemKeyList() {
-//        return constructKeyList(keyModel.getSystemKeyMap());
-//    }
     
     public List<Key> getKeyList(){
         List<Key> keys = new ArrayList<Key> ();
-        keys.addAll(constructInputKeyList(keyModel.getInputKeyMap()));
+        if(element !=null)
+            keys.addAll(constructInputKeyList(keyModel.getInputKeyMap()));
         keys.addAll(constructSystemKeyList(keyModel.getSystemKeyMap()));
         return keys;
     }

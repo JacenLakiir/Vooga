@@ -1,10 +1,10 @@
 package core.keyconfiguration;
 
+import core.characters.Player;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameEngine;
-
-import core.characters.Player;
+import com.golden.gamedev.GameObject;
 /**
  * 
  * @author Hui Dong
@@ -12,9 +12,9 @@ import core.characters.Player;
  */
 public class SystemKey extends Key{
 
-    private Game myGame;
+    private GameObject myGame;
     
-    public SystemKey(String value, String actionName, Game game) {
+    public SystemKey(String value, String actionName, GameObject game) {
         keyValue = value;
         action = actionName;
         myGame = game;        

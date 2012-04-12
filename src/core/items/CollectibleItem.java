@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 
 
-import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 
 import core.characters.GameElement;
 import core.characters.Player;
@@ -16,12 +16,12 @@ import core.tiles.Tile;
 @SuppressWarnings("serial")
 public abstract class CollectibleItem extends GameElement {
 
-	protected Game game;
+	protected GameObject game;
 	private boolean isInUse;
 	private double attackPower, defensePower, hitPoints, level, value;
 	
 	//Constructor for a collectible item
-	public CollectibleItem(Game game) {
+	public CollectibleItem(GameObject game) {
 		super();
 		attackPower = 0;
 	    defensePower = 0;

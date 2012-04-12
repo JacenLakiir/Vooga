@@ -7,7 +7,6 @@ import java.lang.reflect.Method;
 import core.characters.GameElement;
 import core.characters.Player;
 
-
 public class InputKeyObserver extends KeyObserver{
     private GameElement element;
     public InputKeyObserver(GameElement element) {

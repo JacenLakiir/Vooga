@@ -4,11 +4,11 @@
 
 package core.tiles;
 
-import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 
 public class BaseTile extends Tile {
 	
-	public BaseTile (Game owner) {
+	public BaseTile (GameObject owner) {
 		super(owner);
 		this.isUnmovable = true;
 		this.isPenetrable = false;

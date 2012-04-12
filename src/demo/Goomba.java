@@ -3,7 +3,7 @@ package demo;
 import java.util.List;
 
 
-import com.golden.gamedev.Game;
+import com.golden.gamedev.GameObject;
 
 import core.characters.GameElement;
 import core.characters.NPC;
@@ -18,12 +18,12 @@ import core.characters.ai.State;
 public class Goomba extends NPC
 {
 
-    public Goomba (Game game)
+    public Goomba (GameObject game)
     {
         super(game);
     }
     
-    public Goomba (Game game, List<State> possibleStates)
+    public Goomba (GameObject game, List<State> possibleStates)
     {
         super(game, possibleStates);
     }

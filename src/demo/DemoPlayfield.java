@@ -14,7 +14,8 @@ import java.util.List;
 
 
 
-import com.golden.gamedev.Game;
+import com.golden.gamedev.GameEngine;
+import com.golden.gamedev.GameObject;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.background.ColorBackground;
 
@@ -29,6 +30,7 @@ import core.items.CollectibleInventoryItem;
 import core.items.CollectibleItem;
 import core.items.CollectibleTimelapseItem;
 import core.keyconfiguration.Key;
+import core.keyconfiguration.KeyAnnotation;
 import core.keyconfiguration.KeyConfig;
 import core.playfield.AdvancedPlayField;
 import core.playfield.KeepLeftFirstPlayerGameScroller;
@@ -38,10 +40,16 @@ import core.tiles.ItemDecorator;
 import core.tiles.MovingDecorator;
 import core.tiles.Tile;
 
-public class DemoPlayfield extends Game {
+public class DemoPlayfield extends GameObject {
+    private AdvancedPlayField myPlayfield;
+    private List<Key> keyList;
+    private GameEngine engine;
+	public DemoPlayfield(GameEngine arg0) {
+        super(arg0);
+        engine = arg0;
+    }
 
-	private AdvancedPlayField myPlayfield;
-	private List<Key> keyList;
+
 	public void initResources() {
 		// Playfield Init
 		myPlayfield = new AdvancedPlayField(10000, 500);
@@ -144,10 +152,16 @@ public class DemoPlayfield extends Game {
 		myPlayfield.render(arg0);
 	}
 
-	public static void main(String[] args) {
-		GameLoader game = new GameLoader();
-		game.setup(new DemoPlayfield(), new Dimension(640, 480), false);
-		game.start();
-	}
+    @KeyAnnotation(action = "ESC")
+    public void pause(){
+        engine.nextGameID = GameEngine2D.PAUSE;
+        finish();
+    }
+    
+//	public static void main(String[] args) {
+//		GameLoader game = new GameLoader();
+//		game.setup(new DemoPlayfield(), new Dimension(640, 480), false);
+//		game.start();
+//	}
 
 }
