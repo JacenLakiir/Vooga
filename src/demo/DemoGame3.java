@@ -9,6 +9,7 @@ import game.KeepLeftFirstPlayerGameScroller;
 import items.CollectibleInstantItem;
 import items.CollectibleInventoryItem;
 import items.CollectibleItem;
+import items.CollectibleTimelapseItem;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -58,6 +59,7 @@ public class DemoGame3 extends Game {
         keyList = new KeyConfig(temp, this).getKeyList();
 		temp.setImages(this.getImages("resources/Mario1.png", 1, 1));
 		temp.setLocation(25, 20);
+		temp.setMyHP(10);
 		myPlayfield.addPlayer(temp);
 
 		Platform temp1 = new BasePlatform(this);
@@ -84,6 +86,15 @@ public class DemoGame3 extends Game {
 		System.out.println(coin.getAttackPower());
 		myPlayfield.addItem(coin);
 
+		CollectibleTimelapseItem poison = new CollectibleTimelapseItem(this);
+		poison.setImages(this.getImages("resources/Poison.png", 1, 1));
+		poison.setActive(true);
+		poison.setMovable(false);
+		poison.setLocation(300, 400);
+		poison.setTimer(5);
+		poison.setHitPoints(-1/5.0);
+		myPlayfield.addItem(poison);
+		
 		ItemDecorator block1 = new ItemDecorator(new BasePlatform(this));
 		block1.setMass(6);
 		block1.setMovable(false);

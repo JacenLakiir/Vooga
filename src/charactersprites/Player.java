@@ -28,6 +28,7 @@ public class Player extends Character{
     public Player(Game game) {
         super(game);
         myInventory = new ArrayList<CollectibleItem>();
+        
     }
     
     @Override
@@ -35,13 +36,15 @@ public class Player extends Character{
         super.update(milliSec);  
         updateAbilities();
         checkDead();
+        if (myHitPoints <= 0) {
+        	System.out.println("dead");
+        }
     }
     
     public void setKeyList(List<Key> list){
         keyList = list;
     }
    
-    
     public void checkDead() {
     }
     
@@ -119,7 +122,7 @@ public class Player extends Character{
     }
  
     public void setMyHP(double hp) {
-    	myHitPoints = hp;
+    	myHitPoints += hp;
     }
     
     public double getMyLevel() {
@@ -127,7 +130,7 @@ public class Player extends Character{
     }
     
     public void setMyLevel(double level) {
-    	myLevel = level;
+    	myLevel += level;
     }
     
     public double getMyAttackPower() {
@@ -135,7 +138,7 @@ public class Player extends Character{
     }
     
     public void setMyAttackPower(double power) {
-    	myAttackPower = power;
+    	myAttackPower += power;
     }
     
     public double getMyDefensePower() {
@@ -143,7 +146,7 @@ public class Player extends Character{
     }
     
     public void setMyDefensePower(double power) {
-    	myDefensePower = power;
+    	myDefensePower += power;
     }
     
     public double getMyPoints() {

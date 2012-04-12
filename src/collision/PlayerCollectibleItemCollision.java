@@ -19,10 +19,6 @@ import com.golden.gamedev.object.collision.CollisionGroup;
 
 public class PlayerCollectibleItemCollision extends NewtonianCollision {
 
-	private static CollisionManager collisionType;
-	private static SpriteGroup PlAYER_GROUP;
-	private static SpriteGroup COLLECTIBLE_GROUP;
-	
 	@Override
     public void collided(Sprite character, Sprite item) {
 		super.collided(character, item);

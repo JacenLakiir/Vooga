@@ -91,11 +91,26 @@ public abstract class CollectibleItem extends GameElement {
 	    return isInUse;
     }
 
+    public void updatePlayerAttackPower(Player player) {
+	    player.setMyAttackPower(this.getAttackPower());
+	    
+    }
 
-	public abstract void updatePlayerAttackPower(Player player);
-	public abstract void updatePlayerDefensePower(Player player);
-	public abstract void updatePlayerHitPoints(Player player);
-	public abstract void updatePlayerLevel(Player player);
-	public abstract void updatePlayerPoints(Player player);
+    public void updatePlayerDefensePower(Player player) {
+	    player.setMyDefensePower(this.getDefensePower());
+    }
 
+    public void updatePlayerHitPoints(Player player) {
+	    player.setMyHP(this.getHitPoints());
+	    
+    }
+
+    public void updatePlayerLevel(Player player) {
+		player.setMyLevel(this.getLevel());
+    }
+
+	public void updatePlayerPoints(Player player) {
+		player.setMyPoints(this.getValue());
+	}
+	
 }

@@ -6,29 +6,30 @@ import com.golden.gamedev.Game;
 
 public class CollectibleTimelapseItem extends CollectibleItem {
 
+	public double time;
+	
 	public CollectibleTimelapseItem(Game game) {
 	    super(game);
-	    // TODO Auto-generated constructor stub
     }
 
 	@Override
-    public void updatePlayerAttackPower(Player player) {
-	    // TODO Auto-generated method stub
-    }
+	public void decorate(Player player) {
+		updatePlayerPoints(player);
+		updatePlayerAttackPower(player);
+		updatePlayerDefensePower(player);
+		updatePlayerHitPoints(player);
+		updatePlayerLevel(player);
+		if (time == 0) {
+			this.setIsInUse(false);
+		}
+		time -= 1;
+	}
+	
+	public void setTimer(double time) {
+		this.time = time;
+	}
 
-	@Override
-    public void updatePlayerDefensePower(Player player) {
-	    // TODO Auto-generated method stub
-    }
-
-	@Override
-    public void upadatePlayerHitPoints(Player player) {
-	    // TODO Auto-generated method stub
-    }
-
-	@Override
-    public void updatePlayerLevel(Player player) {
-	    // TODO Auto-generated method stub
-    }
-
+	public double getTimer() {
+		return time;
+	}
 }
