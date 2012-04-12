@@ -6,19 +6,9 @@ package demo;
 
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.util.List;
-
-
-
-
-
 import com.golden.gamedev.GameEngine;
-import com.golden.gamedev.GameObject;
-import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.background.ColorBackground;
-
 import core.characters.NPC;
 import core.characters.Player;
 import core.characters.ai.MoveState;
@@ -27,10 +17,7 @@ import core.collision.GameElementCollision;
 import core.collision.PlayerCollectibleItemCollision;
 import core.gamestate.GameObject2D;
 import core.items.CollectibleInstantItem;
-import core.items.CollectibleInventoryItem;
-import core.items.CollectibleItem;
 import core.items.CollectibleTimelapseItem;
-import core.keyconfiguration.Key;
 import core.keyconfiguration.KeyAnnotation;
 import core.keyconfiguration.KeyConfig;
 import core.playfield.AdvancedPlayField;
@@ -42,13 +29,14 @@ import core.tiles.MovingDecorator;
 import core.tiles.Tile;
 
 public class DemoPlayfield extends GameObject2D {
+    
     private AdvancedPlayField myPlayfield;
     private GameEngine engine;
-	public DemoPlayfield(GameEngine arg0) {
+	
+    public DemoPlayfield(GameEngine arg0) {
         super(arg0);
         engine = arg0;
     }
-
 
 	public void initResources() {
 		// Playfield Init
@@ -65,6 +53,9 @@ public class DemoPlayfield extends GameObject2D {
 		
         myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
                 myPlayfield.getSetting(), new CharacterPlatformCollision());
+        
+        myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
+                myPlayfield.getCharacters(), new GameElementCollision());
         
         myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
                 myPlayfield.getCharacters(), new GameElementCollision());
@@ -86,7 +77,7 @@ public class DemoPlayfield extends GameObject2D {
 		NPC goomba1 = new Goomba(this);
         goomba1.addPossibleState(new MoveState(goomba1, 1, true));
         goomba1.setImages(this.getImages("resources/Goomba.png", 1, 1));
-        goomba1.setLocation(200, 20);
+        goomba1.setLocation(250, 400);
         goomba1.setMovable(true);
         myPlayfield.addCharacter(goomba1);
 
@@ -143,8 +134,6 @@ public class DemoPlayfield extends GameObject2D {
 		myPlayfield.update(arg0);
 	}
 	
-
-	
 	public void render(Graphics2D arg0) {
 		myPlayfield.render(arg0);
 	}
@@ -154,11 +143,5 @@ public class DemoPlayfield extends GameObject2D {
         engine.nextGameID = GameEngine2D.PAUSE;
         finish();
     }
-    
-//	public static void main(String[] args) {
-//		GameLoader game = new GameLoader();
-//		game.setup(new DemoPlayfield(), new Dimension(640, 480), false);
-//		game.start();
-//	}
 
 }

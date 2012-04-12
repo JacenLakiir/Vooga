@@ -1,15 +1,9 @@
 package demo;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.util.List;
-
 import com.golden.gamedev.GameEngine;
-import com.golden.gamedev.GameObject;
-import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.background.ColorBackground;
-
 import core.characters.NPC;
 import core.characters.Player;
 import core.characters.ai.MoveState;
@@ -19,7 +13,6 @@ import core.collision.GameElementCollision;
 import core.collision.PlayerCollectibleItemCollision;
 import core.gamestate.GameObject2D;
 import core.items.CollectibleInstantItem;
-import core.keyconfiguration.Key;
 import core.keyconfiguration.KeyAnnotation;
 import core.keyconfiguration.KeyConfig;
 import core.playfield.AdvancedPlayField;
@@ -34,10 +27,14 @@ import core.tiles.Tile;
  * 
  * For testing NPC AI
  */
-public class DemoAI extends GameObject2D{
-    private GameEngine engine;
+public class DemoAI extends GameObject2D
+{
+   
+    private GameEngine          engine;
     private AdvancedPlayField   myPlayfield;  
-    public DemoAI(GameEngine arg0) {
+    
+    public DemoAI(GameEngine arg0)
+    {
         super(arg0);
         engine = arg0;
     }
@@ -74,6 +71,7 @@ public class DemoAI extends GameObject2D{
         
         NPC goomba3 = new Goomba(this);
         goomba3.addPossibleState(new MoveState(goomba3, 1, true));
+        goomba3.addPossibleState(new PatrolState(goomba3, 25));
         goomba3.setImages(this.getImages("resources/Goomba.png", 1, 1));
         goomba3.setLocation(275, 20);
         goomba3.setMovable(true);
@@ -158,11 +156,12 @@ public class DemoAI extends GameObject2D{
         myPlayfield.update(t);
     }
     
+    @Override
     @KeyAnnotation(action = "ESC")
-    public void pause(){
+    public void pause()
+    {
         engine.nextGameID = GameEngine2D.PAUSE;
         finish();
-    }
-    
+    }  
 
 }
