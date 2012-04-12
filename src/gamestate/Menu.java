@@ -5,26 +5,29 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-
-import com.golden.gamedev.GameEngine;
-import com.golden.gamedev.GameObject;
+import keyconfiguration.KeyAnnotation;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
-
-public class Menu extends GameObject{
+/**
+ * 
+ * @author Hui Dong
+ *
+ */
+public class Menu extends MenuGameObject{
     private int optionID = 0;
     GameEngine2D engine;
     private Background background;
     private BufferedImage arrow;
     private static Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+
     static{
         map.put(0, GameEngine2D.GAME);
         map.put(1, GameEngine2D.GAME2);
         map.put(2, GameEngine2D.GAME3);
         map.put(3, GameEngine2D.GAME4);
-        map.put(4, GameEngine2D.MENU);
         
     }
 
@@ -35,6 +38,7 @@ public class Menu extends GameObject{
 
     @Override
     public void initResources() {
+        super.initResources();
         background = new ImageBackground(getImage("resources/StarDust.jpg"), 640, 480);
         arrow = getImage("resources/MenuArrow.png");
     }
@@ -54,34 +58,33 @@ public class Menu extends GameObject{
 
     @Override
     public void update(long arg0) {
-        if(keyPressed(KeyEvent.VK_ENTER)){
-            nextGameObject();
-        }
-        if(keyPressed(KeyEvent.VK_UP)){
-            up();
-        }
-        if(keyPressed(KeyEvent.VK_DOWN)){
-            down();
-        }
+        super.update(arg0);
     }
-    
-    
-    private void  down(){
+
+    @KeyAnnotation(action = "down")
+    public void  down(){
         if(optionID < 4){
             optionID++;
         }
     }
     
-    private void up(){
+    @KeyAnnotation(action = "up")
+    public void up(){
         if(optionID > 0){
             optionID--;
         }
     }
     
-    private void nextGameObject(){
+    @KeyAnnotation(action = "enter")
+    public void nextGameObject(){
+        if(optionID == 4){
+            finish();
+            return;
+        }
         engine.nextGameID = map.get(optionID);
         engine.setPreivousGameID(map.get(optionID));
         finish();
     }
+    
 
 }

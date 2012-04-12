@@ -3,6 +3,8 @@ package keyconfiguration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import charactersprites.GameElement;
 import charactersprites.Player;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameEngine;
@@ -16,9 +18,9 @@ import com.golden.gamedev.GameObject;
 public  class KeyConfig {
     private KeyConfigModel keyModel;
     protected GameObject myGame;
-    protected Player myPlayer;
-    public KeyConfig(Player player, GameObject game) {
-        myPlayer = player;
+    protected GameElement element;
+    public KeyConfig(GameElement player, GameObject game) {
+        element = player;
         myGame = game;
         keyModel = parseKeyConfig("configurations/KeyConfig.json");
     }
@@ -30,9 +32,9 @@ public  class KeyConfig {
         for(String action : keyMap.keySet()){
             int length = keyMap.get(action).split(",").length;
             if(length == 1)
-                keys.add(new SingleInputKey(keyMap.get(action), action, myPlayer, myGame));
+                keys.add(new SingleInputKey(keyMap.get(action), action, element, myGame));
             if(length > 1)
-                keys.add(new SequentialInputKey(keyMap.get(action), action, myPlayer, myGame));                
+                keys.add(new SequentialInputKey(keyMap.get(action), action, element, myGame));                
         }
         return keys;
     }
@@ -47,7 +49,8 @@ public  class KeyConfig {
     
     public List<Key> getKeyList(){
         List<Key> keys = new ArrayList<Key> ();
-        keys.addAll(constructInputKeyList(keyModel.getInputKeyMap()));
+        if(element !=null)
+            keys.addAll(constructInputKeyList(keyModel.getInputKeyMap()));
         keys.addAll(constructSystemKeyList(keyModel.getSystemKeyMap()));
         return keys;
     }

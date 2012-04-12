@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.util.HashMap;
 import java.util.Map;
 
+import keyconfiguration.Key;
+
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.GameObject;
@@ -13,7 +15,11 @@ import demo.DemoGame1;
 import demo.DemoGame2;
 import demo.DemoGame3;
 import demo.DemoGame4;
-
+/**
+ * 
+ * @author Hui Dong
+ *
+ */
 public class GameEngine2D extends GameEngine{
     private static Map<Integer, GameObject> map = new HashMap<Integer, GameObject>();
     public static final int GAME = 2;
@@ -56,5 +62,7 @@ public class GameEngine2D extends GameEngine{
         game.setup(new GameEngine2D(), new Dimension(640,480), false); 
         game.start();
     }
+    
+
     
 }

@@ -7,12 +7,18 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
+import keyconfiguration.KeyAnnotation;
+
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
-
-public class Pause extends GameObject{
+/**
+ * 
+ * @author Hui Dong
+ *
+ */
+public class Pause extends MenuGameObject{
     private static Map<Integer, Integer> map = new HashMap<Integer, Integer>();
     static{
         map.put(0, GameEngine2D.GAME);
@@ -34,6 +40,7 @@ public class Pause extends GameObject{
 
     @Override
     public void initResources() {
+        super.initResources();
         background = new ImageBackground(getImage("resources/StarDust.jpg"), 640, 480);
         arrow = getImage("resources/MenuArrow.png");
     }
@@ -51,30 +58,27 @@ public class Pause extends GameObject{
 
     @Override
     public void update(long arg0) {
-        if(keyPressed(KeyEvent.VK_ENTER)){
-            enter();
-        }
-        if(keyPressed(KeyEvent.VK_UP)){
-            up();
-        }
-        if(keyPressed(KeyEvent.VK_DOWN)){
-            down();
-        }    
+        super.update(arg0);
       }
 
-    private void  down(){
+    
+    @KeyAnnotation(action = "down")
+    public void  down(){
         if(optionID < 2){
             optionID++;
         }
     }
     
-    private void up(){
+    
+    @KeyAnnotation(action = "up")
+    public void up(){
         if(optionID > 0){
             optionID--;
         }
     }
     
-    private void enter(){
+    @KeyAnnotation(action = "enter")
+    public void nextGameObject() {
         if(optionID ==1 || optionID == 0){
             engine.continueGame();
         }
@@ -83,8 +87,9 @@ public class Pause extends GameObject{
         }
         if(optionID == 2)
             engine.nextGameID = GameEngine2D.MENU;
-        finish();
+        finish();        
     }
+
     
     
 }
