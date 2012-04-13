@@ -47,8 +47,11 @@ public class Mario extends Player{
         if (e instanceof Goomba)
         {
             System.out.println("Dead");
-//            myGame.stop();
-            
+            return;
+        }
+        if (e instanceof Koopa)
+        {
+            handleKoopaSideCollision((Koopa) e);
             return;
         }
     }
@@ -59,7 +62,11 @@ public class Mario extends Player{
         if (e instanceof Goomba)
         {
             System.out.println("Dead");
-//            myGame.stop();
+            return;
+        }
+        if (e instanceof Koopa)
+        {
+            handleKoopaSideCollision((Koopa) e);
             return;
         }
     }
@@ -67,13 +74,19 @@ public class Mario extends Player{
     @Override
     public void afterHitFromTopBy (GameElement e)
     {
-        if (e instanceof Goomba)
+        if (e instanceof Goomba || e instanceof Koopa)
         {
             System.out.println("Dead");
-//            myGame.stop();
             return;
         }
     }
-
+    
+    private void handleKoopaSideCollision (Koopa k)
+    {
+        if (k.isInShellState() && k.getShellSpeed() != 0)
+            System.out.println("Dead");
+        else if (!k.isInShellState())
+            System.out.println("Dead");
+    }
 
 }

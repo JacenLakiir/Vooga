@@ -36,13 +36,23 @@ public class Goomba extends NPC
     @Override
     public void afterHitFromRightBy (GameElement e)
     {
+        if (e instanceof Koopa)
+            handleKoopaSideCollision((Koopa) e);
         setDirection(-1);
     }
     
     @Override
     public void afterHitFromLeftBy (GameElement e)
     {
+        if (e instanceof Koopa)
+            handleKoopaSideCollision((Koopa) e);
         setDirection(1);
+    }
+    
+    private void handleKoopaSideCollision (Koopa k)
+    {
+        if (k.isInShellState() && k.getShellSpeed() != 0)
+            setActive(false);
     }
     
 }
