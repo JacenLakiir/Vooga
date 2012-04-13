@@ -8,8 +8,8 @@ import java.awt.Point;
 import java.io.File;
 import java.util.Map;
 
-import levelIO.LevelState;
-import levelIO.SpriteWrapper;
+import levelio.LevelState;
+import levelio.SpriteWrapper;
 
 
 public class VoogaLevelEditorModel
