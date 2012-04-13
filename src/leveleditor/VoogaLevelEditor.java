@@ -16,7 +16,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.event.*;
 
-import levelIO.SpriteWrapper;
+import levelio.SpriteWrapper;
 
 import com.golden.gamedev.object.Sprite;
 
