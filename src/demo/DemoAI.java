@@ -15,7 +15,7 @@ import core.gamestate.GameObject2D;
 import core.items.CollectibleInstantItem;
 import core.keyconfiguration.KeyConfig;
 import core.playfield.AdvancedPlayField;
-import core.playfield.KeepLeftFirstPlayerGameScroller;
+import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
 import core.tiles.BaseTile;
 import core.tiles.BreakableDecorator;
 import core.tiles.ItemDecorator;
