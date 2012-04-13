@@ -47,8 +47,7 @@ public class Mario extends Player{
         if (e instanceof Goomba)
         {
             System.out.println("Dead");
-//            myGame.stop();
-            
+//            myGame.stop();            
             return;
         }
     }
