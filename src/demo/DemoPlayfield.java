@@ -160,10 +160,5 @@ public class DemoPlayfield extends GameObject2D {
         myPlayfield.render(arg0);
     }
 
-    @KeyAnnotation(action = "ESC")
-    public void pause(){
-        engine.nextGameID = GameEngine2D.PAUSE;
-        finish();
-    }
 
 }

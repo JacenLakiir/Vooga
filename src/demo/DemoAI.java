@@ -155,12 +155,6 @@ public class DemoAI extends GameObject2D
         myPlayfield.update(t);
     }
     
-    @Override
-    @KeyAnnotation(action = "ESC")
-    public void pause()
-    {
-        engine.nextGameID = GameEngine2D.PAUSE;
-        finish();
-    }  
+
 
 }
