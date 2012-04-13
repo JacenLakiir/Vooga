@@ -15,7 +15,6 @@ public class CollectibleTimelapseItem extends CollectibleItem {
 	Timer timerEnd;
 	Player player;
 	long timePassed;
-//	long endTimer = timePassed + 5000;
 	
 	public void update(long elapsedTime) {
 		timePassed = elapsedTime;

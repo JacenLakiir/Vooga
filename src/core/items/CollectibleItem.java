@@ -28,7 +28,6 @@ public abstract class CollectibleItem extends GameElement {
 	    hitPoints = 0;
 	    level = 0;
 	    value = 0;
-//		this.game = game;
 	}
 	
 	public CollectibleItem() {
