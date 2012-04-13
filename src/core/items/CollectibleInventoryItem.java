@@ -20,12 +20,10 @@ public class CollectibleInventoryItem extends CollectibleItem {
 	private double level;
 	private double points;
 	private ArrayList<Double> newPowers = new ArrayList<Double>();
-	private CollectibleItem collectibleItem;
 	
 	public CollectibleInventoryItem(GameObject game) {
 	    super(game);
 	}
-	
 	
 	public ArrayList<Double> updatePower() {
 		return newPowers;

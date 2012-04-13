@@ -4,16 +4,10 @@
 
 package core.characters;
 
-
-
 import java.util.ArrayList;
-import java.util.List;
-
-import com.golden.gamedev.engine.timer.SystemTimer;
 import com.golden.gamedev.GameObject;
-
 import core.items.CollectibleItem;
-import core.keyconfiguration.Key;
+import core.items.Weapon;
 import core.keyconfiguration.KeyAnnotation;
 
 
@@ -22,15 +16,10 @@ public class Player extends Character{
     protected double strengthUp, strengthDown, strengthLeft, strengthRight;
     protected ArrayList<CollectibleItem> myInventory;
     protected double myAttackPower, myDefensePower, myLevel, myPoints;
-//    protected double baseHitPoints, baseAttackPower, baseDefensePower, baseLevel, basePoints;
-//    protected ArrayList<Double> baseAttributes;
     
     public Player(GameObject game) {
         super(game);
         myInventory = new ArrayList<CollectibleItem>();
-//        for (double att : baseAttributes) {
-//        	att = 0;
-//        }
     }
     
     @Override
@@ -47,6 +36,10 @@ public class Player extends Character{
     public void checkDead() {
     }
     
+    protected void giveStrengthUp() {
+        this.addAcceleration(0, strengthUp*stdGravity);
+    }
+    
     @KeyAnnotation(action = "sequence")
     public void sequenceKey(){
         this.setImages(myGame.getImages("resources/Mushroom.png",1,1));
@@ -54,7 +47,7 @@ public class Player extends Character{
     
     @KeyAnnotation(action = "up")
     public void keyUpPressed() {
-        this.addAcceleration(0, strengthUp*stdGravity);
+        this.giveStrengthUp();
     }
     
     @KeyAnnotation(action = "down")
@@ -73,8 +66,8 @@ public class Player extends Character{
     }
     
 //    @KeyAnnotation(action = "space")
-//    public void keySpacePressed() {
-//    	useWeapon();
+//    public Weapon keySpacePressed() {
+//    	return Weapon.useWeapon();
 //    }
 
     public void keyAPressed() {

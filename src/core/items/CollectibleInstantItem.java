@@ -13,7 +13,6 @@ public class CollectibleInstantItem extends CollectibleItem {
 	    super(game);
     }
 
-	
 	@Override
 	public void decorate(Player player) {
 		updatePlayerPoints(player);

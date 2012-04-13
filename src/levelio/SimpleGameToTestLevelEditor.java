@@ -13,7 +13,7 @@ import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.*;
 import com.golden.gamedev.object.background.*;
 
-import core.playfield.GameScroller;
+import core.playfield.scroller.GameScroller;
 
 public class SimpleGameToTestLevelEditor extends Game {
 

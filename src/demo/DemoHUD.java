@@ -2,8 +2,11 @@ package demo;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+
+
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.object.background.ColorBackground;
+
 import core.characters.NPC;
 import core.characters.Player;
 import core.characters.ai.MoveState;
@@ -16,37 +19,42 @@ import core.items.CollectibleInstantItem;
 import core.items.CollectibleTimelapseItem;
 import core.keyconfiguration.KeyConfig;
 import core.playfield.AdvancedPlayField;
+import core.playfield.hud.DataProxy;
+import core.playfield.hud.HUDWidget;
+import core.playfield.hud.TextWidget;
 import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
-import core.tiles.BaseTile;
-import core.tiles.BreakableDecorator;
-import core.tiles.FallingDecorator;
-import core.tiles.ItemDecorator;
-import core.tiles.MovingDecorator;
-import core.tiles.Tile;
+import core.tiles.*;
 
 /**
- * @author Siyang Chen
- * @author Hui Dong
- * @author Kevin Han
- * @author Ian McMahon
- * @author Eric Mercer (JacenLakiir)
- * @author Kathleen Oshima
  * @author Glenn Rivkees (grivkees)
- * @author Michael Zhou
  */
-public class DemoPlayfield extends GameObject2D {
+public class DemoHUD extends GameObject2D {
     
     private AdvancedPlayField myPlayfield;
     
-    public DemoPlayfield(GameEngine arg0) {
+    public DemoHUD(GameEngine arg0) {
         super(arg0);
     }
 
     public void initResources() {
+   	
         // Playfield Init
-        myPlayfield = new AdvancedPlayField(10000, 500);
+        myPlayfield = new AdvancedPlayField(1000, 500);
         myPlayfield.setBackground(new ColorBackground(Color.gray));
         myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
+        
+        
+        myPlayfield.addHUDWidget(new TextWidget("Coins", new DataProxy(){
+			public double getDouble() {
+				return myPlayfield.getPlayer().getMyPoints();
+			}
+        }));
+        
+        myPlayfield.addHUDWidget(new TextWidget("Level", new DataProxy(){
+			public double getDouble() {
+				return myPlayfield.getPlayer().getMyLevel();
+			}
+        }));
 
         // Collisions
         myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
@@ -63,10 +71,6 @@ public class DemoPlayfield extends GameObject2D {
         
         myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
                 myPlayfield.getCharacters(), new GameElementCollision());
-
-		// Sprite Init / Or load funcitonality
-		// SpriteGroups already exist in AdvancedPlayfield
-		// use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
 
         // Sprite Init / Or load funcitonality
         // SpriteGroups already exist in AdvancedPlayfield
@@ -117,7 +121,7 @@ public class DemoPlayfield extends GameObject2D {
         goomba4.setMovable(true);
         myPlayfield.addCharacter(goomba4);
 
-        Tile temp1 = new BaseTile(this);
+        Tile temp1 = new FrictionlessDecorator(new BaseTile(this));
         temp1.setImages(this.getImages("resources/Bar.png", 1, 1));
         temp1.setLocation(0, 440);
         myPlayfield.addSetting(temp1);
@@ -128,18 +132,22 @@ public class DemoPlayfield extends GameObject2D {
         myPlayfield.addSetting(temp2);
 
         Tile block2 = new BreakableDecorator(new BaseTile(this));
-        block2.setMass(6);
-        block2.setMovable(false);
         block2.setImages(this.getImages("resources/Block2Break.png", 8, 1));
         block2.setLocation(160, 200);
         myPlayfield.addSetting(block2);
+        
+        Tile block3 = new PushableDecorator(new BaseTile(this));
+        block3.setImages(getImages("resources/Block3.png", 1, 1));
+        block3.setLocation(200, 400);
+        myPlayfield.addSetting(block3);
 
         CollectibleInstantItem coin = new CollectibleInstantItem(this);
         coin.setImages(this.getImages("resources/Coin.png", 1, 1));
         coin.setActive(false);
         coin.setValue(3);
+        System.out.println(coin.getAttackPower());
         myPlayfield.addItem(coin);
-        
+
         CollectibleTimelapseItem poison = new CollectibleTimelapseItem(this);
         poison.setImages(this.getImages("resources/Poison.png", 1, 1));
         poison.setActive(true);
@@ -151,7 +159,10 @@ public class DemoPlayfield extends GameObject2D {
         myPlayfield.addItem(poison);
         
         ItemDecorator block1 = new ItemDecorator(new BaseTile(this));
-        block1.set(this.getImages("resources/Block1.png", 1, 1),100, 200);
+        block1.setMass(6);
+        block1.setMovable(false);
+        block1.setImages(this.getImages("resources/Block1.png", 1, 1));
+        block1.setLocation(100, 200);
         block1.addItem(coin);
         myPlayfield.addSetting(block1);
         
@@ -160,20 +171,16 @@ public class DemoPlayfield extends GameObject2D {
         middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
         myPlayfield.addSetting(middleBar);
 
-      Tile otherBar = new FallingDecorator(new BaseTile(this), 1000);
-      otherBar.set(getImages("resources/SmallBar.png",1,1), 1250, 300);
-      myPlayfield.addSetting(otherBar);
-	}
+    }
 
-	public void update(long arg0) {
-	    super.update(arg0);
-		myPlayfield.update(arg0);
-	}
-
-
-	public void render(Graphics2D arg0) {
-		myPlayfield.render(arg0);
-	}
-
+    public void update (long t) {
+        super.update(t);
+        myPlayfield.update(t);
+    }
+    
+    public void render(Graphics2D g) {
+    	myPlayfield.render(g);
+    }
+    
 
 }

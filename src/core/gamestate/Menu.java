@@ -26,8 +26,8 @@ public class Menu extends MenuGameObject{
     static{
         map.put(0, GameEngine2D.GAMEAI);
         map.put(1, GameEngine2D.GAME_PLAYFIELD);
-
-        
+        map.put(2, GameEngine2D.GAME_HUD);
+        map.put(3, GameEngine2D.EXIT);
     }
 
     public Menu(GameEngine2D engine) {
@@ -48,7 +48,8 @@ public class Menu extends MenuGameObject{
         graphic.setColor( Color.WHITE );
         graphic.drawString("DemoAI", 320, 240);
         graphic.drawString("DemoPlayField", 320, 260);     
-        graphic.drawString("EXIT", 320, 280);
+        graphic.drawString("DemoHUD", 320, 280);   
+        graphic.drawString("EXIT", 320, 300);
         graphic.drawImage(arrow, 300, 230 + optionID*20, null);
     }
 
@@ -59,7 +60,7 @@ public class Menu extends MenuGameObject{
 
     @KeyAnnotation(action = "down")
     public void  down(){
-        if(optionID < 2){
+        if(optionID < 3){
             optionID++;
         }
     }
@@ -73,7 +74,7 @@ public class Menu extends MenuGameObject{
     
     @KeyAnnotation(action = "enter")
     public void nextGameObject(){
-        if(optionID == 2){
+        if(optionID == 3){
             finish();
             return;
         }
