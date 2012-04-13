@@ -17,14 +17,17 @@ import com.golden.gamedev.object.background.ParallaxBackground;
 
 import core.characters.*;
 import core.characters.Character;
-import core.collision.PlayerCollectibleItemCollision;
 import core.collision.SideScrollerBoundsCollision;
 import core.items.CollectibleItem;
+import core.playfield.hud.HUD;
+import core.playfield.hud.HUDWidget;
+import core.playfield.scroller.GameScroller;
 import core.tiles.Tile;
 
 public class AdvancedPlayField extends PlayField {
 	
 	private GameScroller gamescroller;
+	private HUD			hud;
 	
     private SpriteGroup Players;
     private SpriteGroup Characters;
@@ -47,6 +50,8 @@ public class AdvancedPlayField extends PlayField {
     	// Add Bounds Collsion
     	this.addCollisionGroup(this.getPlayers(),
 		        null, new SideScrollerBoundsCollision(this.getBackground()));
+    	
+    	hud = new HUD();
     }
 	
 	/*
@@ -60,11 +65,24 @@ public class AdvancedPlayField extends PlayField {
 	}
 	
 	/*
+	 * Heads Up Display 
+	 */
+	public void addHUDWidget (HUDWidget w) {
+		hud.addWidget(w);
+	}
+	
+	/*
 	 * Additional Render Stuff
 	 */
 	public void render(Graphics2D g) {
 		gamescroller.scroll();
 		super.render(g);
+    	hud.render(g);
+	}
+	
+	public void update (long t) {
+		super.update(t);
+		hud.update(t);
 	}
 	
 	/*
@@ -73,12 +91,12 @@ public class AdvancedPlayField extends PlayField {
 	
     public void setBackground(Background backgr) {
     	Background[] bkg = ((ParallaxBackground) this.getBackground()).getParallaxBackground();
-        if (backgr == null) {
-        	bkg[1] = Background.getDefaultBackground();
-        } else {
-        	bkg[1] = backgr;
-        }
+        bkg[1] = backgr;
         super.setBackground(new ParallaxBackground(bkg));
+    }
+    
+    public void setBackground() {
+    	setBackground(Background.getDefaultBackground());
     }
     
     /*
@@ -102,6 +120,9 @@ public class AdvancedPlayField extends PlayField {
      */
     public SpriteGroup getPlayers () {
     	return Players;
+    }
+    public Player getPlayer () {
+    	return (Player) Players.getActiveSprite();
     }
     public SpriteGroup getCharacters() {
     	return Characters;

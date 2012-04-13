@@ -59,6 +59,7 @@ public class Mario extends Player{
 
     }
 
+
     @Override
     public void afterHitFromRightBy (GameElement e) {
         super.afterHitFromRightBy(e);
@@ -108,6 +109,28 @@ public class Mario extends Player{
     public void afterHitFromTopBy (Goomba e) {
         checkDead();
     }
-
+    
+    public void afterHitFromRightBy (Koopa k)
+    {
+        handleKoopaSideCollision(k);
+    }
+    
+    public void afterHitFromLeftBy (Koopa k)
+    {
+        handleKoopaSideCollision(k);
+    }
+    
+    public void afterHitFromTopBy (Koopa k)
+    {
+        checkDead();
+    }
+    
+    private void handleKoopaSideCollision (Koopa k)
+    {
+        if (k.isInShellState() && k.getShellSpeed() != 0)
+            checkDead();
+        else if (!k.isInShellState())
+            checkDead();
+    }
 
 }

@@ -25,6 +25,7 @@ public class GameEngine2D extends GameEngine{
     public static final int MENU = 1;
     public static final int EXIT = 4;
     public static final int GAME_PLAYFIELD = 5;
+    public static final int GAME_HUD = 6;
 
     private int previousGameID;
     public GameEngine2D(){
@@ -35,6 +36,7 @@ public class GameEngine2D extends GameEngine{
         map.put(MENU, new Menu(this));
         map.put(GAMEAI, new DemoAI(this));
         map.put(GAME_PLAYFIELD, new DemoPlayfield(this));
+        map.put(GAME_HUD, new DemoHUD(this));
         map.put(PAUSE, new Pause(this));
     }
     

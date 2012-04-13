@@ -2,8 +2,11 @@ package demo;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+
+
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.object.background.ColorBackground;
+
 import core.characters.NPC;
 import core.characters.Player;
 import core.characters.ai.MoveState;
@@ -16,6 +19,9 @@ import core.items.CollectibleInstantItem;
 import core.items.CollectibleTimelapseItem;
 import core.keyconfiguration.KeyConfig;
 import core.playfield.AdvancedPlayField;
+import core.playfield.hud.DataProxy;
+import core.playfield.hud.HUDWidget;
+import core.playfield.hud.TextWidget;
 import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
 import core.tiles.BaseTile;
 import core.tiles.BreakableDecorator;
@@ -24,28 +30,35 @@ import core.tiles.MovingDecorator;
 import core.tiles.Tile;
 
 /**
- * @author Siyang Chen
- * @author Hui Dong
- * @author Kevin Han
- * @author Ian McMahon
- * @author Eric Mercer (JacenLakiir)
- * @author Kathleen Oshima
  * @author Glenn Rivkees (grivkees)
- * @author Michael Zhou
  */
-public class DemoPlayfield extends GameObject2D {
+public class DemoHUD extends GameObject2D {
     
     private AdvancedPlayField myPlayfield;
     
-    public DemoPlayfield(GameEngine arg0) {
+    public DemoHUD(GameEngine arg0) {
         super(arg0);
     }
 
     public void initResources() {
+   	
         // Playfield Init
-        myPlayfield = new AdvancedPlayField(10000, 500);
+        myPlayfield = new AdvancedPlayField(1000, 500);
         myPlayfield.setBackground(new ColorBackground(Color.gray));
         myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
+        
+        
+        myPlayfield.addHUDWidget(new TextWidget("Coins", new DataProxy(){
+			public double getDouble() {
+				return myPlayfield.getPlayer().getMyPoints();
+			}
+        }));
+        
+        myPlayfield.addHUDWidget(new TextWidget("Level", new DataProxy(){
+			public double getDouble() {
+				return myPlayfield.getPlayer().getMyLevel();
+			}
+        }));
 
         // Collisions
         myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
@@ -62,10 +75,6 @@ public class DemoPlayfield extends GameObject2D {
         
         myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
                 myPlayfield.getCharacters(), new GameElementCollision());
-
-		// Sprite Init / Or load funcitonality
-		// SpriteGroups already exist in AdvancedPlayfield
-		// use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
 
         // Sprite Init / Or load funcitonality
         // SpriteGroups already exist in AdvancedPlayfield
@@ -163,17 +172,16 @@ public class DemoPlayfield extends GameObject2D {
         middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
         myPlayfield.addSetting(middleBar);
 
-	}
+    }
 
-	public void update(long arg0) {
-	    super.update(arg0);
-		myPlayfield.update(arg0);
-	}
-
-
-	public void render(Graphics2D arg0) {
-		myPlayfield.render(arg0);
-	}
-
+    public void update (long t) {
+        super.update(t);
+        myPlayfield.update(t);
+    }
+    
+    public void render(Graphics2D g) {
+    	myPlayfield.render(g);
+    }
+    
 
 }

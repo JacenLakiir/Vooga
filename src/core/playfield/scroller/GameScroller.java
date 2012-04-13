@@ -1,7 +1,7 @@
 /**
  * @author Glenn Rivkees (grivkees)
  */
-package core.playfield;
+package core.playfield.scroller;
 
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.SpriteGroup;
