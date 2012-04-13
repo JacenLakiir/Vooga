@@ -17,7 +17,6 @@ public class TextWidget extends HUDWidget {
 
 	@Override
 	public void update(long t) {
-		System.out.println(dp.getDouble());
 		myValue = Double.toString(dp.getDouble());
 	}
 
