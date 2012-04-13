@@ -27,8 +27,7 @@ public class Menu extends MenuGameObject{
         map.put(0, GameEngine2D.GAMEAI);
         map.put(1, GameEngine2D.GAME_PLAYFIELD);
         map.put(2, GameEngine2D.GAME_HUD);
-
-        
+        map.put(3, GameEngine2D.EXIT);
     }
 
     public Menu(GameEngine2D engine) {
@@ -61,7 +60,7 @@ public class Menu extends MenuGameObject{
 
     @KeyAnnotation(action = "down")
     public void  down(){
-        if(optionID < 2){
+        if(optionID < 3){
             optionID++;
         }
     }

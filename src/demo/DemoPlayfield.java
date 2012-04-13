@@ -14,7 +14,6 @@ import core.collision.PlayerCollectibleItemCollision;
 import core.gamestate.GameObject2D;
 import core.items.CollectibleInstantItem;
 import core.items.CollectibleTimelapseItem;
-import core.items.Weapon;
 import core.keyconfiguration.KeyConfig;
 import core.playfield.AdvancedPlayField;
 import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
@@ -149,13 +148,6 @@ public class DemoPlayfield extends GameObject2D {
         poison.setTimerEnd(4000);
         poison.setHitPoints(-1);
         myPlayfield.addItem(poison);
-        
-        Weapon gun = new Weapon(this);
-        gun.setImages(this.getImages("resources/Bullet.png", 1, 1));
-        gun.setLocation(temp.getX(), temp.getY());
-        gun.setAttackPower(-1);
-        gun.setActive(false);
-        myPlayfield.addItem(gun);
         
         ItemDecorator block1 = new ItemDecorator(new BaseTile(this));
         block1.setMass(6);
