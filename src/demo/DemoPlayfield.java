@@ -70,7 +70,6 @@ public class DemoPlayfield extends GameObject2D {
         myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
                 myPlayfield.getCharacters(), new GameElementCollision());
 
-//        myPlayfield.addCollisionGroup(myPlayfield.get)
         
 		// Sprite Init / Or load funcitonality
 		// SpriteGroups already exist in AdvancedPlayfield
@@ -122,7 +121,8 @@ public class DemoPlayfield extends GameObject2D {
 		poison.setActive(true);
 		poison.setMovable(false);
 		poison.setLocation(300, 400);
-		poison.setTimer(1000);
+		poison.setTimerStart(1000);
+		poison.setTimerEnd(4000);
 		poison.setHitPoints(-1);
 		myPlayfield.addItem(poison);
 
