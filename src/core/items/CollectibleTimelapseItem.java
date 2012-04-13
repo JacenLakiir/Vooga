@@ -11,7 +11,8 @@ import core.characters.Player;
  */
 public class CollectibleTimelapseItem extends CollectibleItem {
 
-	Timer timer;
+	Timer timerStart;
+	Timer timerEnd;
 	Player player;
 	long timePassed;
 //	long endTimer = timePassed + 5000;
@@ -26,7 +27,7 @@ public class CollectibleTimelapseItem extends CollectibleItem {
 
 	@Override
 	public void decorate(Player player) {
-		if (timer.action(timePassed))
+		if (timerStart.action(timePassed))
 		{
 			updatePlayerPoints(player);
 			updatePlayerAttackPower(player);
@@ -34,13 +35,19 @@ public class CollectibleTimelapseItem extends CollectibleItem {
 			updatePlayerHitPoints(player);
 			updatePlayerLevel(player);
 		}
-//		if (timer.action(endTimer)) {
-//			timer.setActive(false);
-//		}
+		if (timerEnd.action(timePassed)) {
+			timerStart.setActive(false);
+			timerEnd.setActive(false);
+			this.setIsInUse(false);
+		}
 	}
 	
-	public void setTimer(int time) {
-		this.timer = new Timer(time);
+	public void setTimerStart(int time) {
+		this.timerStart = new Timer(time);
+	}
+	
+	public void setTimerEnd(int time) {
+		this.timerEnd = new Timer(time);
 	}
 
 }

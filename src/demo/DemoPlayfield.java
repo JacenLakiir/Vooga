@@ -63,6 +63,10 @@ public class DemoPlayfield extends GameObject2D {
         myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
                 myPlayfield.getCharacters(), new GameElementCollision());
 
+		// Sprite Init / Or load funcitonality
+		// SpriteGroups already exist in AdvancedPlayfield
+		// use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
+
         // Sprite Init / Or load funcitonality
         // SpriteGroups already exist in AdvancedPlayfield
         // use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
@@ -141,7 +145,8 @@ public class DemoPlayfield extends GameObject2D {
         poison.setActive(true);
         poison.setMovable(false);
         poison.setLocation(300, 400);
-        poison.setTimer(1000);
+        poison.setTimerStart(1000);
+        poison.setTimerEnd(4000);
         poison.setHitPoints(-1);
         myPlayfield.addItem(poison);
         
@@ -158,15 +163,17 @@ public class DemoPlayfield extends GameObject2D {
         middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
         myPlayfield.addSetting(middleBar);
 
-    }
+	}
 
-    public void update (long t) {
-        super.update(t);
-        myPlayfield.update(t);
-    }
-    
-    public void render(Graphics2D g) {
-        myPlayfield.render(g);
-    }
+	public void update(long arg0) {
+	    super.update(arg0);
+		myPlayfield.update(arg0);
+	}
+
+
+	public void render(Graphics2D arg0) {
+		myPlayfield.render(arg0);
+	}
+
 
 }
