@@ -301,48 +301,6 @@ public abstract class GameElement extends AdvanceSprite{
         return myGame;
     }
 
-    public void beforeCollidedWith(GameElement e, int collisionSide) {
-        switch (collisionSide) {
-            case GameElementCollision.RIGHT_LEFT_COLLISION:{
-                beforeHitFromRightBy(e);
-                break;
-            }
-            case GameElementCollision.LEFT_RIGHT_COLLISION:{
-                beforeHitFromLeftBy(e);
-                break;
-            }
-            case GameElementCollision.BOTTOM_TOP_COLLISION:{
-                beforeHitFromBottomBy(e);                
-                break;
-            }
-            case GameElementCollision.TOP_BOTTOM_COLLISION:{
-                beforeHitFromTopBy(e);
-                break;
-            }
-        }
-    }
-
-    public void afterCollidedWith(GameElement e, int collisionSide) {
-        switch (collisionSide) {
-            case GameElementCollision.RIGHT_LEFT_COLLISION:{
-                afterHitFromRightBy(e);
-                break;
-            }
-            case GameElementCollision.LEFT_RIGHT_COLLISION:{
-                afterHitFromLeftBy(e);
-                break;
-            }
-            case GameElementCollision.BOTTOM_TOP_COLLISION:{
-                afterHitFromBottomBy(e);
-                break;
-            }
-            case GameElementCollision.TOP_BOTTOM_COLLISION:{
-                afterHitFromTopBy(e);
-                break;
-            }
-        }
-    }
-
     public void beforeHitFromLeftBy(GameElement e) {}
 
     public void beforeHitFromRightBy(GameElement e) {}
