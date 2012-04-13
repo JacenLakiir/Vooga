@@ -33,60 +33,63 @@ public class Mario extends Player{
 
     @Override
     public void checkDead() {
-    	
 //        if (this.getX()<-10 || this.getX()>650 || this.getY()>500) {
 //            System.out.println("Dead");
 //            myGame.stop();
 //            return;
 //        }
+//        System.out.println("Dead");
+//      myGame.stop();            
+
+    }
+
+    public void afterHitFromRightBy (GameElement e) {
+        super.afterHitFromRightBy(e);
     }
     
     @Override
-    public void afterHitFromRightBy (GameElement e)
-    {
-        if (e instanceof Goomba)
-        {
-            System.out.println("Dead");
-            return;
-        }
-        if (e instanceof Koopa)
-        {
-            handleKoopaSideCollision((Koopa) e);
-            return;
-        }
+    public void afterHitFromLeftBy (GameElement e) {
+        super.afterHitFromLeftBy(e);
     }
     
     @Override
-    public void afterHitFromLeftBy (GameElement e)
-    {
-        if (e instanceof Goomba)
-        {
-            System.out.println("Dead");
-            return;
-        }
-        if (e instanceof Koopa)
-        {
-            handleKoopaSideCollision((Koopa) e);
-            return;
-        }
+    public void afterHitFromTopBy (GameElement e) {
+        super.afterHitFromTopBy(e);
     }
     
-    @Override
-    public void afterHitFromTopBy (GameElement e)
+    public void afterHitFromRightBy (Goomba e) {
+        checkDead();
+    }
+    
+    public void afterHitFromLeftBy (Goomba e) {
+        checkDead();
+    }
+    
+    public void afterHitFromTopBy (Goomba e) {
+        checkDead();
+    }
+    
+    public void afterHitFromRightBy (Koopa k)
     {
-        if (e instanceof Goomba || e instanceof Koopa)
-        {
-            System.out.println("Dead");
-            return;
-        }
+        handleKoopaSideCollision(k);
+    }
+    
+    public void afterHitFromLeftBy (Koopa k)
+    {
+        handleKoopaSideCollision(k);
+    }
+    
+    public void afterHitFromTopBy (Koopa k)
+    {
+        checkDead();
     }
     
     private void handleKoopaSideCollision (Koopa k)
     {
         if (k.isInShellState() && k.getShellSpeed() != 0)
-            System.out.println("Dead");
+            checkDead();
         else if (!k.isInShellState())
-            System.out.println("Dead");
+            checkDead();
     }
 
 }

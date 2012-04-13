@@ -4,7 +4,6 @@ import java.util.List;
 import com.golden.gamedev.GameObject;
 import core.characters.GameElement;
 import core.characters.NPC;
-import core.characters.Player;
 import core.characters.ai.DeadState;
 import core.characters.ai.State;
 
@@ -27,25 +26,36 @@ public class Goomba extends NPC
     }
     
     @Override
-    public void afterHitFromTopBy (GameElement e)
+    public void afterHitFromTopBy (GameElement e) 
     {
-        if (e instanceof Player)
-            setCurrentState(new DeadState(this));
+        super.afterHitFromTopBy(e);
     }
     
     @Override
     public void afterHitFromRightBy (GameElement e)
     {
-        if (e instanceof Koopa)
-            handleKoopaSideCollision((Koopa) e);
-        setDirection(-1);
+        super.afterHitFromRightBy(e);
     }
     
     @Override
     public void afterHitFromLeftBy (GameElement e)
     {
-        if (e instanceof Koopa)
-            handleKoopaSideCollision((Koopa) e);
+        super.afterHitFromLeftBy(e);
+    }
+    
+    public void afterHitFromTopBy (Mario e) {
+        setCurrentState(new DeadState(this));
+    }
+    
+    public void afterHitFromRightBy (Koopa k)
+    {
+        handleKoopaSideCollision(k);
+        setDirection(-1);
+    }
+    
+    public void afterHitFromLeftBy (Koopa k)
+    {
+        handleKoopaSideCollision(k);
         setDirection(1);
     }
     
@@ -53,6 +63,7 @@ public class Goomba extends NPC
     {
         if (k.isInShellState() && k.getShellSpeed() != 0)
             setActive(false);
+        setDirection(1);
     }
     
 }
