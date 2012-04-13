@@ -42,7 +42,7 @@ public class GameEngine2D extends GameEngine{
         nextGameID = previousGameID;
     }
     
-    public void setPreivousGameID(int id){
+    public void setPreviousGameID(int id){
         previousGameID = id;
     }
     

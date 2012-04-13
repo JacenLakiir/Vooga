@@ -29,7 +29,7 @@ public abstract class Key {
     }
     
     public  void notifyObserver(){
-        observer.getActoinMethods(action);        
+        observer.getActionMethods(action);        
     }
     
     public void addInputKeyListener(GameElement element){

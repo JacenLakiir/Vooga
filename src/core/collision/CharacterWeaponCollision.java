@@ -6,12 +6,11 @@ import core.characters.Character;
 import core.characters.Player;
 
 import core.items.CollectibleItem;
-import core.physicsengine.NewtonianCollision;
 
 /**
  * @author Kathleen Oshima
  */
-public class CharacterWeaponCollision extends NewtonianCollision {
+public class CharacterWeaponCollision extends GameElementCollision {
 	@Override
     public void collided(Sprite character, Sprite weapon) {
 		super.collided(character, weapon);
