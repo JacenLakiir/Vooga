@@ -1,11 +1,9 @@
 package leveleditor;
 
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,31 +14,25 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import levelio.SpriteWrapper;
-
 import com.golden.gamedev.object.Sprite;
 
+@SuppressWarnings("serial")
 public class SpriteEditPanel extends JFrame {
     
     private static SpriteEditPanel myInstance;
-    private VoogaLevelEditorModel myModel;
-    private VoogaLevelEditor myView;
-    private VoogaLevelEditorController myController;
+    private LevelEditor myView;
     private JTextField namefield;
     
-    public static SpriteEditPanel getInstance(VoogaLevelEditorModel model, 
-	    VoogaLevelEditor view, VoogaLevelEditorController controller, String imagesrc) {
+    public static SpriteEditPanel getInstance(LevelEditor view, String imagesrc) {
 	if (myInstance != null)
 	    myInstance.dispose();
-	myInstance = new SpriteEditPanel(model, view, controller, imagesrc);
+	myInstance = new SpriteEditPanel(view, imagesrc);
 	myInstance.setVisible(true);
 	return myInstance;
     }
     
-    private SpriteEditPanel(VoogaLevelEditorModel model, VoogaLevelEditor view, 
-	    VoogaLevelEditorController controller, String imagesrc) {
-	myModel = model;
+    private SpriteEditPanel(LevelEditor view, String imagesrc) {
 	myView = view;
-	myController = controller;
 	setSize(300, 200);
 	setLocationRelativeTo(view);
 	setTitle("Edit Sprite");
@@ -89,7 +81,7 @@ public class SpriteEditPanel extends JFrame {
 
 	public void actionPerformed(ActionEvent e) {
 	    BufferedImage image = VoogaUtilities.getImageFromString(myImagesrc);
-	    myView.importSprite(new SpriteWrapper(new Sprite(image), 
+	    myView.getSpritePanel().importSprite(new SpriteWrapper(new Sprite(image), 
 		    namefield.getText(), myImagesrc));
 	    myInstance.dispose();
 	}
