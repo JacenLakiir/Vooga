@@ -153,13 +153,13 @@ public class DemoPlayfield extends GameObject2D {
 
     }
 
-    public void update(long arg0) {
-        super.update(arg0);
-        myPlayfield.update(arg0);
+    public void update (long t) {
+        super.update(t);
+        myPlayfield.update(t);
     }
     
-    public void render(Graphics2D arg0) {
-        myPlayfield.render(arg0);
+    public void render(Graphics2D g) {
+        myPlayfield.render(g);
     }
 
 }

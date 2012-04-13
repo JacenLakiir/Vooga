@@ -78,7 +78,7 @@ public class Menu extends MenuGameObject{
             return;
         }
         engine.nextGameID = map.get(optionID);
-        engine.setPreivousGameID(map.get(optionID));
+        engine.setPreviousGameID(map.get(optionID));
         finish();
     }
     

@@ -1,10 +1,7 @@
 package demo;
 
 import java.util.List;
-
-
 import com.golden.gamedev.GameObject;
-
 import core.characters.GameElement;
 import core.characters.NPC;
 import core.characters.Player;
@@ -15,6 +12,7 @@ import core.characters.ai.State;
 /**
  * @author Eric Mercer (JacenLakiir)
  */
+@SuppressWarnings("serial")
 public class Goomba extends NPC
 {
 

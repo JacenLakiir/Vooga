@@ -1,15 +1,12 @@
-/**
- * @author Kuang Han
- */
-
 package demo;
 
-
 import com.golden.gamedev.GameObject;
-
 import core.characters.GameElement;
 import core.characters.Player;
 
+/**
+ * @author Kuang Han
+ */
 @SuppressWarnings("serial")
 public class Mario extends Player{
 

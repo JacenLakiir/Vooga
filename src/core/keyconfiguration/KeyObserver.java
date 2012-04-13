@@ -15,7 +15,7 @@ public  class KeyObserver {
         this.object = object;
     }
     
-    public void getActoinMethods(String action){
+    public void getActionMethods(String action){
         Class<?> c = object.getClass();
         Method[] methods = c.getMethods();
         for(Method m : methods){

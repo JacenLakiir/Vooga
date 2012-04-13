@@ -138,18 +138,18 @@ public class DemoAI extends GameObject2D
                                       myPlayfield.getCharacters(),
                                       new GameElementCollision());
     }
-
-    @Override
-    public void render (Graphics2D g)
-    {
-        myPlayfield.render(g);
-    }
-
+    
     @Override
     public void update (long t)
     {
         super.update(t);
         myPlayfield.update(t);
+    }
+
+    @Override
+    public void render (Graphics2D g)
+    {
+        myPlayfield.render(g);
     }
 
 }
