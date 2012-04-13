@@ -59,7 +59,6 @@ public class MovingDecorator extends TileDecorator{
 			endY = startY;
 			startX = tempX;
 			startY = tempY;
-		}
-		
+		}		
 	}
 }
