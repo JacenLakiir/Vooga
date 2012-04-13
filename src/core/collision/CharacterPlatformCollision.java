@@ -3,12 +3,11 @@ package core.collision;
 import com.golden.gamedev.object.Sprite;
 
 import core.characters.Character;
-import core.physicsengine.NewtonianCollision;
 import core.tiles.PenetrableDecorator;
 import core.tiles.Tile;
 import demo.Mario;
 
-public class CharacterPlatformCollision extends NewtonianCollision{
+public class CharacterPlatformCollision extends GameElementCollision{
 	//Character groups should deal with what happens to the character after collision. 
 	//May have to be separated with player/enemy distinctions.
 	//Platforms will react depending on their type of decorating.
