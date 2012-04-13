@@ -13,7 +13,6 @@ import core.collision.GameElementCollision;
 import core.collision.PlayerCollectibleItemCollision;
 import core.gamestate.GameObject2D;
 import core.items.CollectibleInstantItem;
-import core.keyconfiguration.KeyAnnotation;
 import core.keyconfiguration.KeyConfig;
 import core.playfield.AdvancedPlayField;
 import core.playfield.KeepLeftFirstPlayerGameScroller;
@@ -30,17 +29,15 @@ import core.tiles.Tile;
 public class DemoAI extends GameObject2D
 {
    
-    private GameEngine          engine;
     private AdvancedPlayField   myPlayfield;  
     
-    public DemoAI(GameEngine arg0)
+    public DemoAI (GameEngine arg0)
     {
         super(arg0);
-        engine = arg0;
     }
 
     @Override
-    public void initResources()
+    public void initResources ()
     { 
         myPlayfield = new AdvancedPlayField(10000, 500);
         myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
@@ -63,9 +60,9 @@ public class DemoAI extends GameObject2D
         myPlayfield.addCharacter(goomba1);
         
         NPC goomba2 = new Goomba(this);
-        goomba2.addPossibleState(new PatrolState(goomba2, 75));
+        goomba2.addPossibleState(new PatrolState(goomba2, 1, 150));
         goomba2.setImages(this.getImages("resources/Goomba.png", 1, 1));
-        goomba2.setLocation(500, 20);
+        goomba2.setLocation(575, 20);
         goomba2.setMovable(true);
         myPlayfield.addCharacter(goomba2);
         
@@ -154,7 +151,5 @@ public class DemoAI extends GameObject2D
         super.update(t);
         myPlayfield.update(t);
     }
-    
-
 
 }

@@ -1,16 +1,4 @@
-/**
- * @author Siyang Chen
- * @author Hui Dong
- * @author Kevin Han
- * @author Ian McMahon
- * @author Eric Mercer (JacenLakiir)
- * @author Kathleen Oshima
- * @author Glenn Rivkees (grivkees)
- * @author Michael Zhou
- */
-
 package demo;
-
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -26,7 +14,6 @@ import core.collision.PlayerCollectibleItemCollision;
 import core.gamestate.GameObject2D;
 import core.items.CollectibleInstantItem;
 import core.items.CollectibleTimelapseItem;
-import core.keyconfiguration.KeyAnnotation;
 import core.keyconfiguration.KeyConfig;
 import core.playfield.AdvancedPlayField;
 import core.playfield.KeepLeftFirstPlayerGameScroller;
@@ -36,14 +23,22 @@ import core.tiles.ItemDecorator;
 import core.tiles.MovingDecorator;
 import core.tiles.Tile;
 
+/**
+ * @author Siyang Chen
+ * @author Hui Dong
+ * @author Kevin Han
+ * @author Ian McMahon
+ * @author Eric Mercer (JacenLakiir)
+ * @author Kathleen Oshima
+ * @author Glenn Rivkees (grivkees)
+ * @author Michael Zhou
+ */
 public class DemoPlayfield extends GameObject2D {
     
     private AdvancedPlayField myPlayfield;
-    private GameEngine engine;
     
     public DemoPlayfield(GameEngine arg0) {
         super(arg0);
-        engine = arg0;
     }
 
     public void initResources() {
@@ -85,23 +80,30 @@ public class DemoPlayfield extends GameObject2D {
         NPC goomba1 = new Goomba(this);
         goomba1.addPossibleState(new MoveState(goomba1, 1, true));
         goomba1.setImages(this.getImages("resources/Goomba.png", 1, 1));
-        goomba1.setLocation(250, 400);
+        goomba1.setLocation(700, 400);
         goomba1.setMovable(true);
         myPlayfield.addCharacter(goomba1);
         
         NPC goomba2 = new Goomba(this);
         goomba2.addPossibleState(new MoveState(goomba2, 1, true));
         goomba2.setImages(this.getImages("resources/Goomba.png", 1, 1));
-        goomba2.setLocation(900, 400);
+        goomba2.setLocation(800, 400);
         goomba2.setMovable(true);
         myPlayfield.addCharacter(goomba2);
         
         NPC goomba3 = new Goomba(this);
-        goomba3.addPossibleState(new PatrolState(goomba3, 75));
+        goomba3.addPossibleState(new MoveState(goomba3, 1, true));
         goomba3.setImages(this.getImages("resources/Goomba.png", 1, 1));
-        goomba3.setLocation(1100, 400);
+        goomba3.setLocation(900, 400);
         goomba3.setMovable(true);
         myPlayfield.addCharacter(goomba3);
+        
+        NPC goomba4 = new Goomba(this);
+        goomba4.addPossibleState(new PatrolState(goomba4, 1, 325));
+        goomba4.setImages(this.getImages("resources/Goomba.png", 1, 1));
+        goomba4.setLocation(575, 200);
+        goomba4.setMovable(true);
+        myPlayfield.addCharacter(goomba4);
 
         Tile temp1 = new BaseTile(this);
         temp1.setImages(this.getImages("resources/Bar.png", 1, 1));
@@ -159,6 +161,5 @@ public class DemoPlayfield extends GameObject2D {
     public void render(Graphics2D arg0) {
         myPlayfield.render(arg0);
     }
-
 
 }
