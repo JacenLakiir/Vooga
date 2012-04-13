@@ -63,6 +63,10 @@ public class DemoPlayfield extends GameObject2D {
         myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
                 myPlayfield.getCharacters(), new GameElementCollision());
 
+		// Sprite Init / Or load funcitonality
+		// SpriteGroups already exist in AdvancedPlayfield
+		// use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
+
         // Sprite Init / Or load funcitonality
         // SpriteGroups already exist in AdvancedPlayfield
         // use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
@@ -73,28 +77,35 @@ public class DemoPlayfield extends GameObject2D {
         addInputKeyListener(temp);
         addSystemInputKeyListener(this);
         temp.setImages(this.getImages("resources/Mario1.png", 1, 1));
-        temp.setLocation(25, 20);
+        temp.setLocation(25, 400);
         temp.setMyHP(10);
         myPlayfield.addPlayer(temp);
+        
+        NPC koopa1 = new Koopa(this);
+        koopa1.addPossibleState(new MoveState(koopa1, 1, true));
+        koopa1.setImages(this.getImages("resources/Koopa.png", 1, 1));
+        koopa1.setLocation(500, 400);
+        koopa1.setMovable(true);
+        myPlayfield.addCharacter(koopa1);
         
         NPC goomba1 = new Goomba(this);
         goomba1.addPossibleState(new MoveState(goomba1, 1, true));
         goomba1.setImages(this.getImages("resources/Goomba.png", 1, 1));
-        goomba1.setLocation(700, 400);
+        goomba1.setLocation(800, 400);
         goomba1.setMovable(true);
         myPlayfield.addCharacter(goomba1);
         
         NPC goomba2 = new Goomba(this);
         goomba2.addPossibleState(new MoveState(goomba2, 1, true));
         goomba2.setImages(this.getImages("resources/Goomba.png", 1, 1));
-        goomba2.setLocation(800, 400);
+        goomba2.setLocation(900, 400);
         goomba2.setMovable(true);
         myPlayfield.addCharacter(goomba2);
         
         NPC goomba3 = new Goomba(this);
         goomba3.addPossibleState(new MoveState(goomba3, 1, true));
         goomba3.setImages(this.getImages("resources/Goomba.png", 1, 1));
-        goomba3.setLocation(900, 400);
+        goomba3.setLocation(1000, 400);
         goomba3.setMovable(true);
         myPlayfield.addCharacter(goomba3);
         
@@ -134,7 +145,8 @@ public class DemoPlayfield extends GameObject2D {
         poison.setActive(true);
         poison.setMovable(false);
         poison.setLocation(300, 400);
-        poison.setTimer(1000);
+        poison.setTimerStart(1000);
+        poison.setTimerEnd(4000);
         poison.setHitPoints(-1);
         myPlayfield.addItem(poison);
         
@@ -151,15 +163,17 @@ public class DemoPlayfield extends GameObject2D {
         middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
         myPlayfield.addSetting(middleBar);
 
-    }
+	}
 
-    public void update (long t) {
-        super.update(t);
-        myPlayfield.update(t);
-    }
-    
-    public void render(Graphics2D g) {
-        myPlayfield.render(g);
-    }
+	public void update(long arg0) {
+	    super.update(arg0);
+		myPlayfield.update(arg0);
+	}
+
+
+	public void render(Graphics2D arg0) {
+		myPlayfield.render(arg0);
+	}
+
 
 }

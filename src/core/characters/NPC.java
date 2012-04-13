@@ -78,5 +78,10 @@ public class NPC extends Character
     {
         return myCurrentStates;
     }
+    
+    public List<State> getPossibleStates ()
+    {
+        return myPossibleStates;
+    }
 
 }

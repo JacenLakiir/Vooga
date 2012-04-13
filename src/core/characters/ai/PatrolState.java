@@ -10,21 +10,21 @@ public class PatrolState implements State
 
     private NPC myNPC;
     
-    private double myPatrolRadius;
+    private double myPatrolRange;
     private double mySpeed;
     private double myDistanceTraveled;
     
-    public PatrolState (NPC npc, double speed, double patrolRadius)
+    public PatrolState (NPC npc, double speed, double patrolRange)
     {
         myNPC = npc;
         mySpeed = speed;
-        myPatrolRadius = patrolRadius;
+        myPatrolRange = patrolRange;
         myDistanceTraveled = 0;
     }
 
     public void execute (long milliSec)
     {
-        if (myDistanceTraveled >= myPatrolRadius)
+        if (myDistanceTraveled >= myPatrolRange)
             updateDirection();
         myNPC.move(myNPC.getDirection() * mySpeed, 0);
         myDistanceTraveled += Math.abs(mySpeed);
