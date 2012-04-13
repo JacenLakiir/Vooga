@@ -47,6 +47,10 @@ public class Player extends Character{
     public void checkDead() {
     }
     
+    protected void giveStrengthUp() {
+        this.addAcceleration(0, strengthUp*stdGravity);
+    }
+    
     @KeyAnnotation(action = "sequence")
     public void sequenceKey(){
         this.setImages(myGame.getImages("resources/Mushroom.png",1,1));
@@ -54,7 +58,7 @@ public class Player extends Character{
     
     @KeyAnnotation(action = "up")
     public void keyUpPressed() {
-        this.addAcceleration(0, strengthUp*stdGravity);
+        this.giveStrengthUp();
     }
     
     @KeyAnnotation(action = "down")

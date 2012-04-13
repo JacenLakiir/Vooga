@@ -30,7 +30,7 @@ public abstract class GameElement extends AdvanceSprite{
 
     protected double mass = 10;
     protected double density = 1.01;
-    protected double coefOfFrictionInX = 0.3;
+    protected double coefOfFrictionInX = 0.5;
     protected double coefOfFrictionInY = 0;
     protected double coefOfRestitutionInX = 0.2;
     protected double coefOfRestitutionInY = 0.1;
@@ -38,6 +38,8 @@ public abstract class GameElement extends AdvanceSprite{
     protected double stdGravity = 0.004;
     protected boolean isUnmovable = false;
     protected boolean isPenetrable = false;
+    protected double maximunSpeedInX = Double.MAX_VALUE;
+    protected double maximunSpeedInY = Double.MAX_VALUE;
     protected GameObject myGame;
 
     public GameElement() {
@@ -92,9 +94,27 @@ public abstract class GameElement extends AdvanceSprite{
             }
         }
         vel.addFromAcceleration(acc, t);
+        this.checkMaximunSpeed();
         disp.addFromVelocity(vel, t);
         acc.reset();
         moveToDisplacement();
+    }
+    
+    protected void checkMaximunSpeed() {
+        double vx = vel.getX(), vy = vel.getY();
+        if (Math.abs(vx) > maximunSpeedInX) {
+            vx = maximunSpeedInX;
+            if (vel.getX() < 0) {
+                vx = -vx;
+            }
+        }
+        if (Math.abs(vy) > maximunSpeedInY) {
+            vy = maximunSpeedInY;
+            if (vel.getY() < 0) {
+                vy = -vy;
+            }
+        }
+        vel.set(vx, vy);
     }
 
     private void moveToDisplacement() {
