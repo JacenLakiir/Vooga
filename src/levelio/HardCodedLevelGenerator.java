@@ -1,7 +1,7 @@
 /**
  * @author Michael Zhou (Dominator008), Siyang Chen
  */
-package levelIO;
+package levelio;
 
 import java.awt.Point;
 import java.util.Map;

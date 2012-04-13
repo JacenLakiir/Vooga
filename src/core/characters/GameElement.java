@@ -4,6 +4,7 @@
 
 package core.characters;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,10 +27,10 @@ public abstract class GameElement extends AdvanceSprite{
     protected Velocity vel;
     protected Displacement disp;
     protected double metersPerPixel;
-    
+
     protected double mass = 10;
     protected double density = 1.01;
-    protected double coefOfFrictionInX = 0.2;
+    protected double coefOfFrictionInX = 0.3;
     protected double coefOfFrictionInY = 0;
     protected double coefOfRestitutionInX = 0.2;
     protected double coefOfRestitutionInY = 0.1;
@@ -46,24 +47,24 @@ public abstract class GameElement extends AdvanceSprite{
         disp = new Displacement(0, 0);
         duringAccList = new ArrayList<DuringAcceleration>();
         // Treat gravity as a during acceleration.
-//        duringAccList.add(new DuringAcceleration(new Mapping(this) {
-//            @Override
-//            public double getXforTime(int t) {
-//                    return 0;
-//            }
-//            @Override
-//            public double getYforTime(int t) {
-//                if (this.getOwner().isUnmovable() == false) {
-//                    return this.getOwner().getGravitationalAcceleration() * -1.0;
-//                }
-//                else {
-//                    return 0;
-//                }
-//            }
-//        }));
+        //        duringAccList.add(new DuringAcceleration(new Mapping(this) {
+        //            @Override
+        //            public double getXforTime(int t) {
+        //                    return 0;
+        //            }
+        //            @Override
+        //            public double getYforTime(int t) {
+        //                if (this.getOwner().isUnmovable() == false) {
+        //                    return this.getOwner().getGravitationalAcceleration() * -1.0;
+        //                }
+        //                else {
+        //                    return 0;
+        //                }
+        //            }
+        //        }));
         myGame = null;
     }
-    
+
     public GameElement(GameObject game) {
         this();
         myGame = game;
@@ -141,7 +142,7 @@ public abstract class GameElement extends AdvanceSprite{
     public Displacement getDisplacement() {
         return disp;
     }
-    
+
     @Override
     public void forceX(double xs) {
         super.forceX(xs);
@@ -160,13 +161,13 @@ public abstract class GameElement extends AdvanceSprite{
         setDisplacementFromLocation();
         return flag; 
     }
-    
+
     @Override
     public void move(double dx, double dy) {
         super.move(dx, dy);
         setDisplacementFromLocation();
     }
-    
+
     @Override
     public void moveX(double dx) {
         super.moveX(dx);
@@ -178,7 +179,7 @@ public abstract class GameElement extends AdvanceSprite{
         super.moveY(dy);
         setDisplacementFromLocation();
     }
-    
+
     @Override
     public void setLocation(double xs, double ys) {
         super.setLocation(xs, ys);
@@ -190,7 +191,7 @@ public abstract class GameElement extends AdvanceSprite{
         super.setX(xs);
         setDisplacementFromLocation();
     }
-    
+
     @Override
     public void setY(double ys) {
         super.setY(ys);
@@ -206,7 +207,7 @@ public abstract class GameElement extends AdvanceSprite{
     public void setVerticalSpeed(double vy) {
         setVelocity(this.getVelocity().getX(), vy);
     }
-    
+
     @Override
     public void setHorizontalSpeed(double vx) {
         setVelocity(vx, this.getVelocity().getY());
@@ -301,62 +302,60 @@ public abstract class GameElement extends AdvanceSprite{
         return myGame;
     }
 
-    public void beforeCollidedWith(GameElement e, int collisionSide) {
-        switch (collisionSide) {
-            case GameElementCollision.RIGHT_LEFT_COLLISION:{
-                beforeHitFromRightBy(e);
-                break;
-            }
-            case GameElementCollision.LEFT_RIGHT_COLLISION:{
-                beforeHitFromLeftBy(e);
-                break;
-            }
-            case GameElementCollision.BOTTOM_TOP_COLLISION:{
-                beforeHitFromBottomBy(e);                
-                break;
-            }
-            case GameElementCollision.TOP_BOTTOM_COLLISION:{
-                beforeHitFromTopBy(e);
-                break;
-            }
-        }
+    public void beforeHitFromLeftBy(GameElement e) {
+        try {
+            Method method = this.getClass().getDeclaredMethod("beforeHitFromLeftBy", e.getClass());
+            method.invoke(this, e);
+        } catch (Exception ex) {}
     }
 
-    public void afterCollidedWith(GameElement e, int collisionSide) {
-        switch (collisionSide) {
-            case GameElementCollision.RIGHT_LEFT_COLLISION:{
-                afterHitFromRightBy(e);
-                break;
-            }
-            case GameElementCollision.LEFT_RIGHT_COLLISION:{
-                afterHitFromLeftBy(e);
-                break;
-            }
-            case GameElementCollision.BOTTOM_TOP_COLLISION:{
-                afterHitFromBottomBy(e);
-                break;
-            }
-            case GameElementCollision.TOP_BOTTOM_COLLISION:{
-                afterHitFromTopBy(e);
-                break;
-            }
-        }
+    public void beforeHitFromRightBy(GameElement e) {
+        try {
+            Method method = this.getClass().getDeclaredMethod("beforeHitFromRightBy", e.getClass());
+            method.invoke(this, e);
+        } catch (Exception ex) {}
     }
 
-    public void beforeHitFromLeftBy(GameElement e) {}
+    public void beforeHitFromTopBy(GameElement e) {
+        try {
+            Method method = this.getClass().getDeclaredMethod("beforeHitFromTopBy", e.getClass());
+            method.invoke(this, e);
+        } catch (Exception ex) {}
+    }
 
-    public void beforeHitFromRightBy(GameElement e) {}
+    public void beforeHitFromBottomBy(GameElement e) {
+        try {
+            Method method = this.getClass().getDeclaredMethod("beforeHitFromBottomBy", e.getClass());
+            method.invoke(this, e);
+        } catch (Exception ex) {}
+    }
 
-    public void beforeHitFromTopBy(GameElement e) {}
+    public void afterHitFromLeftBy(GameElement e) {
+        try {
+            Method method = this.getClass().getDeclaredMethod("afterHitFromLeftBy", e.getClass());
+            method.invoke(this, e);
+        } catch (Exception ex) {}
+    }
 
-    public void beforeHitFromBottomBy(GameElement e) {}
+    public void afterHitFromRightBy(GameElement e) {
+        try {
+            Method method = this.getClass().getDeclaredMethod("afterHitFromRightBy", e.getClass());
+            method.invoke(this, e);
+        } catch (Exception ex) {}
+    }
 
-    public void afterHitFromLeftBy(GameElement e) {}
+    public void afterHitFromTopBy(GameElement e) {
+        try {
+            Method method = this.getClass().getDeclaredMethod("afterHitFromTopBy", e.getClass());
+            method.invoke(this, e);
+        } catch (Exception ex) {}
+    }
 
-    public void afterHitFromRightBy(GameElement e) {}
-
-    public void afterHitFromTopBy(GameElement e) {}
-
-    public void afterHitFromBottomBy(GameElement e) {}
+    public void afterHitFromBottomBy(GameElement e) {
+        try {
+            Method method = this.getClass().getDeclaredMethod("afterHitFromBottomBy", e.getClass());
+            method.invoke(this, e);
+        } catch (Exception ex) {}
+    }
 
 }

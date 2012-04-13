@@ -1,9 +1,5 @@
 package core.keyconfiguration;
 
-import core.characters.Player;
-
-import com.golden.gamedev.Game;
-import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;
 /**
  * 
@@ -12,13 +8,8 @@ import com.golden.gamedev.GameObject;
  */
 public class SystemKey extends Key{
 
-    private GameObject myGame;
-    
     public SystemKey(String value, String actionName, GameObject game) {
-        keyValue = value;
-        action = actionName;
-        myGame = game;        
-        observer = new SystemKeyObserver(game);
+        super(value, actionName, game);
     }
 
     @Override
@@ -28,7 +19,7 @@ public class SystemKey extends Key{
 
     @Override
     public void notifyObserver() {
-        observer.getActoinMethods(action);
+        observer.getActionMethods(action);
 
     }
 

@@ -1,15 +1,9 @@
 package demo;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.util.List;
-
 import com.golden.gamedev.GameEngine;
-import com.golden.gamedev.GameObject;
-import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.background.ColorBackground;
-
 import core.characters.NPC;
 import core.characters.Player;
 import core.characters.ai.MoveState;
@@ -17,9 +11,8 @@ import core.characters.ai.PatrolState;
 import core.collision.CharacterPlatformCollision;
 import core.collision.GameElementCollision;
 import core.collision.PlayerCollectibleItemCollision;
+import core.gamestate.GameObject2D;
 import core.items.CollectibleInstantItem;
-import core.keyconfiguration.Key;
-import core.keyconfiguration.KeyAnnotation;
 import core.keyconfiguration.KeyConfig;
 import core.playfield.AdvancedPlayField;
 import core.playfield.KeepLeftFirstPlayerGameScroller;
@@ -33,28 +26,31 @@ import core.tiles.Tile;
  * 
  * For testing NPC AI
  */
-public class DemoAI extends GameObject{
-    private GameEngine engine;
-    private List<Key>           keyList;
+public class DemoAI extends GameObject2D
+{
+   
     private AdvancedPlayField   myPlayfield;  
-    public DemoAI(GameEngine arg0) {
+    
+    public DemoAI (GameEngine arg0)
+    {
         super(arg0);
-        engine = arg0;
     }
 
-
-
     @Override
-    public void initResources()
+    public void initResources ()
     { 
         myPlayfield = new AdvancedPlayField(10000, 500);
         myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
         myPlayfield.setBackground(new ColorBackground(Color.gray, 640, 480));
         
         Player mario = new Mario(this);
-        keyList = new KeyConfig(mario, this).getKeyList();
+        keyList = new KeyConfig(this,false).getKeyList();
+        //add the element or game you want the key to control
+        addInputKeyListener(mario);
+        addSystemInputKeyListener(this);
         mario.setImages(this.getImages("resources/Mario1.png", 1, 1));
         mario.setLocation(25, 20);
+        mario.setMyHP(10);
         myPlayfield.addPlayer(mario);
         
         NPC goomba1 = new Goomba(this);
@@ -64,9 +60,9 @@ public class DemoAI extends GameObject{
         myPlayfield.addCharacter(goomba1);
         
         NPC goomba2 = new Goomba(this);
-        goomba2.addPossibleState(new PatrolState(goomba2, 75));
+        goomba2.addPossibleState(new PatrolState(goomba2, 1, 150));
         goomba2.setImages(this.getImages("resources/Goomba.png", 1, 1));
-        goomba2.setLocation(500, 20);
+        goomba2.setLocation(575, 20);
         goomba2.setMovable(true);
         myPlayfield.addCharacter(goomba2);
         
@@ -142,32 +138,18 @@ public class DemoAI extends GameObject{
                                       myPlayfield.getCharacters(),
                                       new GameElementCollision());
     }
+    
+    @Override
+    public void update (long t)
+    {
+        super.update(t);
+        myPlayfield.update(t);
+    }
 
     @Override
     public void render (Graphics2D g)
     {
         myPlayfield.render(g);
     }
-
-    @Override
-    public void update (long t)
-    {
-        myPlayfield.update(t);
-        checkKeyboardInput(t);
-    }
-    
-    private void checkKeyboardInput (long milliSec)
-    {
-        for (Key key : keyList)
-            if (key.isKeyDown(milliSec))
-                key.notifyObserver();
-    }
-    
-    @KeyAnnotation(action = "ESC")
-    public void pause(){
-        engine.nextGameID = GameEngine2D.PAUSE;
-        finish();
-    }
-    
 
 }

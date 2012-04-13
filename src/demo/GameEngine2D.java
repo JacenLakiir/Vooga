@@ -7,7 +7,6 @@ import java.util.Map;
 
 import core.gamestate.Menu;
 import core.gamestate.Pause;
-import core.keyconfiguration.Key;
 
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameLoader;
@@ -43,7 +42,7 @@ public class GameEngine2D extends GameEngine{
         nextGameID = previousGameID;
     }
     
-    public void setPreivousGameID(int id){
+    public void setPreviousGameID(int id){
         previousGameID = id;
     }
     
@@ -57,8 +56,5 @@ public class GameEngine2D extends GameEngine{
         GameLoader game = new GameLoader();
         game.setup(new GameEngine2D(), new Dimension(640,480), false); 
         game.start();
-    }
-    
-
-    
+    }  
 }

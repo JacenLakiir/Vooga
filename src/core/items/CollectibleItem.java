@@ -31,12 +31,17 @@ public abstract class CollectibleItem extends GameElement {
 //		this.game = game;
 	}
 	
+	public CollectibleItem() {
+		super();
+	}
+	
 	public void decorate(Player player) {
 		updatePlayerPoints(player);
 		updatePlayerAttackPower(player);
 		updatePlayerDefensePower(player);
 		updatePlayerHitPoints(player);
 		updatePlayerLevel(player);
+		this.setIsInUse(false);
 	}
 
 	public void set(BufferedImage[] images, double x, double y) {
@@ -94,7 +99,6 @@ public abstract class CollectibleItem extends GameElement {
 
     public void updatePlayerAttackPower(Player player) {
 	    player.setMyAttackPower(this.getAttackPower());
-	    
     }
 
     public void updatePlayerDefensePower(Player player) {
@@ -102,8 +106,8 @@ public abstract class CollectibleItem extends GameElement {
     }
 
     public void updatePlayerHitPoints(Player player) {
-	    player.setMyHP(this.getHitPoints());
-	    
+    	if (player.getMyHP() > 0) {
+    		player.setMyHP(this.getHitPoints()); }
     }
 
     public void updatePlayerLevel(Player player) {

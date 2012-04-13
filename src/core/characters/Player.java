@@ -6,7 +6,6 @@ package core.characters;
 
 
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,30 +20,29 @@ import core.keyconfiguration.KeyAnnotation;
 @SuppressWarnings("serial")
 public class Player extends Character{
     protected double strengthUp, strengthDown, strengthLeft, strengthRight;
-    private List<Key> keyList;
-    private SystemTimer timer = new SystemTimer();
     protected ArrayList<CollectibleItem> myInventory;
-    protected double myHitPoints, myAttackPower, myDefensePower, myLevel, myPoints;
+    protected double myAttackPower, myDefensePower, myLevel, myPoints;
+//    protected double baseHitPoints, baseAttackPower, baseDefensePower, baseLevel, basePoints;
+//    protected ArrayList<Double> baseAttributes;
     
     public Player(GameObject game) {
         super(game);
         myInventory = new ArrayList<CollectibleItem>();
-        
+//        for (double att : baseAttributes) {
+//        	att = 0;
+//        }
     }
     
     @Override
     public void update(long milliSec) {
-        super.update(milliSec);  
+//        checkDead();
         updateAbilities();
-        checkDead();
+        super.update(milliSec);  
         if (myHitPoints <= 0) {
         	System.out.println("dead");
         }
     }
     
-    public void setKeyList(List<Key> list){
-        keyList = list;
-    }
    
     public void checkDead() {
     }
@@ -74,6 +72,11 @@ public class Player extends Character{
         this.addAcceleration(strengthRight*stdGravity, 0);
     }
     
+//    @KeyAnnotation(action = "space")
+//    public void keySpacePressed() {
+//    	useWeapon();
+//    }
+
     public void keyAPressed() {
         shoot();
     }
@@ -117,14 +120,6 @@ public class Player extends Character{
     	myInventory.remove(item);
     }
     
-    public double getMyHP() {
-    	return myHitPoints;
-    }
- 
-    public void setMyHP(double hp) {
-    	myHitPoints += hp;
-    }
-    
     public double getMyLevel() {
     	return myLevel;
     }
@@ -157,15 +152,14 @@ public class Player extends Character{
     	myPoints += value;
     }
     
+    
     public void updateAbilities() {
-    	if (!myInventory.isEmpty()) {
-			for (CollectibleItem item : myInventory) {
-				if (item.isInUse()) {
-					item.decorate(this);
-					System.out.println("Coins: " + myPoints + " Attack Power: " + myAttackPower
-					        + " Defense Power: " + myDefensePower + " Hit Points: "
-					        + myHitPoints + " Level: " + myLevel);
-				}
+		for (CollectibleItem item : myInventory) {
+			if (item.isInUse()) {
+				item.decorate(this);
+				System.out.println("Coins: " + myPoints + " Attack Power: " + myAttackPower
+				        + " Defense Power: " + myDefensePower + " Hit Points: "
+				        + myHitPoints + " Level: " + myLevel);
 			}
 		}
 	}

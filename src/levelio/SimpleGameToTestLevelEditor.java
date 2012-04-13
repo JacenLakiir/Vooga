@@ -1,7 +1,7 @@
 /**
  * @author Michael Zhou (Dominator008)
  */
-package levelIO;
+package levelio;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;

@@ -2,7 +2,6 @@ package core.gamestate;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +9,6 @@ import java.util.Map;
 import core.keyconfiguration.KeyAnnotation;
 
 import com.golden.gamedev.GameEngine;
-import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
 
@@ -21,8 +19,6 @@ import demo.GameEngine2D;
  *
  */
 public class Pause extends MenuGameObject{
-    private static Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-
     private int optionID = 0;
     GameEngine2D engine;
     private Background background;
