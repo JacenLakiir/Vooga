@@ -36,7 +36,7 @@ public class ItemDecorator extends TileDecorator{
 			item.setLocation(getX(), getY()-getHeight());
 		}
 		if (itemList.size() == 0){
-			setImages(myGame.getImages("resources/Block3.png", 1, 1));
+//			setImages(myGame.getImages("resources/Block3.png", 1, 1));
 		}
 		decoratedPlatform.afterHitFromBottomBy(e);
 	}
