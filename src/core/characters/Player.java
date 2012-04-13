@@ -4,16 +4,9 @@
 
 package core.characters;
 
-
-
 import java.util.ArrayList;
-import java.util.List;
-
-import com.golden.gamedev.engine.timer.SystemTimer;
 import com.golden.gamedev.GameObject;
-
 import core.items.CollectibleItem;
-import core.keyconfiguration.Key;
 import core.keyconfiguration.KeyAnnotation;
 
 

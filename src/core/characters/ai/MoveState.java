@@ -19,7 +19,6 @@ public class MoveState implements State
         myNPC.setDirection(isMovingLeft ? -1 : 1);
     }
     
-    
     public void execute (long milliSec)
     {
         myNPC.move(myNPC.getDirection() * mySpeed, 0);
