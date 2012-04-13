@@ -63,16 +63,13 @@ public class DemoPlayfield extends GameObject2D {
         myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
                 myPlayfield.getCharacters(), new GameElementCollision());
 
-<<<<<<< HEAD
-        
 		// Sprite Init / Or load funcitonality
 		// SpriteGroups already exist in AdvancedPlayfield
 		// use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
-=======
+
         // Sprite Init / Or load funcitonality
         // SpriteGroups already exist in AdvancedPlayfield
         // use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
->>>>>>> e128fcded37d9aba0dc590ed26fd489fdf6d245a
 
         Player temp = new Mario(this);
         keyList = new KeyConfig(this,false).getKeyList();
@@ -141,7 +138,8 @@ public class DemoPlayfield extends GameObject2D {
         poison.setActive(true);
         poison.setMovable(false);
         poison.setLocation(300, 400);
-        poison.setTimer(1000);
+        poison.setTimerStart(1000);
+        poison.setTimerEnd(4000);
         poison.setHitPoints(-1);
         myPlayfield.addItem(poison);
         
@@ -158,54 +156,6 @@ public class DemoPlayfield extends GameObject2D {
         middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
         myPlayfield.addSetting(middleBar);
 
-<<<<<<< HEAD
-		Tile temp1 = new BaseTile(this);
-		temp1.setImages(this.getImages("resources/Bar.png", 1, 1));
-		temp1.setLocation(0, 440);
-		myPlayfield.addSetting(temp1);
-
-		Tile temp2 = new BaseTile(this);
-		temp2.setImages(this.getImages("resources/Bar.png", 1, 1));
-		temp2.setLocation(600, 440);
-		myPlayfield.addSetting(temp2);
-
-		Tile block2 = new BreakableDecorator(new BaseTile(this));
-		block2.setMass(6);
-		block2.setMovable(false);
-		block2.setImages(this.getImages("resources/Block2Break.png", 8, 1));
-		block2.setLocation(160, 200);
-		myPlayfield.addSetting(block2);
-
-		CollectibleInstantItem coin = new CollectibleInstantItem(this);
-		coin.setImages(this.getImages("resources/Coin.png", 1, 1));
-		coin.setActive(false);
-		coin.setValue(3);
-		System.out.println(coin.getAttackPower());
-		myPlayfield.addItem(coin);
-
-		CollectibleTimelapseItem poison = new CollectibleTimelapseItem(this);
-		poison.setImages(this.getImages("resources/Poison.png", 1, 1));
-		poison.setActive(true);
-		poison.setMovable(false);
-		poison.setLocation(300, 400);
-		poison.setTimerStart(1000);
-		poison.setTimerEnd(4000);
-		poison.setHitPoints(-1);
-		myPlayfield.addItem(poison);
-
-		ItemDecorator block1 = new ItemDecorator(new BaseTile(this));
-		block1.setMass(6);
-		block1.setMovable(false);
-		block1.setImages(this.getImages("resources/Block1.png", 1, 1));
-		block1.setLocation(100, 200);
-		block1.addItem(coin);
-		myPlayfield.addSetting(block1);
-
-		Tile middleBar = new MovingDecorator(new BaseTile(this), 260,
-		        240, 700, 60, 0.05);
-		middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
-		myPlayfield.addSetting(middleBar);
-
 	}
 
 	public void update(long arg0) {
@@ -214,21 +164,9 @@ public class DemoPlayfield extends GameObject2D {
 	}
 
 
-
 	public void render(Graphics2D arg0) {
 		myPlayfield.render(arg0);
 	}
-=======
-    }
->>>>>>> e128fcded37d9aba0dc590ed26fd489fdf6d245a
 
-    public void update (long t) {
-        super.update(t);
-        myPlayfield.update(t);
-    }
-    
-    public void render(Graphics2D g) {
-        myPlayfield.render(g);
-    }
 
 }
