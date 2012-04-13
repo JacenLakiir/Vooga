@@ -33,45 +33,41 @@ public class Mario extends Player{
 
     @Override
     public void checkDead() {
-    	
 //        if (this.getX()<-10 || this.getX()>650 || this.getY()>500) {
 //            System.out.println("Dead");
 //            myGame.stop();
 //            return;
 //        }
+//        System.out.println("Dead");
+//      myGame.stop();            
+
     }
     
     @Override
-    public void afterHitFromRightBy (GameElement e)
-    {
-        if (e instanceof Goomba)
-        {
-            System.out.println("Dead");
-//            myGame.stop();            
-            return;
-        }
+    public void afterHitFromRightBy (GameElement e) {
+        super.afterHitFromRightBy(e);
     }
     
     @Override
-    public void afterHitFromLeftBy (GameElement e)
-    {
-        if (e instanceof Goomba)
-        {
-            System.out.println("Dead");
-//            myGame.stop();
-            return;
-        }
+    public void afterHitFromLeftBy (GameElement e) {
+        super.afterHitFromLeftBy(e);
     }
     
     @Override
-    public void afterHitFromTopBy (GameElement e)
-    {
-        if (e instanceof Goomba)
-        {
-            System.out.println("Dead");
-//            myGame.stop();
-            return;
-        }
+    public void afterHitFromTopBy (GameElement e) {
+        super.afterHitFromTopBy(e);
+    }
+    
+    public void afterHitFromRightBy (Goomba e) {
+        checkDead();
+    }
+    
+    public void afterHitFromLeftBy (Goomba e) {
+        checkDead();
+    }
+    
+    public void afterHitFromTopBy (Goomba e) {
+        checkDead();
     }
 
 

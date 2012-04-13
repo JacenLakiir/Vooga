@@ -27,22 +27,27 @@ public class Goomba extends NPC
     }
     
     @Override
-    public void afterHitFromTopBy (GameElement e)
+    public void afterHitFromTopBy (GameElement e) 
     {
-        if (e instanceof Player)
-            setCurrentState(new DeadState(this));
+        super.afterHitFromTopBy(e);
     }
     
     @Override
     public void afterHitFromRightBy (GameElement e)
     {
+        super.afterHitFromRightBy(e);
         setDirection(-1);
     }
     
     @Override
     public void afterHitFromLeftBy (GameElement e)
     {
+        super.afterHitFromLeftBy(e);
         setDirection(1);
+    }
+    
+    public void afterHitFromTopBy (Mario e) {
+        setCurrentState(new DeadState(this));
     }
     
 }
