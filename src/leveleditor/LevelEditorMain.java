@@ -3,9 +3,9 @@
  */
 package leveleditor;
 
-public class VoogaLevelEditorMain {
+public class LevelEditorMain {
 
     public static void main(String[] args) {
-	new VoogaLevelEditorController();
+	new LevelEditorController();
     }
 }

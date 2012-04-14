@@ -115,7 +115,7 @@ public class DemoAI extends GameObject2D
         Tile block2 = new BreakableDecorator(new BaseTile(this));
         block2.setMass(6);
         block2.setMovable(false);
-        block2.setImages(this.getImages("resources/Block2.png", 1, 1));
+        block2.setImages(this.getImages("resources/Block2Break.png", 8, 1));
         block2.setLocation(160, 200);
         myPlayfield.addSetting(block2);
         

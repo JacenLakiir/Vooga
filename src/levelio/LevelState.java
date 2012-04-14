@@ -17,71 +17,63 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 
+public class LevelState {
+    private String myBackgroundSrc;
+    private Map<Point, SpriteWrapper> mySpriteMap;
 
-public class LevelState
-{
-    public String myBackgroundSrc;
-    public Map<Point, SpriteWrapper> mySpriteMap;
-
-
-    public LevelState (String background, Map<Point, SpriteWrapper> spritemap)
-    {
-        mySpriteMap = new HashMap<Point, SpriteWrapper>(spritemap);
-        myBackgroundSrc = background;
+    public LevelState(String background, Map<Point, SpriteWrapper> spritemap) {
+	mySpriteMap = new HashMap<Point, SpriteWrapper>(spritemap);
+	myBackgroundSrc = background;
     }
 
-
-    public static LevelState loadFile (File file)
-    {
-        Gson gson = new Gson();
-        LevelState level = gson.fromJson(readJsonFile(file), LevelState.class);
-        level.reconstruct();
-        return level;
+    public String getBackgroundImageSrc() {
+	return myBackgroundSrc;
+    }
+    
+    public Map<Point, SpriteWrapper> getSpriteMap() {
+	return mySpriteMap;
+    }
+    
+    public static LevelState loadLevel(File file) {
+	Gson gson = new Gson();
+	LevelState level = gson.fromJson(readJsonFile(file), LevelState.class);
+	level.reconstruct();
+	return level;
     }
 
-
-    private void reconstruct ()
-    {
-        for (SpriteWrapper sp : mySpriteMap.values())
-            sp.reconstruct();
+    private void reconstruct() {
+	for (SpriteWrapper sp : mySpriteMap.values())
+	    sp.reconstruct();
     }
 
-
-    public void save (String url)
-    {
-        Gson gson =
-            new GsonBuilder().setPrettyPrinting()
-                             .enableComplexMapKeySerialization()
-                             .create();
-        try
-        {
-            BufferedWriter out = new BufferedWriter(new FileWriter(url));
-            gson.toJson(this, out);
-            out.close();
-        }
-        catch (JsonIOException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+    public void save(String url) {
+	Gson gson = new GsonBuilder().setPrettyPrinting()
+		.enableComplexMapKeySerialization().create();
+	try {
+	    BufferedWriter out = new BufferedWriter(new FileWriter(url));
+	    gson.toJson(this, out);
+	    out.close();
+	} catch (JsonIOException e) {
+	    e.printStackTrace();
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
     }
 
+    private static String readJsonFile(File file) {
+	Scanner in = null;
+	try {
+	    in = new Scanner(new FileInputStream(file)).useDelimiter("\\Z+");
+	} catch (FileNotFoundException e) {
+	    e.printStackTrace();
+	}
+	return in.next();
+    }
 
-    private static String readJsonFile (File file)
-    {
-        Scanner in = null;
-        try
-        {
-            in = new Scanner(new FileInputStream(file)).useDelimiter("\\Z+");
-        }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-        return in.next();
+    protected void saveLevel(String path, String backgroundimgsrc,
+	    Map<Point, SpriteWrapper> spritemap) {
+	LevelState level = new LevelState(backgroundimgsrc, spritemap);
+	level.save(path);
     }
 
 }

@@ -20,6 +20,7 @@ import core.playfield.AdvancedPlayField;
 import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
 import core.tiles.BaseTile;
 import core.tiles.BreakableDecorator;
+import core.tiles.FallingDecorator;
 import core.tiles.ItemDecorator;
 import core.tiles.MovingDecorator;
 import core.tiles.Tile;
@@ -151,10 +152,7 @@ public class DemoPlayfield extends GameObject2D {
         myPlayfield.addItem(poison);
         
         ItemDecorator block1 = new ItemDecorator(new BaseTile(this));
-        block1.setMass(6);
-        block1.setMovable(false);
-        block1.setImages(this.getImages("resources/Block1.png", 1, 1));
-        block1.setLocation(100, 200);
+        block1.set(this.getImages("resources/Block1.png", 1, 1),100, 200);
         block1.addItem(coin);
         myPlayfield.addSetting(block1);
         
@@ -163,6 +161,9 @@ public class DemoPlayfield extends GameObject2D {
         middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
         myPlayfield.addSetting(middleBar);
 
+      Tile otherBar = new FallingDecorator(new BaseTile(this), 1000);
+      otherBar.set(getImages("resources/SmallBar.png",1,1), 1250, 300);
+      myPlayfield.addSetting(otherBar);
 	}
 
 	public void update(long arg0) {

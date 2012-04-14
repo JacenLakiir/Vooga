@@ -24,11 +24,7 @@ import core.playfield.hud.DataProxy;
 import core.playfield.hud.HUDWidget;
 import core.playfield.hud.TextWidget;
 import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
-import core.tiles.BaseTile;
-import core.tiles.BreakableDecorator;
-import core.tiles.ItemDecorator;
-import core.tiles.MovingDecorator;
-import core.tiles.Tile;
+import core.tiles.*;
 
 /**
  * @author Glenn Rivkees (grivkees)
@@ -126,7 +122,7 @@ public class DemoHUD extends GameObject2D {
         goomba4.setMovable(true);
         myPlayfield.addCharacter(goomba4);
 
-        Tile temp1 = new BaseTile(this);
+        Tile temp1 = new FrictionlessDecorator(new BaseTile(this));
         temp1.setImages(this.getImages("resources/Bar.png", 1, 1));
         temp1.setLocation(0, 440);
         myPlayfield.addSetting(temp1);
@@ -137,11 +133,14 @@ public class DemoHUD extends GameObject2D {
         myPlayfield.addSetting(temp2);
 
         Tile block2 = new BreakableDecorator(new BaseTile(this));
-        block2.setMass(6);
-        block2.setMovable(false);
         block2.setImages(this.getImages("resources/Block2Break.png", 8, 1));
         block2.setLocation(160, 200);
         myPlayfield.addSetting(block2);
+        
+        Tile block3 = new PushableDecorator(new BaseTile(this));
+        block3.setImages(getImages("resources/Block3.png", 1, 1));
+        block3.setLocation(200, 400);
+        myPlayfield.addSetting(block3);
 
         CollectibleInstantItem coin = new CollectibleInstantItem(this);
         coin.setImages(this.getImages("resources/Coin.png", 1, 1));
