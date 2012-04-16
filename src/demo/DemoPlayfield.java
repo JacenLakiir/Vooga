@@ -11,6 +11,7 @@ import core.characters.ai.PatrolState;
 import core.collision.CharacterPlatformCollision;
 import core.collision.GameElementCollision;
 import core.collision.PlayerCollectibleItemCollision;
+import core.gamestate.GameEngine2D;
 import core.gamestate.GameObject2D;
 import core.items.CollectibleInstantItem;
 import core.items.CollectibleTimelapseItem;
@@ -38,7 +39,7 @@ public class DemoPlayfield extends GameObject2D {
     
     private AdvancedPlayField myPlayfield;
     
-    public DemoPlayfield(GameEngine arg0) {
+    public DemoPlayfield(GameEngine2D arg0) {
         super(arg0);
     }
 

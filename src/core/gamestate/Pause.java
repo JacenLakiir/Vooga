@@ -12,7 +12,7 @@ import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
 
-import demo.GameEngine2D;
+import demo.DemoGameEngine;
 /**
  * 
  * @author Hui Dong
@@ -20,7 +20,7 @@ import demo.GameEngine2D;
  */
 public class Pause extends MenuGameObject{
     private int optionID = 0;
-    GameEngine2D engine;
+    DemoGameEngine engine;
     private Background background;
     private BufferedImage arrow;
 
@@ -29,7 +29,7 @@ public class Pause extends MenuGameObject{
     
     public Pause(GameEngine arg0) {
         super(arg0);
-        engine = (GameEngine2D) arg0;
+        engine = (DemoGameEngine) arg0;
     }
 
     @Override
@@ -80,7 +80,7 @@ public class Pause extends MenuGameObject{
             engine.initResources();
         }
         if(optionID == 2)
-            engine.nextGameID = GameEngine2D.MENU;
+            engine.nextGameID = engine.getGameID(Menu.class.getName());
         finish();        
     }
 

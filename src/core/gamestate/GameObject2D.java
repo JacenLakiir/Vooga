@@ -9,12 +9,12 @@ import com.golden.gamedev.GameObject;
 import core.characters.GameElement;
 import core.keyconfiguration.Key;
 import core.keyconfiguration.KeyAnnotation;
-import demo.GameEngine2D;
+import demo.DemoGameEngine;
 
 public abstract class GameObject2D extends GameObject{
     protected List<Key>           keyList;
-    GameEngine engine;
-    public GameObject2D(GameEngine arg0) {
+    GameEngine2D engine;
+    public GameObject2D(GameEngine2D arg0) {
         super(arg0);
         engine = arg0;
     }
@@ -55,7 +55,7 @@ public abstract class GameObject2D extends GameObject{
     
     @KeyAnnotation(action = "ESC")
     public void pause(){
-        engine.nextGameID = GameEngine2D.PAUSE;
+        engine.nextGameID = engine.getGameID(Pause.class.getName());
         finish();
     }
 }
