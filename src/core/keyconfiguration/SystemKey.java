@@ -20,7 +20,6 @@ public class SystemKey extends Key{
     @Override
     public void notifyObserver() {
         observer.getActionMethods(action);
-
     }
 
 }

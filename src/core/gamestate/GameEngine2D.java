@@ -13,12 +13,14 @@ public abstract class GameEngine2D extends GameEngine{
     protected void addGameObject(GameObject object){
         list.add(object);
     }
+    public abstract void constructGameList();
     
     protected HashMap<String, GameObject> map = new HashMap<String, GameObject>();  
     protected HashMap<String, Integer> idMap = new HashMap<String, Integer>();
     @Override
     public void initResources() {
         super.initResources();
+        constructGameList();
         int id = 0;
         for(GameObject object : list){
             String name = object.getClass().getName();

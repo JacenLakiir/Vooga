@@ -21,14 +21,12 @@ import demo.DemoGameEngine;
  *
  */
 public class Menu extends MenuGameObject{
-    private int optionID = 0;
     DemoGameEngine engine;
     private Background background;
     private BufferedImage arrow;
     private static Map<Integer, String> map = new HashMap<Integer, String>();
     private List<GameObject> list = new ArrayList<GameObject>();
     private List<String> nameList = new ArrayList<String>();
-    private int numberOfItems;
     public Menu(DemoGameEngine engine) {
         super(engine);
         this.engine = engine;
@@ -73,19 +71,6 @@ public class Menu extends MenuGameObject{
         super.update(arg0);
     }
 
-    @KeyAnnotation(action = "down")
-    public void  down(){
-        if(optionID < numberOfItems){
-            optionID++;
-        }
-    }
-    
-    @KeyAnnotation(action = "up")
-    public void up(){
-        if(optionID > 0){
-            optionID--;
-        }
-    }
     
     @KeyAnnotation(action = "enter")
     public void nextGameObject(){

@@ -3,9 +3,6 @@ package core.gamestate;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.util.HashMap;
-import java.util.Map;
-
 import core.keyconfiguration.KeyAnnotation;
 
 import com.golden.gamedev.GameEngine;
@@ -19,17 +16,14 @@ import demo.DemoGameEngine;
  *
  */
 public class Pause extends MenuGameObject{
-    private int optionID = 0;
-    DemoGameEngine engine;
+    private DemoGameEngine engine;
     private Background background;
     private BufferedImage arrow;
-
+       
     
-    
-    
-    public Pause(GameEngine arg0) {
-        super(arg0);
-        engine = (DemoGameEngine) arg0;
+    public Pause(GameEngine engine) {
+        super(engine);
+        this.engine = (DemoGameEngine) engine;
     }
 
     @Override
@@ -37,6 +31,7 @@ public class Pause extends MenuGameObject{
         super.initResources();
         background = new ImageBackground(getImage("resources/StarDust.jpg"), 640, 480);
         arrow = getImage("resources/MenuArrow.png");
+        numberOfItems = 2;
     }
 
     @Override
@@ -51,25 +46,10 @@ public class Pause extends MenuGameObject{
     }
 
     @Override
-    public void update(long arg0) {
-        super.update(arg0);
+    public void update(long milliSec) {
+        super.update(milliSec);
       }
-
     
-    @KeyAnnotation(action = "down")
-    public void  down(){
-        if(optionID < 2){
-            optionID++;
-        }
-    }
-    
-    
-    @KeyAnnotation(action = "up")
-    public void up(){
-        if(optionID > 0){
-            optionID--;
-        }
-    }
     
     @KeyAnnotation(action = "enter")
     public void nextGameObject() {
@@ -79,7 +59,7 @@ public class Pause extends MenuGameObject{
         if(optionID != 0){
             engine.initResources();
         }
-        if(optionID == 2)
+        if(optionID == numberOfItems)
             engine.nextGameID = engine.getGameID(Menu.class.getName());
         finish();        
     }

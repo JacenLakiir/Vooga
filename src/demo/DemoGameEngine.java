@@ -20,18 +20,8 @@ import com.golden.gamedev.GameObject;
  *
  */
 public class DemoGameEngine extends GameEngine2D{
-//    private static Map<Integer, GameObject> map = new HashMap<Integer, GameObject>();
-//    public static final int GAMEAI = 2;
-//    public static final int PAUSE = 3;
-//    public static final int MENU = 1;
-//    public static final int EXIT = 4;
-//    public static final int GAME_PLAYFIELD = 5;
-//    public static final int GAME_HUD = 6;
     private boolean initial = true;
     private int previousGameID;
-    public DemoGameEngine(){
-        constructGameList();
-    }
 
     public void constructGameList(){
         addGameObject(new Menu(this));
@@ -44,7 +34,6 @@ public class DemoGameEngine extends GameEngine2D{
     public void initResources(){
         super.initResources();
         initializeGameList();
-        constructGameList();
         if(initial){
             nextGameID = idMap.get(Menu.class.getName());
             initial = false;

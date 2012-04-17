@@ -46,6 +46,5 @@ public abstract class Key {
                 observer = new KeyObserver(game);
             }
         }
-    }
-    
+    }    
 }

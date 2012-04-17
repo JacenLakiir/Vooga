@@ -3,6 +3,7 @@ import java.awt.Graphics2D;
 import java.util.List;
 
 import core.keyconfiguration.Key;
+import core.keyconfiguration.KeyAnnotation;
 import core.keyconfiguration.KeyConfig;
 
 
@@ -13,9 +14,10 @@ import com.golden.gamedev.GameObject;
  * @author Hui Dong
  *
  */
-public abstract class MenuGameObject extends GameObject{
+public abstract  class MenuGameObject extends GameObject{
     private List<Key>        keyList;
-
+    protected int optionID = 0;
+    protected int numberOfItems;
     public MenuGameObject(GameEngine arg0) {
         super(arg0);
     }
@@ -27,18 +29,27 @@ public abstract class MenuGameObject extends GameObject{
     }
 
     @Override
-    public void render(Graphics2D arg0) {
-        
-    }
+    public abstract void render(Graphics2D arg0);
 
     @Override
-    public void update(long arg0) {
-        checkKeyboardInput(arg0);
+    public void update(long milliSec) {
+        checkKeyboardInput(milliSec);
     }
     
-    public abstract void  down();
     
-    public abstract void up();
+    @KeyAnnotation(action = "up")
+    public void up(){
+        if(optionID > 0){
+            optionID--;
+        }
+    }
+    
+    @KeyAnnotation(action = "down")
+    public void  down(){
+        if(optionID < numberOfItems){
+            optionID++;
+        }
+    }
     
     public abstract void nextGameObject();
     
