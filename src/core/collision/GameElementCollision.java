@@ -24,81 +24,81 @@ public class GameElementCollision extends CollisionGroup{
 
     @Override
     public void collided(Sprite s1, Sprite s2) {
-        this.beforeCollided(s1, s2);
-        this.checkPhysics(s1, s2);
-        this.afterCollided(s1, s2);
+        this.beforeCollided((GameElement)s1, (GameElement)s2);
+        this.checkPhysics((GameElement)s1, (GameElement)s2);
+        this.afterCollided((GameElement)s1, (GameElement)s2);
     }    
 
-    protected void beforeCollided(Sprite s1, Sprite s2) {
+    protected void beforeCollided(GameElement s1, GameElement s2) {
         switch (this.collisionSide) {
         case RIGHT_LEFT_COLLISION:{
-            ((GameElement) s1).beforeHitFromRightBy((GameElement)s2);
-            ((GameElement) s2).beforeHitFromLeftBy((GameElement)s1);
+            s1.beforeHitFromRightBy(s2);
+            s2.beforeHitFromLeftBy(s1);
             break;
         }
         case LEFT_RIGHT_COLLISION:{
-            ((GameElement) s1).beforeHitFromLeftBy((GameElement)s2);
-            ((GameElement) s2).beforeHitFromRightBy((GameElement)s1);
+            s1.beforeHitFromLeftBy(s2);
+            s2.beforeHitFromRightBy(s1);
             break;
         }
         case BOTTOM_TOP_COLLISION:{
-            ((GameElement) s1).beforeHitFromBottomBy((GameElement)s2);
-            ((GameElement) s2).beforeHitFromTopBy((GameElement)s1);
+            s1.beforeHitFromBottomBy(s2);
+            s2.beforeHitFromTopBy(s1);
             break;
         }
         case TOP_BOTTOM_COLLISION:{
-            ((GameElement) s1).beforeHitFromTopBy((GameElement)s2);
-            ((GameElement) s2).beforeHitFromBottomBy((GameElement)s1);
+            s1.beforeHitFromTopBy(s2);
+            s2.beforeHitFromBottomBy(s1);
             break;
         }
         }
     }
 
-    protected void afterCollided(Sprite s1, Sprite s2) {
+    protected void afterCollided(GameElement s1, GameElement s2) {
         switch (this.collisionSide) {
         case RIGHT_LEFT_COLLISION:{
-            ((GameElement) s1).afterHitFromRightBy((GameElement)s2);
-            ((GameElement) s2).afterHitFromLeftBy((GameElement)s1);
+            s1.afterHitFromRightBy(s2);
+            s2.afterHitFromLeftBy(s1);
             break;
         }
         case LEFT_RIGHT_COLLISION:{
-            ((GameElement) s1).afterHitFromLeftBy((GameElement)s2);
-            ((GameElement) s2).afterHitFromRightBy((GameElement)s1);
+            s1.afterHitFromLeftBy(s2);
+            s2.afterHitFromRightBy(s1);
             break;
         }
         case BOTTOM_TOP_COLLISION:{
-            ((GameElement) s1).afterHitFromBottomBy((GameElement)s2);
-            ((GameElement) s2).afterHitFromTopBy((GameElement)s1);
+            s1.afterHitFromBottomBy(s2);
+            s2.afterHitFromTopBy(s1);
             break;
         }
         case TOP_BOTTOM_COLLISION:{
-            ((GameElement) s1).afterHitFromTopBy((GameElement)s2);
-            ((GameElement) s2).afterHitFromBottomBy((GameElement)s1);
+            s1.afterHitFromTopBy(s2);
+            s2.afterHitFromBottomBy(s1);
             break;
         }
         }    
     }
 
-    protected void checkPhysics(Sprite s1, Sprite s2) {        
-        if (((GameElement)s1).isPenetrable() || ((GameElement)s2).isPenetrable()) {
-            checkBuoyancy((GameElement)s1, (GameElement)s2);
-            checkViscosity((GameElement)s1, (GameElement)s2);
-            checkBuoyancy((GameElement)s2, (GameElement)s1);
-            checkViscosity((GameElement)s2, (GameElement)s1);
+    protected void checkPhysics(GameElement s1, GameElement s2) {        
+        if ((s1).isPenetrable() || (s2).isPenetrable()) {
+            checkBuoyancy(s1, s2);
+            checkViscosity(s1, s2);
+            checkBuoyancy(s2, s1);
+            checkViscosity(s2, s1);
         }
         else {
-            if (((GameElement)s1).isUnmovable() && ((GameElement)s2).isUnmovable()) {
+            if (s1.isUnmovable() && s2.isUnmovable()) {
                 System.err.println("Two unmovable block collided!!!");
             }
             if (((this.collisionSide & LEFT_RIGHT_COLLISION) != 0) || 
                     (this.collisionSide & RIGHT_LEFT_COLLISION) != 0) {
-                checkCollisionInXDirection((GameElement) s1, (GameElement) s2);
-                checkCollisionInXDirection((GameElement) s2, (GameElement) s1);
+                checkCollisionInXDirection(s1, s2);
+                checkCollisionInXDirection(s2, s1);
             }
             if (((this.collisionSide & BOTTOM_TOP_COLLISION) != 0) ||
                     (this.collisionSide & TOP_BOTTOM_COLLISION) != 0) {
-                checkCollisionInYDirection((GameElement) s1, (GameElement) s2);
-                checkCollisionInYDirection((GameElement) s2, (GameElement) s1);
+                checkCollisionInYDirection(s1, s2);
+                checkCollisionInYDirection(s2, s1);
             }
         }
     }
