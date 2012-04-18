@@ -14,7 +14,9 @@ public abstract class Key {
     private String action;
     private List<KeyObserver> observers;
     protected GameObject myGame;
+    
     public abstract boolean isKeyDown(long milliSec);
+    
     public Key(String value, String actionName, GameObject game) {
         keyValue = value;
         action = actionName;

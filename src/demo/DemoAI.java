@@ -15,6 +15,8 @@ import core.gamestate.Pause;
 import core.items.CollectibleInstantItem;
 import core.keyconfiguration.KeyAnnotation;
 import core.keyconfiguration.KeyConfig;
+import core.keyconfiguration.Mouse;
+import core.keyconfiguration.MouseInput;
 import core.playfield.AdvancedPlayField;
 import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
 import core.tiles.BaseTile;
@@ -45,10 +47,13 @@ public class DemoAI extends GameObject2D
         myPlayfield.setBackground(new ColorBackground(Color.gray, 640, 480));
         
         Player mario = new Mario(this);
-        keyList = new KeyConfig(this,false).getKeyList();
+        setKeyList(new KeyConfig(this,false).getKeyList());
+        addMouse(new MouseInput(this, mario,"sequence"));
         //add the element or game you want the key to control
         addKeyListeners(mario);
         addKeyListeners(this);
+        addMouseListeners(mario);
+        
         mario.setImages(this.getImages("resources/Mario1.png", 1, 1));
         mario.setLocation(25, 400);
         mario.setMyHP(10);
@@ -160,6 +165,7 @@ public class DemoAI extends GameObject2D
         super.update(t);
         myPlayfield.update(t);
     }
+    
 
     @Override
     public void render (Graphics2D g)

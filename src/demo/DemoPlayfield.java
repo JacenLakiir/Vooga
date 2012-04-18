@@ -76,7 +76,7 @@ public class DemoPlayfield extends GameObject2D {
         // use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
 
         Player temp = new Mario(this);
-        keyList = new KeyConfig(this,false).getKeyList();
+        setKeyList( new KeyConfig(this,false).getKeyList());
         //add the element or the game you want the key to control
         addKeyListeners(temp);
         addKeyListeners(this);

@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import core.keyconfiguration.Key;
 import core.keyconfiguration.KeyAnnotation;
 import core.keyconfiguration.KeyConfig;
-import com.golden.gamedev.GameEngine;
 /**
  * 
  * @author Hui Dong
@@ -47,7 +44,7 @@ public abstract  class MenuGameObject extends GameObject2D{
     
     @Override
     public void initResources() {
-        keyList = new KeyConfig(this, true).getKeyList();
+        setKeyList(new KeyConfig(this, true).getKeyList());
         addKeyListeners(this);
         buildMenu();
     }
