@@ -9,7 +9,11 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import com.google.gson.Gson;
-
+/**
+ * 
+ * @author Hui Dong
+ *
+ */
 public class KeyConfigModel {
     public HashMap<String, String> inputKeyMap = new HashMap<String, String>();
     public HashMap<String, String> systemKeyMap = new HashMap<String, String>();

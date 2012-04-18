@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 
-import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.object.background.ColorBackground;
 
 import core.characters.NPC;
@@ -16,12 +15,13 @@ import core.collision.GameElementCollision;
 import core.collision.PlayerCollectibleItemCollision;
 import core.gamestate.GameEngine2D;
 import core.gamestate.GameObject2D;
+import core.gamestate.Pause;
 import core.items.CollectibleInstantItem;
 import core.items.CollectibleTimelapseItem;
+import core.keyconfiguration.KeyAnnotation;
 import core.keyconfiguration.KeyConfig;
 import core.playfield.AdvancedPlayField;
 import core.playfield.hud.DataProxy;
-import core.playfield.hud.HUDWidget;
 import core.playfield.hud.TextWidget;
 import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
 import core.tiles.*;
@@ -80,8 +80,8 @@ public class DemoHUD extends GameObject2D {
         Player temp = new Mario(this);
         keyList = new KeyConfig(this,false).getKeyList();
         //add the element or the game you want the key to control
-        addInputKeyListener(temp);
-        addSystemInputKeyListener(this);
+        addKeyListeners(temp);
+        addKeyListeners(this);
         temp.setImages(this.getImages("resources/Mario1.png", 1, 1));
         temp.setLocation(25, 400);
         temp.setMyHP(10);
@@ -183,5 +183,9 @@ public class DemoHUD extends GameObject2D {
     	myPlayfield.render(g);
     }
     
-
+    @KeyAnnotation(action = "ESC")
+    public void pause(){
+        switchToGameObject(Pause.class);
+    }
+    
 }

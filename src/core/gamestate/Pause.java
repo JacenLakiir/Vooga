@@ -3,35 +3,37 @@ package core.gamestate;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.util.HashMap;
-import java.util.Map;
-
 import core.keyconfiguration.KeyAnnotation;
 
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
 
-import demo.DemoGameEngine;
 /**
  * 
  * @author Hui Dong
  *
  */
 public class Pause extends MenuGameObject{
-    private int optionID = 0;
-    DemoGameEngine engine;
     private Background background;
     private BufferedImage arrow;
-
+       
+    
+    public Pause(GameEngine2D engine) {
+        super(engine);
+    }
     
     
-    
-    public Pause(GameEngine arg0) {
-        super(arg0);
-        engine = (DemoGameEngine) arg0;
+    @Override
+    public void buildMenu() {
+        addOptionToMenu("Continue");
+        addOptionToMenu("Restart");
+        addOptionToMenu("Menu");        
+        
     }
 
+   
+    
     @Override
     public void initResources() {
         super.initResources();
@@ -43,47 +45,34 @@ public class Pause extends MenuGameObject{
     public void render(Graphics2D graphic) {
         background.render(graphic);
         graphic.setColor( Color.WHITE );
-
-        graphic.drawString("CONTINUE", 320, 240);
-        graphic.drawString("RESTART", 320, 260);
-        graphic.drawString("Menu", 320, 280);        
-        graphic.drawImage(arrow, 300, 230 + optionID*20, null);
+        int i = 0;
+        for(String name : getNameList()){
+            graphic.drawString(name, 320, 240+i*20);
+            i++;
+        }
+        graphic.drawImage(arrow, 300, 230 + getOptionID()*20, null);
     }
 
     @Override
-    public void update(long arg0) {
-        super.update(arg0);
+    public void update(long milliSec) {
+        super.update(milliSec);
       }
-
     
-    @KeyAnnotation(action = "down")
-    public void  down(){
-        if(optionID < 2){
-            optionID++;
-        }
-    }
-    
-    
-    @KeyAnnotation(action = "up")
-    public void up(){
-        if(optionID > 0){
-            optionID--;
-        }
-    }
     
     @KeyAnnotation(action = "enter")
     public void nextGameObject() {
-        if(optionID ==1 || optionID == 0){
-            engine.continueGame();
+        if(getOptionID() == 0){
+            getEngine().continueGame();
         }
-        if(optionID != 0){
-            engine.initResources();
+        if(getOptionID() ==1 ){
+            getEngine().restartGame();
         }
-        if(optionID == 2)
-            engine.nextGameID = engine.getGameID(Menu.class.getName());
+        if(getOptionID() == getNumberOfItems() - 1)
+            switchToGameObject(Menu.class);
         finish();        
     }
 
+ 
     
     
 }
