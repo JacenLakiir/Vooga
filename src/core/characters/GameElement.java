@@ -86,6 +86,15 @@ public abstract class GameElement extends AdvanceSprite{
 
     @Override
     protected void updateMovement(long t) {
+        updateDuringAcceleration(t);
+        vel.addFromAcceleration(acc, t);
+        this.checkMaximunSpeed();
+        disp.addFromVelocity(vel, t);
+        acc.reset();
+        moveToDisplacement();
+    }
+    
+    protected void updateDuringAcceleration(long t) {
         for (DuringAcceleration entry:duringAccList) {
             entry.update(t);
             acc.add(entry.getCurrentX(), entry.getCurrentY());
@@ -93,11 +102,6 @@ public abstract class GameElement extends AdvanceSprite{
                 duringAccList.remove(entry);
             }
         }
-        vel.addFromAcceleration(acc, t);
-        this.checkMaximunSpeed();
-        disp.addFromVelocity(vel, t);
-        acc.reset();
-        moveToDisplacement();
     }
     
     protected void checkMaximunSpeed() {
