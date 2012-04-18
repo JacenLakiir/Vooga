@@ -8,9 +8,6 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.io.File;
-
-
-
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.*;
@@ -38,14 +35,14 @@ public class SimpleGameToTestLevelEditor extends Game {
     }
 
     private void hardCodedLoadLevel() {
-	LevelState loadedState = LevelState.loadFile(new File("saves/level2.lvl"));
-	for (Point p: loadedState.mySpriteMap.keySet()) {
-	    Sprite tocreate = loadedState.mySpriteMap.get(p).getSprite();
+	LevelState loadedState = LevelState.loadLevel(new File("saves/level2.lvl"));
+	for (Point p: loadedState.getSpriteMap().keySet()) {
+	    Sprite tocreate = loadedState.getSpriteMap().get(p).getSprite();
 	    tocreate.setLocation(p.x, p.y);
 	    myPlayfield.add(tocreate);
 	}
 	myHero = myPlayfield.getExtraGroup().getActiveSprite(); // RANDOM
-	myBackground = new ImageBackground(getImage(loadedState.myBackgroundSrc));
+	myBackground = new ImageBackground(getImage(loadedState.getBackgroundImageSrc()));
 	myPlayfield.setBackground(myBackground);
 	//myGameScroller = new GameScroller(myPlayers, myBackground);
     }
@@ -82,8 +79,5 @@ public class SimpleGameToTestLevelEditor extends Game {
 		//myGameScroller.scroll();
 		myPlayfield.render(arg0);	
 	}
-    
-    
 
 }
-
