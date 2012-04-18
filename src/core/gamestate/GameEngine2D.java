@@ -17,6 +17,7 @@ public abstract class GameEngine2D extends GameEngine{
     
     protected HashMap<String, GameObject> map = new HashMap<String, GameObject>();  
     protected HashMap<String, Integer> idMap = new HashMap<String, Integer>();
+    private int previousGameID;
     @Override
     public void initResources() {
         super.initResources();
@@ -41,6 +42,11 @@ public abstract class GameEngine2D extends GameEngine{
     public List<GameObject> getGameObjects(){
         return list;
     }
+    
+    protected void setInitialGameObject(Class<? extends GameObject2D> gameClass){
+        nextGameID = idMap.get(gameClass.getName());
+
+    }
 
     @Override
     public GameObject getGame(int arg0) {
@@ -50,6 +56,19 @@ public abstract class GameEngine2D extends GameEngine{
                 className = name;
         }
         return  map.get(className);
+    }
+    
+    public void continueGame() {
+        nextGameID = previousGameID;
+    }
+    
+    public void restartGame(){
+        continueGame();
+        initResources();
+    }
+    
+    public void storeCurrentGameID(Class<? extends GameObject2D> mclass) {
+        previousGameID = idMap.get(mclass.getName());
     }
     
     

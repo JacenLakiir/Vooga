@@ -9,40 +9,48 @@ import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
 
-import demo.DemoGameEngine;
 /**
  * 
  * @author Hui Dong
  *
  */
 public class Pause extends MenuGameObject{
-    private DemoGameEngine engine;
     private Background background;
     private BufferedImage arrow;
        
     
-    public Pause(GameEngine engine) {
+    public Pause(GameEngine2D engine) {
         super(engine);
-        this.engine = (DemoGameEngine) engine;
+    }
+    
+    
+    @Override
+    public void buildMenu() {
+        addOptionToMenu("Continue");
+        addOptionToMenu("Restart");
+        addOptionToMenu("Menu");        
+        
     }
 
+   
+    
     @Override
     public void initResources() {
         super.initResources();
         background = new ImageBackground(getImage("resources/StarDust.jpg"), 640, 480);
         arrow = getImage("resources/MenuArrow.png");
-        numberOfItems = 2;
     }
 
     @Override
     public void render(Graphics2D graphic) {
         background.render(graphic);
         graphic.setColor( Color.WHITE );
-
-        graphic.drawString("CONTINUE", 320, 240);
-        graphic.drawString("RESTART", 320, 260);
-        graphic.drawString("Menu", 320, 280);        
-        graphic.drawImage(arrow, 300, 230 + optionID*20, null);
+        int i = 0;
+        for(String name : getNameList()){
+            graphic.drawString(name, 320, 240+i*20);
+            i++;
+        }
+        graphic.drawImage(arrow, 300, 230 + getOptionID()*20, null);
     }
 
     @Override
@@ -53,17 +61,18 @@ public class Pause extends MenuGameObject{
     
     @KeyAnnotation(action = "enter")
     public void nextGameObject() {
-        if(optionID ==1 || optionID == 0){
-            engine.continueGame();
+        if(getOptionID() == 0){
+            getEngine().continueGame();
         }
-        if(optionID != 0){
-            engine.initResources();
+        if(getOptionID() ==1 ){
+            getEngine().restartGame();
         }
-        if(optionID == numberOfItems)
-            engine.nextGameID = engine.getGameID(Menu.class.getName());
+        if(getOptionID() == getNumberOfItems() - 1)
+            switchToGameObject(Menu.class);
         finish();        
     }
 
+ 
     
     
 }

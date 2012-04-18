@@ -16,10 +16,4 @@ public class SystemKey extends Key{
     public boolean isKeyDown(long milliSec) {
         return myGame.keyPressed(Integer.parseInt(keyValue));
     }
-
-    @Override
-    public void notifyObserver() {
-        observer.getActionMethods(action);
-    }
-
 }
