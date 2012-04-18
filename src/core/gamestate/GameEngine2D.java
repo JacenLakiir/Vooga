@@ -38,10 +38,6 @@ public abstract class GameEngine2D extends GameEngine{
     public Integer getGameID(String className){
         return idMap.get(className);
     }
-
-    public List<GameObject> getGameObjects(){
-        return list;
-    }
     
     protected void setInitialGameObject(Class<? extends GameObject2D> gameClass){
         nextGameID = idMap.get(gameClass.getName());
