@@ -26,8 +26,6 @@ public class SideScrollerBoundsCollision extends CollisionBounds {
 		}
 		else if ( isCollisionSide(BOTTOM_COLLISION) ) {
 			System.out.println("DEAD: Out of Bounds");
-            if (arg0.getClass() == Player.class)
-            	((Player)arg0).setMyLivesLeft(-1);
 		}
 	}
 

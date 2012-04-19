@@ -21,7 +21,7 @@ public class IconWidget extends HUDWidget {
 	
 	@Override
 	public void update(long t) {
-		myValue = (Integer)dp.get();
+		myValue = (int) ((double)(Double)dp.get());
 	}
 
 	@Override

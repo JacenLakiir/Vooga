@@ -73,33 +73,29 @@ public class DemoHUD extends GameObject2D {
         addKeyListeners(this);
         temp.setImages(this.getImages("resources/Mario1.png", 1, 1));
         temp.setLocation(25, 400);
-        temp.setMyHP(10);
-        temp.setMyLivesLeft(3);
+        temp.addState("points", 0);
+        temp.addState("hitPoints", 10);
+        temp.addState("lives", 3);
         myPlayfield.addPlayer(temp);
         
         
         // HUD must be init after player
         myPlayfield.addHUDWidget(new TextWidget("Coins", new DataProxy(){
 			public Object get() {
-				return myPlayfield.getPlayer().getMyPoints();
+				return myPlayfield.getPlayer().getMyStateValue("points");
 			}
         }));
         
+        
         myPlayfield.addHUDWidget(new IconWidget("Lives", this.getImage("resources/life.png"), new DataProxy(){
 			public Object get() {
-				return myPlayfield.getPlayer().getMyLivesLeft();
+				return myPlayfield.getPlayer().getMyStateValue("lives");
 			}
         }));
         
         myPlayfield.addHUDWidget(new BarWidget("HP", new DataProxy(){
 			public Object get() {
-				return myPlayfield.getPlayer().getMyHP();
-			}
-        }));
-        
-        myPlayfield.addHUDWidget(new TextWidget("Level", new DataProxy(){
-			public Object get() {
-				return myPlayfield.getPlayer().getMyLevel();
+				return myPlayfield.getPlayer().getMyStateValue("hitPoints");
 			}
         }));
         
@@ -163,8 +159,7 @@ public class DemoHUD extends GameObject2D {
         CollectibleInstantItem coin = new CollectibleInstantItem(this);
         coin.setImages(this.getImages("resources/Coin.png", 1, 1));
         coin.setActive(false);
-        coin.setValue(3);
-        System.out.println(coin.getAttackPower());
+        coin.addState("points", 3);
         myPlayfield.addItem(coin);
 
         CollectibleTimelapseItem poison = new CollectibleTimelapseItem(this);
@@ -174,7 +169,7 @@ public class DemoHUD extends GameObject2D {
         poison.setLocation(300, 400);
         poison.setTimerStart(1000);
         poison.setTimerEnd(4000);
-        poison.setHitPoints(-1);
+        poison.addState("hitPoints", -1);
         myPlayfield.addItem(poison);
         
         ItemDecorator block1 = new ItemDecorator(new BaseTile(this));
