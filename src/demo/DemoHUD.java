@@ -17,7 +17,10 @@ import core.gamestate.GameEngine2D;
 import core.gamestate.GameObject2D;
 import core.gamestate.Pause;
 import core.items.CollectibleInstantItem;
+import core.items.CollectibleInventoryItem;
+import core.items.CollectibleItem;
 import core.items.CollectibleTimelapseItem;
+import core.items.Weapon;
 import core.keyconfiguration.KeyAnnotation;
 import core.keyconfiguration.KeyConfig;
 import core.playfield.AdvancedPlayField;
@@ -76,6 +79,7 @@ public class DemoHUD extends GameObject2D {
         addKeyListeners(this);
         temp.setImages(this.getImages("resources/Mario1.png", 1, 1));
         temp.setLocation(25, 400);
+        temp.addState("hitPoints", 10);
         temp.addState("points", 0);
         temp.addState("hitPoints", 10);
         temp.addState("lives", 3);
@@ -164,7 +168,15 @@ public class DemoHUD extends GameObject2D {
         coin.setActive(false);
         coin.addState("points", 3);
         myPlayfield.addItem(coin);
-
+        
+        CollectibleInstantItem coin2 = new CollectibleInstantItem(this);
+        coin2.setImages(this.getImages("resources/Coin.png", 1, 1));
+        coin2.setActive(true);
+        coin2.setMovable(false);
+        coin2.setLocation(300, 300);
+        coin2.addState("points", 3);
+        myPlayfield.addItem(coin2);
+        
         CollectibleTimelapseItem poison = new CollectibleTimelapseItem(this);
         poison.setImages(this.getImages("resources/Poison.png", 1, 1));
         poison.setActive(true);
@@ -173,6 +185,13 @@ public class DemoHUD extends GameObject2D {
         poison.setTimerStart(1000);
         poison.setTimerEnd(4000);
         poison.addState("hitPoints", -1);
+        myPlayfield.addItem(poison);
+        
+        CollectibleInventoryItem fireball = new CollectibleInventoryItem(this);
+        fireball.setImages(this.getImages("resources/Fireball.png", 4, 1));
+        fireball.setActive(true);
+        fireball.setLoopAnim(true);
+        fireball.setLocation(200, 400);
         myPlayfield.addItem(poison);
         
         ItemDecorator block1 = new ItemDecorator(new BaseTile(this));
