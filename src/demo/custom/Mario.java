@@ -130,17 +130,17 @@ public class Mario extends Player{
 
 
     public void afterHitFromRightBy (Goomba e) {
-        updateStateValues("hitPoints", 0);
+        updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
         checkDead();
     }
 
     public void afterHitFromLeftBy (Goomba e) {
-        updateStateValues("hitPoints", 0);
+        updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
         checkDead();
     }
 
     public void afterHitFromTopBy (Goomba e) {
-        updateStateValues("hitPoints", 0);
+        updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
         checkDead();
     }
     
@@ -156,7 +156,7 @@ public class Mario extends Player{
     
     public void afterHitFromTopBy (Koopa k)
     {
-        updateStateValues("hitPoints", 0);
+        updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
         checkDead();
     }
     
@@ -164,12 +164,12 @@ public class Mario extends Player{
     {
         if (k.isInShellState() && k.getShellSpeed() != 0)
         {
-            updateStateValues("hitPoints", 0);
+            updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
             checkDead();
         }
         else if (!k.isInShellState())
         {
-            updateStateValues("hitPoints", 0);
+            updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
             checkDead();
         }
     }
