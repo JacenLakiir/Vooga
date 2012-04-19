@@ -3,6 +3,7 @@ package core.gamestate;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import core.keyconfiguration.KeyAnnotation;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
 import core.keyconfiguration.KeyAnnotation;
@@ -44,7 +45,7 @@ public class Pause extends MenuGameObject{
         background.render(graphic);
         graphic.setColor( Color.WHITE );
         int i = 0;
-        for(String name : getNameList()){
+        for(String name : getOptionNames()){
             graphic.drawString(name, 320, 240+i*20);
             i++;
         }
@@ -60,10 +61,10 @@ public class Pause extends MenuGameObject{
     @KeyAnnotation(action = "enter")
     public void nextGameObject() {
         if(getOptionID() == 0){
-            getEngine().continueGame();
+            continueGame();
         }
         if(getOptionID() ==1 ){
-            getEngine().restartGame();
+            restartGame();
         }
         if(getOptionID() == getNumberOfItems() - 1)
             switchToGameObject(Menu.class);

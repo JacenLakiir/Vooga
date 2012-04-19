@@ -44,7 +44,7 @@ public abstract  class MenuGameObject extends GameObject2D{
     
     @Override
     public void initResources() {
-        keyList = new KeyConfig(this, true).getKeyList();
+        setKeyList(new KeyConfig(this, true).getKeyList());
         addKeyListeners(this);
         buildMenu();
     }
@@ -64,7 +64,7 @@ public abstract  class MenuGameObject extends GameObject2D{
     }
     
     
-    protected List<String> getNameList(){
+    protected List<String> getOptionNames(){
         return nameList;
     }
         
