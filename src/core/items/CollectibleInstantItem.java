@@ -15,11 +15,9 @@ public class CollectibleInstantItem extends CollectibleItem {
 
 	@Override
 	public void decorate(Player player) {
-		updatePlayerPoints(player);
-		updatePlayerAttackPower(player);
-		updatePlayerDefensePower(player);
-		updatePlayerHitPoints(player);
-		updatePlayerLevel(player);
+		for (String state : myStateValues.keySet()) {
+			updateStateValues(player, state, myStateValues.get(state));
+		}
 		this.setIsInUse(false);
 	}
 }

@@ -5,6 +5,8 @@
 package core.characters;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.golden.gamedev.GameObject;
 import core.items.CollectibleItem;
 import core.items.Weapon;
@@ -16,18 +18,21 @@ public class Player extends Character{
     protected double strengthUp, strengthDown, strengthLeft, strengthRight;
     protected ArrayList<CollectibleItem> myInventory;
     protected double myAttackPower, myDefensePower, myLevel, myPoints;
+    protected HashMap<String, Double> myStateValues;
     
     public Player(GameObject game) {
         super(game);
         myInventory = new ArrayList<CollectibleItem>();
+		myStateValues = new HashMap<String, Double>();
     }
     
     @Override
     public void update(long milliSec) {
-//        checkDead();
+     
         updateAbilities();
         super.update(milliSec);  
-        if (myHitPoints <= 0) {
+//        checkDead();
+        if (myStateValues.get("hitPoints") <= 0) {
         	System.out.println("dead");
         }
     }
@@ -65,10 +70,10 @@ public class Player extends Character{
         this.addAcceleration(strengthRight*stdGravity, 0);
     }
     
-//    @KeyAnnotation(action = "space")
-//    public Weapon keySpacePressed() {
-//    	return Weapon.useWeapon();
-//    }
+//	    @KeyAnnotation(action = "space")
+//	    public Weapon keySpacePressed() {
+//	    	return Weapon.useWeapon();
+//	    }
 
     public void keyAPressed() {
         shoot();
@@ -104,7 +109,22 @@ public class Player extends Character{
         this.setStrengthRight(s);
         this.setStrengthUp(s);
     }
+    
+    public void addState(String attribute, double defaultValue) {
+		myStateValues.put(attribute, defaultValue);
+	}
 
+	public void updateStateValues(String attribute, double newValue) {
+		if (!myStateValues.containsKey(attribute)) {
+			myStateValues.put(attribute, (double) 0);
+		}
+		myStateValues.put(attribute, myStateValues.get(attribute) + newValue);
+	}
+	
+	public double getMyStateValue(String attribute) {
+    	return myStateValues.get(attribute);
+    }
+    
     public ArrayList<CollectibleItem> getMyInventory() {
     	return myInventory;
     }
@@ -113,46 +133,15 @@ public class Player extends Character{
     	myInventory.remove(item);
     }
     
-    public double getMyLevel() {
-    	return myLevel;
-    }
-    
-    public void setMyLevel(double level) {
-    	myLevel += level;
-    }
-    
-    public double getMyAttackPower() {
-    	return myAttackPower;
-    }
-    
-    public void setMyAttackPower(double power) {
-    	myAttackPower += power;
-    }
-    
-    public double getMyDefensePower() {
-    	return myDefensePower;
-    }
-    
-    public void setMyDefensePower(double power) {
-    	myDefensePower += power;
-    }
-    
-    public double getMyPoints() {
-    	return myPoints;
-    }
-    
-    public void setMyPoints(double value) {
-    	myPoints += value;
-    }
-    
     
     public void updateAbilities() {
 		for (CollectibleItem item : myInventory) {
 			if (item.isInUse()) {
 				item.decorate(this);
-				System.out.println("Coins: " + myPoints + " Attack Power: " + myAttackPower
-				        + " Defense Power: " + myDefensePower + " Hit Points: "
-				        + myHitPoints + " Level: " + myLevel);
+				for (String state : myStateValues.keySet()) {
+					System.out.print(state + myStateValues.get(state));
+					System.out.println();	
+				}
 			}
 		}
 	}

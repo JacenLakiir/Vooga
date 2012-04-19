@@ -13,7 +13,6 @@ public class CollectibleTimelapseItem extends CollectibleItem {
 
 	Timer timerStart;
 	Timer timerEnd;
-	Player player;
 	long timePassed;
 	
 	public void update(long elapsedTime) {
@@ -28,11 +27,9 @@ public class CollectibleTimelapseItem extends CollectibleItem {
 	public void decorate(Player player) {
 		if (timerStart.action(timePassed))
 		{
-			updatePlayerPoints(player);
-			updatePlayerAttackPower(player);
-			updatePlayerDefensePower(player);
-			updatePlayerHitPoints(player);
-			updatePlayerLevel(player);
+			for (String state : myStateValues.keySet()) {
+				updateStateValues(player, state, myStateValues.get(state));
+			}
 		}
 		if (timerEnd.action(timePassed)) {
 			timerStart.setActive(false);

@@ -28,4 +28,5 @@ public abstract class Character extends GameElement{
     public void setMyHP(double hp) {
     	myHitPoints += hp;
     }
+    
 }
