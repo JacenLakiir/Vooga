@@ -140,7 +140,7 @@ public class DemoHUD extends GameObject2D {
         myPlayfield.addCharacter(goomba4);
 
         Tile temp1 = new FrictionlessDecorator(new BaseTile(this));
-        temp1.setImages(this.getImages("resources/Bar.png", 1, 1));
+        temp1.setImages(this.getImages("resources/IceFloor.png", 1, 1));
         temp1.setLocation(0, 440);
         myPlayfield.addSetting(temp1);
 
