@@ -31,6 +31,8 @@ public class Player extends Character{
         super.update(milliSec);  
 //        checkDead();
         if (myStateValues.get("hitPoints") <= 0) {
+        	updateStateValues("lives", -1);
+        	updateStateValues("hitPoints", 10);
         	System.out.println("dead");
         }
     }   
