@@ -84,7 +84,7 @@ public class DemoHUD extends GameObject2D {
         addKeyListeners(this);
         temp.setImages(this.getImages("resources/Mario1.png", 1, 1));
         temp.setLocation(25, 400);
-        temp.setMyHP(10);
+        temp.addState("hitPoints", 10);
         myPlayfield.addPlayer(temp);
         
         NPC koopa1 = new Koopa(this);
