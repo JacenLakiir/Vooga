@@ -7,9 +7,6 @@ package core.characters;
 import java.util.ArrayList;
 import com.golden.gamedev.GameObject;
 import core.items.CollectibleItem;
-import core.items.Weapon;
-import core.keyconfiguration.KeyAnnotation;
-
 
 @SuppressWarnings("serial")
 public class Player extends Character{
@@ -39,36 +36,6 @@ public class Player extends Character{
     protected void giveStrengthUp() {
         this.addAcceleration(0, strengthUp*stdGravity);
     }
-    
-    @KeyAnnotation(action = "sequence")
-    public void sequenceKey(){
-        this.setImages(myGame.getImages("resources/Mushroom.png",1,1));
-    }
-    
-    @KeyAnnotation(action = "up")
-    public void keyUpPressed() {
-        this.giveStrengthUp();
-    }
-    
-    @KeyAnnotation(action = "down")
-    public void keyDownPressed() {
-        this.addAcceleration(0, strengthDown*-stdGravity);
-    }
-    
-    @KeyAnnotation(action = "left")
-    public void keyLeftPressed() {
-        this.addAcceleration(strengthLeft*-stdGravity, 0);
-    }
-    
-    @KeyAnnotation(action = "right")
-    public void keyRightPressed() {
-        this.addAcceleration(strengthRight*stdGravity, 0);
-    }
-    
-//    @KeyAnnotation(action = "space")
-//    public Weapon keySpacePressed() {
-//    	return Weapon.useWeapon();
-//    }
 
     public void keyAPressed() {
         shoot();
