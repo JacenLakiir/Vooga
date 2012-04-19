@@ -21,6 +21,8 @@ import core.tiles.BaseTile;
 import core.tiles.BreakableDecorator;
 import core.tiles.ItemDecorator;
 import core.tiles.Tile;
+import demo.custom.Koopa;
+import demo.custom.Mario;
 
 /**
  * @author Eric Mercer (JacenLakiir)
@@ -51,7 +53,9 @@ public class DemoAI extends GameObject2D
         addKeyListeners(this);
         mario.setImages(this.getImages("resources/Mario1.png", 1, 1));
         mario.setLocation(25, 400);
-        mario.setMyHP(10);
+        mario.addState("points", 0);
+        mario.addState("hitPoints", 10);
+        mario.addState("lives", 3);
         myPlayfield.addPlayer(mario);
         
 //        NPC goomba1 = new Goomba(this);

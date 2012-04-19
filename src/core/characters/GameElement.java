@@ -7,14 +7,8 @@ package core.characters;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-
-
-
-
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.sprite.AdvanceSprite;
-
-import core.collision.GameElementCollision;
 import core.physicsengine.Acceleration;
 import core.physicsengine.Displacement;
 import core.physicsengine.DuringAcceleration;

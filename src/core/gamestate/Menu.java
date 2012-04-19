@@ -3,17 +3,9 @@ package core.gamestate;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import core.keyconfiguration.KeyAnnotation;
-
-import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
-
+import core.keyconfiguration.KeyAnnotation;
 import demo.DemoAI;
 import demo.DemoHUD;
 import demo.DemoPlayfield;
@@ -24,9 +16,10 @@ import demo.DemoPlayfield;
  *
  */
 public class Menu extends MenuGameObject{
+   
     private Background background;
     private BufferedImage arrow;
-    private static Map<Integer, String> map = new HashMap<Integer, String>();
+
     public Menu(GameEngine2D engine) {
         super(engine);
     }

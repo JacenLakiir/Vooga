@@ -11,13 +11,14 @@ public class TextWidget extends HUDWidget {
 	DataProxy dp;
 
 	public TextWidget(String title, DataProxy dp) {
+		super(50,15);
 		this.title = title;
 		this.dp = dp;
 	}
 
 	@Override
 	public void update(long t) {
-		myValue = Double.toString(dp.getDouble());
+		myValue = Double.toString((Double)dp.get());
 	}
 
 	@Override

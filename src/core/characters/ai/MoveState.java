@@ -23,7 +23,6 @@ public class MoveState implements State
     {
         myNPC.move(myNPC.getDirection() * mySpeed, 0);
     }
-
     
     public boolean isActive ()
     {
