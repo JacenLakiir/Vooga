@@ -50,13 +50,13 @@ public class DemoHUD extends GameObject2D {
         
         myPlayfield.addHUDWidget(new TextWidget("Coins", new DataProxy(){
 			public double getDouble() {
-				return myPlayfield.getPlayer().getMyPoints();
+				return myPlayfield.getPlayer().getMyStateValue("points");
 			}
         }));
         
         myPlayfield.addHUDWidget(new TextWidget("Level", new DataProxy(){
 			public double getDouble() {
-				return myPlayfield.getPlayer().getMyLevel();
+				return myPlayfield.getPlayer().getMyStateValue("level");
 			}
         }));
 
@@ -148,8 +148,7 @@ public class DemoHUD extends GameObject2D {
         CollectibleInstantItem coin = new CollectibleInstantItem(this);
         coin.setImages(this.getImages("resources/Coin.png", 1, 1));
         coin.setActive(false);
-        coin.setValue(3);
-        System.out.println(coin.getAttackPower());
+        coin.addState("points", 3);
         myPlayfield.addItem(coin);
 
         CollectibleTimelapseItem poison = new CollectibleTimelapseItem(this);
@@ -159,7 +158,7 @@ public class DemoHUD extends GameObject2D {
         poison.setLocation(300, 400);
         poison.setTimerStart(1000);
         poison.setTimerEnd(4000);
-        poison.setHitPoints(-1);
+        poison.addState("hitPoints", -1);
         myPlayfield.addItem(poison);
         
         ItemDecorator block1 = new ItemDecorator(new BaseTile(this));
