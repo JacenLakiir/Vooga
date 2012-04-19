@@ -6,13 +6,13 @@ import com.golden.gamedev.GameObject;
  * @author Hui Dong
  *
  */
-public class SequentialInputKey extends Key{
+public class InputKeySequential extends Key{
     private static long LATENCY = 400;
     private long lastUpdate = 0;
     private boolean[] iskeyPressed;
     private  String[] values;
     private boolean isInitial  = true;
-    public SequentialInputKey(String value, String actionName, GameObject game) {
+    public InputKeySequential(String value, String actionName, GameObject game) {
         super(value, actionName, game);
         values = keyValue.split(",");
         iskeyPressed = new boolean[values.length];
@@ -29,7 +29,7 @@ public class SequentialInputKey extends Key{
     public boolean isKeyDown(long milliSec){
         for(int i = 0; i < values.length; i++){
 
-            if(myGame.bsInput.isKeyPressed(Integer.parseInt(values[i]))){
+            if(getMyGame().bsInput.isKeyPressed(Integer.parseInt(values[i]))){
                 iskeyPressed[i] = true;                
                 if(isInitial){
                     lastUpdate = milliSec;

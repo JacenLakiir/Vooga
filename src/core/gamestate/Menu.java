@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 import core.keyconfiguration.KeyAnnotation;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
-import core.keyconfiguration.KeyAnnotation;
 import demo.DemoAI;
 import demo.DemoHUD;
 import demo.DemoPlayfield;
@@ -18,6 +17,10 @@ import demo.DemoPlayfield;
  */
 public class Menu extends MenuGameObject{
    
+    private static final int WINDOW_WIDTH = 640;
+    private static final int WINDOW_HEIGHT = 480;
+    private static final int TEXT_HEIGHT = 20;
+    
     private Background background;
     private BufferedImage arrow;
     public Menu(GameEngine2D engine) {
@@ -36,7 +39,7 @@ public class Menu extends MenuGameObject{
     @Override
     public void initResources() {
         super.initResources();
-        background = new ImageBackground(getImage("resources/StarDust.jpg"), 640, 480);
+        background = new ImageBackground(getImage("resources/StarDust.jpg"), WINDOW_WIDTH, WINDOW_HEIGHT);
         arrow = getImage("resources/MenuArrow.png");
     }
 
@@ -46,10 +49,10 @@ public class Menu extends MenuGameObject{
         graphic.setColor( Color.WHITE );  
         int i = 0;
         for(String name : getOptionNames()){
-            graphic.drawString(name, 320, 240+i*20);
+            graphic.drawString(name, WINDOW_WIDTH/2, WINDOW_HEIGHT/2+i*TEXT_HEIGHT);
             i++;
         }
-        graphic.drawImage(arrow, 300, 230 + getOptionID()*20, null);
+        graphic.drawImage(arrow, WINDOW_WIDTH/2-20, WINDOW_HEIGHT/2 - TEXT_HEIGHT/2 + getOptionID()*20, null);
     }
 
     @Override
