@@ -1,5 +1,6 @@
 package core.playfield.hud;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -11,16 +12,15 @@ public class HUD {
 	
 	private GameFont font = new SystemFont( new Font( "Monospaced", Font.BOLD, 12 ) );
 	private ArrayList<HUDWidget> myWidgets = new ArrayList<HUDWidget>();
+	private HUDLayoutManager layoutManager;
 	
-	int y = 10;
-	
-	public HUD () {
+	public HUD (HUDLayoutManager m) {
+		this.layoutManager = m;
 	}
 	
 	public void addWidget (HUDWidget w) {
 		myWidgets.add(w);
-		w.setPosition(10, y);
-		y += 10;
+		w.setPosition(layoutManager.nextWidgetPosition(w));
 	}
 	
 	public void update (long t) {
@@ -30,8 +30,9 @@ public class HUD {
 	}
 	
 	public void render ( Graphics2D g ) {
-		g.clearRect(0,0,100,100);
+		//g.clearRect(0,0,layoutManager.width,layoutManager.height);
 		for (HUDWidget w : myWidgets) {
+			g.setColor(Color.black);
 			w.render(g, this);
 		}
 	}

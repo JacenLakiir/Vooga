@@ -21,7 +21,9 @@ import core.items.CollectibleTimelapseItem;
 import core.keyconfiguration.KeyAnnotation;
 import core.keyconfiguration.KeyConfig;
 import core.playfield.AdvancedPlayField;
+import core.playfield.hud.BarWidget;
 import core.playfield.hud.DataProxy;
+import core.playfield.hud.IconWidget;
 import core.playfield.hud.TextWidget;
 import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
 import core.tiles.*;
@@ -40,22 +42,9 @@ public class DemoHUD extends GameObject2D {
     public void initResources() {
    	
         // Playfield Init
-        myPlayfield = new AdvancedPlayField(1000, 500);
+        myPlayfield = new AdvancedPlayField(2000, 500);
         myPlayfield.setBackground(new ColorBackground(Color.gray));
         myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
-        
-        
-        myPlayfield.addHUDWidget(new TextWidget("Coins", new DataProxy(){
-			public double getDouble() {
-				return myPlayfield.getPlayer().getMyPoints();
-			}
-        }));
-        
-        myPlayfield.addHUDWidget(new TextWidget("Level", new DataProxy(){
-			public double getDouble() {
-				return myPlayfield.getPlayer().getMyLevel();
-			}
-        }));
 
         // Collisions
         myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
@@ -85,7 +74,36 @@ public class DemoHUD extends GameObject2D {
         temp.setImages(this.getImages("resources/Mario1.png", 1, 1));
         temp.setLocation(25, 400);
         temp.setMyHP(10);
+        temp.setMyLivesLeft(3);
         myPlayfield.addPlayer(temp);
+        
+        
+        // HUD must be init after player
+        myPlayfield.addHUDWidget(new TextWidget("Coins", new DataProxy(){
+			public Object get() {
+				return myPlayfield.getPlayer().getMyPoints();
+			}
+        }));
+        
+        myPlayfield.addHUDWidget(new IconWidget("Lives", this.getImage("resources/life.png"), new DataProxy(){
+			public Object get() {
+				return myPlayfield.getPlayer().getMyLivesLeft();
+			}
+        }));
+        
+        myPlayfield.addHUDWidget(new BarWidget("HP", new DataProxy(){
+			public Object get() {
+				return myPlayfield.getPlayer().getMyHP();
+			}
+        }));
+        
+        myPlayfield.addHUDWidget(new TextWidget("Level", new DataProxy(){
+			public Object get() {
+				return myPlayfield.getPlayer().getMyLevel();
+			}
+        }));
+        
+        
         
         NPC koopa1 = new Koopa(this);
         koopa1.addPossibleState(new MoveState(koopa1, 1, true));

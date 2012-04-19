@@ -16,6 +16,7 @@ public class Player extends Character{
     protected double strengthUp, strengthDown, strengthLeft, strengthRight;
     protected ArrayList<CollectibleItem> myInventory;
     protected double myAttackPower, myDefensePower, myLevel, myPoints;
+    protected int myLivesLeft;
     
     public Player(GameObject game) {
         super(game);
@@ -29,6 +30,7 @@ public class Player extends Character{
         super.update(milliSec);  
         if (myHitPoints <= 0) {
         	System.out.println("dead");
+        	this.setMyLivesLeft(-1);
         }
     }
     
@@ -143,6 +145,14 @@ public class Player extends Character{
     
     public void setMyPoints(double value) {
     	myPoints += value;
+    }
+    
+    public int getMyLivesLeft() {
+    	return myLivesLeft;
+    }
+    public void setMyLivesLeft(int value) {
+    	System.out.println(value);
+    	myLivesLeft += value;
     }
     
     
