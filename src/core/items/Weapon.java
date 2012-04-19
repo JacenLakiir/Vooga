@@ -1,5 +1,7 @@
 package core.items;
 
+import java.awt.image.BufferedImage;
+
 import com.golden.gamedev.GameObject;
 
 import core.characters.GameElement;
@@ -20,4 +22,5 @@ public class Weapon extends CollectibleItem {
 		gun.setSpeed(.2, 0);
 		return gun;
 	}
+	
 }

@@ -16,6 +16,7 @@ public class CollectibleTimelapseItem extends CollectibleItem {
 	long timePassed;
 	
 	public void update(long elapsedTime) {
+		super.update(elapsedTime);
 		timePassed = elapsedTime;
 	}
 	
@@ -28,7 +29,7 @@ public class CollectibleTimelapseItem extends CollectibleItem {
 		if (timerStart.action(timePassed))
 		{
 			for (String state : myStateValues.keySet()) {
-				updateStateValues(player, state, myStateValues.get(state));
+				updateBaseValues(player, state, myStateValues.get(state));
 			}
 		}
 		if (timerEnd.action(timePassed)) {
