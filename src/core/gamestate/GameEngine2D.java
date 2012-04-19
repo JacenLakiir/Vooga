@@ -58,16 +58,7 @@ public abstract class GameEngine2D extends GameEngine{
         }
         return  map.get(className);
     }
-//    
-//    public void continueGame() {
-//        nextGameID = previousGameID;
-//    }
-//    
-//    public void restartGame(){
-//        continueGame();
-//        initResources();
-//    }
-//    
+    
     public void storeCurrentGameID(Class<? extends GameObject2D> mclass) {
         previousGameID = idMap.get(mclass.getName());
     }

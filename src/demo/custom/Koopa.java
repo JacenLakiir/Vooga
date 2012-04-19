@@ -1,4 +1,4 @@
-package demo;
+package demo.custom;
 
 import java.util.List;
 import com.golden.gamedev.GameObject;
@@ -7,7 +7,7 @@ import core.characters.NPC;
 import core.characters.Player;
 import core.characters.ai.State;
 import core.tiles.Tile;
-import demo.ShellState;
+import demo.custom.ShellState;
 
 /**
  * @author Eric Mercer (JacenLakiir)

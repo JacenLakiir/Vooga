@@ -21,6 +21,7 @@ import core.collision.SideScrollerBoundsCollision;
 import core.items.CollectibleItem;
 import core.playfield.hud.HUD;
 import core.playfield.hud.HUDWidget;
+import core.playfield.hud.VerticalFlowLayout;
 import core.playfield.scroller.GameScroller;
 import core.tiles.Tile;
 
@@ -51,7 +52,7 @@ public class AdvancedPlayField extends PlayField {
     	this.addCollisionGroup(this.getPlayers(),
 		        null, new SideScrollerBoundsCollision(this.getBackground()));
     	
-    	hud = new HUD();
+    	hud = new HUD(new VerticalFlowLayout(100, 100));
     }
 	
 	/*

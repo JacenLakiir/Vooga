@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import core.keyconfiguration.KeyAnnotation;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
-
+import core.keyconfiguration.KeyAnnotation;
 import demo.DemoAI;
 import demo.DemoHUD;
 import demo.DemoPlayfield;
@@ -17,6 +17,7 @@ import demo.DemoPlayfield;
  *
  */
 public class Menu extends MenuGameObject{
+   
     private Background background;
     private BufferedImage arrow;
     public Menu(GameEngine2D engine) {

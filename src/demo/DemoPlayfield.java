@@ -2,7 +2,6 @@ package demo;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.object.background.ColorBackground;
 import core.characters.NPC;
 import core.characters.Player;
@@ -26,6 +25,9 @@ import core.tiles.FallingDecorator;
 import core.tiles.ItemDecorator;
 import core.tiles.MovingDecorator;
 import core.tiles.Tile;
+import demo.custom.Goomba;
+import demo.custom.Koopa;
+import demo.custom.Mario;
 
 /**
  * @author Siyang Chen
@@ -82,7 +84,7 @@ public class DemoPlayfield extends GameObject2D {
         addKeyListeners(this);
         temp.setImages(this.getImages("resources/Mario1.png", 1, 1));
         temp.setLocation(25, 400);
-        temp.setMyHP(10);
+        temp.addState("hitPoints", 10);
         myPlayfield.addPlayer(temp);
         
         NPC koopa1 = new Koopa(this);
@@ -140,7 +142,7 @@ public class DemoPlayfield extends GameObject2D {
         CollectibleInstantItem coin = new CollectibleInstantItem(this);
         coin.setImages(this.getImages("resources/Coin.png", 1, 1));
         coin.setActive(false);
-        coin.setValue(3);
+        coin.addState("points", 3);
         myPlayfield.addItem(coin);
         
         CollectibleTimelapseItem poison = new CollectibleTimelapseItem(this);
@@ -150,7 +152,7 @@ public class DemoPlayfield extends GameObject2D {
         poison.setLocation(300, 400);
         poison.setTimerStart(1000);
         poison.setTimerEnd(4000);
-        poison.setHitPoints(-1);
+        poison.addState("hitPoints", -1);
         myPlayfield.addItem(poison);
         
         ItemDecorator block1 = new ItemDecorator(new BaseTile(this));

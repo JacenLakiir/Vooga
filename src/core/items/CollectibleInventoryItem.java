@@ -29,29 +29,29 @@ public class CollectibleInventoryItem extends CollectibleItem {
 		return newPowers;
 	}
 	
-	@Override
-    public void updatePlayerAttackPower(Player player) {
-	    newPowers.add(attackPower);
-    }
-
-	@Override
-    public void updatePlayerDefensePower(Player player ) {
-	    newPowers.add(defensePower);
-	 }
-
-	@Override
-    public void updatePlayerHitPoints(Player player) {
-	    newPowers.add(hitPoints);
-    }
-
-	@Override
-	public void updatePlayerLevel(Player player) {
-		newPowers.add(level);
-	}
-
-	@Override
-    public void updatePlayerPoints(Player player) {
-		newPowers.add(points);
-    }
+//	@Override
+//    public void updatePlayerAttackPower(Player player) {
+//	    newPowers.add(attackPower);
+//    }
+//
+//	@Override
+//    public void updatePlayerDefensePower(Player player ) {
+//	    newPowers.add(defensePower);
+//	 }
+//
+//	@Override
+//    public void updatePlayerHitPoints(Player player) {
+//	    newPowers.add(hitPoints);
+//    }
+//
+//	@Override
+//	public void updatePlayerLevel(Player player) {
+//		newPowers.add(level);
+//	}
+//
+//	@Override
+//    public void updatePlayerPoints(Player player) {
+//		newPowers.add(points);
+//    }
 	
 }

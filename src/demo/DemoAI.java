@@ -23,6 +23,8 @@ import core.tiles.BaseTile;
 import core.tiles.BreakableDecorator;
 import core.tiles.ItemDecorator;
 import core.tiles.Tile;
+import demo.custom.Koopa;
+import demo.custom.Mario;
 
 /**
  * @author Eric Mercer (JacenLakiir)
@@ -106,7 +108,7 @@ public class DemoAI extends GameObject2D
         CollectibleInstantItem coin = new CollectibleInstantItem(this);
         coin.setImages(this.getImages("resources/Coin.png", 1, 1));
         coin.setActive(false);
-        coin.setValue(3);
+        coin.addState("points", 3);
         myPlayfield.addItem(coin);
         
         ItemDecorator block1 = new ItemDecorator(new BaseTile(this));

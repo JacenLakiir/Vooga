@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import core.keyconfiguration.KeyAnnotation;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
+import core.keyconfiguration.KeyAnnotation;
 
 /**
  * 

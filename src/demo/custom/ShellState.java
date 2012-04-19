@@ -1,4 +1,4 @@
-package demo;
+package demo.custom;
 
 import core.characters.ai.State;
 
