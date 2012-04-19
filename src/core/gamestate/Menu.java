@@ -44,7 +44,7 @@ public class Menu extends MenuGameObject{
         background.render(graphic);
         graphic.setColor( Color.WHITE );  
         int i = 0;
-        for(String name : getNameList()){
+        for(String name : getOptionNames()){
             graphic.drawString(name, 320, 240+i*20);
             i++;
         }
@@ -66,7 +66,4 @@ public class Menu extends MenuGameObject{
         switchToGameObject(getNextGameObject());
         finish();
     }
-
-
-
 }

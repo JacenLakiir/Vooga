@@ -64,7 +64,7 @@ public abstract  class MenuGameObject extends GameObject2D{
     }
     
     
-    protected List<String> getNameList(){
+    protected List<String> getOptionNames(){
         return nameList;
     }
         
