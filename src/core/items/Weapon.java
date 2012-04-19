@@ -14,7 +14,7 @@ public class Weapon extends CollectibleItem {
 	static Weapon gun;
 	
 	public Weapon(GameObject game) {
-		super();
+		super(game);
 	}
 
 	public static Weapon useWeapon() {
