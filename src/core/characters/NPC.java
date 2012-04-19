@@ -5,7 +5,6 @@ import java.util.List;
 import com.golden.gamedev.GameObject;
 
 import core.characters.ai.State;
-import core.characters.attacks.AttackBehavior;
 
 /**
  * @author ericmercer (JacenLakiir)
@@ -17,7 +16,6 @@ public class NPC extends Character
     
     private List<State> myPossibleStates;
     private List<State> myCurrentStates;
-    private AttackBehavior myAttack;
     
     public NPC (GameObject game)
     {
@@ -47,11 +45,6 @@ public class NPC extends Character
         myCurrentStates.clear();
     }
     
-    public void fight ()
-    {
-        myAttack.useAttack();
-    }
-    
     public void setCurrentState (State state)
     {
         myCurrentStates.clear();
@@ -62,11 +55,6 @@ public class NPC extends Character
     {
         myCurrentStates.clear();
         myCurrentStates.addAll(state);
-    }
-    
-    public void setAttack(AttackBehavior attack)
-    {
-        myAttack = attack;
     }
     
     public void addPossibleState (State state)
