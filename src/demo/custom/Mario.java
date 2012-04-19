@@ -90,7 +90,6 @@ public class Mario extends Player{
 
     }
 
-
     @Override
     public void afterHitFromRightBy (GameElement e) {
         super.afterHitFromRightBy(e);
@@ -113,7 +112,6 @@ public class Mario extends Player{
         jumpTimer.setActive(false);
     }
 
-
     @Override
     public void giveStrengthUp() {
         if (!jumpEnable) {
@@ -128,18 +126,12 @@ public class Mario extends Player{
         }
     }
 
-
     public void afterHitFromRightBy (Goomba e) {
         updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
         checkDead();
     }
 
     public void afterHitFromLeftBy (Goomba e) {
-        updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
-        checkDead();
-    }
-
-    public void afterHitFromTopBy (Goomba e) {
         updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
         checkDead();
     }
@@ -152,12 +144,6 @@ public class Mario extends Player{
     public void afterHitFromLeftBy (Koopa k)
     {
         handleKoopaSideCollision(k);
-    }
-    
-    public void afterHitFromTopBy (Koopa k)
-    {
-        updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
-        checkDead();
     }
     
     private void handleKoopaSideCollision (Koopa k)
