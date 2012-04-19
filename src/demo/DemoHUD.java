@@ -25,6 +25,9 @@ import core.playfield.hud.DataProxy;
 import core.playfield.hud.TextWidget;
 import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
 import core.tiles.*;
+import demo.custom.Goomba;
+import demo.custom.Koopa;
+import demo.custom.Mario;
 
 /**
  * @author Glenn Rivkees (grivkees)

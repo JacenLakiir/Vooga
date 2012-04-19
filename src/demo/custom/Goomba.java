@@ -1,4 +1,4 @@
-package demo;
+package demo.custom;
 
 import java.util.List;
 import com.golden.gamedev.GameObject;

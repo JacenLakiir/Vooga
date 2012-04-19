@@ -21,6 +21,8 @@ import core.tiles.BaseTile;
 import core.tiles.BreakableDecorator;
 import core.tiles.ItemDecorator;
 import core.tiles.Tile;
+import demo.custom.Koopa;
+import demo.custom.Mario;
 
 /**
  * @author Eric Mercer (JacenLakiir)

@@ -2,7 +2,6 @@ package demo;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.object.background.ColorBackground;
 import core.characters.NPC;
 import core.characters.Player;
@@ -26,6 +25,9 @@ import core.tiles.FallingDecorator;
 import core.tiles.ItemDecorator;
 import core.tiles.MovingDecorator;
 import core.tiles.Tile;
+import demo.custom.Goomba;
+import demo.custom.Koopa;
+import demo.custom.Mario;
 
 /**
  * @author Siyang Chen
