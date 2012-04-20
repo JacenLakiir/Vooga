@@ -5,9 +5,7 @@
 package core.characters;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.golden.gamedev.GameObject;
 import core.items.CollectibleItem;
@@ -17,14 +15,11 @@ public class Player extends Character{
     
     protected double strengthUp, strengthDown, strengthLeft, strengthRight;
     protected List<CollectibleItem> myInventory, myActiveInventory;
-    protected Map<String, Double> myStateValues, myBaseValues;
     
     public Player(GameObject game) {
         super(game);
         myInventory = new ArrayList<CollectibleItem>();
         myActiveInventory = new ArrayList<CollectibleItem>();
-        myBaseValues = new HashMap<String, Double>();
-		myStateValues = new HashMap<String, Double>();
     }
     
     @Override
@@ -32,7 +27,8 @@ public class Player extends Character{
      
         updateAbilities();
         super.update(milliSec);  
-//        checkDead();
+
+        // check dead
         if (myStateValues.get("hitPoints") <= 0) {
         	updateBaseValues("lives", -1);
         	addState("hitPoints", 10);
@@ -40,15 +36,6 @@ public class Player extends Character{
         	System.out.println("dead");
         }
     }   
-   
-    public void checkDead() {
-//    	if (myStateValues.get("hitPoints") <= 0) {
-//        	updateStateValues("lives", -1);
-//        	updateStateValues("hitPoints", 10);
-//        	this.setLocation(0, 0);
-//        	System.out.println("dead");
-//        }
-    }
     
     protected void giveStrengthUp() {
         this.addAcceleration(0, strengthUp*stdGravity);
@@ -87,35 +74,6 @@ public class Player extends Character{
         this.setStrengthLeft(s);
         this.setStrengthRight(s);
         this.setStrengthUp(s);
-    }
-    
-    public void addState(String attribute, double defaultValue) {
-		myBaseValues.put(attribute, defaultValue);
-    	myStateValues.put(attribute, myBaseValues.get(attribute));
-
-	}
-    
-    public void updateBaseValues(String attribute, double newValue) {
-    	if (!myBaseValues.containsKey(attribute)) {
-			myBaseValues.put(attribute, (double) 0);
-		}
-    	myBaseValues.put(attribute, myBaseValues.get(attribute) + newValue);
-    	myStateValues.put(attribute, myBaseValues.get(attribute));
-    }
-
-    public double getMyBaseValue(String attribute) {
-    	return myBaseValues.get(attribute);
-    }
-    
-	public void updateStateValues(String attribute, double newValue) {
-		if (!myBaseValues.containsKey(attribute)) {
-			myBaseValues.put(attribute, (double) 0);
-		}
-		myStateValues.put(attribute, myBaseValues.get(attribute) + newValue);
-	}
-	
-	public double getMyStateValue(String attribute) {
-    	return myStateValues.get(attribute);
     }
     
     public List<CollectibleItem> getMyInventory() {
