@@ -62,9 +62,9 @@ public class Mario extends Player{
     }
     
     @KeyAnnotation(action = "space")
-    public Weapon keySpacePressed() {
-      return Weapon.useWeapon();
-    }
+//    public Weapon keySpacePressed() {
+//      return Weapon.useWeapon();
+//    }
 
 
     // this is only used for swimming

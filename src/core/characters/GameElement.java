@@ -344,11 +344,8 @@ public class GameElement extends AdvanceSprite {
     public void setMaximunSpeedInY(double y) {
         this.maximunSpeedInY = y;
     }
-
-    public void afterHitFromRightBy(GameElement e) {
-
-    }
-
+    
+    // try all the methods with parameter e or superclasses of e.  
     public void reflectionCalled(GameElement e, String key) {
         Class c = e.getClass();
         Class ge = null;
@@ -365,4 +362,6 @@ public class GameElement extends AdvanceSprite {
             c = c.getSuperclass();
         }
     }
+    
+
 }
