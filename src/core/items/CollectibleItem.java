@@ -22,7 +22,7 @@ public abstract class CollectibleItem extends GameElement {
 	
 	// Constructor for a collectible item
 	public CollectibleItem(GameObject game) {
-		super();
+		super(game);
 		myStateValues = new HashMap<String, Double>();
 	}
 
@@ -60,7 +60,7 @@ public abstract class CollectibleItem extends GameElement {
 	}
 	
 	 public void addState(String attribute, double defaultValue) {
-			myStateValues.put(attribute, defaultValue);
+		myStateValues.put(attribute, defaultValue);
 	}
 	 
 	 public double getStateValue(String state) {

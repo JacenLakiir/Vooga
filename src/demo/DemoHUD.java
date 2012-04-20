@@ -177,6 +177,16 @@ public class DemoHUD extends GameObject2D {
         coin2.addState("points", 3);
         myPlayfield.addItem(coin2);
         
+        CollectibleItem fireball = new Weapon(this);
+        fireball.setImages(this.getImages("resources/Fireball.png", 4, 1));
+        fireball.setLoopAnim(true);
+        fireball.setAnimate(true);
+        fireball.setActive(true);
+        fireball.setMovable(false);
+        fireball.setLocation(350, 400);
+        fireball.addState("attackPower", 2);
+        myPlayfield.addItem(fireball);
+        
         CollectibleTimelapseItem poison = new CollectibleTimelapseItem(this);
         poison.setImages(this.getImages("resources/Poison.png", 1, 1));
         poison.setActive(true);
@@ -185,13 +195,6 @@ public class DemoHUD extends GameObject2D {
         poison.setTimerStart(1000);
         poison.setTimerEnd(4000);
         poison.addState("hitPoints", -1);
-        myPlayfield.addItem(poison);
-        
-        CollectibleInventoryItem fireball = new CollectibleInventoryItem(this);
-        fireball.setImages(this.getImages("resources/Fireball.png", 4, 1));
-        fireball.setActive(true);
-        fireball.setLoopAnim(true);
-        fireball.setLocation(200, 400);
         myPlayfield.addItem(poison);
         
         ItemDecorator block1 = new ItemDecorator(new BaseTile(this));

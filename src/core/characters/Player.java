@@ -129,6 +129,13 @@ public class Player extends Character{
     	myInventory.remove(item);
     }
     
+    public void useInventoryItem(CollectibleItem item) {
+    	item.setActive(true);
+    }
+    
+    public void unuseInventoryItem(CollectibleItem item) {
+    	item.setActive(false);
+    }
     
     public void updateAbilities() {
 		for (CollectibleItem item : myInventory) {
