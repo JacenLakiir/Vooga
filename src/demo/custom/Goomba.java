@@ -39,21 +39,32 @@ public class Goomba extends NPC
         setCurrentState(new DeadState(this));
     }
     
-    public void afterHitFromRightBy (Koopa k)
-    {
-        handleKoopaSideCollision(k, true);
+    public void afterHitFromRightBy (Mario m) {
+        m.updateStateValues("hitPoints", -1 * m.getMyStateValue("hitPoints"));
+        m.checkDead();
+    }
+
+    public void afterHitFromLeftBy (Mario m) {
+        m.updateStateValues("hitPoints", -1 * m.getMyStateValue("hitPoints"));
+        m.checkDead();
     }
     
-    public void afterHitFromLeftBy (Koopa k)
+    public void afterHitFromRightBy (Koopa k)
     {
         handleKoopaSideCollision(k, false);
     }
     
-    private void handleKoopaSideCollision (Koopa k, boolean isMovingLeft)
+    public void afterHitFromLeftBy (Koopa k)
+    {
+        handleKoopaSideCollision(k, true);
+    }
+    
+    private void handleKoopaSideCollision (Koopa k, boolean isHitOnLeft)
     {
         if (k.isInShellState() && k.getShellSpeed() != 0)
-            setActive(false);
-        setDirection(isMovingLeft ? -1 : 1);
+            setCurrentState(new DeadState(this));
+        else
+            setDirection(isHitOnLeft ? 1 : -1);
     }
     
 }

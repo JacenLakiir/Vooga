@@ -8,6 +8,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+
+import levelio.Modifiable;
+
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.sprite.AdvanceSprite;
 
@@ -19,18 +22,27 @@ import core.physicsengine.Velocity;
 import core.tiles.Tile;
 
 @SuppressWarnings("serial") 
-public abstract class GameElement extends AdvanceSprite{
+
+public abstract class GameElement extends AdvanceSprite {
+    private static final long serialVersionUID = 2989579123989132598L;
     private Acceleration acc;
     private List<DuringAcceleration> duringAccList;
     private Velocity vel;
     private Displacement disp;
 
+    @Modifiable(name = "mass", type = "double")
     private double mass = 10;
+    @Modifiable(name = "density", type = "double")
     private double density = 1.01;
+    @Modifiable(name = "coefOfFrictionInX", type = "double")
     private double coefOfFrictionInX = 0.5;
+    @Modifiable(name = "coefOfFrictionInY", type = "double")
     private double coefOfFrictionInY = 0;
+    @Modifiable(name = "coefOfRestitutionInX", type = "double")
     private double coefOfRestitutionInX = 0.2;
+    @Modifiable(name = "coefOfRestitutionInY", type = "double")
     private double coefOfRestitutionInY = 0.1;
+    @Modifiable(name = "dragCoef", type = "double")
     private double dragCoef = 0;
     private double stdGravity = 0.004;
     private boolean isUnmovable = false;
@@ -39,7 +51,8 @@ public abstract class GameElement extends AdvanceSprite{
     private double maximunSpeedInX = Double.MAX_VALUE;
     private double maximunSpeedInY = Double.MAX_VALUE;
 
-    protected GameObject myGame;
+    protected transient GameObject myGame;
+
 
     public GameElement() {
         super();
@@ -48,21 +61,21 @@ public abstract class GameElement extends AdvanceSprite{
         disp = new Displacement(0, 0);
         duringAccList = new ArrayList<DuringAcceleration>();
         // Treat gravity as a during acceleration.
-        //        duringAccList.add(new DuringAcceleration(new Mapping(this) {
-        //            @Override
-        //            public double getXforTime(int t) {
-        //                    return 0;
-        //            }
-        //            @Override
-        //            public double getYforTime(int t) {
-        //                if (this.getOwner().isUnmovable() == false) {
-        //                    return this.getOwner().getGravitationalAcceleration() * -1.0;
-        //                }
-        //                else {
-        //                    return 0;
-        //                }
-        //            }
-        //        }));
+        // duringAccList.add(new DuringAcceleration(new Mapping(this) {
+        // @Override
+        // public double getXforTime(int t) {
+        // return 0;
+        // }
+        // @Override
+        // public double getYforTime(int t) {
+        // if (this.getOwner().isUnmovable() == false) {
+        // return this.getOwner().getGravitationalAcceleration() * -1.0;
+        // }
+        // else {
+        // return 0;
+        // }
+        // }
+        // }));
         myGame = null;
     }
 
@@ -94,7 +107,7 @@ public abstract class GameElement extends AdvanceSprite{
     }
 
     protected void updateDuringAcceleration(long t) {
-        for (DuringAcceleration entry:duringAccList) {
+        for (DuringAcceleration entry : duringAccList) {
             entry.update(t);
             acc.add(entry.getCurrentX(), entry.getCurrentY());
             if (entry.isActive() == false) {
@@ -122,13 +135,13 @@ public abstract class GameElement extends AdvanceSprite{
 
     private void moveToDisplacement() {
         double dx = disp.getX() - this.getX();
-        double dy = 480 - disp.getY() - this.getY();    // need to change!!!!
+        double dy = 480 - disp.getY() - this.getY(); // need to change!!!!
         this.move(dx, dy);
     }
 
     private void setDisplacementFromLocation() {
-        disp.set(this.getX(), 480 - this.getY());       // need to change!!!!
-    }    
+        disp.set(this.getX(), 480 - this.getY()); // need to change!!!!
+    }
 
     public void addAcceleration(double x, double y) {
         acc.add(x, y);
@@ -182,7 +195,7 @@ public abstract class GameElement extends AdvanceSprite{
     public boolean moveTo(long elapsedTime, double xs, double ys, double speed) {
         boolean flag = super.moveTo(elapsedTime, xs, ys, speed);
         setDisplacementFromLocation();
-        return flag; 
+        return flag;
     }
 
     @Override
@@ -274,7 +287,7 @@ public abstract class GameElement extends AdvanceSprite{
     }
 
     public void setMovable(boolean movable) {
-        isUnmovable = !movable; 
+        isUnmovable = !movable;
     }
 
     public void setPenetrable(boolean penetrable) {
@@ -333,37 +346,37 @@ public abstract class GameElement extends AdvanceSprite{
         this.maximunSpeedInY = y;
     }
 
-//    public void beforeHitFromLeftBy(GameElement e) {
-//        reflectionCalled(e, "beforeHitFromLeftBy");
-//    }
-//
-//    public void beforeHitFromRightBy(GameElement e) {
-//        reflectionCalled(e, "beforeHitFromRightBy");
-//    }
-//
-//    public void beforeHitFromTopBy(GameElement e) {
-//        reflectionCalled(e, "beforeHitFromTopBy");
-//    }
-//
-//    public void beforeHitFromBottomBy(GameElement e) {
-//        reflectionCalled(e, "beforeHitFromBottomBy");
-//    }
-//
-//    public void afterHitFromLeftBy(GameElement e) {
-//        reflectionCalled(e, "afterHitFromLeftBy");
-//    }
-//
-//    public void afterHitFromRightBy(GameElement e) {
-//        reflectionCalled(e, "afterHitFromRightBy");
-//    }
-//
-//    public void afterHitFromTopBy(GameElement e) {
-//        reflectionCalled(e, "afterHitFromTopBy");
-//    }
-//
-//    public void afterHitFromBottomBy(GameElement e) {
-//        reflectionCalled(e, "afterHitFromBottomBy");
-//    }
+    //    public void beforeHitFromLeftBy(GameElement e) {
+    //        reflectionCalled(e, "beforeHitFromLeftBy");
+    //    }
+    //
+    //    public void beforeHitFromRightBy(GameElement e) {
+    //        reflectionCalled(e, "beforeHitFromRightBy");
+    //    }
+    //
+    //    public void beforeHitFromTopBy(GameElement e) {
+    //        reflectionCalled(e, "beforeHitFromTopBy");
+    //    }
+    //
+    //    public void beforeHitFromBottomBy(GameElement e) {
+    //        reflectionCalled(e, "beforeHitFromBottomBy");
+    //    }
+    //
+    //    public void afterHitFromLeftBy(GameElement e) {
+    //        reflectionCalled(e, "afterHitFromLeftBy");
+    //    }
+    //
+    //    public void afterHitFromRightBy(GameElement e) {
+    //        reflectionCalled(e, "afterHitFromRightBy");
+    //    }
+    //
+    //    public void afterHitFromTopBy(GameElement e) {
+    //        reflectionCalled(e, "afterHitFromTopBy");
+    //    }
+    //
+    //    public void afterHitFromBottomBy(GameElement e) {
+    //        reflectionCalled(e, "afterHitFromBottomBy");
+    //    }
 
     public void reflectionCalled(GameElement e, String key) {
         Method method = null;
@@ -414,5 +427,4 @@ public abstract class GameElement extends AdvanceSprite{
             } catch (Exception ex) {}
         }
     }
-
 }

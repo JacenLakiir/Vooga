@@ -15,6 +15,7 @@ import com.golden.gamedev.object.background.ImageBackground;
 public class Pause extends MenuGameObject{
     private Background background;
     private BufferedImage arrow;
+<<<<<<< Updated upstream
     private static final int WINDOW_WIDTH = 640;
     private static final int WINDOW_HEIGHT = 480;
     private static final int TEXT_HEIGHT = 20;
@@ -30,6 +31,12 @@ public class Pause extends MenuGameObject{
         addOptionToMenu("Restart");
         addOptionToMenu("Menu");        
         
+=======
+
+    public Pause(GameEngine arg0) {
+        super(arg0);
+        engine = (DemoGameEngine) arg0;
+>>>>>>> Stashed changes
     }
 
    
@@ -73,8 +80,11 @@ public class Pause extends MenuGameObject{
         }
         finish();        
     }
+<<<<<<< Updated upstream
 
  
     
+=======
+>>>>>>> Stashed changes
     
 }

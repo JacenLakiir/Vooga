@@ -5,6 +5,7 @@
 package core.physicsengine;
 
 public class Displacement extends Vector{
+    
     public Displacement(double x, double y) {
         super(x, y);
     }
