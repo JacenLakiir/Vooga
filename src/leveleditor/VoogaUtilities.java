@@ -11,8 +11,11 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
@@ -86,6 +89,7 @@ public class VoogaUtilities {
 	return cm.hasAlpha();
     }
     
+    @Deprecated
     public static void gsonSerialize(String url, Object o) {
 	Gson gson = new GsonBuilder().setPrettyPrinting()
 		.enableComplexMapKeySerialization().create();
@@ -100,6 +104,7 @@ public class VoogaUtilities {
 	}
     }
     
+    @Deprecated
     public static String readJsonFile(File file) {
 	Scanner in = null;
 	try {
@@ -108,6 +113,16 @@ public class VoogaUtilities {
 	    e.printStackTrace();
 	}
 	return in.next();
+    }
+    
+    public static void serialize(String url, Serializable o) {
+	try {
+	    ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(url));
+	    out.writeObject(o);
+	    out.close();
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
     }
 
 }

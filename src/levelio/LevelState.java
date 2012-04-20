@@ -57,16 +57,5 @@ public class LevelState implements Serializable {
 	for (SpriteWrapper sp : mySprites)
 	    sp.reconstruct();
     }
-
-    public void save(String url) {
-	try {
-	    ObjectOutputStream out = new ObjectOutputStream(
-		    new FileOutputStream(url));
-	    out.writeObject(this);
-	    out.close();
-	} catch (IOException e) {
-	    e.printStackTrace();
-	}
-    }
     
 }

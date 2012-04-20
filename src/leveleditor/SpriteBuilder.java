@@ -132,6 +132,7 @@ public class SpriteBuilder extends JFrame {
 
 	public void actionPerformed(ActionEvent e) {
 	    File f = myView.loadFile("Load Image...");
+	    if (f == null) return;
 	    try {
 		imagelabel.setIcon(new ImageIcon(f.getCanonicalPath()));
 		imagelabel.setLayout(null);

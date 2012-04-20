@@ -38,10 +38,11 @@ public class LevelEditorController {
 	    sprites.add(tosave);
 	}
 	try {
-	    new LevelState(canvas.getBackgroundImageSrc(), sprites).save(file
-		    .getCanonicalPath());
+	    VoogaUtilities.serialize(file.getCanonicalPath(), 
+		    new LevelState(canvas.getBackgroundImageSrc(), sprites));
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
     }
+    
 }

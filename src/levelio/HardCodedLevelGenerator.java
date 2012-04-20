@@ -3,6 +3,7 @@
  */
 package levelio;
 
+import leveleditor.VoogaUtilities;
 import levelio.SpriteWrapper.SpriteGroupIdentifier;
 import core.characters.*;
 import demo.*;
@@ -32,7 +33,7 @@ public class HardCodedLevelGenerator {
 	sprites.add(badguyonew);
 	sprites.add(badguytwow);
 	LevelState lv1 = new LevelState(background, sprites);
-	lv1.save("saves/level1.lvl");
+	VoogaUtilities.serialize("saves/level1.lvl", lv1);
     }
 
 }
