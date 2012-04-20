@@ -109,10 +109,6 @@ public class LevelEditor extends JFrame {
             return null;
     }
 
-    private void createSprite(String imagesrc) {
-	SpriteEditor spriteeditpane = SpriteEditor.getInstance(myView, imagesrc);
-    }
-    
     protected void loadSprites(List<SpriteWrapper> sprites) {
 	myCanvas.loadSprites(sprites);
 	mySpritePanel.loadSprites(sprites);

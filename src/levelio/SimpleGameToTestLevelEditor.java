@@ -20,7 +20,6 @@ public class SimpleGameToTestLevelEditor extends Game {
     private PlayField myPlayfield;  
     private Background myBackground;
     private GameScroller myGameScroller;
-    
     private SpriteGroup myPlayers;
     private SpriteGroup myCharacters;
     private SpriteGroup mySetting;

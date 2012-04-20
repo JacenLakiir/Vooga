@@ -3,7 +3,9 @@ package leveleditor;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
+import java.io.Serializable;
+import java.util.*;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,31 +15,33 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
+
+import levelio.SpriteAttribute;
 import levelio.SpriteWrapper;
-import com.golden.gamedev.object.Sprite;
 
 @SuppressWarnings("serial")
 public class SpriteEditor extends JFrame {
     
     private static SpriteEditor myInstance;
     private LevelEditor myView;
-    private JTextField namefield;
+    private Map<JTextField, SpriteAttribute> myTextFieldAttributeMap;
     
-    public static SpriteEditor getInstance(LevelEditor view, String imagesrc) {
+    public static SpriteEditor getInstance(LevelEditor view, SpriteWrapper wrapper) {
 	if (myInstance != null)
 	    myInstance.dispose();
-	myInstance = new SpriteEditor(view, imagesrc);
+	myInstance = new SpriteEditor(view, wrapper);
 	myInstance.setVisible(true);
 	return myInstance;
     }
     
-    private SpriteEditor(LevelEditor view, String imagesrc) {
+    private SpriteEditor(LevelEditor view, SpriteWrapper wrapper) {
 	myView = view;
+	myTextFieldAttributeMap = new HashMap<JTextField, SpriteAttribute>();
 	setSize(300, 200);
 	setLocationRelativeTo(view);
 	setTitle("Edit Sprite");
 	setLayout(new GridLayout(1, 2));
-	JLabel imagelabel = new JLabel(new ImageIcon(imagesrc));
+	JLabel imagelabel = new JLabel(new ImageIcon(wrapper.getImageSrc()));
    	Border imageborder = BorderFactory.createTitledBorder
    		(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Image");
    	imagelabel.setBorder(imageborder);
@@ -50,10 +54,7 @@ public class SpriteEditor extends JFrame {
    		(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Edit");
    	editpanel.setBorder(panelborder);
    	editpanel.setLayout(new GridLayout(1, 2));
-   	JLabel namelabel = new JLabel("Name:");
-   	namefield = new JTextField();
-   	editpanel.add(namelabel);
-   	editpanel.add(namefield);
+   	generateFields(wrapper, editpanel);
    	rightpanel.add(editpanel);
    	JPanel confirmcancelpanel = new JPanel();
    	confirmcancelpanel.setLayout(new GridLayout(2, 1));
@@ -71,21 +72,36 @@ public class SpriteEditor extends JFrame {
    	setDefaultCloseOperation(DISPOSE_ON_CLOSE);
    	pack();
     }
-    
-    private class EditSpriteListener implements ActionListener {
-	private String myImagesrc;
 	
-	public CreateSpriteListener(String imagesrc) {
-	    myImagesrc = imagesrc;
+    public void generateFields(SpriteWrapper wrapper, JPanel editpanel) {
+	Map<SpriteAttribute, Serializable> attributemap = wrapper.getAttributeMap();
+	editpanel.setLayout(new GridLayout(attributemap.keySet().size(), 2));
+	TreeSet<SpriteAttribute> attributeset = new TreeSet<SpriteAttribute>(attributemap.keySet());
+	for (SpriteAttribute sa: attributeset) {
+	    if (!sa.getAttributeType().equals(Boolean.TYPE)) {
+		JLabel attributelabel = new JLabel(sa.getName() + ": ");
+		JTextField attributefield = new JTextField();
+		editpanel.add(attributelabel);
+		editpanel.add(attributefield);
+		myTextFieldAttributeMap.put(attributefield, sa);
+	    }
 	}
-
-	public void actionPerformed(ActionEvent e) {
-	    BufferedImage image = VoogaUtilities.getImageFromString(myImagesrc);
-	    myView.getSpritePanel().importSprite(new SpriteWrapper(new Sprite(image), 
-		    namefield.getText(), myImagesrc));
-	    myInstance.dispose();
-	}
-	
     }
+    
+//    private class EditSpriteListener implements ActionListener {
+//	private String myImagesrc;
+//	
+//	public CreateSpriteListener(String imagesrc) {
+//	    myImagesrc = imagesrc;
+//	}
+//
+//	public void actionPerformed(ActionEvent e) {
+//	    BufferedImage image = VoogaUtilities.getImageFromString(myImagesrc);
+//	    myView.getSpritePanel().importSprite(new SpriteWrapper(new Sprite(image), 
+//		    namefield.getText(), myImagesrc));
+//	    myInstance.dispose();
+//	}
+//	
+//    }
     
 }

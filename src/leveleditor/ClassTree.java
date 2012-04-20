@@ -1,7 +1,5 @@
 package leveleditor;
 
-import java.awt.Color;
-
 import javax.swing.JTree;
 import javax.swing.tree.*;
 

@@ -3,10 +3,10 @@
  */
 package levelio;
 
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import leveleditor.VoogaUtilities;
 
 import core.characters.GameElement;
@@ -23,7 +23,7 @@ public class SpriteWrapper implements Cloneable, Serializable {
     private SpriteGroupIdentifier myGroup;
     private Class<?> myClass;
     private String myImagesrc;
-    private Map<SpriteAttribute, Object> myAttributeMap;
+    private Map<SpriteAttribute, Serializable> myAttributeMap;
     private GameElement myGameElement;
     
     public SpriteWrapper(String name, SpriteGroupIdentifier group, Class<?> clazz, String imgsrc) {
@@ -32,29 +32,48 @@ public class SpriteWrapper implements Cloneable, Serializable {
 	myClass = clazz;
 	myImagesrc = imgsrc;
 	myGameElement = new GameElement();
-	myAttributeMap = new HashMap<SpriteAttribute, Object>();
-	Field[] allfields = clazz.getDeclaredFields();
-	for (Field f: allfields) {
-	    f.setAccessible(true);
-	    if (f.isAnnotationPresent(Modifiable.class)) {
-		String fname = f.getName();
-		Class<?> ftype = f.getType();
-		String fclassification = 
-			((Modifiable) f.getAnnotation(Modifiable.class)).classification();
-		myAttributeMap.put(new SpriteAttribute(fname, ftype, fclassification), new Object());
-
-	    }
-	}
+	buildAttributeMap(clazz);
 	reconstruct();
+    }
+    
+    public SpriteWrapper(String name, SpriteGroupIdentifier group, String imgsrc, GameElement sprite) {
+	myName = name;
+	myGroup = group;
+	myClass = sprite.getClass();
+	myImagesrc = imgsrc;
+	myGameElement = sprite;
+	buildAttributeMap(sprite.getClass());
+	reconstruct();
+    }
+    
+    private void buildAttributeMap(Class<?> clazz) {
+	myAttributeMap = new HashMap<SpriteAttribute, Serializable>();
+	Set<Field> fieldset = new HashSet<Field>();
+	Class<?> curr = clazz;
+	while (true) {
+	    for (Field f: curr.getDeclaredFields()) {
+		f.setAccessible(true);
+		if (f.isAnnotationPresent(Modifiable.class)) {
+		    String fname = f.getName();
+		    Class<?> ftype = f.getType();
+		    String fclassification = 
+			    ((Modifiable) f.getAnnotation(Modifiable.class)).classification();
+		    myAttributeMap.put(new SpriteAttribute(fname, ftype, fclassification), null);
+		    fieldset.add(f);
+		}
+	    }
+	    if (curr.equals(GameElement.class)) return;
+	    curr = curr.getSuperclass();
+	}
     }
     
     public SpriteWrapper clone() {
 	SpriteWrapper cloned = new SpriteWrapper(myName, myGroup, myClass, myImagesrc);
-	cloned.myAttributeMap = new HashMap<SpriteAttribute, Object>(myAttributeMap);
+	cloned.myAttributeMap = new HashMap<SpriteAttribute, Serializable>(myAttributeMap);
 	return cloned;
     }
     
-    public void updateAttributeMap(SpriteAttribute sa, Object o) {
+    public void updateAttributeMap(SpriteAttribute sa, Serializable o) {
 	myAttributeMap.put(sa, o);
     }
     
@@ -74,8 +93,14 @@ public class SpriteWrapper implements Cloneable, Serializable {
 	return myGameElement;
     }
     
+    public Map<SpriteAttribute, Serializable> getAttributeMap() {
+	return Collections.unmodifiableMap(myAttributeMap);
+    }
+    
     public void reconstruct() {
-	myGameElement.setImage(VoogaUtilities.getImageFromString(myImagesrc));
+	BufferedImage[] dummyimages = new BufferedImage[1];
+	dummyimages[0] = VoogaUtilities.getImageFromString(myImagesrc);
+	myGameElement.setImages(dummyimages);
     }
 
 //    public int compareTo(SpriteWrapper o) {

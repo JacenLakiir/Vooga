@@ -65,6 +65,6 @@ public class LevelState implements Serializable {
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
-
     }
+    
 }

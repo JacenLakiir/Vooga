@@ -7,9 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JLabel;
-import javax.swing.JTree;
 
 import levelio.LevelState;
 import levelio.SpriteWrapper;

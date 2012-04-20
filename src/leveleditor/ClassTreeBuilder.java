@@ -5,27 +5,12 @@ import java.util.zip.*;
 import java.io.*;
 import java.net.*;
 import java.util.regex.*;
-
-import javax.swing.JFrame;
 import javax.swing.JTree;
 import javax.swing.tree.*;
 
 import core.characters.GameElement;
 
 public class ClassTreeBuilder {
-
-    public static void main(String[] args) {
-	JFrame frame = new JFrame();
-	JTree t = getClassTree("core");
-//	DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) t
-//		.getCellRenderer();
-//	renderer.setLeafIcon(null);
-//	renderer.setClosedIcon(null);
-//	renderer.setOpenIcon(null);
-	frame.add(t);
-	frame.setSize(300, 200);
-	frame.setVisible(true);
-    }
 
     public static JTree getClassTree(String packageName) {
 	Map<Class<?>, DefaultMutableTreeNode> nodemap = new HashMap<Class<?>, DefaultMutableTreeNode>();

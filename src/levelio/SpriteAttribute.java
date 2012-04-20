@@ -1,7 +1,9 @@
 package levelio;
 
-public class SpriteAttribute {
+public class SpriteAttribute implements Comparable<SpriteAttribute>, java.io.Serializable {
 
+    private static final long serialVersionUID = -9194012867669765397L;
+    
     private String myName;
     private Class<?> myType;
     private String myClassification;
@@ -33,4 +35,9 @@ public class SpriteAttribute {
 	SpriteAttribute s = (SpriteAttribute) o;
 	return myName.equals(s.myName) && myType.equals(s.myType);
     }
+
+    public int compareTo(SpriteAttribute o) {
+	return myName.compareTo(o.myName);
+    }
+    
 }

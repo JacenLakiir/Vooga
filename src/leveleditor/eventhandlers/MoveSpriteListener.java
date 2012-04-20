@@ -17,12 +17,13 @@ import javax.swing.event.MouseInputListener;
 
 import leveleditor.LevelEditor;
 import leveleditor.SpriteEditor;
+import levelio.SpriteWrapper;
 
 public class MoveSpriteListener implements MouseInputListener,
 	MouseMotionListener {
 
     private Point prel = null;
-    private String imagesrc = null;
+    private SpriteWrapper wrapper;
     private LevelEditor myView;
 
     public MoveSpriteListener(LevelEditor view) {
@@ -39,6 +40,8 @@ public class MoveSpriteListener implements MouseInputListener,
 	    return;
 	if (prel == null)
 	    prel = jl.getMousePosition();
+	if (prel == null)
+	    return;
 	Point newP = new Point(p.x - prel.x, p.y - prel.y);
 	if (newP.x < 0)
 	    newP.x = 0;
@@ -65,15 +68,14 @@ public class MoveSpriteListener implements MouseInputListener,
     public void mousePressed(final MouseEvent e) {
 	((JLabel) e.getComponent()).setBorder(BorderFactory
 		.createLineBorder(Color.YELLOW));
-	imagesrc = myView.getCanvas().getLabelWrapperMap().get((JLabel) e.getComponent())
-		.getImageSrc();
+	wrapper = myView.getCanvas().getLabelWrapperMap().get((JLabel) e.getComponent());
 	if (SwingUtilities.isRightMouseButton(e)) {
 	    JPopupMenu editMenu = new JPopupMenu();
 	    JMenuItem myEditItem = new JMenuItem("Edit");
 	    editMenu.add(myEditItem);
 	    myEditItem.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent event) {
-		    SpriteEditor.getInstance(myView, imagesrc);
+		    SpriteEditor.getInstance(myView, wrapper);
 		}
 	    });
 	    JMenuItem myDeleteItem = new JMenuItem("Delete");
