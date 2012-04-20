@@ -44,7 +44,7 @@ public abstract class GameElement extends AdvanceSprite {
     private double coefOfRestitutionInY = 0.1;
     @Modifiable(name = "dragCoef", type = "double")
     private double dragCoef = 0;
-    private double stdGravity = 0.004;
+    protected double stdGravity = 0.004;
     private boolean isUnmovable = false;
     private boolean isPenetrable = false;
 
