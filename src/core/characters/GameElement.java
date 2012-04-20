@@ -16,24 +16,25 @@ import core.physicsengine.Velocity;
 
 @SuppressWarnings("serial") 
 public abstract class GameElement extends AdvanceSprite{
-    protected Acceleration acc;
-    protected List<DuringAcceleration> duringAccList;
-    protected Velocity vel;
-    protected Displacement disp;
-    protected double metersPerPixel;
+    private Acceleration acc;
+    private List<DuringAcceleration> duringAccList;
+    private Velocity vel;
+    private Displacement disp;
 
-    protected double mass = 10;
-    protected double density = 1.01;
-    protected double coefOfFrictionInX = 0.5;
-    protected double coefOfFrictionInY = 0;
-    protected double coefOfRestitutionInX = 0.2;
-    protected double coefOfRestitutionInY = 0.1;
-    protected double dragCoef = 0;
-    protected double stdGravity = 0.004;
-    protected boolean isUnmovable = false;
-    protected boolean isPenetrable = false;
-    protected double maximunSpeedInX = Double.MAX_VALUE;
-    protected double maximunSpeedInY = Double.MAX_VALUE;
+    private double mass = 10;
+    private double density = 1.01;
+    private double coefOfFrictionInX = 0.5;
+    private double coefOfFrictionInY = 0;
+    private double coefOfRestitutionInX = 0.2;
+    private double coefOfRestitutionInY = 0.1;
+    private double dragCoef = 0;
+    private double stdGravity = 0.004;
+    private boolean isUnmovable = false;
+    private boolean isPenetrable = false;
+
+    private double maximunSpeedInX = Double.MAX_VALUE;
+    private double maximunSpeedInY = Double.MAX_VALUE;
+    
     protected GameObject myGame;
 
     public GameElement() {

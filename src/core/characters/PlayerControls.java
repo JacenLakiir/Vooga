@@ -7,7 +7,7 @@ public class PlayerControls extends Character {
 	protected double strengthUp, strengthDown, strengthLeft, strengthRight;
 
 	protected void giveStrengthUp() {
-        this.addAcceleration(0, strengthUp*stdGravity);
+        this.addAcceleration(0, strengthUp*this.getGravitationalAcceleration());
     }
     
     @KeyAnnotation(action = "sequence")
@@ -22,17 +22,17 @@ public class PlayerControls extends Character {
     
     @KeyAnnotation(action = "down")
     public void keyDownPressed() {
-        this.addAcceleration(0, strengthDown*-stdGravity);
+        this.addAcceleration(0, strengthDown*-getGravitationalAcceleration());
     }
     
     @KeyAnnotation(action = "left")
     public void keyLeftPressed() {
-        this.addAcceleration(strengthLeft*-stdGravity, 0);
+        this.addAcceleration(strengthLeft*-getGravitationalAcceleration(), 0);
     }
     
     @KeyAnnotation(action = "right")
     public void keyRightPressed() {
-        this.addAcceleration(strengthRight*stdGravity, 0);
+        this.addAcceleration(strengthRight*getGravitationalAcceleration(), 0);
     }
     
 //	    @KeyAnnotation(action = "space")

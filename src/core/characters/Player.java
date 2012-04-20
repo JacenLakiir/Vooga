@@ -50,7 +50,7 @@ public class Player extends Character{
     }
     
     protected void giveStrengthUp() {
-        this.addAcceleration(0, strengthUp*stdGravity);
+        this.addAcceleration(0, strengthUp*this.getGravitationalAcceleration());
     }
 
     public void keyAPressed() {
