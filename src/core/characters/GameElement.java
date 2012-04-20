@@ -26,24 +26,24 @@ public class GameElement extends AdvanceSprite {
     private Velocity vel;
     private Displacement disp;
 
-    @Modifiable(classification = Modifiable.Classification.PHYSICS)
+    @Modifiable(classification = "Physics")
     private double mass = 10;
-    @Modifiable(classification = Modifiable.Classification.PHYSICS)
+    @Modifiable(classification = "Physics")
     private double density = 1.0;
-    @Modifiable(classification = Modifiable.Classification.PHYSICS)
+    @Modifiable(classification = "Physics")
     private double coefOfFrictionInX = 0.5;
-    @Modifiable(classification = Modifiable.Classification.PHYSICS)
+    @Modifiable(classification = "Physics")
     private double coefOfFrictionInY = 0;
-    @Modifiable(classification = Modifiable.Classification.PHYSICS)
+    @Modifiable(classification = "Physics")
     private double coefOfRestitutionInX = 0.2;
-    @Modifiable(classification = Modifiable.Classification.PHYSICS)
+    @Modifiable(classification = "Physics")
     private double coefOfRestitutionInY = 0.1;
-    @Modifiable(classification = Modifiable.Classification.PHYSICS)
+    @Modifiable(classification = "Physics")
     private double dragCoef = 0;
     protected double stdGravity = 0.004;
-    @Modifiable(classification = Modifiable.Classification.PHYSICS)
+    @Modifiable(classification = "Physics")
     private boolean isUnmovable = false;
-    @Modifiable(classification = Modifiable.Classification.PHYSICS)
+    @Modifiable(classification = "Physics")
     private boolean isPenetrable = false;
 
     private double maximunSpeedInX = Double.MAX_VALUE;
