@@ -1,4 +1,7 @@
 //TODO
+/**
+ * @author Michael Zhou (Dominator008)
+ */
 package levelio;
 
 import com.golden.gamedev.GameObject;

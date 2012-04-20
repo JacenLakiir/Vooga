@@ -1,3 +1,6 @@
+/**
+ * @author Michael Zhou (Dominator008)
+ */
 package leveleditor.eventhandlers;
 
 import java.awt.datatransfer.DataFlavor;

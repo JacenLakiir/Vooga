@@ -1,3 +1,6 @@
+/**
+ * @author Michael Zhou (Dominator008)
+ */
 package levelio;
 
 public class SpriteAttribute implements Comparable<SpriteAttribute>, java.io.Serializable {
