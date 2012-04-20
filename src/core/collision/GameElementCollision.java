@@ -79,39 +79,46 @@ public class GameElementCollision extends CollisionGroup{
         }    
     }
 
+    // messy method!
     protected void checkPhysics(GameElement s1, GameElement s2) {        
         if ((s1).isPenetrable() || (s2).isPenetrable()) {
-            checkBuoyancy(s1, s2);
-            checkViscosity(s1, s2);
-            checkBuoyancy(s2, s1);
-            checkViscosity(s2, s1);
+            if (s1.isUnmovable() == false) {
+                checkBuoyancy(s1, s2);
+                checkViscosity(s1, s2);
+            }
+            if (s2.isUnmovable() == false) {
+                checkBuoyancy(s2, s1);
+                checkViscosity(s2, s1);
+            }
         }
         else {
-            if (s1.isUnmovable() && s2.isUnmovable()) {
-                System.err.println("Two unmovable block collided!!!");
-            }
             if (((this.collisionSide & LEFT_RIGHT_COLLISION) != 0) || 
                     (this.collisionSide & RIGHT_LEFT_COLLISION) != 0) {
-                checkCollisionInXDirection(s1, s2);
-                checkCollisionInXDirection(s2, s1);
+                if (s1.isUnmovable() == false) {
+                    checkCollisionInXDirection(s1, s2);
+                }
+                if (s2.isUnmovable() == false) {
+                    checkCollisionInXDirection(s2, s1);
+                }
             }
             if (((this.collisionSide & BOTTOM_TOP_COLLISION) != 0) ||
                     (this.collisionSide & TOP_BOTTOM_COLLISION) != 0) {
-                checkCollisionInYDirection(s1, s2);
-                checkCollisionInYDirection(s2, s1);
+                if (s1.isUnmovable() == false) {
+                    checkCollisionInYDirection(s1, s2);
+                }
+                if (s2.isUnmovable() == false) {
+                    checkCollisionInYDirection(s2, s1);
+                }
             }
         }
     }
 
     protected void checkBuoyancy(GameElement s1, GameElement s2) {
-        if (s1.isUnmovable()) return;
         double fb = s1.getMass() / s1.getDensity() * s2.getDensity() * s1.getGravitationalAcceleration();
         s1.givenAForceOf(0, fb);
     }
 
     protected void checkViscosity(GameElement s1, GameElement s2) {
-        // All wrong!!
-        if (s1.isUnmovable()) return;
         double fc = s2.getDragCoefficient(),
                 vx = s1.getVelocity().getX(),
                 vy = s1.getVelocity().getY();
@@ -120,11 +127,9 @@ public class GameElementCollision extends CollisionGroup{
         double fy = fc * vy*vy;
         if (vy > 0) fy *= (-1); 
         s1.givenAForceOf(fx, fy);
-
     }
 
     protected void checkCollisionInXDirection(GameElement s1, GameElement s2) {
-        if (s1.isUnmovable()) return;
         double vx1 = s1.getVelocity().getX(), vx2 = s2.getVelocity().getX(), 
                 vy1 = s1.getVelocity().getY(), vy2 = s2.getVelocity().getY(), 
                 m1 = s1.getMass(), m2 = s2.getMass(),
@@ -156,7 +161,6 @@ public class GameElementCollision extends CollisionGroup{
     }
 
     protected void checkCollisionInYDirection(GameElement s1, GameElement s2) {
-        if (s1.isUnmovable()) return;
         double vx1 = s1.getVelocity().getX(), vx2 = s2.getVelocity().getX(), 
                 vy1 = s1.getVelocity().getY(), vy2 = s2.getVelocity().getY(), 
                 m1 = s1.getMass(), m2 = s2.getMass(),
