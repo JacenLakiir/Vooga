@@ -3,7 +3,6 @@
  */
 package levelio;
 
-import java.awt.Point;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,7 +11,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class LevelState implements Serializable {
@@ -20,11 +18,15 @@ public class LevelState implements Serializable {
     private String myBackgroundSrc;
     private List<SpriteWrapper> mySprites;
     
-    public LevelState(String background, HashMap<Point, SpriteWrapper> spritemap) {
-	mySprites = new ArrayList<SpriteWrapper>();
+    public LevelState(String background, List<SpriteWrapper> sprites) {
+	mySprites = new ArrayList<SpriteWrapper>(sprites);
 	myBackgroundSrc = background;
     }
-
+    
+    public void setBackgroundImageSrc(String src) {
+	myBackgroundSrc = src;
+    }
+    
     public String getBackgroundImageSrc() {
 	return myBackgroundSrc;
     }

@@ -1,15 +1,13 @@
 package levelio;
 
-import levelio.Modifiable.Classification;
-
 public class SpriteAttribute {
 
     private String myName;
     private Class<?> myType;
-    private Classification myClassification;
+    private String myClassification;
 
     
-    public SpriteAttribute(String name, Class<?> type, Classification classification) {
+    public SpriteAttribute(String name, Class<?> type, String classification) {
 	myName = name;
 	myType = type;
 	myClassification = classification;
@@ -23,7 +21,7 @@ public class SpriteAttribute {
 	return myType;
     }
     
-    public Classification getClassification() {
+    public String getClassification() {
 	return myClassification;
     }
     

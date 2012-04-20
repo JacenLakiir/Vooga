@@ -7,7 +7,6 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 import leveleditor.VoogaUtilities;
-import levelio.Modifiable.Classification;
 
 import core.characters.GameElement;
 
@@ -37,7 +36,7 @@ public class SpriteWrapper implements Cloneable {
 	    if (f.isAnnotationPresent(Modifiable.class)) {
 		String fname = f.getName();
 		Class<?> ftype = f.getType();
-		Classification fclassification = 
+		String fclassification = 
 			((Modifiable) f.getAnnotation(Modifiable.class)).classification();
 		myAttributeMap.put(new SpriteAttribute(fname, ftype, fclassification), new Object());
 
@@ -50,6 +49,10 @@ public class SpriteWrapper implements Cloneable {
 	SpriteWrapper cloned = new SpriteWrapper(myName, myGroup, myClass, myImagesrc);
 	cloned.myAttributeMap = new HashMap<SpriteAttribute, Object>(myAttributeMap);
 	return cloned;
+    }
+    
+    public void updateAttributeMap(SpriteAttribute sa, Object o) {
+	myAttributeMap.put(sa, o);
     }
     
     public String getName() {
