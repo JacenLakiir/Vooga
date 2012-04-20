@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.TransferHandler;
 
 import leveleditor.LevelEditor;
-import levelio.SpriteWrapper;
+import levelio.GameElementWrapper;
 
 @SuppressWarnings("serial")
 public class SpriteSelectionHandler extends TransferHandler implements
@@ -21,13 +21,13 @@ public class SpriteSelectionHandler extends TransferHandler implements
     private LevelEditor myView;
     private final DataFlavor flavors[] = new DataFlavor[1];
     // private JLabel source;
-    private SpriteWrapper spritewrapper;
+    private GameElementWrapper spritewrapper;
     private DataFlavor spriteWrapperFlavor;
 
     public SpriteSelectionHandler(LevelEditor view) {
 	myView = view;
 	String spriteWrapperType = DataFlavor.javaJVMLocalObjectMimeType
-		+ ";class=" + SpriteWrapper.class.getName();
+		+ ";class=" + GameElementWrapper.class.getName();
 	try {
 	    spriteWrapperFlavor = new DataFlavor(spriteWrapperType);
 	    flavors[0] = spriteWrapperFlavor;
@@ -75,7 +75,7 @@ public class SpriteSelectionHandler extends TransferHandler implements
 	    // System.out.println("t printed");
 	    if (t.isDataFlavorSupported(flavors[0])) {
 		try {
-		    spritewrapper = (SpriteWrapper) t
+		    spritewrapper = (GameElementWrapper) t
 			    .getTransferData(flavors[0]);
 		    ImageIcon icon = new ImageIcon(spritewrapper.getImageSrc());
 		    label.setIcon(icon);

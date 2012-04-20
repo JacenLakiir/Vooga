@@ -11,20 +11,23 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-public class LevelState implements Serializable {
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 391098281239L;
-    private String myBackgroundSrc;
-    private HashMap<Point, SpriteWrapper> mySpriteMap;
+import com.golden.gamedev.object.SpriteGroup;
 
-    public LevelState(String background, HashMap<Point, SpriteWrapper> spritemap) {
-	mySpriteMap = new HashMap<Point, SpriteWrapper>(spritemap);
+public class LevelState implements Serializable {
+    private static final long serialVersionUID = 3910981230998281239L;
+    private String myBackgroundSrc;
+    private ArrayList<GameElementWrapper> myPlayers;
+    private ArrayList<GameElementWrapper> myCharacters;
+    private ArrayList<GameElementWrapper> mySettings;
+    private ArrayList<GameElementWrapper> myItems;
+    
+    public LevelState(String background, HashMap<Point, GameElementWrapper> spritemap) {
+	//mySpriteMap = new HashMap<Point, SpriteWrapper>(spritemap);
 	myBackgroundSrc = background;
     }
 
@@ -33,7 +36,7 @@ public class LevelState implements Serializable {
     }
 
     
-    public HashMap<Point, SpriteWrapper> getSpriteMap() {
+    public HashMap<Point, GameElementWrapper> getSpriteMap() {
 	return mySpriteMap;
     }
 
@@ -54,7 +57,7 @@ public class LevelState implements Serializable {
     }
 
     private void reconstruct() {
-	for (SpriteWrapper sp : mySpriteMap.values())
+	for (GameElementWrapper sp : mySpriteMap.values())
 	    sp.reconstruct();
     }
 

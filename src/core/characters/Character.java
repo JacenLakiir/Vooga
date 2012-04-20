@@ -15,10 +15,10 @@ import com.golden.gamedev.GameObject;
 @SuppressWarnings("serial")
 public abstract class Character extends GameElement{
     
-    @Modifiable(name = "myHitPoints", type = "double")
+    @Modifiable(classification = Modifiable.classification.GAMEPLAY)
     protected double myHitPoints;
     
-    protected Map<String, Double> myStateValues, myBaseValues;
+    protected transient Map<String, Double> myStateValues, myBaseValues;
 	
     public Character(GameObject game) {
         super(game);
