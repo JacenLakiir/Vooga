@@ -12,7 +12,7 @@ import core.items.CollectibleItem;
 
 
 
-public class ItemDecorator extends TileDecorator{
+public class ItemDecorator extends ActionDecorator{
 	private Queue<CollectibleItem> itemList;
 	
 	public ItemDecorator(Tile decoratedPlatform) {
@@ -29,16 +29,12 @@ public class ItemDecorator extends TileDecorator{
 	}
 
 	@Override
-	public void afterHitFromBottomBy(GameElement e){
+	public void doAction() {
 		if(!itemList.isEmpty()){
 			CollectibleItem item = removeItem();
 			item.setActive(true);
 			item.setLocation(getX(), getY()-getHeight());
 		}
-		if (itemList.size() == 0){
-//			setImages(myGame.getImages("resources/Block3.png", 1, 1));
-		}
-		decoratedPlatform.afterHitFromBottomBy(e);
 	}
 	
 }
