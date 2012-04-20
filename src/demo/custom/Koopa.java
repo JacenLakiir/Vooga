@@ -121,12 +121,10 @@ public class Koopa extends NPC
         else if (isInShell && getShellSpeed() != 0)
         {
             m.updateStateValues("hitPoints", -1 * m.getMyStateValue("hitPoints"));
-            m.checkDead();
         }
         else if (!isInShell)
         {
             m.updateStateValues("hitPoints", -1 * m.getMyStateValue("hitPoints"));
-            m.checkDead();
         }
     }
     
@@ -137,7 +135,6 @@ public class Koopa extends NPC
             if (k.isInShellState() && k.getShellSpeed() != 0)
             {
                 setShellSpeed(50*Math.abs(k.getVelocity().getX()));
-//                setDirection(isThisHitOnLeft ? 1 : -1);
                 setDirection(-1 * getDirection());
             }
             else if (k.isInShellState() && k.getShellSpeed() == 0)

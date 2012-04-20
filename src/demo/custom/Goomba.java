@@ -51,12 +51,10 @@ public class Goomba extends NPC
     
     public void afterHitFromRightBy (Mario m) {
         m.updateStateValues("hitPoints", -1 * m.getMyStateValue("hitPoints"));
-        m.checkDead();
     }
 
     public void afterHitFromLeftBy (Mario m) {
         m.updateStateValues("hitPoints", -1 * m.getMyStateValue("hitPoints"));
-        m.checkDead();
     }
     
     public void afterHitFromRightBy (Koopa k)
