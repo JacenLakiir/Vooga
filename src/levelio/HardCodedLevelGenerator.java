@@ -27,6 +27,6 @@ public class HardCodedLevelGenerator
         spritemap.put(new Point(20, 200), new SpriteWrapper(badguy, "Mario", badguysrc));
         spritemap.put(new Point(373, 238), new SpriteWrapper(badguy, "Mario", badguysrc));
         LevelState lv1 = new LevelState(background, spritemap);
-        lv1.save("saves/level1.lvl");
+        lv1.gsonSerialize("saves/level1.lvl");
     }
 }

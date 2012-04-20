@@ -7,6 +7,7 @@ package core.physicsengine;
 import core.characters.GameElement;
 
 public abstract class Mapping {
+    
     private GameElement owner;
     
     public Mapping(GameElement owner) {
@@ -20,4 +21,5 @@ public abstract class Mapping {
     public GameElement getOwner() {
         return owner;
     }
+    
 }

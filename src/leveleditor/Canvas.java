@@ -8,6 +8,7 @@ import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -83,7 +84,7 @@ public class Canvas extends JScrollPane {
 	return myBackGroundImgSrc;
     }
     
-    protected void loadSprites(Map<Point, SpriteWrapper> spritemap) {
+    protected void loadSprites(HashMap<Point, SpriteWrapper> spritemap) {
 	if (myLabelWrapperMap != null) {
 	    for (JLabel l: myLabelWrapperMap.keySet()) {
 		l.setVisible(false);

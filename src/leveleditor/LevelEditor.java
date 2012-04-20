@@ -9,6 +9,7 @@ import java.io.*;
 import java.util.*;
 import javax.swing.*;
 
+import leveleditor.eventhandlers.*;
 import levelio.LevelState;
 import levelio.SpriteWrapper;
 
@@ -91,20 +92,14 @@ public class LevelEditor extends JFrame {
 	myMenu[1].add(myChangeBackground);
 	JMenuItem myCreateSpriteMunu = new JMenuItem("Create Sprite");
 	myCreateSpriteMunu.addActionListener(new ActionListener() {
-	    public void actionPerformed(ActionEvent event) {
-		File f = loadFile("Select Sprite Image...");
-		if (f == null) return;
-		try {
-		    createSprite(f.getCanonicalPath());
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
+	    public void actionPerformed(ActionEvent e) {
+		SpriteBuilder.getInstance(myView);
 	    }
 	});
 	myMenu[1].add(myCreateSpriteMunu);
     }
     
-    private File loadFile(String title) {
+    protected File loadFile(String title) {
         JFileChooser fc = new JFileChooser(".");
         fc.setDialogTitle(title);
         int returnVal = fc.showOpenDialog(this);
@@ -118,7 +113,7 @@ public class LevelEditor extends JFrame {
 	SpriteEditPanel spriteeditpane = SpriteEditPanel.getInstance(myView, imagesrc);
     }
     
-    protected void loadSprites(Map<Point, SpriteWrapper> spritemap) {
+    protected void loadSprites(HashMap<Point, SpriteWrapper> spritemap) {
 	myCanvas.loadSprites(spritemap);
 	mySpritePanel.loadSprites(spritemap);
     }
@@ -130,7 +125,8 @@ public class LevelEditor extends JFrame {
 	    spritemap.put(l.getLocation(), 
 		    new SpriteWrapper(myCanvas.getLabelWrapperMap().get(l)));
 	}
-	new LevelState(myCanvas.getBackgroundImageSrc(), spritemap).save(path);
+	VoogaUtilities.gsonSerialize(path, 
+		new LevelState(myCanvas.getBackgroundImageSrc(), spritemap));
     }
     
     public Canvas getCanvas() {
@@ -139,6 +135,11 @@ public class LevelEditor extends JFrame {
     
     public SpritePanel getSpritePanel() {
 	return mySpritePanel;
+    }
+    
+    public void showError(String message) {
+	JOptionPane.showMessageDialog(this, message, "LevelEditor Error",
+		JOptionPane.ERROR_MESSAGE);
     }
     
 }

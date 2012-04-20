@@ -12,6 +12,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class LevelState implements Serializable {
@@ -20,9 +21,9 @@ public class LevelState implements Serializable {
      */
     private static final long serialVersionUID = 391098281239L;
     private String myBackgroundSrc;
-    private Map<Point, SpriteWrapper> mySpriteMap;
+    private HashMap<Point, SpriteWrapper> mySpriteMap;
 
-    public LevelState(String background, Map<Point, SpriteWrapper> spritemap) {
+    public LevelState(String background, HashMap<Point, SpriteWrapper> spritemap) {
 	mySpriteMap = new HashMap<Point, SpriteWrapper>(spritemap);
 	myBackgroundSrc = background;
     }
@@ -31,7 +32,8 @@ public class LevelState implements Serializable {
 	return myBackgroundSrc;
     }
 
-    public Map<Point, SpriteWrapper> getSpriteMap() {
+    
+    public HashMap<Point, SpriteWrapper> getSpriteMap() {
 	return mySpriteMap;
     }
 
@@ -65,6 +67,6 @@ public class LevelState implements Serializable {
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
-    }
 
+    }
 }

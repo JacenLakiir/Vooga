@@ -32,6 +32,16 @@ public abstract class Vector{
     public double getY() {
         return y;
     }
+    
+    public void add(Vector v) {
+	x += v.x;
+	y += v.y;
+    }
+    
+    public void minus(Vector v) {
+	x -= v.x;
+	y -= v.y;
+    }
         
     public void add(double x, double y) {
         this.x += x;
@@ -55,10 +65,7 @@ public abstract class Vector{
     }
         
     public double getMagnitude() {
-        return Math.sqrt(x*x + y*y);
+        return Math.hypot(x, y);
     }
-
     
-    
-
 }

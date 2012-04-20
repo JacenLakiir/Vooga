@@ -7,6 +7,9 @@ package core.characters;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+
+import levelio.Modifiable;
+
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.sprite.AdvanceSprite;
 import core.physicsengine.Acceleration;
@@ -14,27 +17,33 @@ import core.physicsengine.Displacement;
 import core.physicsengine.DuringAcceleration;
 import core.physicsengine.Velocity;
 
-@SuppressWarnings("serial")
 public abstract class GameElement extends AdvanceSprite {
+    private static final long serialVersionUID = 2989579123989132598L;
     protected Acceleration acc;
     protected List<DuringAcceleration> duringAccList;
     protected Velocity vel;
     protected Displacement disp;
     protected double metersPerPixel;
-
+    @Modifiable(name = "mass", type = "double")
     protected double mass = 10;
+    @Modifiable(name = "density", type = "double")
     protected double density = 1.01;
+    @Modifiable(name = "coefOfFrictionInX", type = "double")
     protected double coefOfFrictionInX = 0.5;
+    @Modifiable(name = "coefOfFrictionInY", type = "double")
     protected double coefOfFrictionInY = 0;
+    @Modifiable(name = "coefOfRestitutionInX", type = "double")
     protected double coefOfRestitutionInX = 0.2;
+    @Modifiable(name = "coefOfRestitutionInY", type = "double")
     protected double coefOfRestitutionInY = 0.1;
+    @Modifiable(name = "dragCoef", type = "double")
     protected double dragCoef = 0;
     protected double stdGravity = 0.004;
     protected boolean isUnmovable = false;
     protected boolean isPenetrable = false;
     protected double maximunSpeedInX = Double.MAX_VALUE;
     protected double maximunSpeedInY = Double.MAX_VALUE;
-    protected GameObject myGame;
+    protected transient GameObject myGame;
 
     public GameElement() {
 	super();

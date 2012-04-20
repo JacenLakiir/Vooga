@@ -4,7 +4,7 @@
 
 package core.physicsengine;
 
-public class DuringAcceleration extends Acceleration{
+public class DuringAcceleration extends Acceleration {
 
     private Mapping formula;
     private int duration, currentTime;
@@ -47,4 +47,5 @@ public class DuringAcceleration extends Acceleration{
     public boolean isActive() {
         return isActive;
     }
+    
 }
