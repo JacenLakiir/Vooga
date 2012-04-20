@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -56,10 +57,10 @@ public class SpritePanel extends JScrollPane {
 	myInternalPanel.revalidate();
     }
 
-    protected void loadSprites(Map<Point, SpriteWrapper> spritemap) {
+    protected void loadSprites(List<SpriteWrapper> sprites) {
 	myInternalPanel.removeAll();
 	myInternalPanel.revalidate();
-	for (SpriteWrapper sw: spritemap.values())
+	for (SpriteWrapper sw: sprites)
 	    myUniqueWrapperSet.add(sw);
 	myUniqueLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
 	for (SpriteWrapper wrapper: myUniqueWrapperSet)

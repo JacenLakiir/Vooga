@@ -16,7 +16,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputListener;
 
 import leveleditor.LevelEditor;
-import leveleditor.SpriteEditPanel;
+import leveleditor.SpriteEditor;
 
 public class MoveSpriteListener implements MouseInputListener,
 	MouseMotionListener {
@@ -73,7 +73,7 @@ public class MoveSpriteListener implements MouseInputListener,
 	    editMenu.add(myEditItem);
 	    myEditItem.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent event) {
-		    SpriteEditPanel.getInstance(myView, imagesrc);
+		    SpriteEditor.getInstance(myView, imagesrc);
 		}
 	    });
 	    JMenuItem myDeleteItem = new JMenuItem("Delete");

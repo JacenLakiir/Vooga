@@ -6,11 +6,9 @@ package leveleditor;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.util.*;
+import java.util.List;
 import javax.swing.*;
 
-import leveleditor.eventhandlers.*;
-import levelio.LevelState;
 import levelio.SpriteWrapper;
 
 @SuppressWarnings("serial")
@@ -110,23 +108,12 @@ public class LevelEditor extends JFrame {
     }
 
     private void createSprite(String imagesrc) {
-	SpriteEditPanel spriteeditpane = SpriteEditPanel.getInstance(myView, imagesrc);
+	SpriteEditor spriteeditpane = SpriteEditor.getInstance(myView, imagesrc);
     }
     
-    protected void loadSprites(HashMap<Point, SpriteWrapper> spritemap) {
-	myCanvas.loadSprites(spritemap);
-	mySpritePanel.loadSprites(spritemap);
-    }
-    
-    protected void prepareForSave(String path) {
-	if (myCanvas.getBackgroundImageSrc() == null) return;
-	HashMap<Point, SpriteWrapper> spritemap = new HashMap<Point, SpriteWrapper>();
-	for (JLabel l: myCanvas.getLabelWrapperMap().keySet()) {
-	    spritemap.put(l.getLocation(), 
-		    new SpriteWrapper(myCanvas.getLabelWrapperMap().get(l)));
-	}
-	VoogaUtilities.gsonSerialize(path, 
-		new LevelState(myCanvas.getBackgroundImageSrc(), spritemap));
+    protected void loadSprites(List<SpriteWrapper> sprites) {
+	myCanvas.loadSprites(sprites);
+	mySpritePanel.loadSprites(sprites);
     }
     
     public Canvas getCanvas() {
