@@ -44,7 +44,9 @@ public abstract class CollectibleItem extends GameElement {
 	}
 
 	public void setIsInUse(boolean bool) {
-		isInUse = bool;
+		if (this.canSetInUse()) {
+			isInUse = bool;
+		}
 	}
 
 	public boolean isInUse() {
@@ -66,4 +68,6 @@ public abstract class CollectibleItem extends GameElement {
 	 public double getStateValue(String state) {
 		 return myStateValues.get(state);
 	 }
+	 
+	 public abstract boolean canSetInUse();
 }

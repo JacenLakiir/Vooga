@@ -16,6 +16,7 @@ import core.collision.PlayerCollectibleItemCollision;
 import core.gamestate.GameEngine2D;
 import core.gamestate.GameObject2D;
 import core.gamestate.Pause;
+import core.items.AutoInUseAutoNotInUseItem;
 import core.items.CollectibleInstantItem;
 import core.items.CollectibleInventoryItem;
 import core.items.CollectibleItem;
@@ -176,7 +177,7 @@ public class DemoHUD extends GameObject2D {
         myPlayfield.addSetting(block1);
         
         for(int i=0; i<10; i++){
-        	CollectibleInstantItem coin = new CollectibleInstantItem(this);
+        	AutoInUseAutoNotInUseItem coin = new AutoInUseAutoNotInUseItem(this);
         	coin.setImages(this.getImages("resources/Coin.png", 1, 1));
         	coin.setActive(false);
         	coin.addState("points", 3);
@@ -184,7 +185,7 @@ public class DemoHUD extends GameObject2D {
         	myPlayfield.addItem(coin);
         }
         
-        CollectibleInstantItem coin2 = new CollectibleInstantItem(this);
+        AutoInUseAutoNotInUseItem coin2 = new AutoInUseAutoNotInUseItem(this);
         coin2.setImages(this.getImages("resources/Coin.png", 1, 1));
         coin2.setActive(true);
         coin2.setMovable(false);

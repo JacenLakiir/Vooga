@@ -15,7 +15,7 @@ public class PlayerCollectibleItemCollision extends GameElementCollision {
 		super.collided(character, item);
 	    character.setActive(true);
 	    item.setActive(false);
-	    ((CollectibleItem) item).setIsInUse(true);
+//	    ((CollectibleItem) item).setIsInUse(true);
 	    ((Player) character).getMyInventory().add((CollectibleItem) item);
     }
 }
