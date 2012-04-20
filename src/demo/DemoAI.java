@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import com.golden.gamedev.object.background.ColorBackground;
 import core.characters.NPC;
 import core.characters.Player;
+import core.characters.ai.EvadeState;
 import core.characters.ai.FollowState;
 import core.characters.ai.MoveState;
 import core.collision.CharacterPlatformCollision;
@@ -102,9 +103,16 @@ public class DemoAI extends GameObject2D
         NPC goomba4 = new Goomba(this);
         goomba4.addPossibleState(new FollowState(goomba4, mario, 2, 300));
         goomba4.setImages(this.getImages("resources/Goomba.png", 1, 1));
-        goomba4.setLocation(500, 400);
+        goomba4.setLocation(200, 400);
         goomba4.setMovable(true);
         myPlayfield.addCharacter(goomba4);
+        
+        NPC goomba5 = new Goomba(this);
+        goomba5.addPossibleState(new EvadeState(goomba5, mario, 1, 200));
+        goomba5.setImages(this.getImages("resources/Goomba.png", 1, 1));
+        goomba5.setLocation(400, 400);
+        goomba5.setMovable(true);
+        myPlayfield.addCharacter(goomba5);
         
         Tile floor = new Tile(this);
         floor.setImages(this.getImages("resources/Bar.png", 1, 1));
