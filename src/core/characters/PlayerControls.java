@@ -2,6 +2,7 @@ package core.characters;
 
 import core.keyconfiguration.KeyAnnotation;
 
+@SuppressWarnings("serial")
 public class PlayerControls extends Character {
     	
 	protected double strengthUp, strengthDown, strengthLeft, strengthRight;
