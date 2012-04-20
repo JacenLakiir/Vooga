@@ -11,30 +11,26 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.List;
 
 public class LevelState implements Serializable {
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 391098281239L;
+    private static final long serialVersionUID = 3910981230998281239L;
     private String myBackgroundSrc;
-    private HashMap<Point, SpriteWrapper> mySpriteMap;
-
+    private List<SpriteWrapper> mySprites;
+    
     public LevelState(String background, HashMap<Point, SpriteWrapper> spritemap) {
-	mySpriteMap = new HashMap<Point, SpriteWrapper>(spritemap);
+	mySprites = new ArrayList<SpriteWrapper>();
 	myBackgroundSrc = background;
     }
 
     public String getBackgroundImageSrc() {
 	return myBackgroundSrc;
     }
-
     
-    public HashMap<Point, SpriteWrapper> getSpriteMap() {
-	return mySpriteMap;
+    public List<SpriteWrapper> getSprites() {
+	return mySprites;
     }
 
     public static LevelState loadLevel(File file) {
@@ -54,7 +50,7 @@ public class LevelState implements Serializable {
     }
 
     private void reconstruct() {
-	for (SpriteWrapper sp : mySpriteMap.values())
+	for (SpriteWrapper sp : mySprites)
 	    sp.reconstruct();
     }
 

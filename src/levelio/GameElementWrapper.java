@@ -3,53 +3,33 @@
  */
 package levelio;
 
-import java.lang.reflect.Field;
+import java.awt.geom.Point2D;
+import java.awt.geom.Point2D.Double;
 import java.util.HashMap;
-import java.util.Map;
+
 import leveleditor.VoogaUtilities;
-import levelio.Modifiable.Classification;
+import com.golden.gamedev.object.Sprite;
+import com.golden.gamedev.object.sprite.AdvanceSprite;
 
 import core.characters.GameElement;
 
-public class SpriteWrapper implements Cloneable {
-    
-    public static enum SpriteGroupIdentifier {
-	PLAYER, CHARACTER, SETTING, ITEM
-    }
+public class GameElementWrapper implements Cloneable {
     
     private String myName;
-    private SpriteGroupIdentifier myGroup;
     private Class<?> myClass;
     private String myImagesrc;
-    private Map<SpriteAttribute, Object> myAttributeMap;
     private GameElement myGameElement;
     
-    public SpriteWrapper(String name, SpriteGroupIdentifier group, Class<?> clazz, String imgsrc) {
+    public GameElementWrapper(String name, Class<?> clazz, String imgsrc) {
 	myName = name;
-	myGroup = group;
 	myClass = clazz;
+	//myGameElement = element;
 	myImagesrc = imgsrc;
-	myGameElement = new GameElement();
-	myAttributeMap = new HashMap<SpriteAttribute, Object>();
-	Field[] allfields = clazz.getDeclaredFields();
-	for (Field f: allfields) {
-	    f.setAccessible(true);
-	    if (f.isAnnotationPresent(Modifiable.class)) {
-		String fname = f.getName();
-		Class<?> ftype = f.getType();
-		Classification fclassification = 
-			((Modifiable) f.getAnnotation(Modifiable.class)).classification();
-		myAttributeMap.put(new SpriteAttribute(fname, ftype, fclassification), new Object());
-
-	    }
-	}
 	reconstruct();
     }
     
-    public SpriteWrapper clone() {
-	SpriteWrapper cloned = new SpriteWrapper(myName, myGroup, myClass, myImagesrc);
-	cloned.myAttributeMap = new HashMap<SpriteAttribute, Object>(myAttributeMap);
-	return cloned;
+    public GameElementWrapper clone() {
+	GameElementWrapper cloned = new GameElementWrapper(myName, myClass, myImagesrc);
     }
     
     public String getName() {
@@ -58,10 +38,6 @@ public class SpriteWrapper implements Cloneable {
     
     public String getImageSrc() {
 	return myImagesrc;
-    }
-    
-    public SpriteGroupIdentifier getGroup() {
-	return myGroup;
     }
     
     public GameElement getGameElement() {

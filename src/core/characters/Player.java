@@ -100,18 +100,17 @@ public class Player extends Character{
 		for (CollectibleItem item : myInventory) {
 			if (item.isInUse()) {
 				myActiveInventory.add(item);
-			}
-			else { 
+			} else {
 				myActiveInventory.remove(item);
-			} 
+			}
 		}
 		for (CollectibleItem item : myActiveInventory) {
 			item.decorate(this);
 			for (String state : myStateValues.keySet()) {
 				System.out.print(state + myStateValues.get(state));
-				System.out.println();	
+				System.out.println();
 			}
 		}
 	}
-    
+
 }

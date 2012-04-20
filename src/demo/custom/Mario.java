@@ -5,7 +5,6 @@ import com.golden.gamedev.object.Timer;
 
 import core.characters.GameElement;
 import core.characters.Player;
-import core.items.Weapon;
 import core.keyconfiguration.KeyAnnotation;
 
 /**
@@ -63,9 +62,9 @@ public class Mario extends Player{
     }
     
     @KeyAnnotation(action = "space")
-    public Weapon keySpacePressed() {
-      return Weapon.useWeapon();
-    }
+//    public Weapon keySpacePressed() {
+//      return Weapon.useWeapon();
+//    }
 
     // this is only used for swimming
     public void resetStrength() {

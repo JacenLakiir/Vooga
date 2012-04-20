@@ -14,8 +14,8 @@ public class NPC extends Character {
     
     private static final long serialVersionUID = 112309211231209215L;
     
-    private List<State> myPossibleStates;
-    private List<State> myCurrentStates;
+    private transient List<State> myPossibleStates;
+    private transient List<State> myCurrentStates;
 
     public NPC(GameObject game)
     {

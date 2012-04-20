@@ -1,6 +1,6 @@
 package demo;
 
-import java.awt.Color;
+import java.awt.Color;	
 import java.awt.Graphics2D;
 
 
@@ -16,11 +16,10 @@ import core.collision.PlayerCollectibleItemCollision;
 import core.gamestate.GameEngine2D;
 import core.gamestate.GameObject2D;
 import core.gamestate.Pause;
-import core.items.CollectibleInstantItem;
-import core.items.CollectibleInventoryItem;
+import core.items.AutoInUseAutoNotInUseItem;
+import core.items.AutoNotInUseItem;
 import core.items.CollectibleItem;
-import core.items.CollectibleTimelapseItem;
-import core.items.Weapon;
+import core.items.SetInUseSetNotInUseItem;
 import core.keyconfiguration.KeyAnnotation;
 import core.keyconfiguration.KeyConfig;
 import core.playfield.AdvancedPlayField;
@@ -176,7 +175,7 @@ public class DemoHUD extends GameObject2D {
         myPlayfield.addSetting(block1);
         
         for(int i=0; i<10; i++){
-        	CollectibleInstantItem coin = new CollectibleInstantItem(this);
+        	CollectibleItem coin = new AutoInUseAutoNotInUseItem(this);
         	coin.setImages(this.getImages("resources/Coin.png", 1, 1));
         	coin.setActive(false);
         	coin.addState("points", 3);
@@ -184,7 +183,7 @@ public class DemoHUD extends GameObject2D {
         	myPlayfield.addItem(coin);
         }
         
-        CollectibleInstantItem coin2 = new CollectibleInstantItem(this);
+        CollectibleItem coin2 = new AutoInUseAutoNotInUseItem(this);
         coin2.setImages(this.getImages("resources/Coin.png", 1, 1));
         coin2.setActive(true);
         coin2.setMovable(false);
@@ -192,7 +191,7 @@ public class DemoHUD extends GameObject2D {
         coin2.addState("points", 3);
         myPlayfield.addItem(coin2);
         
-        CollectibleItem fireball = new Weapon(this);
+        CollectibleItem fireball = new SetInUseSetNotInUseItem(this);
         fireball.setImages(this.getImages("resources/Fireball.png", 4, 1));
         fireball.setLoopAnim(true);
         fireball.setAnimate(true);
@@ -202,7 +201,7 @@ public class DemoHUD extends GameObject2D {
         fireball.addState("attackPower", 2);
         myPlayfield.addItem(fireball);
         
-        CollectibleTimelapseItem poison = new CollectibleTimelapseItem(this);
+        AutoNotInUseItem poison = new AutoInUseAutoNotInUseItem(this);
         poison.setImages(this.getImages("resources/Poison.png", 1, 1));
         poison.setActive(true);
         poison.setMovable(false);

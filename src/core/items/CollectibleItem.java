@@ -15,11 +15,10 @@ import core.tiles.Tile;
 @SuppressWarnings("serial")
 public abstract class CollectibleItem extends GameElement {
 
-	protected GameObject game;
+	protected transient GameObject game;
 	private boolean isInUse;
-    protected HashMap<String, Double> myStateValues;
+	protected transient HashMap<String, Double> myStateValues;
 
-	
 	// Constructor for a collectible item
 	public CollectibleItem(GameObject game) {
 		super(game);
@@ -54,16 +53,18 @@ public abstract class CollectibleItem extends GameElement {
 	public void updateStateValues(Player player, String state, double newValue) {
 		player.updateStateValues(state, newValue);
 	}
-	
+
 	public void updateBaseValues(Player player, String state, double newValue) {
 		player.updateBaseValues(state, newValue);
 	}
-	
-	 public void addState(String attribute, double defaultValue) {
+
+	public void addState(String attribute, double defaultValue) {
 		myStateValues.put(attribute, defaultValue);
 	}
-	 
-	 public double getStateValue(String state) {
-		 return myStateValues.get(state);
-	 }
+
+	public double getStateValue(String state) {
+		return myStateValues.get(state);
+	}
+
+	public abstract boolean canSetInUse();
 }

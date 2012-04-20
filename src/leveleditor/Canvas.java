@@ -20,6 +20,8 @@ import javax.swing.border.EtchedBorder;
 
 import com.golden.gamedev.object.Sprite;
 
+import core.characters.GameElement;
+
 import leveleditor.eventhandlers.MoveSpriteListener;
 import leveleditor.eventhandlers.SpriteDropTargetListener;
 import leveleditor.eventhandlers.SpriteSelectionHandler;
@@ -96,7 +98,7 @@ public class Canvas extends JScrollPane {
 	}
 	else myLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
 	for (Point p: spritemap.keySet()) {
-	    Sprite sp = spritemap.get(p).getSprite();
+	    GameElement sp = spritemap.get(p).getGameElement();
 	    BufferedImage currentImage = sp.getImage();
 	    JLabel label = new JLabel();
 	    ImageIcon icon = new ImageIcon(currentImage);
