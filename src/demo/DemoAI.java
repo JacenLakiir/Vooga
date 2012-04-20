@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import com.golden.gamedev.object.background.ColorBackground;
 import core.characters.NPC;
 import core.characters.Player;
+import core.characters.ai.FollowState;
 import core.characters.ai.MoveState;
 import core.collision.CharacterPlatformCollision;
 import core.collision.GameElementCollision;
@@ -23,6 +24,7 @@ import core.tiles.ActionDecorator;
 import core.tiles.BreakableDecorator;
 import core.tiles.ItemDecorator;
 import core.tiles.Tile;
+import demo.custom.Goomba;
 import demo.custom.Koopa;
 import demo.custom.Mario;
 
@@ -83,19 +85,26 @@ public class DemoAI extends GameObject2D
 //        goomba3.setMovable(true);
 //        myPlayfield.addCharacter(goomba3);
         
-        NPC koopa1 = new Koopa(this);
-        koopa1.addPossibleState(new MoveState(koopa1, 1, true));
-        koopa1.setImages(this.getImages("resources/Koopa.png", 1, 1));
-        koopa1.setLocation(500, 400);
-        koopa1.setMovable(true);
-        myPlayfield.addCharacter(koopa1);
+//        NPC koopa1 = new Koopa(this);
+//        koopa1.addPossibleState(new MoveState(koopa1, 1, true));
+//        koopa1.setImages(this.getImages("resources/Koopa.png", 1, 1));
+//        koopa1.setLocation(500, 400);
+//        koopa1.setMovable(true);
+//        myPlayfield.addCharacter(koopa1);
+//        
+//        NPC koopa2 = new Koopa(this);
+//        koopa2.addPossibleState(new MoveState(koopa2, 1, true));
+//        koopa2.setImages(this.getImages("resources/Koopa.png", 1, 1));
+//        koopa2.setLocation(300, 400);
+//        koopa2.setMovable(true);
+//        myPlayfield.addCharacter(koopa2);
         
-        NPC koopa2 = new Koopa(this);
-        koopa2.addPossibleState(new MoveState(koopa2, 1, true));
-        koopa2.setImages(this.getImages("resources/Koopa.png", 1, 1));
-        koopa2.setLocation(300, 400);
-        koopa2.setMovable(true);
-        myPlayfield.addCharacter(koopa2);
+        NPC goomba4 = new Goomba(this);
+        goomba4.addPossibleState(new FollowState(goomba4, mario, 2, 300));
+        goomba4.setImages(this.getImages("resources/Goomba.png", 1, 1));
+        goomba4.setLocation(500, 400);
+        goomba4.setMovable(true);
+        myPlayfield.addCharacter(goomba4);
         
         Tile floor = new Tile(this);
         floor.setImages(this.getImages("resources/Bar.png", 1, 1));
