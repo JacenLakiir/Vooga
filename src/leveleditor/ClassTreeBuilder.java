@@ -43,10 +43,8 @@ public class ClassTreeBuilder {
 			&& nodemap.containsKey(clazz.getSuperclass())) {
 		    flag = false;
 		    seen.add(clazz);
-		    DefaultMutableTreeNode parent = nodemap.get(clazz
-			    .getSuperclass());
-		    DefaultMutableTreeNode child = new DefaultMutableTreeNode(
-			    clazz);
+		    DefaultMutableTreeNode parent = nodemap.get(clazz.getSuperclass());
+		    DefaultMutableTreeNode child = new DefaultMutableTreeNode(clazz);
 		    parent.add(child);
 		    nodemap.put(clazz, child);
 		}

@@ -17,11 +17,9 @@ import levelio.SpriteWrapper;
 public class LevelEditorController {
 
     private LevelEditor myView;
-    private JTree myClassTree;
 
     public LevelEditorController() {
 	myView = new LevelEditor(this);
-	myClassTree = ClassTreeBuilder.getClassTree("core");
     }
 
     protected void initialize(File file) {

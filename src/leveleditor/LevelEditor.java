@@ -19,11 +19,12 @@ public class LevelEditor extends JFrame {
     private Canvas myCanvas;
     private SpritePanel mySpritePanel;
     private JMenuBar myMenuBar = new JMenuBar();
-  //  private JTree 
+    private JTree myClassTree;
     
     public LevelEditor(LevelEditorController controller) {
 	myView = this;
 	myController = controller;
+	myClassTree = ClassTreeBuilder.getClassTree("core");
 	setTitle("Vooga Level Editor (Demo Version)");
 	setLayout(new GridBagLayout());
 	setUpMenu();
@@ -123,6 +124,10 @@ public class LevelEditor extends JFrame {
     
     public SpritePanel getSpritePanel() {
 	return mySpritePanel;
+    }
+    
+    public JTree getClassTree() {
+	return myClassTree;
     }
     
     public void showError(String message) {
