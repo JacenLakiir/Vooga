@@ -4,7 +4,9 @@
 
 package core.physicsengine;
 
-public abstract class Vector{
+public abstract class Vector implements java.io.Serializable {
+    
+    private static final long serialVersionUID = 7740517023922848213L;
     
     private double x;
     private double y; 
