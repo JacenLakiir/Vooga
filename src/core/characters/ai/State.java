@@ -8,20 +8,26 @@ import core.characters.NPC;
 public abstract class State
 {
     protected NPC myNPC;
-    protected boolean isActive;
+    protected boolean isActivated;
     
     public State (NPC npc)
     {
         myNPC = npc;
+        isActivated = true;
     }
     
     public abstract void execute (long milliSec);
     
-    public abstract boolean isActive ();
+    public abstract boolean areConditionsMet ();
+    
+    public boolean isActive ()
+    {
+        return (isActivated && areConditionsMet());
+    }
     
     public void setActive (boolean active)
     {
-        isActive = active;
+        isActivated = active;
     }
     
 }

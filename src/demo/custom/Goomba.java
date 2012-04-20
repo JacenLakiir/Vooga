@@ -35,8 +35,8 @@ public class Goomba extends NPC
         setDirection(1);
     }
     
-    public void afterHitFromTopBy (Mario e) {
-        setCurrentState(new DeadState(this));
+    public void afterHitFromTopBy (Mario m) {
+        addPossibleState(new DeadState(this));
     }
     
     public void afterHitFromRightBy (Mario m) {
@@ -60,7 +60,7 @@ public class Goomba extends NPC
     private void handleKoopaSideCollision (Koopa k, boolean isHitOnLeft)
     {
         if (k.isInShellState() && k.getShellSpeed() != 0)
-            setCurrentState(new DeadState(this));
+            addPossibleState(new DeadState(this));
         else
             setDirection(isHitOnLeft ? 1 : -1);
     }

@@ -66,7 +66,6 @@ public class Mario extends Player{
 //      return Weapon.useWeapon();
 //    }
 
-
     // this is only used for swimming
     public void resetStrength() {
         strengthUp = 2;
@@ -95,32 +94,6 @@ public class Mario extends Player{
             }
             super.giveStrengthUp();
         }
-    }
-
-    public void afterHitFromRightBy (Goomba e) {
-        updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
-    }
-
-    public void afterHitFromLeftBy (Goomba e) {
-        updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
-    }
-    
-    public void afterHitFromRightBy (Koopa k)
-    {
-        handleKoopaSideCollision(k);
-    }
-    
-    public void afterHitFromLeftBy (Koopa k)
-    {
-        handleKoopaSideCollision(k);
-    }
-    
-    private void handleKoopaSideCollision (Koopa k)
-    {
-        if (k.isInShellState() && k.getShellSpeed() != 0)
-            updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
-        else if (!k.isInShellState())
-            updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
     }
 
 }

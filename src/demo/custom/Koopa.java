@@ -36,8 +36,8 @@ public class Koopa extends NPC
         if (!isInShell)
         {
             setImages(engine.getImages("resources/KoopaShell.png", 1, 1));
-            getPossibleStates().clear();
             addPossibleState(myShellState);
+            deactivateAllOtherStates(myShellState);
             isInShell = true;
         }
         myShellState.setSpeed(0);
@@ -47,23 +47,33 @@ public class Koopa extends NPC
     public void afterHitFromLeftBy (Mario m)
     {
         if (isInShell)
-            handleMarioCollision(m, false);
+            handleMarioCollision(m, true);
     }
     
     public void afterHitFromRightBy (Mario m)
     {
         if (isInShell)
-            handleMarioCollision(m, true);
+            handleMarioCollision(m, false);
+    }
+    
+    public void afterHitFromLeftBy (Goomba g)
+    {
+        setDirection(isInShell ? getDirection() : -1 * getDirection());
+    }
+    
+    public void afterHitFromRightBy (Goomba g)
+    {
+        setDirection(isInShell ? getDirection() : -1 * getDirection());
     }
 
     public void afterHitFromLeftBy (Koopa k)
     {
-        handleKoopaCollision(k, false);
+        handleKoopaCollision(k, true);
     }
     
     public void afterHitFromRightBy (Koopa k)
     {
-        handleKoopaCollision(k, true);
+        handleKoopaCollision(k, false);
     }
 
     public double getShellSpeed ()
@@ -98,7 +108,7 @@ public class Koopa extends NPC
         }
     }
 
-    private void handleKoopaCollision (Koopa k, boolean isMovingLeft)
+    private void handleKoopaCollision (Koopa k, boolean isThisHitOnLeft)
     {
         if (isInShell)
         {
@@ -108,14 +118,14 @@ public class Koopa extends NPC
                 setDirection(-1 * getDirection());
             }
             else if (k.isInShellState() && k.getShellSpeed() == 0)
-                k.setCurrentState(new DeadState(this));
+                k.addPossibleState(new DeadState(this));
         }
         else
         {
             if (k.getShellSpeed() != 0)
-                setCurrentState(new DeadState(this));
+                k.addPossibleState(new DeadState(this));
             else
-                setDirection(isMovingLeft ? -1 : 1);
+                setDirection(isThisHitOnLeft ? 1 : -1);
         }
     }
 

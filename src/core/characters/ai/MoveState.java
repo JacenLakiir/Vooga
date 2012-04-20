@@ -24,7 +24,7 @@ public class MoveState extends State
     }
     
     @Override
-    public boolean isActive ()
+    public boolean areConditionsMet ()
     {
         return true;
     }

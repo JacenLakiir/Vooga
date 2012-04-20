@@ -19,30 +19,31 @@ import core.physicsengine.DuringAcceleration;
 import core.physicsengine.Velocity;
 
 public class GameElement extends AdvanceSprite {
+
     private static final long serialVersionUID = 2989579123989132598L;
     private Acceleration acc;
     private List<DuringAcceleration> duringAccList;
     private Velocity vel;
     private Displacement disp;
 
-    @Modifiable(classification = "Physics")
+    @Modifiable(classification = Modifiable.Classification.PHYSICS)
     private double mass = 10;
-    @Modifiable(classification = "Physics")
+    @Modifiable(classification = Modifiable.Classification.PHYSICS)
     private double density = 1.0;
-    @Modifiable(classification = "Physics")
+    @Modifiable(classification = Modifiable.Classification.PHYSICS)
     private double coefOfFrictionInX = 0.5;
-    @Modifiable(classification = "Physics")
+    @Modifiable(classification = Modifiable.Classification.PHYSICS)
     private double coefOfFrictionInY = 0;
-    @Modifiable(classification = "Physics")
+    @Modifiable(classification = Modifiable.Classification.PHYSICS)
     private double coefOfRestitutionInX = 0.2;
-    @Modifiable(classification = "Physics")
+    @Modifiable(classification = Modifiable.Classification.PHYSICS)
     private double coefOfRestitutionInY = 0.1;
-    @Modifiable(classification = "Physics")
+    @Modifiable(classification = Modifiable.Classification.PHYSICS)
     private double dragCoef = 0;
     protected double stdGravity = 0.004;
-    @Modifiable(classification = "Physics")
+    @Modifiable(classification = Modifiable.Classification.PHYSICS)
     private boolean isUnmovable = false;
-    @Modifiable(classification = "Physics")
+    @Modifiable(classification = Modifiable.Classification.PHYSICS)
     private boolean isPenetrable = false;
 
     private double maximunSpeedInX = Double.MAX_VALUE;
