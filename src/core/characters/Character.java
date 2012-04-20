@@ -13,7 +13,7 @@ import com.golden.gamedev.GameObject;
 @SuppressWarnings("serial")
 public abstract class Character extends GameElement {
 
-    @Modifiable(classification = Modifiable.Classification.GAMEPLAY)
+    @Modifiable(classification = "Gameplay")
     protected double myHitPoints;
 
     protected transient Map<String, Double> myStateValues, myBaseValues;
