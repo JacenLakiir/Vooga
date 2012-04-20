@@ -15,9 +15,13 @@ import core.characters.ai.State;
 public class Goomba extends NPC
 {
 
+    private static final String IMAGE_FILE = "resources/Goomba.png";
+    
     public Goomba (GameObject game)
     {
         super(game);
+        setImages(game.getImages(IMAGE_FILE, 1, 1));
+        setMovable(true);
     }
     
     public Goomba (GameObject game, List<State> possibleStates)

@@ -13,11 +13,11 @@ Names:
 	- Michael Zhou (mz43)
 
 Started:	3/27/12
-Finished:	4/13/12
+Finished:	4/20/12
 
 Project Length:
-	- 400 hours [Actual]
-	- 400 hours [Estimated]
+	- 550 hours [Actual]
+	- 550 hours [Estimated]
 	- Good estimate [Estimate evaluation]
 
 Group Meetings:
@@ -25,6 +25,7 @@ Group Meetings:
 	- April 1, 1 PM - 5 PM
 	- April 4, 10 PM - 11 PM (assigned UTAs present)
 	- April 11, 10 PM - 12 AM (assigned UTAs present)
+	- April 18, 10 PM - 11:30 PM (assigned UTAs present)
 
 Discussed with:
 	- Jim Posen & Ethan Goh (assigned UTAs)
@@ -51,13 +52,13 @@ Data / Resource Files Required:
 Instructions:
 	- Configure buildpath to include all JARs in the 'lib' folder
 	
-	- Run 'VoogaLevelEditorMain.java' in src/leveleditor package for the level
+	- Run 'LevelEditorMain.java' in src/leveleditor package for the level
 	  editor
 	  
 	- Run 'SimpleGameToTestLevelEditor.java' in src/levelio package to see our
 	  framework load a level from a saved level file created in the level editor
 	  
-	- Run 'GameEngine2D.java' in src/demo package. On the menu screen, use the
+	- Run 'DemoGameEngine' in src/demo package. On the menu screen, use the
 	  up/down arrows to choose a demo and press 'Enter' to select it. DemoAI
 	  is a simple testing environment for Player-NPC interaction. DemoPlayfield
 	  is a short game coded by hand that showcases many of the advanced features

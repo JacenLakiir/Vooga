@@ -5,6 +5,8 @@ import java.awt.Graphics2D;
 import com.golden.gamedev.object.background.ColorBackground;
 import core.characters.NPC;
 import core.characters.Player;
+import core.characters.ai.EvadeState;
+import core.characters.ai.FollowState;
 import core.characters.ai.MoveState;
 import core.collision.CharacterPlatformCollision;
 import core.collision.GameElementCollision;
@@ -23,6 +25,7 @@ import core.tiles.ActionDecorator;
 import core.tiles.BreakableDecorator;
 import core.tiles.ItemDecorator;
 import core.tiles.Tile;
+import demo.custom.Goomba;
 import demo.custom.Koopa;
 import demo.custom.Mario;
 
@@ -56,7 +59,6 @@ public class DemoAI extends GameObject2D
         addKeyListeners(this);
         addMouseListeners(mario);
         
-        mario.setImages(this.getImages("resources/Mario1.png", 1, 1));
         mario.setLocation(25, 400);
         mario.addState("points", 0);
         mario.addState("hitPoints", 10);
@@ -64,38 +66,38 @@ public class DemoAI extends GameObject2D
         myPlayfield.addPlayer(mario);
         
 //        NPC goomba1 = new Goomba(this);
-//        goomba1.setImages(this.getImages("resources/Goomba.png", 1, 1));
 //        goomba1.setLocation(325, 400);
-//        goomba1.setMovable(true);
 //        myPlayfield.addCharacter(goomba1);
 //       
 //        NPC goomba2 = new Goomba(this);
 //        goomba2.addPossibleState(new PatrolState(goomba2, 1, 150));
-//        goomba2.setImages(this.getImages("resources/Goomba.png", 1, 1));
 //        goomba2.setLocation(575, 400);
-//        goomba2.setMovable(true);
 //        myPlayfield.addCharacter(goomba2);
 //        
 //        NPC goomba3 = new Goomba(this);
 //        goomba3.addPossibleState(new MoveState(goomba3, 1, true));
-//        goomba3.setImages(this.getImages("resources/Goomba.png", 1, 1));
 //        goomba3.setLocation(275, 400);
-//        goomba3.setMovable(true);
 //        myPlayfield.addCharacter(goomba3);
         
-        NPC koopa1 = new Koopa(this);
-        koopa1.addPossibleState(new MoveState(koopa1, 1, true));
-        koopa1.setImages(this.getImages("resources/Koopa.png", 1, 1));
-        koopa1.setLocation(500, 400);
-        koopa1.setMovable(true);
-        myPlayfield.addCharacter(koopa1);
+//        NPC koopa1 = new Koopa(this);
+//        koopa1.addPossibleState(new MoveState(koopa1, 1, true));
+//        koopa1.setLocation(500, 400);
+//        myPlayfield.addCharacter(koopa1);
+//        
+//        NPC koopa2 = new Koopa(this);
+//        koopa2.addPossibleState(new MoveState(koopa2, 1, true));
+//        koopa2.setLocation(300, 400);
+//        myPlayfield.addCharacter(koopa2);
         
-        NPC koopa2 = new Koopa(this);
-        koopa2.addPossibleState(new MoveState(koopa2, 1, true));
-        koopa2.setImages(this.getImages("resources/Koopa.png", 1, 1));
-        koopa2.setLocation(300, 400);
-        koopa2.setMovable(true);
-        myPlayfield.addCharacter(koopa2);
+        NPC goomba4 = new Goomba(this);
+        goomba4.addPossibleState(new FollowState(goomba4, mario, 1, 200));
+        goomba4.setLocation(300, 400);
+        myPlayfield.addCharacter(goomba4);
+        
+        NPC goomba5 = new Goomba(this);
+        goomba5.addPossibleState(new EvadeState(goomba5, mario, 2, 200));
+        goomba5.setLocation(400, 400);
+        myPlayfield.addCharacter(goomba5);
         
         Tile floor = new Tile(this);
         floor.setImages(this.getImages("resources/Bar.png", 1, 1));

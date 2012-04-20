@@ -79,7 +79,6 @@ public class DemoHUD extends GameObject2D {
         //add the element or the game you want the key to control
         addKeyListeners(temp);
         addKeyListeners(this);
-        temp.setImages(this.getImages("resources/Mario1.png", 1, 1));
         temp.setLocation(25, 400);
         temp.addState("hitPoints", 10);
         temp.addState("points", 0);
@@ -107,42 +106,30 @@ public class DemoHUD extends GameObject2D {
 				return myPlayfield.getPlayer().getMyStateValue("hitPoints");
 			}
         }));
-        
-        
-        
+                
         NPC koopa1 = new Koopa(this);
         koopa1.addPossibleState(new MoveState(koopa1, 1, true));
-        koopa1.setImages(this.getImages("resources/Koopa.png", 1, 1));
         koopa1.setLocation(500, 400);
-        koopa1.setMovable(true);
         myPlayfield.addCharacter(koopa1);
         
         NPC goomba1 = new Goomba(this);
         goomba1.addPossibleState(new MoveState(goomba1, 1, true));
-        goomba1.setImages(this.getImages("resources/Goomba.png", 1, 1));
         goomba1.setLocation(800, 400);
-        goomba1.setMovable(true);
         myPlayfield.addCharacter(goomba1);
         
         NPC goomba2 = new Goomba(this);
         goomba2.addPossibleState(new MoveState(goomba2, 1, true));
-        goomba2.setImages(this.getImages("resources/Goomba.png", 1, 1));
         goomba2.setLocation(900, 400);
-        goomba2.setMovable(true);
         myPlayfield.addCharacter(goomba2);
         
         NPC goomba3 = new Goomba(this);
         goomba3.addPossibleState(new MoveState(goomba3, 1, true));
-        goomba3.setImages(this.getImages("resources/Goomba.png", 1, 1));
         goomba3.setLocation(1000, 400);
-        goomba3.setMovable(true);
         myPlayfield.addCharacter(goomba3);
         
         NPC goomba4 = new Goomba(this);
         goomba4.addPossibleState(new PatrolState(goomba4, 1, 325));
-        goomba4.setImages(this.getImages("resources/Goomba.png", 1, 1));
         goomba4.setLocation(575, 200);
-        goomba4.setMovable(true);
         myPlayfield.addCharacter(goomba4);
 
         Tile temp1 = new FrictionlessDecorator(new Tile(this));

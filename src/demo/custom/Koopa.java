@@ -13,17 +13,20 @@ import demo.custom.ShellState;
 @SuppressWarnings("serial")
 public class Koopa extends NPC
 {
+   
+    private static final String IMAGE_FILE = "resources/Koopa.png";
+    private static final String SHELL_IMAGE_FILE = "resources/KoopaShell.png";
 
-    private GameObject engine;
     private ShellState myShellState;
-    private boolean isInShell;
 
     public Koopa (GameObject game)
     {
         super(game);
-        engine = game;
+        setImages(game.getImages(IMAGE_FILE, 1, 1));
+        setMovable(true);
         myShellState = new ShellState(this);
-        isInShell = false;
+        myShellState.setActive(false);
+        addPossibleState(myShellState);
     }
 
     public Koopa (GameObject game, List<State> possibleStates)
@@ -33,12 +36,11 @@ public class Koopa extends NPC
 
     public void afterHitFromTopBy (Mario m)
     {
-        if (!isInShell)
+        if (!myShellState.isActive())
         {
-            setImages(engine.getImages("resources/KoopaShell.png", 1, 1));
-            addPossibleState(myShellState);
+            setImages(getGame().getImages(SHELL_IMAGE_FILE, 1, 1));
             deactivateAllOtherStates(myShellState);
-            isInShell = true;
+            myShellState.setActive(true);
         }
         myShellState.setSpeed(0);
     }
@@ -46,24 +48,24 @@ public class Koopa extends NPC
     
     public void afterHitFromLeftBy (Mario m)
     {
-        if (isInShell)
+        if (myShellState.isActive())
             handleMarioCollision(m, true);
     }
     
     public void afterHitFromRightBy (Mario m)
     {
-        if (isInShell)
+        if (myShellState.isActive())
             handleMarioCollision(m, false);
     }
     
     public void afterHitFromLeftBy (Goomba g)
     {
-        setDirection(isInShell ? getDirection() : -1 * getDirection());
+        setDirection(myShellState.isActive() ? getDirection() : -1 * getDirection());
     }
     
     public void afterHitFromRightBy (Goomba g)
     {
-        setDirection(isInShell ? getDirection() : -1 * getDirection());
+        setDirection(myShellState.isActive() ? getDirection() : -1 * getDirection());
     }
 
     public void afterHitFromLeftBy (Koopa k)
@@ -88,11 +90,12 @@ public class Koopa extends NPC
 
     public boolean isInShellState ()
     {
-        return isInShell;
+        return myShellState.isActive();
     }
 
     private void handleMarioCollision (Mario m, boolean isHitOnLeft)
     {
+        boolean isInShell = myShellState.isActive();
         if (isInShell && getShellSpeed() == 0)
         {
             myShellState.setSpeed(50*Math.abs(m.getVelocity().getX()));
@@ -110,7 +113,7 @@ public class Koopa extends NPC
 
     private void handleKoopaCollision (Koopa k, boolean isThisHitOnLeft)
     {
-        if (isInShell)
+        if (myShellState.isActive())
         {
             if (k.isInShellState() && k.getShellSpeed() != 0)
             {
