@@ -32,7 +32,7 @@ import core.characters.NPC;
 import core.characters.Player;
 import core.tiles.Tile;
 
-import levelio.SpriteWrapper;
+import levelio.GameElementWrapper;
 
 @SuppressWarnings("serial")
 public class SpriteBuilder extends JFrame {

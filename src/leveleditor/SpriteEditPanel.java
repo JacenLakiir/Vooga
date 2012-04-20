@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
-import levelio.SpriteWrapper;
+import levelio.GameElementWrapper;
 import com.golden.gamedev.object.Sprite;
 
 @SuppressWarnings("serial")
@@ -81,7 +81,7 @@ public class SpriteEditPanel extends JFrame {
 
 	public void actionPerformed(ActionEvent e) {
 	    BufferedImage image = VoogaUtilities.getImageFromString(myImagesrc);
-	    myView.getSpritePanel().importSprite(new SpriteWrapper(new Sprite(image), 
+	    myView.getSpritePanel().importSprite(new GameElementWrapper(new Sprite(image), 
 		    namefield.getText(), myImagesrc));
 	    myInstance.dispose();
 	}

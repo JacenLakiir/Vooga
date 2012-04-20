@@ -4,7 +4,6 @@
 
 package core.characters;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +19,6 @@ import core.physicsengine.Displacement;
 import core.physicsengine.DuringAcceleration;
 import core.physicsengine.Velocity;
 import core.tiles.Tile;
-import demo.custom.Mario;
-
-@SuppressWarnings("serial") 
 
 public abstract class GameElement extends AdvanceSprite {
     private static final long serialVersionUID = 2989579123989132598L;
@@ -31,22 +27,24 @@ public abstract class GameElement extends AdvanceSprite {
     private Velocity vel;
     private Displacement disp;
 
-    @Modifiable(name = "mass", type = "double")
+    @Modifiable(classification = Modifiable.classification.PHYSICS)
     private double mass = 10;
-    @Modifiable(name = "density", type = "double")
+    @Modifiable(classification = Modifiable.classification.PHYSICS)
     private double density = 1.0;
-    @Modifiable(name = "coefOfFrictionInX", type = "double")
+    @Modifiable(classification = Modifiable.classification.PHYSICS)
     private double coefOfFrictionInX = 0.5;
-    @Modifiable(name = "coefOfFrictionInY", type = "double")
+    @Modifiable(classification = Modifiable.classification.PHYSICS)
     private double coefOfFrictionInY = 0;
-    @Modifiable(name = "coefOfRestitutionInX", type = "double")
+    @Modifiable(classification = Modifiable.classification.PHYSICS)
     private double coefOfRestitutionInX = 0.2;
-    @Modifiable(name = "coefOfRestitutionInY", type = "double")
+    @Modifiable(classification = Modifiable.classification.PHYSICS)
     private double coefOfRestitutionInY = 0.1;
-    @Modifiable(name = "dragCoef", type = "double")
+    @Modifiable(classification = Modifiable.classification.PHYSICS)
     private double dragCoef = 0;
     protected double stdGravity = 0.004;
+    @Modifiable(classification = Modifiable.classification.PHYSICS)
     private boolean isUnmovable = false;
+    @Modifiable(classification = Modifiable.classification.PHYSICS)
     private boolean isPenetrable = false;
 
     private double maximunSpeedInX = Double.MAX_VALUE;

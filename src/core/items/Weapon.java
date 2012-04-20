@@ -11,16 +11,16 @@ import core.characters.GameElement;
  */
 public class Weapon extends CollectibleItem {
 
-	static Weapon gun;
-	
-	public Weapon(GameObject game) {
-		super(game);
-	}
+    static Weapon gun;
 
-	public static Weapon useWeapon() {
-		gun.setActive(true);
-		gun.setSpeed(.2, 0);
-		return gun;
-	}
-	
+    public Weapon(GameObject game) {
+	super(game);
+    }
+
+    public static Weapon useWeapon() {
+	gun.setActive(true);
+	gun.setSpeed(.2, 0);
+	return gun;
+    }
+
 }

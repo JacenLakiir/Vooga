@@ -23,12 +23,12 @@ import com.golden.gamedev.object.Sprite;
 import leveleditor.eventhandlers.MoveSpriteListener;
 import leveleditor.eventhandlers.SpriteDropTargetListener;
 import leveleditor.eventhandlers.SpriteSelectionHandler;
-import levelio.SpriteWrapper;
+import levelio.GameElementWrapper;
 
 @SuppressWarnings("serial")
 public class Canvas extends JScrollPane {
     
-    private Map<JLabel, SpriteWrapper> myLabelWrapperMap;
+    private Map<JLabel, GameElementWrapper> myLabelWrapperMap;
     private String myBackGroundImgSrc;
     private JLabel myBackGroundLabel;
     private JPanel myCanvasPane;
@@ -46,7 +46,7 @@ public class Canvas extends JScrollPane {
 		"Canvas");
 	setBorder(border);
 	getViewport().add(myCanvasPane);
-	myLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
+	myLabelWrapperMap = new HashMap<JLabel, GameElementWrapper>();
     }
 
     protected void setUpBackground(String imagesrc) {
@@ -76,7 +76,7 @@ public class Canvas extends JScrollPane {
 	myLabelWrapperMap.remove(l);
     }
     
-    public Map<JLabel, SpriteWrapper> getLabelWrapperMap() {
+    public Map<JLabel, GameElementWrapper> getLabelWrapperMap() {
 	return myLabelWrapperMap;
     }
     
@@ -84,7 +84,7 @@ public class Canvas extends JScrollPane {
 	return myBackGroundImgSrc;
     }
     
-    protected void loadSprites(HashMap<Point, SpriteWrapper> spritemap) {
+    protected void loadSprites(HashMap<Point, GameElementWrapper> spritemap) {
 	if (myLabelWrapperMap != null) {
 	    for (JLabel l: myLabelWrapperMap.keySet()) {
 		l.setVisible(false);
@@ -94,7 +94,7 @@ public class Canvas extends JScrollPane {
 	    myLabelWrapperMap.clear();
 	    myCanvasPane.revalidate();
 	}
-	else myLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
+	else myLabelWrapperMap = new HashMap<JLabel, GameElementWrapper>();
 	for (Point p: spritemap.keySet()) {
 	    Sprite sp = spritemap.get(p).getSprite();
 	    BufferedImage currentImage = sp.getImage();
