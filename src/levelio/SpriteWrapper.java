@@ -3,6 +3,7 @@
  */
 package levelio;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,8 +11,10 @@ import leveleditor.VoogaUtilities;
 
 import core.characters.GameElement;
 
-public class SpriteWrapper implements Cloneable {
+public class SpriteWrapper implements Cloneable, Serializable {
     
+    private static final long serialVersionUID = 8194097148022115858L;
+
     public static enum SpriteGroupIdentifier {
 	PLAYER, CHARACTER, SETTING, ITEM
     }
