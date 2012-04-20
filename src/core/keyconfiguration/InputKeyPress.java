@@ -6,14 +6,14 @@ import com.golden.gamedev.GameObject;
  * @author Hui Dong
  *
  */
-public class SystemKey extends Key{
+public class InputKeyPress extends Key{
 
-    public SystemKey(String value, String actionName, GameObject game) {
+    public InputKeyPress(String value, String actionName, GameObject game) {
         super(value, actionName, game);
     }
 
     @Override
     public boolean isKeyDown(long milliSec) {
-        return myGame.keyPressed(Integer.parseInt(keyValue));
+        return getMyGame().keyPressed(Integer.parseInt(keyValue));
     }
 }

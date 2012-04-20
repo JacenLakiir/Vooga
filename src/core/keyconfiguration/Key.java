@@ -13,8 +13,12 @@ public abstract class Key {
     protected String keyValue;
     private String action;
     private List<KeyObserver> observers;
-    protected GameObject myGame;
+    private GameObject myGame;
     
+    protected GameObject getMyGame() {
+        return myGame;
+    }
+
     public abstract boolean isKeyDown(long milliSec);
     
     public Key(String value, String actionName, GameObject game) {

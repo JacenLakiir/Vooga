@@ -15,9 +15,9 @@ import com.google.gson.Gson;
  *
  */
 public class KeyConfigModel {
-    public HashMap<String, String> inputKeyMap = new HashMap<String, String>();
-    public HashMap<String, String> systemKeyMap = new HashMap<String, String>();
-    KeyConfigModel keyModel;
+    private HashMap<String, String> inputKeyMap = new HashMap<String, String>();
+    private HashMap<String, String> systemKeyMap = new HashMap<String, String>();
+    private KeyConfigModel keyModel;
     
     public HashMap<String, String> getInputKeyMap() {
         return inputKeyMap;

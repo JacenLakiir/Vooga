@@ -7,22 +7,19 @@ package core.tiles;
 import core.characters.GameElement;
 
 
-public class BreakableDecorator extends TileDecorator {
+public class BreakableDecorator extends ActionDecorator {
 	private boolean broken;
+	private int blockStrength;
 
-	public BreakableDecorator(Tile decoratedPlatform) {
+	public BreakableDecorator(Tile decoratedPlatform, int blockStrength) {
 		super(decoratedPlatform);
+		this.blockStrength = blockStrength;
 		setAnimate(false);
 	}
 
-	@Override
-	public void afterHitFromBottomBy(GameElement e) {
-		animateBreak();
-		decoratedPlatform.afterHitFromBottomBy(e);
-	}
-	
-	public void animateBreak(){
-		if(!broken){
+	public void doAction(){
+		blockStrength--;
+		if(blockStrength<=0){
 			broken = true;
 			getAnimationTimer().setDelay(20);
 			setAnimate(true);
@@ -31,7 +28,6 @@ public class BreakableDecorator extends TileDecorator {
 	
 	public void update(long elapsedTime) {
         super.update(elapsedTime);
-        
         if (broken && !this.isAnimate()) {
                 this.setActive(false);
         }

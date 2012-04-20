@@ -19,7 +19,7 @@ public class MovingDecorator extends TileDecorator{
 	public void setLocation(double xs, double ys){
 		startX = xs;
 		startY = ys;
-		decoratedPlatform.setLocation(xs, ys);
+		getDecoratedPlatform().setLocation(xs, ys);
 	}
 	
 	public void setEndLocation (double endX, double endY){

@@ -27,9 +27,9 @@ public  class KeyConfig {
         for(String action : keyMap.keySet()){
             int length = keyMap.get(action).split(",").length;
             if(length == 1)
-                keys.add(new SingleInputKey(keyMap.get(action), action, myGame));
+                keys.add(new InputKeyDown(keyMap.get(action), action, myGame));
             if(length > 1)
-                keys.add(new SequentialInputKey(keyMap.get(action), action, myGame));                
+                keys.add(new InputKeySequential(keyMap.get(action), action, myGame));                
         }
         return keys;
     }
@@ -37,7 +37,7 @@ public  class KeyConfig {
     private List<Key> constructSystemKeyList(HashMap<String, String> keyMap){
         List<Key> keys = new ArrayList<Key>();
         for(String action : keyMap.keySet()){
-            keys.add(new SystemKey(keyMap.get(action), action, myGame));
+            keys.add(new InputKeyPress(keyMap.get(action), action, myGame));
         }
         return keys;
     }

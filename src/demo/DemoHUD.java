@@ -67,6 +67,9 @@ public class DemoHUD extends GameObject2D {
         
         myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
                 myPlayfield.getCharacters(), new GameElementCollision());
+        
+        myPlayfield.addCollisionGroup(myPlayfield.getSetting(),
+                myPlayfield.getSetting(), new GameElementCollision());
 
         // Sprite Init / Or load funcitonality
         // SpriteGroups already exist in AdvancedPlayfield
@@ -143,31 +146,43 @@ public class DemoHUD extends GameObject2D {
         goomba4.setMovable(true);
         myPlayfield.addCharacter(goomba4);
 
-        Tile temp1 = new FrictionlessDecorator(new BaseTile(this));
+        Tile temp1 = new FrictionlessDecorator(new Tile(this));
         temp1.setImages(this.getImages("resources/IceFloor.png", 1, 1));
-        temp1.setLocation(0, 440);
+        temp1.setLocation(600, 440);
         myPlayfield.addSetting(temp1);
 
-        Tile temp2 = new BaseTile(this);
+        Tile temp2 = new Tile(this);
         temp2.setImages(this.getImages("resources/Bar.png", 1, 1));
-        temp2.setLocation(600, 440);
+        temp2.setLocation(0, 440);
         myPlayfield.addSetting(temp2);
 
-        Tile block2 = new BreakableDecorator(new BaseTile(this));
+        ActionDecorator block2 = new BreakableDecorator(new Tile(this), 1);
+        block2.setBottomAction(true);
         block2.setImages(this.getImages("resources/Block2Break.png", 8, 1));
         block2.setLocation(160, 200);
         myPlayfield.addSetting(block2);
         
-        Tile block3 = new PushableDecorator(new BaseTile(this));
+        ActionDecorator block3 = new PushableDecorator(new Tile(this));
+        block3.setRightAction(true);
+        block3.setLeftAction(true);
         block3.setImages(getImages("resources/Block3.png", 1, 1));
         block3.setLocation(200, 400);
         myPlayfield.addSetting(block3);
 
-        CollectibleInstantItem coin = new CollectibleInstantItem(this);
-        coin.setImages(this.getImages("resources/Coin.png", 1, 1));
-        coin.setActive(false);
-        coin.addState("points", 3);
-        myPlayfield.addItem(coin);
+        ItemDecorator block1 = new ItemDecorator(new Tile(this));
+        block1.setBottomAction(true);
+        block1.setImages(this.getImages("resources/Block1.png", 1, 1));
+        block1.setLocation(100, 200);
+        myPlayfield.addSetting(block1);
+        
+        for(int i=0; i<10; i++){
+        	CollectibleInstantItem coin = new CollectibleInstantItem(this);
+        	coin.setImages(this.getImages("resources/Coin.png", 1, 1));
+        	coin.setActive(false);
+        	coin.addState("points", 3);
+        	block1.addItem(coin);
+        	myPlayfield.addItem(coin);
+        }
         
         CollectibleInstantItem coin2 = new CollectibleInstantItem(this);
         coin2.setImages(this.getImages("resources/Coin.png", 1, 1));
@@ -197,15 +212,7 @@ public class DemoHUD extends GameObject2D {
         poison.addState("hitPoints", -1);
         myPlayfield.addItem(poison);
         
-        ItemDecorator block1 = new ItemDecorator(new BaseTile(this));
-        block1.setMass(6);
-        block1.setMovable(false);
-        block1.setImages(this.getImages("resources/Block1.png", 1, 1));
-        block1.setLocation(100, 200);
-        block1.addItem(coin);
-        myPlayfield.addSetting(block1);
-        
-        Tile middleBar = new MovingDecorator(new BaseTile(this), 260,
+        Tile middleBar = new MovingDecorator(new Tile(this), 260,
                 240, 700, 60, 0.05);
         middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
         myPlayfield.addSetting(middleBar);
