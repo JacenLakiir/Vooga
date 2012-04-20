@@ -3,6 +3,9 @@ package core.characters.ai;
 import core.characters.NPC;
 import core.characters.Character;
 
+/**
+ * @author ericmercer (JacenLakiir)
+ */
 public class EvadeState extends State
 {
 
