@@ -21,7 +21,6 @@ public class EvadeState extends State
     @Override
     public void execute (long milliSec)
     {
-        System.out.println("FOLLOWING");
         double horizontalDistance = beingAvoided.getX() - myNPC.getX();
         int directionToFlee = (horizontalDistance < 0) ? 1 : -1;
         myNPC.move(directionToFlee * mySpeed, 0);

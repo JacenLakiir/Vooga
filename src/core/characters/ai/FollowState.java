@@ -21,7 +21,6 @@ public class FollowState extends State
     @Override
     public void execute (long milliSec)
     {
-        System.out.println("FOLLOWING");
         double horizontalDistance = beingFollowed.getX() - myNPC.getX();
         int directionOfTarget = (horizontalDistance < 0) ? -1 : 1;
         myNPC.move(directionOfTarget * mySpeed, 0);
