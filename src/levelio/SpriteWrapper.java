@@ -32,7 +32,7 @@ public class SpriteWrapper implements Cloneable, Serializable {
 	myClass = clazz;
 	myImagesrc = imgsrc;
 	myGameElement = new GameElement();
-	buildAttributeMap(clazz);
+	buildAttributeMap(clazz, null);
 	reconstruct();
     }
     
@@ -42,11 +42,11 @@ public class SpriteWrapper implements Cloneable, Serializable {
 	myClass = sprite.getClass();
 	myImagesrc = imgsrc;
 	myGameElement = sprite;
-	buildAttributeMap(sprite.getClass());
+	buildAttributeMap(sprite.getClass(), sprite);
 	reconstruct();
     }
     
-    private void buildAttributeMap(Class<?> clazz) {
+    private void buildAttributeMap(Class<?> clazz, GameElement sprite) {
 	myAttributeMap = new HashMap<SpriteAttribute, Serializable>();
 	Set<Field> fieldset = new HashSet<Field>();
 	Class<?> curr = clazz;
@@ -58,7 +58,13 @@ public class SpriteWrapper implements Cloneable, Serializable {
 		    Class<?> ftype = f.getType();
 		    String fclassification = 
 			    ((Modifiable) f.getAnnotation(Modifiable.class)).classification();
-		    myAttributeMap.put(new SpriteAttribute(fname, ftype, fclassification), null);
+		    try {
+			myAttributeMap.put(new SpriteAttribute(fname, ftype, fclassification), (Serializable) f.get(sprite));
+		    } catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		    } catch (IllegalAccessException e) {
+			e.printStackTrace();
+		    }
 		    fieldset.add(f);
 		}
 	    }

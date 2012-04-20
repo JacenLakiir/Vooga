@@ -84,6 +84,8 @@ public class SpriteEditor extends JFrame {
 	    if (!sa.getAttributeType().equals(Boolean.TYPE)) {
 		JLabel attributelabel = new JLabel(sa.getName() + ": ");
 		JTextField attributefield = new JTextField();
+		if (attributemap.get(sa) != null)
+		    attributefield.setText(attributemap.get(sa).toString());
 		editpanel.add(attributelabel);
 		editpanel.add(attributefield);
 		myTextFieldAttributeMap.put(attributefield, sa);
