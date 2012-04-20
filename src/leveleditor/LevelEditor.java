@@ -24,7 +24,7 @@ public class LevelEditor extends JFrame {
     public LevelEditor(LevelEditorController controller) {
 	myView = this;
 	myController = controller;
-	myClassTree = ClassTreeBuilder.getClassTree("core");
+	myClassTree = ClassTreeBuilder.getClassTree("core, demo");
 	setTitle("Vooga Level Editor (Demo Version)");
 	setLayout(new GridBagLayout());
 	setUpMenu();

@@ -47,13 +47,13 @@ public class ClassTreeBuilder {
      * http://snippets.dzone.com/posts/show/4831 and extended to support use of
      * JAR files
      * 
-     * @param packageName
-     *            The base package
+     * @param packageNames
+     *            The base packages, separated by comma
      * @param regexFilter
      *            an optional class name pattern.
      * @return The classes
      */
-    public static Class<?>[] getClassesInPackage(String packageName,
+    public static Class<?>[] getClassesInPackage(String packageNames,
 	    String regexFilter) {
 	Pattern regex = null;
 	if (regexFilter != null)
@@ -62,20 +62,23 @@ public class ClassTreeBuilder {
 	    ClassLoader classLoader = Thread.currentThread()
 		    .getContextClassLoader();
 	    assert classLoader != null;
-	    String path = packageName.replace('.', '/');
-	    Enumeration<URL> resources = classLoader.getResources(path);
-	    List<String> dirs = new ArrayList<String>();
-	    while (resources.hasMoreElements()) {
-		URL resource = resources.nextElement();
-		dirs.add(resource.getFile());
-	    }
-	    TreeSet<String> classes = new TreeSet<String>();
-	    for (String directory : dirs) {
-		classes.addAll(findClasses(directory, packageName, regex));
-	    }
+	    String[] paths = packageNames.split(",");
 	    ArrayList<Class<?>> classList = new ArrayList<Class<?>>();
-	    for (String clazz : classes) {
-		classList.add(Class.forName(clazz));
+	    TreeSet<String> classes = new TreeSet<String>();
+	    for (String path: paths) {
+		    String onepackageName = path.replace('.', '/').trim();
+		    Enumeration<URL> resources = classLoader.getResources(onepackageName);
+		    List<String> dirs = new ArrayList<String>();
+		    while (resources.hasMoreElements()) {
+			URL resource = resources.nextElement();
+			dirs.add(resource.getFile());
+		    }
+		    for (String directory : dirs) {
+			classes.addAll(findClasses(directory, onepackageName, regex));
+		    }
+		    for (String clazz : classes) {
+			classList.add(Class.forName(clazz));
+		    }
 	    }
 	    return classList.toArray(new Class[classes.size()]);
 	} catch (Exception e) {

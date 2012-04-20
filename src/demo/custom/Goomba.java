@@ -7,66 +7,57 @@ import core.characters.NPC;
 import core.characters.ai.DeadState;
 import core.characters.ai.State;
 
-
 /**
  * @author Eric Mercer (JacenLakiir)
  */
 @SuppressWarnings("serial")
-public class Goomba extends NPC
-{
+public class Goomba extends NPC {
 
     private static final String IMAGE_FILE = "resources/Goomba.png";
-    
-    public Goomba (GameObject game)
-    {
-        super(game);
-        setImages(game.getImages(IMAGE_FILE, 1, 1));
-        setMovable(true);
-    }
-    
-    public Goomba (GameObject game, List<State> possibleStates)
-    {
-        super(game, possibleStates);
-    }
-    
-    public void afterHitFromRightBy (GameElement e)
-    {
-        setDirection(-1);
-    }
-    
-    public void afterHitFromLeftBy (GameElement e)
-    {
-        setDirection(1);
-    }
-    
-    public void afterHitFromTopBy (Mario m) {
-        addPossibleState(new DeadState(this));
-    }
-    
-    public void afterHitFromRightBy (Mario m) {
-        m.updateStateValues("hitPoints", -1 * m.getMyStateValue("hitPoints"));
+
+    public Goomba(GameObject game) {
+	super(game);
+	setImages(game.getImages(IMAGE_FILE, 1, 1));
+	setMovable(true);
     }
 
-    public void afterHitFromLeftBy (Mario m) {
-        m.updateStateValues("hitPoints", -1 * m.getMyStateValue("hitPoints"));
+    public Goomba(GameObject game, List<State> possibleStates) {
+	super(game, possibleStates);
     }
-    
-    public void afterHitFromRightBy (Koopa k)
-    {
-        handleKoopaSideCollision(k, false);
+
+    public void afterHitFromRightBy(GameElement e) {
+	setDirection(-1);
     }
-    
-    public void afterHitFromLeftBy (Koopa k)
-    {
-        handleKoopaSideCollision(k, true);
+
+    public void afterHitFromLeftBy(GameElement e) {
+	setDirection(1);
     }
-    
-    private void handleKoopaSideCollision (Koopa k, boolean isHitOnLeft)
-    {
-        if (k.isInShellState() && k.getShellSpeed() != 0)
-            addPossibleState(new DeadState(this));
-        else
-            setDirection(isHitOnLeft ? 1 : -1);
+
+    public void afterHitFromTopBy(Mario m) {
+	addPossibleState(new DeadState(this));
     }
-    
+
+    public void afterHitFromRightBy(Mario m) {
+	m.updateStateValues("hitPoints", -1 * m.getMyStateValue("hitPoints"));
+    }
+
+    public void afterHitFromLeftBy(Mario m) {
+	m.updateStateValues("hitPoints", -1 * m.getMyStateValue("hitPoints"));
+    }
+
+    public void afterHitFromRightBy(Koopa k) {
+	handleKoopaSideCollision(k, false);
+    }
+
+    public void afterHitFromLeftBy(Koopa k) {
+	handleKoopaSideCollision(k, true);
+    }
+
+    private void handleKoopaSideCollision(Koopa k, boolean isHitOnLeft) {
+	if (k.isInShellState() && k.getShellSpeed() != 0)
+	    addPossibleState(new DeadState(this));
+	else
+	    setDirection(isHitOnLeft ? 1 : -1);
+    }
+
 }
