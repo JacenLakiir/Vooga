@@ -33,7 +33,7 @@ public abstract class GameElement extends AdvanceSprite {
     @Modifiable(name = "mass", type = "double")
     private double mass = 10;
     @Modifiable(name = "density", type = "double")
-    private double density = 1.01;
+    private double density = 1.0;
     @Modifiable(name = "coefOfFrictionInX", type = "double")
     private double coefOfFrictionInX = 0.5;
     @Modifiable(name = "coefOfFrictionInY", type = "double")
@@ -60,22 +60,22 @@ public abstract class GameElement extends AdvanceSprite {
         vel = new Velocity(0, 0);
         disp = new Displacement(0, 0);
         duringAccList = new ArrayList<DuringAcceleration>();
-        // Treat gravity as a during acceleration.
-        // duringAccList.add(new DuringAcceleration(new Mapping(this) {
-        // @Override
-        // public double getXforTime(int t) {
-        // return 0;
-        // }
-        // @Override
-        // public double getYforTime(int t) {
-        // if (this.getOwner().isUnmovable() == false) {
-        // return this.getOwner().getGravitationalAcceleration() * -1.0;
-        // }
-        // else {
-        // return 0;
-        // }
-        // }
-        // }));
+//        Treat gravity as a during acceleration.
+//        duringAccList.add(new DuringAcceleration(new Mapping(this) {
+//            @Override
+//            public double getXforTime(int t) {
+//                return 0;
+//            }
+//            @Override
+//            public double getYforTime(int t) {
+//                if (this.getOwner().isUnmovable() == false) {
+//                    return this.getOwner().getGravitationalAcceleration() * -1.0;
+//                }
+//                else {
+//                    return 0;
+//                }
+//            }
+//        }));
         myGame = null;
     }
 
@@ -345,38 +345,6 @@ public abstract class GameElement extends AdvanceSprite {
     public void setMaximunSpeedInY(double y) {
         this.maximunSpeedInY = y;
     }
-
-    //    public void beforeHitFromLeftBy(GameElement e) {
-    //        reflectionCalled(e, "beforeHitFromLeftBy");
-    //    }
-    //
-    //    public void beforeHitFromRightBy(GameElement e) {
-    //        reflectionCalled(e, "beforeHitFromRightBy");
-    //    }
-    //
-    //    public void beforeHitFromTopBy(GameElement e) {
-    //        reflectionCalled(e, "beforeHitFromTopBy");
-    //    }
-    //
-    //    public void beforeHitFromBottomBy(GameElement e) {
-    //        reflectionCalled(e, "beforeHitFromBottomBy");
-    //    }
-    //
-    //    public void afterHitFromLeftBy(GameElement e) {
-    //        reflectionCalled(e, "afterHitFromLeftBy");
-    //    }
-    //
-    //    public void afterHitFromRightBy(GameElement e) {
-    //        reflectionCalled(e, "afterHitFromRightBy");
-    //    }
-    //
-    //    public void afterHitFromTopBy(GameElement e) {
-    //        reflectionCalled(e, "afterHitFromTopBy");
-    //    }
-    //
-    //    public void afterHitFromBottomBy(GameElement e) {
-    //        reflectionCalled(e, "afterHitFromBottomBy");
-    //    }
 
     public void reflectionCalled(GameElement e, String key) {
         Method method = null;
