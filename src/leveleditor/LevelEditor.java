@@ -19,6 +19,7 @@ public class LevelEditor extends JFrame {
     private Canvas myCanvas;
     private SpritePanel mySpritePanel;
     private JMenuBar myMenuBar = new JMenuBar();
+  //  private JTree 
     
     public LevelEditor(LevelEditorController controller) {
 	myView = this;
