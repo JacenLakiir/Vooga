@@ -28,5 +28,5 @@ public class MoveState extends State
     {
         return true;
     }
-    
+
 }

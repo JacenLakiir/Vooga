@@ -36,14 +36,13 @@ public class PatrolState extends State
         return true;
     }
 
-    private void updateDirection ()
-    {
-        int dir = myNPC.getDirection();
-        if (dir == -1)
-            myNPC.setDirection(1);
-        else if (dir == 1)
-            myNPC.setDirection(-1);
-        myDistanceTraveled = 0;
+    private void updateDirection() {
+	int dir = myNPC.getDirection();
+	if (dir == -1)
+	    myNPC.setDirection(1);
+	else if (dir == 1)
+	    myNPC.setDirection(-1);
+	myDistanceTraveled = 0;
     }
 
 }

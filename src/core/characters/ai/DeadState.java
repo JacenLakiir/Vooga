@@ -24,5 +24,5 @@ public class DeadState extends State
     {
         return true;
     }
-    
+
 }

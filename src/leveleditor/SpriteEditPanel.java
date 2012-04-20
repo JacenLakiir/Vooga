@@ -65,14 +65,14 @@ public class SpriteEditPanel extends JFrame {
    	    }
    	});
    	confirmcancelpanel.add(confirm);
-   	confirm.addActionListener(new CreateSpriteListener(imagesrc));
+   	//confirm.addActionListener(new CreateSpriteListener(imagesrc));
    	confirmcancelpanel.add(cancel);
    	rightpanel.add(confirmcancelpanel);
    	setDefaultCloseOperation(DISPOSE_ON_CLOSE);
    	pack();
     }
     
-    private class CreateSpriteListener implements ActionListener {
+    private class EditSpriteListener implements ActionListener {
 	private String myImagesrc;
 	
 	public CreateSpriteListener(String imagesrc) {
