@@ -14,75 +14,57 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-
-public class LevelState implements Serializable
-{
+public class LevelState implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 391098281239L;
     private String myBackgroundSrc;
     private Map<Point, SpriteWrapper> mySpriteMap;
 
-
-    public LevelState (String background, Map<Point, SpriteWrapper> spritemap)
-    {
-        mySpriteMap = new HashMap<Point, SpriteWrapper>(spritemap);
-        myBackgroundSrc = background;
+    public LevelState(String background, Map<Point, SpriteWrapper> spritemap) {
+	mySpriteMap = new HashMap<Point, SpriteWrapper>(spritemap);
+	myBackgroundSrc = background;
     }
 
-
-    public String getBackgroundImageSrc ()
-    {
-        return myBackgroundSrc;
+    public String getBackgroundImageSrc() {
+	return myBackgroundSrc;
     }
 
-
-    public Map<Point, SpriteWrapper> getSpriteMap ()
-    {
-        return mySpriteMap;
+    public Map<Point, SpriteWrapper> getSpriteMap() {
+	return mySpriteMap;
     }
 
-
-    public static LevelState loadLevel (File file)
-    {
-        LevelState level = null;
-        try
-        {
-            ObjectInputStream in =
-                new ObjectInputStream(new FileInputStream(file));
-            level = (LevelState) in.readObject();
-            level.reconstruct();
-            in.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-        return level;
+    public static LevelState loadLevel(File file) {
+	LevelState level = null;
+	try {
+	    ObjectInputStream in = new ObjectInputStream(new FileInputStream(
+		    file));
+	    level = (LevelState) in.readObject();
+	    level.reconstruct();
+	    in.close();
+	} catch (IOException e) {
+	    e.printStackTrace();
+	} catch (ClassNotFoundException e) {
+	    e.printStackTrace();
+	}
+	return level;
     }
 
-
-    private void reconstruct ()
-    {
-        for (SpriteWrapper sp : mySpriteMap.values())
-            sp.reconstruct();
+    private void reconstruct() {
+	for (SpriteWrapper sp : mySpriteMap.values())
+	    sp.reconstruct();
     }
 
-
-    public void save (String url)
-    {
-        try
-        {
-            ObjectOutputStream out =
-                new ObjectOutputStream(new FileOutputStream(url));
-            out.writeObject(this);
-            out.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+    public void save(String url) {
+	try {
+	    ObjectOutputStream out = new ObjectOutputStream(
+		    new FileOutputStream(url));
+	    out.writeObject(this);
+	    out.close();
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
     }
 
 }
