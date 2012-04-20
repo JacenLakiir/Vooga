@@ -80,18 +80,6 @@ public class Mario extends Player{
     }
 
     @Override
-    public void checkDead() {
-        //        if (this.getX()<-10 || this.getX()>650 || this.getY()>500) {
-        //            System.out.println("Dead");
-        //            myGame.stop();
-        //            return;
-        //        }
-        //        System.out.println("Dead");
-        //      myGame.stop();            
-
-    }
-
-    @Override
     public void afterHitFromRightBy (GameElement e) {
         super.afterHitFromRightBy(e);
     }
@@ -124,40 +112,6 @@ public class Mario extends Player{
                 jumpTimer.refresh();
             }
             super.giveStrengthUp();
-        }
-    }
-
-    public void afterHitFromRightBy (Goomba e) {
-        updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
-        checkDead();
-    }
-
-    public void afterHitFromLeftBy (Goomba e) {
-        updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
-        checkDead();
-    }
-    
-    public void afterHitFromRightBy (Koopa k)
-    {
-        handleKoopaSideCollision(k);
-    }
-    
-    public void afterHitFromLeftBy (Koopa k)
-    {
-        handleKoopaSideCollision(k);
-    }
-    
-    private void handleKoopaSideCollision (Koopa k)
-    {
-        if (k.isInShellState() && k.getShellSpeed() != 0)
-        {
-            updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
-            checkDead();
-        }
-        else if (!k.isInShellState())
-        {
-            updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
-            checkDead();
         }
     }
 
