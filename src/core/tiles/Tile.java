@@ -16,13 +16,15 @@ import com.golden.gamedev.GameObject;
 
 import core.characters.GameElement;
 
-public abstract class Tile extends GameElement{
+public class Tile extends GameElement{
 
     /*
      * Constructor for a Concrete Platform
      */
     public Tile (GameObject owner) {
         super(owner);
+        this.setMovable(false);
+        this.setPenetrable(false);
     }
 
     /*
@@ -31,12 +33,5 @@ public abstract class Tile extends GameElement{
     public Tile () {
         super();
     }
-
-
-    public void set(BufferedImage[] images, double x, double y) {
-        this.setImages(images);
-        this.setLocation(x, y);
-    }
-
 }
 
