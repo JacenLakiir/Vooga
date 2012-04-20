@@ -5,7 +5,6 @@ import com.golden.gamedev.object.Timer;
 
 import core.characters.GameElement;
 import core.characters.Player;
-import core.items.Weapon;
 import core.keyconfiguration.KeyAnnotation;
 
 /**

@@ -59,22 +59,22 @@ public abstract class GameElement extends AdvanceSprite {
         vel = new Velocity(0, 0);
         disp = new Displacement(0, 0);
         duringAccList = new ArrayList<DuringAcceleration>();
-//        Treat gravity as a during acceleration.
-//        duringAccList.add(new DuringAcceleration(new Mapping(this) {
-//            @Override
-//            public double getXforTime(int t) {
-//                return 0;
-//            }
-//            @Override
-//            public double getYforTime(int t) {
-//                if (this.getOwner().isUnmovable() == false) {
-//                    return this.getOwner().getGravitationalAcceleration() * -1.0;
-//                }
-//                else {
-//                    return 0;
-//                }
-//            }
-//        }));
+        //        Treat gravity as a during acceleration.
+        //        duringAccList.add(new DuringAcceleration(new Mapping(this) {
+        //            @Override
+        //            public double getXforTime(int t) {
+        //                return 0;
+        //            }
+        //            @Override
+        //            public double getYforTime(int t) {
+        //                if (this.getOwner().isUnmovable() == false) {
+        //                    return this.getOwner().getGravitationalAcceleration() * -1.0;
+        //                }
+        //                else {
+        //                    return 0;
+        //                }
+        //            }
+        //        }));
         myGame = null;
     }
 
@@ -345,53 +345,24 @@ public abstract class GameElement extends AdvanceSprite {
         this.maximunSpeedInY = y;
     }
 
+    public void afterHitFromRightBy(GameElement e) {
+
+    }
+
     public void reflectionCalled(GameElement e, String key) {
-        Method method = null;
+        Class c = e.getClass();
+        Class ge = null;
         try {
-            method = this.getClass().getDeclaredMethod(key, e.getClass());
-            method.invoke(this, e);
-        } catch (Exception ex) {}
-        if (e instanceof Player) {
-            try {
-                method = this.getClass().getDeclaredMethod(key, Class.forName("core.characters.Player"));
-                method.invoke(this, e);
-            } catch (Exception ex) {}
+            ge = Class.forName("core.characters.GameElement");
+        } catch (ClassNotFoundException e1) {
+            e1.printStackTrace();
         }
-        if (e instanceof NPC) {
+        while (ge.isAssignableFrom(c)) {
             try {
-                method = this.getClass().getDeclaredMethod(key, Class.forName("core.characters.NPC"));
+                Method method = this.getClass().getDeclaredMethod(key, c);
                 method.invoke(this, e);
             } catch (Exception ex) {}
-        }
-        if (e instanceof Character) {
-            try {
-                method = this.getClass().getDeclaredMethod(key, Class.forName("core.characters.Character"));
-                method.invoke(this, e);
-            } catch (Exception ex) {}
-        }
-        if (e instanceof NPC) {
-            try {
-                method = this.getClass().getDeclaredMethod(key, Class.forName("core.characters.NPC"));
-                method.invoke(this, e);
-            } catch (Exception ex) {}
-        }
-        if (e instanceof Tile) {
-            try {
-                method = this.getClass().getDeclaredMethod(key, Class.forName("core.tiles.Tile"));
-                method.invoke(this, e);
-            } catch (Exception ex) {}
-        }
-        if (e instanceof CollectibleItem) {
-            try {
-                method = this.getClass().getDeclaredMethod(key, Class.forName("core.items.CollectibleItem"));
-                method.invoke(this, e);
-            } catch (Exception ex) {}
-        }
-        if (e instanceof GameElement) {
-            try {
-                method = this.getClass().getDeclaredMethod(key, Class.forName("core.characters.GameElement"));
-                method.invoke(this, e);
-            } catch (Exception ex) {}
+            c = c.getSuperclass();
         }
     }
 }

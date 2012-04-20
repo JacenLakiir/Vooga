@@ -13,7 +13,6 @@ import core.gamestate.GameEngine2D;
 import core.gamestate.GameObject2D;
 import core.gamestate.Pause;
 import core.items.AutoInUseAutoNotInUseItem;
-import core.items.CollectibleInstantItem;
 import core.keyconfiguration.KeyAnnotation;
 import core.keyconfiguration.KeyConfig;
 import core.keyconfiguration.Mouse;
