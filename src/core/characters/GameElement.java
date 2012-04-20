@@ -376,5 +376,13 @@ public abstract class GameElement extends AdvanceSprite{
             method.invoke(this, e);
         } catch (Exception ex) {}
     }
+    
+    public void setMaximunSpeedInX(double x) {
+        this.maximunSpeedInX = x;
+    }
+    
+    public void setMaximunSpeedInY(double y) {
+        this.maximunSpeedInY = y;
+    }
 
 }

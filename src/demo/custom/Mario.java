@@ -21,7 +21,7 @@ public class Mario extends Player{
     public Mario(GameObject game) {
         super(game);
         resetStrength();
-        maximunSpeedInX = 0.8;
+        this.setMaximunSpeedInX(0.8);
         jumpTime = 250;
         jumpTimer = new Timer(jumpTime);
         jumpTimer.setActive(false);
@@ -49,17 +49,17 @@ public class Mario extends Player{
     
     @KeyAnnotation(action = "down")
     public void keyDownPressed() {
-        this.addAcceleration(0, strengthDown*-stdGravity);
+        this.addAcceleration(0, strengthDown*-this.getGravitationalAcceleration());
     }
     
     @KeyAnnotation(action = "left")
     public void keyLeftPressed() {
-        this.addAcceleration(strengthLeft*-stdGravity, 0);
+        this.addAcceleration(strengthLeft*-getGravitationalAcceleration(), 0);
     }
     
     @KeyAnnotation(action = "right")
     public void keyRightPressed() {
-        this.addAcceleration(strengthRight*stdGravity, 0);
+        this.addAcceleration(strengthRight*getGravitationalAcceleration(), 0);
     }
     
     @KeyAnnotation(action = "space")

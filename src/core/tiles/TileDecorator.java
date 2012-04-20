@@ -54,7 +54,7 @@ public class TileDecorator extends Tile {
      */    	
     	protected void addGravity() {
             if (decoratedPlatform.isUnmovable() == false) {
-            	decoratedPlatform.addAcceleration(0, -stdGravity);
+            	decoratedPlatform.addAcceleration(0, -this.getGravitationalAcceleration());
             }
         }
         
