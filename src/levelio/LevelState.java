@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LevelState implements Serializable {
+    
     private static final long serialVersionUID = 3910981230998281239L;
+    
     private String myBackgroundSrc;
     private List<SpriteWrapper> mySprites;
     
