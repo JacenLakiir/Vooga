@@ -6,6 +6,8 @@ package core.physicsengine;
 
 public class DuringAcceleration extends Acceleration {
 
+    private static final long serialVersionUID = 8037116099628455867L;
+    
     private Mapping formula;
     private int duration, currentTime;
     private boolean isActive, isInfinite;

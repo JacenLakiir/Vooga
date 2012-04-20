@@ -1,11 +1,12 @@
+/**
+ * @author Michael Zhou (Dominator008)
+ */
 package leveleditor;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
@@ -17,22 +18,16 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.JTree;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
-
-import com.golden.gamedev.object.Sprite;
-
-import core.characters.NPC;
-import core.characters.Player;
-import core.tiles.Tile;
-
-import levelio.SpriteWrapper;
+import levelio.SpriteWrapper.SpriteGroupIdentifier;
 
 @SuppressWarnings("serial")
 public class SpriteBuilder extends JFrame {
@@ -43,13 +38,15 @@ public class SpriteBuilder extends JFrame {
     private JLabel imagelabel;
     private ButtonGroup myTypeGroup;
     private JRadioButton myPlayerButton;
-    private JRadioButton myNPCButton;
-    private JRadioButton myTileButton;
-    private Map<JRadioButton, Class<?>> myTypeMap 
-    = new HashMap<JRadioButton, Class<?>>() {{
-	put(myPlayerButton, Player.class);
-	put(myNPCButton, NPC.class);
-	put(myTileButton, Tile.class);
+    private JRadioButton myCharacterButton;
+    private JRadioButton mySettingButton;
+    private JRadioButton myItemButton;
+    private Map<JRadioButton, SpriteGroupIdentifier> myTypeMap = 
+	    new HashMap<JRadioButton, SpriteGroupIdentifier>() {{
+	put(myPlayerButton, SpriteGroupIdentifier.PLAYER);
+	put(myCharacterButton, SpriteGroupIdentifier.CHARACTER);
+	put(mySettingButton, SpriteGroupIdentifier.SETTING);
+	put(myItemButton, SpriteGroupIdentifier.ITEM);
     }};
     
     public static SpriteBuilder getInstance(LevelEditor view) {
@@ -62,11 +59,12 @@ public class SpriteBuilder extends JFrame {
     
     private SpriteBuilder(LevelEditor view) {
 	myView = view;
-	setSize(400, 200);
+	setSize(800, 400);
 	setLocationRelativeTo(view);
 	setTitle("Build Sprite");
 	setLayout(new GridLayout(1, 2));
-	//JPanel imagepanel = new JPanel();
+	JPanel leftpanel = new JPanel();
+	leftpanel.setLayout(new GridLayout(2, 1));
 	imagelabel = new JLabel(new ImageIcon());
    	Border imageborder = BorderFactory.createTitledBorder
    		(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Image");
@@ -74,23 +72,33 @@ public class SpriteBuilder extends JFrame {
    	//imagepanel.setBackground(Color.black);
 	//imagepanel.add(imagelabel);
    	imagelabel.setBorder(imageborder);
-	add(imagelabel);
+	leftpanel.add(imagelabel);
+	JTree classtree = myView.getClassTree();
+	JScrollPane treepane = new JScrollPane(classtree);
+	treepane.setBorder(BorderFactory.createTitledBorder
+   		(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Java Class"));
+   	leftpanel.add(treepane);
+	add(leftpanel);
 	JPanel rightpanel = new JPanel();
 	rightpanel.setLayout(new GridLayout(3, 1));
 	add(rightpanel);
 	myPlayerButton = new JRadioButton("Player");
-	myNPCButton = new JRadioButton("NPC");
-	myTileButton = new JRadioButton("Tile");
+	myCharacterButton = new JRadioButton("Character");
+	mySettingButton = new JRadioButton("Setting");
+	myItemButton = new JRadioButton("Item");
    	myTypeGroup = new ButtonGroup();
    	myTypeGroup.add(myPlayerButton);
-   	myTypeGroup.add(myNPCButton);
-   	myTypeGroup.add(myTileButton);
-   	myTypeGroup.setSelected(myNPCButton.getModel(), true);
+   	myTypeGroup.add(myCharacterButton);
+   	myTypeGroup.add(mySettingButton);
+   	myTypeGroup.setSelected(myCharacterButton.getModel(), true);
    	JPanel radiopanel = new JPanel();
-   	radiopanel.setLayout(new GridLayout(1, 3));
+	radiopanel.setBorder(BorderFactory.createTitledBorder
+   		(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Sprite Group"));
+   	radiopanel.setLayout(new GridLayout(1, 4));
    	radiopanel.add(myPlayerButton);
-   	radiopanel.add(myNPCButton);
-   	radiopanel.add(myTileButton);
+   	radiopanel.add(myCharacterButton);
+   	radiopanel.add(mySettingButton);
+   	radiopanel.add(myItemButton);
    	rightpanel.add(radiopanel);
 	JPanel namepanel = new JPanel();
 	//namepanel.setLayout(new GridLayout(1, 2));
@@ -137,13 +145,13 @@ public class SpriteBuilder extends JFrame {
     private class SpriteCreateListener implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
-	    Class<?> clazz = checkSelectedButton();
+	    SpriteGroupIdentifier gid = checkSelectedButton();
 	    
 	}
 	
     }
     
-    private Class<?> checkSelectedButton() {
+    private SpriteGroupIdentifier checkSelectedButton() {
 	for (Enumeration<AbstractButton> e = myTypeGroup.getElements(); e.hasMoreElements(); ) {
 	    JRadioButton b = (JRadioButton) e.nextElement();
 	    if (b.getModel() == myTypeGroup.getSelection()) {

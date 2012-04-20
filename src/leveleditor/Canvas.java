@@ -1,14 +1,16 @@
+/**
+ * @author Michael Zhou (Dominator008)
+ */
 package leveleditor;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
-import java.awt.Point;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -17,8 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
-
-import com.golden.gamedev.object.Sprite;
+import core.characters.GameElement;
 
 import leveleditor.eventhandlers.MoveSpriteListener;
 import leveleditor.eventhandlers.SpriteDropTargetListener;
@@ -84,7 +85,7 @@ public class Canvas extends JScrollPane {
 	return myBackGroundImgSrc;
     }
     
-    protected void loadSprites(HashMap<Point, SpriteWrapper> spritemap) {
+    protected void loadSprites(List<SpriteWrapper> sprites) {
 	if (myLabelWrapperMap != null) {
 	    for (JLabel l: myLabelWrapperMap.keySet()) {
 		l.setVisible(false);
@@ -95,8 +96,8 @@ public class Canvas extends JScrollPane {
 	    myCanvasPane.revalidate();
 	}
 	else myLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
-	for (Point p: spritemap.keySet()) {
-	    Sprite sp = spritemap.get(p).getSprite();
+	for (SpriteWrapper sw: sprites) {
+	    GameElement sp = sw.getGameElement();
 	    BufferedImage currentImage = sp.getImage();
 	    JLabel label = new JLabel();
 	    ImageIcon icon = new ImageIcon(currentImage);
@@ -105,9 +106,9 @@ public class Canvas extends JScrollPane {
 	    label.addMouseListener(new MoveSpriteListener(myView));
 	    label.addMouseMotionListener(new MoveSpriteListener(myView));
 	    myCanvasPane.add(label, 0);
-	    label.setBounds(p.x, p.y,
+	    label.setBounds((int) sp.getX(), (int) sp.getY(),
 		   currentImage.getWidth(), currentImage.getHeight());
-	    myLabelWrapperMap.put(label, spritemap.get(p));
+	    myLabelWrapperMap.put(label, sw);
 	}
     }
     

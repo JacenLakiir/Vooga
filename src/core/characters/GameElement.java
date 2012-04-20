@@ -12,37 +12,44 @@ import levelio.Modifiable;
 
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.sprite.AdvanceSprite;
+
 import core.physicsengine.Acceleration;
 import core.physicsengine.Displacement;
 import core.physicsengine.DuringAcceleration;
 import core.physicsengine.Velocity;
 
-public abstract class GameElement extends AdvanceSprite {
+public class GameElement extends AdvanceSprite {
+
     private static final long serialVersionUID = 2989579123989132598L;
-    protected Acceleration acc;
-    protected List<DuringAcceleration> duringAccList;
-    protected Velocity vel;
-    protected Displacement disp;
-    protected double metersPerPixel;
-    @Modifiable(name = "mass", type = "double")
-    protected double mass = 10;
-    @Modifiable(name = "density", type = "double")
-    protected double density = 1.01;
-    @Modifiable(name = "coefOfFrictionInX", type = "double")
-    protected double coefOfFrictionInX = 0.5;
-    @Modifiable(name = "coefOfFrictionInY", type = "double")
-    protected double coefOfFrictionInY = 0;
-    @Modifiable(name = "coefOfRestitutionInX", type = "double")
-    protected double coefOfRestitutionInX = 0.2;
-    @Modifiable(name = "coefOfRestitutionInY", type = "double")
-    protected double coefOfRestitutionInY = 0.1;
-    @Modifiable(name = "dragCoef", type = "double")
-    protected double dragCoef = 0;
+    
+    private Acceleration acc;
+    private List<DuringAcceleration> duringAccList;
+    private Velocity vel;
+    private Displacement disp;
+
+    @Modifiable(classification = "Physics")
+    private double mass = 10;
+    @Modifiable(classification = "Physics")
+    private double density = 1.0;
+    @Modifiable(classification = "Physics")
+    private double coefOfFrictionInX = 0.5;
+    @Modifiable(classification = "Physics")
+    private double coefOfFrictionInY = 0;
+    @Modifiable(classification = "Physics")
+    private double coefOfRestitutionInX = 0.2;
+    @Modifiable(classification = "Physics")
+    private double coefOfRestitutionInY = 0.1;
+    @Modifiable(classification = "Physics")
+    private double dragCoef = 0;
     protected double stdGravity = 0.004;
-    protected boolean isUnmovable = false;
-    protected boolean isPenetrable = false;
-    protected double maximunSpeedInX = Double.MAX_VALUE;
-    protected double maximunSpeedInY = Double.MAX_VALUE;
+    @Modifiable(classification = "Physics")
+    private boolean isUnmovable = false;
+    @Modifiable(classification = "Physics")
+    private boolean isPenetrable = false;
+
+    private double maximumSpeedInX = Double.MAX_VALUE;
+    private double maximumSpeedInY = Double.MAX_VALUE;
+
     protected transient GameObject myGame;
 
     public GameElement() {
@@ -109,14 +116,14 @@ public abstract class GameElement extends AdvanceSprite {
 
     protected void checkMaximunSpeed() {
 	double vx = vel.getX(), vy = vel.getY();
-	if (Math.abs(vx) > maximunSpeedInX) {
-	    vx = maximunSpeedInX;
+	if (Math.abs(vx) > maximumSpeedInX) {
+	    vx = maximumSpeedInX;
 	    if (vel.getX() < 0) {
 		vx = -vx;
 	    }
 	}
-	if (Math.abs(vy) > maximunSpeedInY) {
-	    vy = maximunSpeedInY;
+	if (Math.abs(vy) > maximumSpeedInY) {
+	    vy = maximumSpeedInY;
 	    if (vel.getY() < 0) {
 		vy = -vy;
 	    }
@@ -329,75 +336,30 @@ public abstract class GameElement extends AdvanceSprite {
 	return myGame;
     }
 
-    public void beforeHitFromLeftBy(GameElement e) {
-	try {
-	    Method method = this.getClass().getDeclaredMethod(
-		    "beforeHitFromLeftBy", e.getClass());
-	    method.invoke(this, e);
-	} catch (Exception ex) {
-	}
+    public void setMaximumSpeedInX(double x) {
+	this.maximumSpeedInX = x;
     }
 
-    public void beforeHitFromRightBy(GameElement e) {
-	try {
-	    Method method = this.getClass().getDeclaredMethod(
-		    "beforeHitFromRightBy", e.getClass());
-	    method.invoke(this, e);
-	} catch (Exception ex) {
-	}
+    public void setMaximumSpeedInY(double y) {
+	this.maximumSpeedInY = y;
     }
 
-    public void beforeHitFromTopBy(GameElement e) {
+    // try all the methods with parameter e or superclasses of e.
+    public void reflectionCalled(GameElement e, String key) {
+	Class<?> c = e.getClass();
+	Class<?> ge = null;
 	try {
-	    Method method = this.getClass().getDeclaredMethod(
-		    "beforeHitFromTopBy", e.getClass());
-	    method.invoke(this, e);
-	} catch (Exception ex) {
+	    ge = Class.forName("core.characters.GameElement");
+	} catch (ClassNotFoundException e1) {
+	    e1.printStackTrace();
 	}
-    }
-
-    public void beforeHitFromBottomBy(GameElement e) {
-	try {
-	    Method method = this.getClass().getDeclaredMethod(
-		    "beforeHitFromBottomBy", e.getClass());
-	    method.invoke(this, e);
-	} catch (Exception ex) {
-	}
-    }
-
-    public void afterHitFromLeftBy(GameElement e) {
-	try {
-	    Method method = this.getClass().getDeclaredMethod(
-		    "afterHitFromLeftBy", e.getClass());
-	    method.invoke(this, e);
-	} catch (Exception ex) {
-	}
-    }
-
-    public void afterHitFromRightBy(GameElement e) {
-	try {
-	    Method method = this.getClass().getDeclaredMethod(
-		    "afterHitFromRightBy", e.getClass());
-	    method.invoke(this, e);
-	} catch (Exception ex) {
-	}
-    }
-
-    public void afterHitFromTopBy(GameElement e) {
-	try {
-	    Method method = this.getClass().getDeclaredMethod(
-		    "afterHitFromTopBy", e.getClass());
-	    method.invoke(this, e);
-	} catch (Exception ex) {
-	}
-    }
-
-    public void afterHitFromBottomBy(GameElement e) {
-	try {
-	    Method method = this.getClass().getDeclaredMethod(
-		    "afterHitFromBottomBy", e.getClass());
-	    method.invoke(this, e);
-	} catch (Exception ex) {
+	while (ge.isAssignableFrom(c)) {
+	    try {
+		Method method = this.getClass().getDeclaredMethod(key, c);
+		method.invoke(this, e);
+	    } catch (Exception ex) {
+	    }
+	    c = c.getSuperclass();
 	}
     }
 

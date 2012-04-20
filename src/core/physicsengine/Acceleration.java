@@ -4,8 +4,10 @@
 
 package core.physicsengine;
 
-public class Acceleration extends Vector{
+public class Acceleration extends Vector {
     
+    private static final long serialVersionUID = -6091203340869965662L;
+
     public Acceleration(double x, double y) {
         super(x, y);
     }

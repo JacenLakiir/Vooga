@@ -5,19 +5,25 @@ import core.characters.NPC;
 /**
  * @author Eric Mercer (JacenLakiir)
  */
-public class DeadState implements State {
-    private NPC myNPC;
-
-    public DeadState(NPC npc) {
-	myNPC = npc;
+public class DeadState extends State
+{
+    
+    public DeadState (NPC npc)
+    {
+        super(npc);
     }
-
-    public void execute(long milliSec) {
-	myNPC.setActive(false);
+    
+    @Override
+    public void execute (long milliSec)
+    {
+        myNPC.deactivateAllOtherStates(this);
+        myNPC.setActive(isActivated);
     }
-
-    public boolean isActive() {
-	return true;
+    
+    @Override
+    public boolean areConditionsMet ()
+    {
+        return true;
     }
 
 }

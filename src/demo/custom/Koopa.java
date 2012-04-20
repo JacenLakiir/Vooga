@@ -2,11 +2,9 @@ package demo.custom;
 
 import java.util.List;
 import com.golden.gamedev.GameObject;
-import core.characters.GameElement;
 import core.characters.NPC;
-import core.characters.Player;
+import core.characters.ai.DeadState;
 import core.characters.ai.State;
-import core.tiles.Tile;
 import demo.custom.ShellState;
 
 /**
@@ -15,102 +13,123 @@ import demo.custom.ShellState;
 @SuppressWarnings("serial")
 public class Koopa extends NPC
 {
+   
+    private static final String IMAGE_FILE = "resources/Koopa.png";
+    private static final String SHELL_IMAGE_FILE = "resources/KoopaShell.png";
 
-    private GameObject engine;
     private ShellState myShellState;
-    private boolean isInShell;
-    
+
     public Koopa (GameObject game)
     {
         super(game);
-        engine = game;
+        setImages(game.getImages(IMAGE_FILE, 1, 1));
+        setMovable(true);
         myShellState = new ShellState(this);
-        isInShell = false;
+        myShellState.setActive(false);
+        addPossibleState(myShellState);
     }
-    
+
     public Koopa (GameObject game, List<State> possibleStates)
     {
         super(game, possibleStates);
     }
-    
-    @Override
-    public void afterHitFromTopBy (GameElement e)
+
+    public void afterHitFromTopBy (Mario m)
     {
-        if (e instanceof Player)
+        if (!myShellState.isActive())
         {
-            if (!isInShell)
-            {
-                setImages(engine.getImages("resources/KoopaShell.png", 1, 1));
-                getPossibleStates().clear();
-                addPossibleState(myShellState);
-                isInShell = true;
-            }
-            myShellState.setSpeed(0);
+            setImages(getGame().getImages(SHELL_IMAGE_FILE, 1, 1));
+            deactivateAllOtherStates(myShellState);
+            myShellState.setActive(true);
         }
+        myShellState.setSpeed(0);
     }
     
-    @Override
-    public void afterHitFromRightBy (GameElement e)
+    
+    public void afterHitFromLeftBy (Mario m)
     {
-        if (e instanceof Koopa)
-            handleKoopaCollision((Koopa) e, true);
-        else if (e instanceof Player && isInShell)
-            handlePlayerCollision((Player) e, true);
-        else if (e instanceof Tile)
-            setDirection(-1);
+        if (myShellState.isActive())
+            handleMarioCollision(m, true);
     }
     
-    @Override
-    public void afterHitFromLeftBy (GameElement e)
+    public void afterHitFromRightBy (Mario m)
     {
-        if (e instanceof Koopa)
-            handleKoopaCollision((Koopa) e, false);
-        else if (e instanceof Player && isInShell)
-            handlePlayerCollision((Player) e, false);
-        else if (e instanceof Tile)
-            setDirection(1);
+        if (myShellState.isActive())
+            handleMarioCollision(m, false);
     }
     
+    public void afterHitFromLeftBy (Goomba g)
+    {
+        setDirection(myShellState.isActive() ? getDirection() : -1 * getDirection());
+    }
+    
+    public void afterHitFromRightBy (Goomba g)
+    {
+        setDirection(myShellState.isActive() ? getDirection() : -1 * getDirection());
+    }
+
+    public void afterHitFromLeftBy (Koopa k)
+    {
+        handleKoopaCollision(k, true);
+    }
+    
+    public void afterHitFromRightBy (Koopa k)
+    {
+        handleKoopaCollision(k, false);
+    }
+
     public double getShellSpeed ()
     {
         return myShellState.getSpeed();
     }
-    
+
     public void setShellSpeed (double speed)
     {
         myShellState.setSpeed(speed);
     }
-    
+
     public boolean isInShellState ()
     {
-        return isInShell;
+        return myShellState.isActive();
     }
-    
-    private void handlePlayerCollision (Player p, boolean isMovingLeft)
+
+    private void handleMarioCollision (Mario m, boolean isHitOnLeft)
     {
-        myShellState.setSpeed(50*Math.abs(p.getVelocity().getX()));
-        setDirection(isMovingLeft ? -1 : 1);
+        boolean isInShell = myShellState.isActive();
+        if (isInShell && getShellSpeed() == 0)
+        {
+            myShellState.setSpeed(50*Math.abs(m.getVelocity().getX()));
+            setDirection(isHitOnLeft ? 1 : -1);
+        }
+        else if (isInShell && getShellSpeed() != 0)
+        {
+            m.updateStateValues("hitPoints", -1 * m.getMyStateValue("hitPoints"));
+        }
+        else if (!isInShell)
+        {
+            m.updateStateValues("hitPoints", -1 * m.getMyStateValue("hitPoints"));
+        }
     }
-    
-    private void handleKoopaCollision (Koopa k, boolean isMovingLeft)
+
+    private void handleKoopaCollision (Koopa k, boolean isThisHitOnLeft)
     {
-        if (this.isInShell)
+        if (myShellState.isActive())
         {
             if (k.isInShellState() && k.getShellSpeed() != 0)
             {
-                this.setShellSpeed(50*Math.abs(k.getVelocity().getX()));
-                this.setDirection(isMovingLeft ? -1 : 1);
+                setShellSpeed(50*Math.abs(k.getVelocity().getX()));
+                setDirection(-1 * getDirection());
             }
             else if (k.isInShellState() && k.getShellSpeed() == 0)
-                k.setActive(false);
+                k.addPossibleState(new DeadState(this));
         }
         else
         {
             if (k.getShellSpeed() != 0)
-                this.setActive(false);
+                k.addPossibleState(new DeadState(this));
             else
-                this.setDirection(isMovingLeft ? -1 : 1);
+                setDirection(isThisHitOnLeft ? 1 : -1);
         }
     }
-    
+
 }

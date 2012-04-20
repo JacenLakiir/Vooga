@@ -5,7 +5,6 @@ import com.golden.gamedev.object.Timer;
 
 import core.characters.GameElement;
 import core.characters.Player;
-import core.items.Weapon;
 import core.keyconfiguration.KeyAnnotation;
 
 /**
@@ -14,14 +13,17 @@ import core.keyconfiguration.KeyAnnotation;
 @SuppressWarnings("serial")
 public class Mario extends Player{
 
+    private static final String IMAGE_FILE = "resources/Mario1.png";
+    
     protected boolean jumpEnable;
     protected Timer jumpTimer;
     protected int jumpTime;
 
     public Mario(GameObject game) {
         super(game);
+        setImages(game.getImages(IMAGE_FILE, 1, 1));
         resetStrength();
-        maximunSpeedInX = 0.8;
+        this.setMaximumSpeedInX(0.8);
         jumpTime = 250;
         jumpTimer = new Timer(jumpTime);
         jumpTimer.setActive(false);
@@ -49,24 +51,23 @@ public class Mario extends Player{
     
     @KeyAnnotation(action = "down")
     public void keyDownPressed() {
-        this.addAcceleration(0, strengthDown*-stdGravity);
+        this.addAcceleration(0, strengthDown*-this.getGravitationalAcceleration());
     }
     
     @KeyAnnotation(action = "left")
     public void keyLeftPressed() {
-        this.addAcceleration(strengthLeft*-stdGravity, 0);
+        this.addAcceleration(strengthLeft*-getGravitationalAcceleration(), 0);
     }
     
     @KeyAnnotation(action = "right")
     public void keyRightPressed() {
-        this.addAcceleration(strengthRight*stdGravity, 0);
+        this.addAcceleration(strengthRight*getGravitationalAcceleration(), 0);
     }
     
     @KeyAnnotation(action = "space")
-    public Weapon keySpacePressed() {
-      return Weapon.useWeapon();
-    }
-
+//    public Weapon keySpacePressed() {
+//      return Weapon.useWeapon();
+//    }
 
     // this is only used for swimming
     public void resetStrength() {
@@ -79,36 +80,7 @@ public class Mario extends Player{
     public void specialSkill() {        
     }
 
-    @Override
-    public void checkDead() {
-        //        if (this.getX()<-10 || this.getX()>650 || this.getY()>500) {
-        //            System.out.println("Dead");
-        //            myGame.stop();
-        //            return;
-        //        }
-        //        System.out.println("Dead");
-        //      myGame.stop();            
-
-    }
-
-    @Override
-    public void afterHitFromRightBy (GameElement e) {
-        super.afterHitFromRightBy(e);
-    }
-
-    @Override
-    public void afterHitFromLeftBy (GameElement e) {
-        super.afterHitFromLeftBy(e);
-    }
-
-    @Override
-    public void afterHitFromTopBy (GameElement e) {
-        super.afterHitFromTopBy(e);
-    }
-
-    @Override
     public void afterHitFromBottomBy (GameElement e) {
-        super.afterHitFromTopBy(e);
         jumpEnable = true;
         jumpTimer.setActive(false);
     }
@@ -124,40 +96,6 @@ public class Mario extends Player{
                 jumpTimer.refresh();
             }
             super.giveStrengthUp();
-        }
-    }
-
-    public void afterHitFromRightBy (Goomba e) {
-        updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
-        checkDead();
-    }
-
-    public void afterHitFromLeftBy (Goomba e) {
-        updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
-        checkDead();
-    }
-    
-    public void afterHitFromRightBy (Koopa k)
-    {
-        handleKoopaSideCollision(k);
-    }
-    
-    public void afterHitFromLeftBy (Koopa k)
-    {
-        handleKoopaSideCollision(k);
-    }
-    
-    private void handleKoopaSideCollision (Koopa k)
-    {
-        if (k.isInShellState() && k.getShellSpeed() != 0)
-        {
-            updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
-            checkDead();
-        }
-        else if (!k.isInShellState())
-        {
-            updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
-            checkDead();
         }
     }
 

@@ -5,24 +5,28 @@ import core.characters.NPC;
 /**
  * @author Eric Mercer (JacenLakiir)
  */
-public class MoveState implements State {
-
-    private NPC myNPC;
-
+public class MoveState extends State
+{
+    
     private double mySpeed;
-
-    public MoveState(NPC npc, double speed, boolean isMovingLeft) {
-	myNPC = npc;
-	mySpeed = speed;
-	myNPC.setDirection(isMovingLeft ? -1 : 1);
+        
+    public MoveState (NPC npc, double speed, boolean isMovingLeft)
+    {
+        super(npc);
+        mySpeed = speed;
+        myNPC.setDirection(isMovingLeft ? -1 : 1);
     }
-
-    public void execute(long milliSec) {
-	myNPC.move(myNPC.getDirection() * mySpeed, 0);
+    
+    @Override
+    public void execute (long milliSec)
+    {
+        myNPC.move(myNPC.getDirection() * mySpeed, 0);
     }
-
-    public boolean isActive() {
-	return true;
+    
+    @Override
+    public boolean areConditionsMet ()
+    {
+        return true;
     }
 
 }

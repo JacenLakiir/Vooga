@@ -4,8 +4,10 @@
 
 package core.physicsengine;
 
-public class Displacement extends Vector{
+public class Displacement extends Vector {
     
+    private static final long serialVersionUID = 6076266612415296300L;
+
     public Displacement(double x, double y) {
         super(x, y);
     }

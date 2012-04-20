@@ -2,25 +2,25 @@ package demo.custom;
 
 import core.characters.ai.State;
 
-public class ShellState implements State
+public class ShellState extends State
 {
-
-    private Koopa myKoopa;
     
     private double mySpeed;
         
     public ShellState (Koopa koopa)
     {
-        myKoopa = koopa;
+        super(koopa);
         mySpeed = 0;
     } 
     
+    @Override
     public void execute (long milliSec)
     {
-        myKoopa.move(myKoopa.getDirection() * mySpeed, 0);
+        myNPC.move(myNPC.getDirection() * mySpeed, 0);
     }
     
-    public boolean isActive ()
+    @Override
+    public boolean areConditionsMet ()
     {
         return true;
     }

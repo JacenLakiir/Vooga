@@ -1,15 +1,11 @@
 package core.items;
 
-
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Timer;
 
 import core.characters.Player;
 
-/**
- * @author Kathleen Oshima
- */
-public class CollectibleTimelapseItem extends CollectibleItem {
+public abstract class AutoNotInUseItem extends CollectibleItem {
 
 	Timer timerStart;
 	Timer timerEnd;
@@ -20,8 +16,10 @@ public class CollectibleTimelapseItem extends CollectibleItem {
 		timePassed = elapsedTime;
 	}
 	
-	public CollectibleTimelapseItem(GameObject game) {
+	public AutoNotInUseItem(GameObject game) {
 	    super(game);
+	    setTimerStart(0);
+		setTimerEnd(0);
     }
 
 	@Override
@@ -47,4 +45,6 @@ public class CollectibleTimelapseItem extends CollectibleItem {
 		this.timerEnd = new Timer(time);
 	}
 
+    public abstract boolean canSetInUse();
+	
 }

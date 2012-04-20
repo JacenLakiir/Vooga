@@ -1,14 +1,17 @@
+/**
+ * @author Michael Zhou (Dominator008)
+ */
 package leveleditor;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
-import java.awt.Point;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
+import java.util.HashSet;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
@@ -39,7 +42,7 @@ public class SpritePanel extends JScrollPane {
 	setBorder(border);
 	getViewport().add(myInternalPanel);
 	myUniqueLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
-	myUniqueWrapperSet = new TreeSet<SpriteWrapper>();
+	myUniqueWrapperSet = new HashSet<SpriteWrapper>();
     }
     
     protected void importSprite(SpriteWrapper wrapper) {
@@ -56,11 +59,15 @@ public class SpritePanel extends JScrollPane {
 	myInternalPanel.revalidate();
     }
 
-    protected void loadSprites(Map<Point, SpriteWrapper> spritemap) {
+    protected void loadSprites(List<SpriteWrapper> sprites) {
 	myInternalPanel.removeAll();
 	myInternalPanel.revalidate();
-	for (SpriteWrapper sw: spritemap.values())
-	    myUniqueWrapperSet.add(sw);
+	Set<String> uniquenames = new HashSet<String>();
+	for (SpriteWrapper sw: sprites)
+	    if (!uniquenames.contains(sw.getName())) {
+		myUniqueWrapperSet.add(sw);
+		uniquenames.add(sw.getName());
+	    }
 	myUniqueLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
 	for (SpriteWrapper wrapper: myUniqueWrapperSet)
 	    importSprite(wrapper);

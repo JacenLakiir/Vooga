@@ -3,7 +3,7 @@ package core.characters;
 import core.keyconfiguration.KeyAnnotation;
 
 public class PlayerControls extends Character {
-
+    private static final long serialVersionUID = 1293093288749871823L;
     protected double strengthUp, strengthDown, strengthLeft, strengthRight;
 
     protected void giveStrengthUp() {
