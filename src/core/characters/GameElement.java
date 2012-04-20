@@ -4,7 +4,6 @@
 
 package core.characters;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +19,6 @@ import core.physicsengine.Displacement;
 import core.physicsengine.DuringAcceleration;
 import core.physicsengine.Velocity;
 import core.tiles.Tile;
-import demo.custom.Mario;
-
-@SuppressWarnings("serial") 
 
 public abstract class GameElement extends AdvanceSprite {
     private static final long serialVersionUID = 2989579123989132598L;

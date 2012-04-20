@@ -16,11 +16,12 @@ public class DeadState extends State
     @Override
     public void execute (long milliSec)
     {
-        myNPC.setActive(false);
+        myNPC.deactivateAllOtherStates(this);
+        myNPC.setActive(isActivated);
     }
     
     @Override
-    public boolean isActive ()
+    public boolean areConditionsMet ()
     {
         return true;
     }

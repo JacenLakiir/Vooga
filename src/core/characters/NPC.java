@@ -45,26 +45,16 @@ public class NPC extends Character {
     	myCurrentStates.clear();
     }
 
-    public void setCurrentState(State state)
-    {
-    	myCurrentStates.clear();
-    	myCurrentStates.add(state);
-    }
-
-    public void setCurrentStates(List<State> state)
-    {
-    	myCurrentStates.clear();
-    	myCurrentStates.addAll(state);
-    }
-
     public void addPossibleState(State state)
     {
         myPossibleStates.add(state);
     }
-
-    public List<State> getCurrentStates()
+    
+    public void deactivateAllOtherStates (State toRemainActive)
     {
-        return myCurrentStates;
+        for (State s : myPossibleStates)
+            if (!s.equals(toRemainActive))
+                s.setActive(false);
     }
 
     public List<State> getPossibleStates()

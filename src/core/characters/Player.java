@@ -28,7 +28,7 @@ public class Player extends Character{
         updateAbilities();
         super.update(milliSec);  
 
-        // check dead
+        // check dead --> need to make extensible
         if (myStateValues.get("hitPoints") <= 0) {
         	updateBaseValues("lives", -1);
         	addState("hitPoints", 10);
