@@ -32,23 +32,23 @@ public class GameElementCollision extends CollisionGroup{
     protected void beforeCollided(GameElement s1, GameElement s2) {
         switch (this.collisionSide) {
         case RIGHT_LEFT_COLLISION:{
-            s1.beforeHitFromRightBy(s2);
-            s2.beforeHitFromLeftBy(s1);
+            s1.reflectionCalled(s2, "beforeHitFromRightBy");
+            s2.reflectionCalled(s1, "beforeHitFromLeftBy");
             break;
         }
         case LEFT_RIGHT_COLLISION:{
-            s1.beforeHitFromLeftBy(s2);
-            s2.beforeHitFromRightBy(s1);
+            s1.reflectionCalled(s2, "beforeHitFromLeftBy");
+            s2.reflectionCalled(s1, "beforeHitFromRightBy");
             break;
         }
         case BOTTOM_TOP_COLLISION:{
-            s1.beforeHitFromBottomBy(s2);
-            s2.beforeHitFromTopBy(s1);
+            s1.reflectionCalled(s2, "beforeHitFromBottomBy");
+            s2.reflectionCalled(s1, "beforeHitFromTopBy");
             break;
         }
         case TOP_BOTTOM_COLLISION:{
-            s1.beforeHitFromTopBy(s2);
-            s2.beforeHitFromBottomBy(s1);
+            s1.reflectionCalled(s2, "beforeHitFromTopBy");
+            s2.reflectionCalled(s1, "beforeHitFromBottomBy");
             break;
         }
         }
@@ -57,23 +57,23 @@ public class GameElementCollision extends CollisionGroup{
     protected void afterCollided(GameElement s1, GameElement s2) {
         switch (this.collisionSide) {
         case RIGHT_LEFT_COLLISION:{
-            s1.afterHitFromRightBy(s2);
-            s2.afterHitFromLeftBy(s1);
+            s1.reflectionCalled(s2, "afterHitFromRightBy");
+            s2.reflectionCalled(s1, "afterHitFromLeftBy");
             break;
         }
         case LEFT_RIGHT_COLLISION:{
-            s1.afterHitFromLeftBy(s2);
-            s2.afterHitFromRightBy(s1);
+            s1.reflectionCalled(s2, "afterHitFromLeftBy");
+            s2.reflectionCalled(s1, "afterHitFromRightBy");
             break;
         }
         case BOTTOM_TOP_COLLISION:{
-            s1.afterHitFromBottomBy(s2);
-            s2.afterHitFromTopBy(s1);
+            s1.reflectionCalled(s2, "afterHitFromBottomBy");
+            s2.reflectionCalled(s1, "afterHitFromTopBy");
             break;
         }
         case TOP_BOTTOM_COLLISION:{
-            s1.afterHitFromTopBy(s2);
-            s2.afterHitFromBottomBy(s1);
+            s1.reflectionCalled(s2, "afterHitFromTopBy");
+            s2.reflectionCalled(s1, "afterHitFromBottomBy");
             break;
         }
         }    

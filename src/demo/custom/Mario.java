@@ -21,7 +21,7 @@ public class Mario extends Player{
     public Mario(GameObject game) {
         super(game);
         resetStrength();
-        maximunSpeedInX = 0.8;
+        this.setMaximunSpeedInX(0.8);
         jumpTime = 250;
         jumpTimer = new Timer(jumpTime);
         jumpTimer.setActive(false);
@@ -49,17 +49,17 @@ public class Mario extends Player{
     
     @KeyAnnotation(action = "down")
     public void keyDownPressed() {
-        this.addAcceleration(0, strengthDown*-stdGravity);
+        this.addAcceleration(0, strengthDown*-this.getGravitationalAcceleration());
     }
     
     @KeyAnnotation(action = "left")
     public void keyLeftPressed() {
-        this.addAcceleration(strengthLeft*-stdGravity, 0);
+        this.addAcceleration(strengthLeft*-getGravitationalAcceleration(), 0);
     }
     
     @KeyAnnotation(action = "right")
     public void keyRightPressed() {
-        this.addAcceleration(strengthRight*stdGravity, 0);
+        this.addAcceleration(strengthRight*getGravitationalAcceleration(), 0);
     }
     
     @KeyAnnotation(action = "space")
@@ -79,24 +79,7 @@ public class Mario extends Player{
     public void specialSkill() {        
     }
 
-    @Override
-    public void afterHitFromRightBy (GameElement e) {
-        super.afterHitFromRightBy(e);
-    }
-
-    @Override
-    public void afterHitFromLeftBy (GameElement e) {
-        super.afterHitFromLeftBy(e);
-    }
-
-    @Override
-    public void afterHitFromTopBy (GameElement e) {
-        super.afterHitFromTopBy(e);
-    }
-
-    @Override
     public void afterHitFromBottomBy (GameElement e) {
-        super.afterHitFromTopBy(e);
         jumpEnable = true;
         jumpTimer.setActive(false);
     }
@@ -113,6 +96,32 @@ public class Mario extends Player{
             }
             super.giveStrengthUp();
         }
+    }
+
+    public void afterHitFromRightBy (Goomba e) {
+        updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
+    }
+
+    public void afterHitFromLeftBy (Goomba e) {
+        updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
+    }
+    
+    public void afterHitFromRightBy (Koopa k)
+    {
+        handleKoopaSideCollision(k);
+    }
+    
+    public void afterHitFromLeftBy (Koopa k)
+    {
+        handleKoopaSideCollision(k);
+    }
+    
+    private void handleKoopaSideCollision (Koopa k)
+    {
+        if (k.isInShellState() && k.getShellSpeed() != 0)
+            updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
+        else if (!k.isInShellState())
+            updateStateValues("hitPoints", -1 * getMyStateValue("hitPoints"));
     }
 
 }
