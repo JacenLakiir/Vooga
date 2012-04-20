@@ -20,6 +20,7 @@ import core.physicsengine.Displacement;
 import core.physicsengine.DuringAcceleration;
 import core.physicsengine.Velocity;
 import core.tiles.Tile;
+import demo.custom.Mario;
 
 @SuppressWarnings("serial") 
 
@@ -354,43 +355,43 @@ public abstract class GameElement extends AdvanceSprite {
         } catch (Exception ex) {}
         if (e instanceof Player) {
             try {
-                method = this.getClass().getDeclaredMethod(key, Class.forName("Player"));
+                method = this.getClass().getDeclaredMethod(key, Class.forName("core.characters.Player"));
                 method.invoke(this, e);
             } catch (Exception ex) {}
         }
         if (e instanceof NPC) {
             try {
-                method = this.getClass().getDeclaredMethod(key, Class.forName("NPC"));
+                method = this.getClass().getDeclaredMethod(key, Class.forName("core.characters.NPC"));
                 method.invoke(this, e);
             } catch (Exception ex) {}
         }
         if (e instanceof Character) {
             try {
-                method = this.getClass().getDeclaredMethod(key, Class.forName("Character"));
+                method = this.getClass().getDeclaredMethod(key, Class.forName("core.characters.Character"));
                 method.invoke(this, e);
             } catch (Exception ex) {}
         }
         if (e instanceof NPC) {
             try {
-                method = this.getClass().getDeclaredMethod(key, Class.forName("NPC"));
+                method = this.getClass().getDeclaredMethod(key, Class.forName("core.characters.NPC"));
                 method.invoke(this, e);
             } catch (Exception ex) {}
         }
         if (e instanceof Tile) {
             try {
-                method = this.getClass().getDeclaredMethod(key, Class.forName("Tile"));
+                method = this.getClass().getDeclaredMethod(key, Class.forName("core.tiles.Tile"));
                 method.invoke(this, e);
             } catch (Exception ex) {}
         }
         if (e instanceof CollectibleItem) {
             try {
-                method = this.getClass().getDeclaredMethod(key, Class.forName("CollectibleItem"));
+                method = this.getClass().getDeclaredMethod(key, Class.forName("core.items.CollectibleItem"));
                 method.invoke(this, e);
             } catch (Exception ex) {}
         }
         if (e instanceof GameElement) {
             try {
-                method = this.getClass().getDeclaredMethod(key, Class.forName("GameElement"));
+                method = this.getClass().getDeclaredMethod(key, Class.forName("core.characters.GameElement"));
                 method.invoke(this, e);
             } catch (Exception ex) {}
         }

@@ -34,13 +34,5 @@ public class Tile extends GameElement{
         super();
     }
     
-    public void afterHitFromBottomBy(GameElement e) {}
-
-    public void afterHitFromTopBy(GameElement e) {}
-
-    public void afterHitFromRightBy(GameElement e) {}
-
-    public void afterHitFromLeftBy(GameElement e) {}
-
 }
 
