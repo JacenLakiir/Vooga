@@ -20,12 +20,12 @@ public class HardCodedLevelGenerator
         Sprite badguy =
             new Sprite(VoogaUtilities.getImageFromString(badguysrc));
         String background = "resources/mario2s.gif";
-        Map<Point, GameElementWrapper> spritemap =
-            new HashMap<Point, GameElementWrapper>();
-        spritemap.put(new Point(0, 0), new GameElementWrapper(hero, "W-Gundam", herosrc));
-        spritemap.put(new Point(0, 60), new GameElementWrapper(badguy, "Mario", badguysrc));
-        spritemap.put(new Point(20, 200), new GameElementWrapper(badguy, "Mario", badguysrc));
-        spritemap.put(new Point(373, 238), new GameElementWrapper(badguy, "Mario", badguysrc));
+        Map<Point, SpriteWrapper> spritemap =
+            new HashMap<Point, SpriteWrapper>();
+        spritemap.put(new Point(0, 0), new SpriteWrapper(hero, "W-Gundam", herosrc));
+        spritemap.put(new Point(0, 60), new SpriteWrapper(badguy, "Mario", badguysrc));
+        spritemap.put(new Point(20, 200), new SpriteWrapper(badguy, "Mario", badguysrc));
+        spritemap.put(new Point(373, 238), new SpriteWrapper(badguy, "Mario", badguysrc));
         LevelState lv1 = new LevelState(background, spritemap);
         lv1.gsonSerialize("saves/level1.lvl");
     }

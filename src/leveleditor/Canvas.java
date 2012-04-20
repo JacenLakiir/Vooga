@@ -20,15 +20,17 @@ import javax.swing.border.EtchedBorder;
 
 import com.golden.gamedev.object.Sprite;
 
+import core.characters.GameElement;
+
 import leveleditor.eventhandlers.MoveSpriteListener;
 import leveleditor.eventhandlers.SpriteDropTargetListener;
 import leveleditor.eventhandlers.SpriteSelectionHandler;
-import levelio.GameElementWrapper;
+import levelio.SpriteWrapper;
 
 @SuppressWarnings("serial")
 public class Canvas extends JScrollPane {
     
-    private Map<JLabel, GameElementWrapper> myLabelWrapperMap;
+    private Map<JLabel, SpriteWrapper> myLabelWrapperMap;
     private String myBackGroundImgSrc;
     private JLabel myBackGroundLabel;
     private JPanel myCanvasPane;
@@ -46,7 +48,7 @@ public class Canvas extends JScrollPane {
 		"Canvas");
 	setBorder(border);
 	getViewport().add(myCanvasPane);
-	myLabelWrapperMap = new HashMap<JLabel, GameElementWrapper>();
+	myLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
     }
 
     protected void setUpBackground(String imagesrc) {
@@ -76,7 +78,7 @@ public class Canvas extends JScrollPane {
 	myLabelWrapperMap.remove(l);
     }
     
-    public Map<JLabel, GameElementWrapper> getLabelWrapperMap() {
+    public Map<JLabel, SpriteWrapper> getLabelWrapperMap() {
 	return myLabelWrapperMap;
     }
     
@@ -84,7 +86,7 @@ public class Canvas extends JScrollPane {
 	return myBackGroundImgSrc;
     }
     
-    protected void loadSprites(HashMap<Point, GameElementWrapper> spritemap) {
+    protected void loadSprites(HashMap<Point, SpriteWrapper> spritemap) {
 	if (myLabelWrapperMap != null) {
 	    for (JLabel l: myLabelWrapperMap.keySet()) {
 		l.setVisible(false);
@@ -94,9 +96,9 @@ public class Canvas extends JScrollPane {
 	    myLabelWrapperMap.clear();
 	    myCanvasPane.revalidate();
 	}
-	else myLabelWrapperMap = new HashMap<JLabel, GameElementWrapper>();
+	else myLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
 	for (Point p: spritemap.keySet()) {
-	    Sprite sp = spritemap.get(p).getSprite();
+	    GameElement sp = spritemap.get(p).getGameElement();
 	    BufferedImage currentImage = sp.getImage();
 	    JLabel label = new JLabel();
 	    ImageIcon icon = new ImageIcon(currentImage);

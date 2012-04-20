@@ -3,39 +3,53 @@
  */
 package levelio;
 
-import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
+import java.lang.reflect.Field;
 import java.util.HashMap;
-
+import java.util.Map;
 import leveleditor.VoogaUtilities;
-import com.golden.gamedev.object.Sprite;
-import com.golden.gamedev.object.sprite.AdvanceSprite;
+import levelio.Modifiable.Classification;
 
 import core.characters.GameElement;
 
-public class SpriteWrapper implements Comparable<SpriteWrapper> {
+public class SpriteWrapper implements Cloneable {
+    
+    public static enum SpriteGroupIdentifier {
+	PLAYER, CHARACTER, SETTING, ITEM
+    }
     
     private String myName;
+    private SpriteGroupIdentifier myGroup;
     private Class<?> myClass;
     private String myImagesrc;
-    private HashMap<String, Object> myAttributes;
-    private AdvanceSprite mySprite;
+    private Map<SpriteAttribute, Object> myAttributeMap;
+    private GameElement myGameElement;
     
-    public SpriteWrapper(String name, Class<?> clazz, String imgsrc) {
+    public SpriteWrapper(String name, SpriteGroupIdentifier group, Class<?> clazz, String imgsrc) {
 	myName = name;
+	myGroup = group;
 	myClass = clazz;
-	//myGameElement = element;
 	myImagesrc = imgsrc;
-	myAttributes = new HashMap<String, Object>();
+	myGameElement = new GameElement();
+	myAttributeMap = new HashMap<SpriteAttribute, Object>();
+	Field[] allfields = clazz.getDeclaredFields();
+	for (Field f: allfields) {
+	    f.setAccessible(true);
+	    if (f.isAnnotationPresent(Modifiable.class)) {
+		String fname = f.getName();
+		Class<?> ftype = f.getType();
+		Classification fclassification = 
+			((Modifiable) f.getAnnotation(Modifiable.class)).classification();
+		myAttributeMap.put(new SpriteAttribute(fname, ftype, fclassification), new Object());
+
+	    }
+	}
 	reconstruct();
     }
     
-    public SpriteWrapper(SpriteWrapper another) {
-	myName = another.myName;
-	myClass = another.myClass;
-	myImagesrc = another.myImagesrc;
-	mySprite = new AdvanceSprite();
-	reconstruct();
+    public SpriteWrapper clone() {
+	SpriteWrapper cloned = new SpriteWrapper(myName, myGroup, myClass, myImagesrc);
+	cloned.myAttributeMap = new HashMap<SpriteAttribute, Object>(myAttributeMap);
+	return cloned;
     }
     
     public String getName() {
@@ -46,17 +60,21 @@ public class SpriteWrapper implements Comparable<SpriteWrapper> {
 	return myImagesrc;
     }
     
-    public AdvanceSprite getSprite() {
-	return mySprite;
+    public SpriteGroupIdentifier getGroup() {
+	return myGroup;
+    }
+    
+    public GameElement getGameElement() {
+	return myGameElement;
     }
     
     public void reconstruct() {
-	mySprite.setImage(VoogaUtilities.getImageFromString(myImagesrc));
+	myGameElement.setImage(VoogaUtilities.getImageFromString(myImagesrc));
     }
 
-    public int compareTo(SpriteWrapper o) {
-	return myName.compareTo(o.myName);
-    }
+//    public int compareTo(SpriteWrapper o) {
+//	return myName.compareTo(o.myName);
+//    }
     
 /*    public boolean equals(Object o) {
 	SpriteWrapper another = (SpriteWrapper) o;
@@ -67,15 +85,10 @@ public class SpriteWrapper implements Comparable<SpriteWrapper> {
 		&& mySprite.getLayer() == anothersprite.getLayer();
     }*/
     
-    public boolean equals(Object o) {
-	SpriteWrapper another = (SpriteWrapper) o;
-	return myName.equals(another.myName);
-    }
-    
-    public int hashCode() {
-	return myName.hashCode() << 1 + 
-		new Point2D.Double(mySprite.getX(), mySprite.getY()).hashCode();
-    }
+//    public boolean equals(Object o) {
+//	SpriteWrapper another = (SpriteWrapper) o;
+//	return myName.equals(another.myName);
+//    }
     
     public void save(String path) {
 	

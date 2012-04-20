@@ -9,7 +9,7 @@ public class LevelLoaderForGame {
     public AdvancedPlayField load(GameObject game, LevelState state, AdvancedPlayField playfield) {
 	//playfield.addPlayer(p);
 	try {
-	    state.getClass().getField("ASD").getTy
+	    state.getClass().getField("ASD").getN
 	} catch (NoSuchFieldException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
