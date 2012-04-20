@@ -9,7 +9,7 @@ import java.awt.dnd.DropTargetDropEvent;
 import javax.swing.TransferHandler;
 
 import leveleditor.LevelEditor;
-import levelio.GameElementWrapper;
+import levelio.SpriteWrapper;
 
 public class SpriteDropTargetListener extends DropTargetAdapter {
 
@@ -19,7 +19,7 @@ public class SpriteDropTargetListener extends DropTargetAdapter {
     public SpriteDropTargetListener(LevelEditor view) {
 	myView = view;
 	String spriteWrapperType = DataFlavor.javaJVMLocalObjectMimeType
-		+ ";class=" + GameElementWrapper.class.getName();
+		+ ";class=" + SpriteWrapper.class.getName();
 	try {
 	    spriteWrapperFlavor = new DataFlavor(spriteWrapperType);
 	} catch (ClassNotFoundException e) {

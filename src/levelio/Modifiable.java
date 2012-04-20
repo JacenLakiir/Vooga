@@ -6,8 +6,8 @@ import java.lang.annotation.*;
 @Target(ElementType.FIELD)
 public @interface Modifiable {
     
-    public static enum classification {
+    public static enum Classification {
 	PHYSICS, GAMEPLAY
     }
-    public classification classification();
+    public Classification classification();
 }

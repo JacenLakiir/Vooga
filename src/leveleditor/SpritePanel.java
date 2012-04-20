@@ -14,13 +14,13 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
 import leveleditor.eventhandlers.CopySpriteListener;
-import levelio.GameElementWrapper;
+import levelio.SpriteWrapper;
 
 @SuppressWarnings("serial")
 public class SpritePanel extends JScrollPane {
     
-    private Map<JLabel, GameElementWrapper> myUniqueLabelWrapperMap;
-    private Set<GameElementWrapper> myUniqueWrapperSet;
+    private Map<JLabel, SpriteWrapper> myUniqueLabelWrapperMap;
+    private Set<SpriteWrapper> myUniqueWrapperSet;
     private LevelEditor myView;
     private JPanel myInternalPanel;
 
@@ -38,11 +38,11 @@ public class SpritePanel extends JScrollPane {
 		"Sprite Pane");
 	setBorder(border);
 	getViewport().add(myInternalPanel);
-	myUniqueLabelWrapperMap = new HashMap<JLabel, GameElementWrapper>();
-	myUniqueWrapperSet = new TreeSet<GameElementWrapper>();
+	myUniqueLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
+	myUniqueWrapperSet = new TreeSet<SpriteWrapper>();
     }
     
-    protected void importSprite(GameElementWrapper wrapper) {
+    protected void importSprite(SpriteWrapper wrapper) {
 	myUniqueWrapperSet.add(wrapper);
 	myInternalPanel.setLayout(new GridLayout(myUniqueWrapperSet.size(), 1));
 	CopySpriteListener listener = new CopySpriteListener(myView);
@@ -56,17 +56,17 @@ public class SpritePanel extends JScrollPane {
 	myInternalPanel.revalidate();
     }
 
-    protected void loadSprites(Map<Point, GameElementWrapper> spritemap) {
+    protected void loadSprites(Map<Point, SpriteWrapper> spritemap) {
 	myInternalPanel.removeAll();
 	myInternalPanel.revalidate();
-	for (GameElementWrapper sw: spritemap.values())
+	for (SpriteWrapper sw: spritemap.values())
 	    myUniqueWrapperSet.add(sw);
-	myUniqueLabelWrapperMap = new HashMap<JLabel, GameElementWrapper>();
-	for (GameElementWrapper wrapper: myUniqueWrapperSet)
+	myUniqueLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
+	for (SpriteWrapper wrapper: myUniqueWrapperSet)
 	    importSprite(wrapper);
     }
     
-    public Map<JLabel, GameElementWrapper> getUniqueLabelWrapperMap() {
+    public Map<JLabel, SpriteWrapper> getUniqueLabelWrapperMap() {
 	return myUniqueLabelWrapperMap;
     }
 
