@@ -91,24 +91,7 @@ public class Mario extends Player{
 
     }
 
-    @Override
-    public void afterHitFromRightBy (GameElement e) {
-        super.afterHitFromRightBy(e);
-    }
-
-    @Override
-    public void afterHitFromLeftBy (GameElement e) {
-        super.afterHitFromLeftBy(e);
-    }
-
-    @Override
-    public void afterHitFromTopBy (GameElement e) {
-        super.afterHitFromTopBy(e);
-    }
-
-    @Override
     public void afterHitFromBottomBy (GameElement e) {
-        super.afterHitFromTopBy(e);
         jumpEnable = true;
         jumpTimer.setActive(false);
     }

@@ -4,15 +4,19 @@
 
 package core.characters;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.sprite.AdvanceSprite;
+
+import core.items.CollectibleItem;
 import core.physicsengine.Acceleration;
 import core.physicsengine.Displacement;
 import core.physicsengine.DuringAcceleration;
 import core.physicsengine.Velocity;
+import core.tiles.Tile;
 
 @SuppressWarnings("serial") 
 public abstract class GameElement extends AdvanceSprite{
@@ -34,7 +38,7 @@ public abstract class GameElement extends AdvanceSprite{
 
     private double maximunSpeedInX = Double.MAX_VALUE;
     private double maximunSpeedInY = Double.MAX_VALUE;
-    
+
     protected GameObject myGame;
 
     public GameElement() {
@@ -88,7 +92,7 @@ public abstract class GameElement extends AdvanceSprite{
         acc.reset();
         moveToDisplacement();
     }
-    
+
     protected void updateDuringAcceleration(long t) {
         for (DuringAcceleration entry:duringAccList) {
             entry.update(t);
@@ -98,7 +102,7 @@ public abstract class GameElement extends AdvanceSprite{
             }
         }
     }
-    
+
     protected void checkMaximunSpeed() {
         double vx = vel.getX(), vy = vel.getY();
         if (Math.abs(vx) > maximunSpeedInX) {
@@ -321,68 +325,94 @@ public abstract class GameElement extends AdvanceSprite{
         return myGame;
     }
 
-    public void beforeHitFromLeftBy(GameElement e) {
-        try {
-            Method method = this.getClass().getDeclaredMethod("beforeHitFromLeftBy", e.getClass());
-            method.invoke(this, e);
-        } catch (Exception ex) {}
-    }
-
-    public void beforeHitFromRightBy(GameElement e) {
-        try {
-            Method method = this.getClass().getDeclaredMethod("beforeHitFromRightBy", e.getClass());
-            method.invoke(this, e);
-        } catch (Exception ex) {}
-    }
-
-    public void beforeHitFromTopBy(GameElement e) {
-        try {
-            Method method = this.getClass().getDeclaredMethod("beforeHitFromTopBy", e.getClass());
-            method.invoke(this, e);
-        } catch (Exception ex) {}
-    }
-
-    public void beforeHitFromBottomBy(GameElement e) {
-        try {
-            Method method = this.getClass().getDeclaredMethod("beforeHitFromBottomBy", e.getClass());
-            method.invoke(this, e);
-        } catch (Exception ex) {}
-    }
-
-    public void afterHitFromLeftBy(GameElement e) {
-        try {
-            Method method = this.getClass().getDeclaredMethod("afterHitFromLeftBy", e.getClass());
-            method.invoke(this, e);
-        } catch (Exception ex) {}
-    }
-
-    public void afterHitFromRightBy(GameElement e) {
-        try {
-            Method method = this.getClass().getDeclaredMethod("afterHitFromRightBy", e.getClass());
-            method.invoke(this, e);
-        } catch (Exception ex) {}
-    }
-
-    public void afterHitFromTopBy(GameElement e) {
-        try {
-            Method method = this.getClass().getDeclaredMethod("afterHitFromTopBy", e.getClass());
-            method.invoke(this, e);
-        } catch (Exception ex) {}
-    }
-
-    public void afterHitFromBottomBy(GameElement e) {
-        try {
-            Method method = this.getClass().getDeclaredMethod("afterHitFromBottomBy", e.getClass());
-            method.invoke(this, e);
-        } catch (Exception ex) {}
-    }
-    
     public void setMaximunSpeedInX(double x) {
         this.maximunSpeedInX = x;
     }
-    
+
     public void setMaximunSpeedInY(double y) {
         this.maximunSpeedInY = y;
+    }
+
+//    public void beforeHitFromLeftBy(GameElement e) {
+//        reflectionCalled(e, "beforeHitFromLeftBy");
+//    }
+//
+//    public void beforeHitFromRightBy(GameElement e) {
+//        reflectionCalled(e, "beforeHitFromRightBy");
+//    }
+//
+//    public void beforeHitFromTopBy(GameElement e) {
+//        reflectionCalled(e, "beforeHitFromTopBy");
+//    }
+//
+//    public void beforeHitFromBottomBy(GameElement e) {
+//        reflectionCalled(e, "beforeHitFromBottomBy");
+//    }
+//
+//    public void afterHitFromLeftBy(GameElement e) {
+//        reflectionCalled(e, "afterHitFromLeftBy");
+//    }
+//
+//    public void afterHitFromRightBy(GameElement e) {
+//        reflectionCalled(e, "afterHitFromRightBy");
+//    }
+//
+//    public void afterHitFromTopBy(GameElement e) {
+//        reflectionCalled(e, "afterHitFromTopBy");
+//    }
+//
+//    public void afterHitFromBottomBy(GameElement e) {
+//        reflectionCalled(e, "afterHitFromBottomBy");
+//    }
+
+    public void reflectionCalled(GameElement e, String key) {
+        Method method = null;
+        try {
+            method = this.getClass().getDeclaredMethod(key, e.getClass());
+            method.invoke(this, e);
+        } catch (Exception ex) {}
+        if (e instanceof Player) {
+            try {
+                method = this.getClass().getDeclaredMethod(key, Class.forName("Player"));
+                method.invoke(this, e);
+            } catch (Exception ex) {}
+        }
+        if (e instanceof NPC) {
+            try {
+                method = this.getClass().getDeclaredMethod(key, Class.forName("NPC"));
+                method.invoke(this, e);
+            } catch (Exception ex) {}
+        }
+        if (e instanceof Character) {
+            try {
+                method = this.getClass().getDeclaredMethod(key, Class.forName("Character"));
+                method.invoke(this, e);
+            } catch (Exception ex) {}
+        }
+        if (e instanceof NPC) {
+            try {
+                method = this.getClass().getDeclaredMethod(key, Class.forName("NPC"));
+                method.invoke(this, e);
+            } catch (Exception ex) {}
+        }
+        if (e instanceof Tile) {
+            try {
+                method = this.getClass().getDeclaredMethod(key, Class.forName("Tile"));
+                method.invoke(this, e);
+            } catch (Exception ex) {}
+        }
+        if (e instanceof CollectibleItem) {
+            try {
+                method = this.getClass().getDeclaredMethod(key, Class.forName("CollectibleItem"));
+                method.invoke(this, e);
+            } catch (Exception ex) {}
+        }
+        if (e instanceof GameElement) {
+            try {
+                method = this.getClass().getDeclaredMethod(key, Class.forName("GameElement"));
+                method.invoke(this, e);
+            } catch (Exception ex) {}
+        }
     }
 
 }
