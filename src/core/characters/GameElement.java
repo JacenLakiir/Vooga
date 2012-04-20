@@ -21,6 +21,7 @@ import core.physicsengine.Velocity;
 public class GameElement extends AdvanceSprite {
 
     private static final long serialVersionUID = 2989579123989132598L;
+    
     private Acceleration acc;
     private List<DuringAcceleration> duringAccList;
     private Velocity vel;
