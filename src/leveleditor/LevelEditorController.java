@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JLabel;
+import javax.swing.JTree;
 
 import levelio.LevelState;
 import levelio.SpriteWrapper;
@@ -16,9 +17,11 @@ import levelio.SpriteWrapper;
 public class LevelEditorController {
 
     private LevelEditor myView;
+    private JTree myClassTree;
 
     public LevelEditorController() {
 	myView = new LevelEditor(this);
+	myClassTree = ClassTreeBuilder.getClassTree("core");
     }
 
     protected void initialize(File file) {
