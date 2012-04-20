@@ -18,6 +18,8 @@ public abstract class AutoNotInUseItem extends CollectibleItem {
 	
 	public AutoNotInUseItem(GameObject game) {
 	    super(game);
+	    setTimerStart(0);
+		setTimerEnd(0);
     }
 
 	@Override

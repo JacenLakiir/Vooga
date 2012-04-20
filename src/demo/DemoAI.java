@@ -12,6 +12,7 @@ import core.collision.PlayerCollectibleItemCollision;
 import core.gamestate.GameEngine2D;
 import core.gamestate.GameObject2D;
 import core.gamestate.Pause;
+import core.items.AutoInUseAutoNotInUseItem;
 import core.items.CollectibleInstantItem;
 import core.keyconfiguration.KeyAnnotation;
 import core.keyconfiguration.KeyConfig;
@@ -107,7 +108,7 @@ public class DemoAI extends GameObject2D
         ceiling.setLocation(70, -20);
         myPlayfield.addSetting(ceiling);
 
-        CollectibleInstantItem coin = new CollectibleInstantItem(this);
+        AutoInUseAutoNotInUseItem coin = new AutoInUseAutoNotInUseItem(this);
         coin.setImages(this.getImages("resources/Coin.png", 1, 1));
         coin.setActive(false);
         coin.addState("points", 3);

@@ -123,13 +123,13 @@ public class DemoPlayfield extends GameObject2D {
         block2.setLocation(160, 200);
         myPlayfield.addSetting(block2);
 
-        CollectibleInstantItem coin = new CollectibleInstantItem(this);
+        AutoInUseAutoNotInUseItem coin = new AutoInUseAutoNotInUseItem(this);
         coin.setImages(this.getImages("resources/Coin.png", 1, 1));
         coin.setActive(false);
         coin.addState("points", 3);
         myPlayfield.addItem(coin);
         
-        CollectibleTimelapseItem poison = new CollectibleTimelapseItem(this);
+        AutoInUseAutoNotInUseItem poison = new AutoInUseAutoNotInUseItem(this);
         poison.setImages(this.getImages("resources/Poison.png", 1, 1));
         poison.setActive(true);
         poison.setMovable(false);

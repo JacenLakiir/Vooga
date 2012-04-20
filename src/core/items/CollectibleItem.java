@@ -15,54 +15,56 @@ import core.tiles.Tile;
 @SuppressWarnings("serial")
 public abstract class CollectibleItem extends GameElement {
 
-    protected transient GameObject game;
-    private boolean isInUse;
-    protected transient HashMap<String, Double> myStateValues;
+	protected transient GameObject game;
+	private boolean isInUse;
+	protected transient HashMap<String, Double> myStateValues;
 
-    // Constructor for a collectible item
-    public CollectibleItem(GameObject game) {
-	super(game);
-	myStateValues = new HashMap<String, Double>();
-    }
-
-    public CollectibleItem() {
-	super();
-    }
-
-    public void decorate(Player player) {
-
-	for (String state : myStateValues.keySet()) {
-	    updateStateValues(player, state, myStateValues.get(state));
+	// Constructor for a collectible item
+	public CollectibleItem(GameObject game) {
+		super(game);
+		myStateValues = new HashMap<String, Double>();
 	}
-	this.setIsInUse(true);
-    }
 
-    public void set(BufferedImage[] images, double x, double y) {
-	this.setImages(images);
-	this.setLocation(x, y);
-    }
+	public CollectibleItem() {
+		super();
+	}
 
-    public void setIsInUse(boolean bool) {
-	isInUse = bool;
-    }
+	public void decorate(Player player) {
 
-    public boolean isInUse() {
-	return isInUse;
-    }
+		for (String state : myStateValues.keySet()) {
+			updateStateValues(player, state, myStateValues.get(state));
+		}
+		this.setIsInUse(true);
+	}
 
-    public void updateStateValues(Player player, String state, double newValue) {
-	player.updateStateValues(state, newValue);
-    }
+	public void set(BufferedImage[] images, double x, double y) {
+		this.setImages(images);
+		this.setLocation(x, y);
+	}
 
-    public void updateBaseValues(Player player, String state, double newValue) {
-	player.updateBaseValues(state, newValue);
-    }
+	public void setIsInUse(boolean bool) {
+		isInUse = bool;
+	}
 
-    public void addState(String attribute, double defaultValue) {
-	myStateValues.put(attribute, defaultValue);
-    }
+	public boolean isInUse() {
+		return isInUse;
+	}
 
-    public double getStateValue(String state) {
-	return myStateValues.get(state);
-    }
+	public void updateStateValues(Player player, String state, double newValue) {
+		player.updateStateValues(state, newValue);
+	}
+
+	public void updateBaseValues(Player player, String state, double newValue) {
+		player.updateBaseValues(state, newValue);
+	}
+
+	public void addState(String attribute, double defaultValue) {
+		myStateValues.put(attribute, defaultValue);
+	}
+
+	public double getStateValue(String state) {
+		return myStateValues.get(state);
+	}
+
+	public abstract boolean canSetInUse();
 }

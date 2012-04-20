@@ -10,12 +10,8 @@ public class AutoInUseAutoNotInUseItem extends AutoNotInUseItem {
 	    super(game);
 	}
 
-	@Override
-	public void decorate(Player player) {
-		for (String state : myStateValues.keySet()) {
-			updateBaseValues(player, state, this.getStateValue(state));
-		}
-		this.setIsInUse(false);
+	public void update(long elapsedTime) {
+		super.update(elapsedTime);
 	}
 	
 	@Override
