@@ -46,8 +46,8 @@ public class GameElement extends AdvanceSprite {
     @Modifiable(classification = "Physics")
     private boolean isPenetrable = false;
 
-    private double maximunSpeedInX = Double.MAX_VALUE;
-    private double maximunSpeedInY = Double.MAX_VALUE;
+    private double maximumSpeedInX = Double.MAX_VALUE;
+    private double maximumSpeedInY = Double.MAX_VALUE;
 
     protected transient GameObject myGame;
 
@@ -115,14 +115,14 @@ public class GameElement extends AdvanceSprite {
 
     protected void checkMaximunSpeed() {
 	double vx = vel.getX(), vy = vel.getY();
-	if (Math.abs(vx) > maximunSpeedInX) {
-	    vx = maximunSpeedInX;
+	if (Math.abs(vx) > maximumSpeedInX) {
+	    vx = maximumSpeedInX;
 	    if (vel.getX() < 0) {
 		vx = -vx;
 	    }
 	}
-	if (Math.abs(vy) > maximunSpeedInY) {
-	    vy = maximunSpeedInY;
+	if (Math.abs(vy) > maximumSpeedInY) {
+	    vy = maximumSpeedInY;
 	    if (vel.getY() < 0) {
 		vy = -vy;
 	    }
@@ -335,12 +335,12 @@ public class GameElement extends AdvanceSprite {
 	return myGame;
     }
 
-    public void setMaximunSpeedInX(double x) {
-	this.maximunSpeedInX = x;
+    public void setMaximumSpeedInX(double x) {
+	this.maximumSpeedInX = x;
     }
 
-    public void setMaximunSpeedInY(double y) {
-	this.maximunSpeedInY = y;
+    public void setMaximumSpeedInY(double y) {
+	this.maximumSpeedInY = y;
     }
 
     // try all the methods with parameter e or superclasses of e.

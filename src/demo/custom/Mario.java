@@ -13,7 +13,7 @@ import core.keyconfiguration.KeyAnnotation;
 @SuppressWarnings("serial")
 public class Mario extends Player{
 
-    private static final String IMAGE_FILE = "resources/Goomba.png";
+    private static final String IMAGE_FILE = "resources/Mario1.png";
     
     protected boolean jumpEnable;
     protected Timer jumpTimer;
@@ -23,7 +23,7 @@ public class Mario extends Player{
         super(game);
         setImages(game.getImages(IMAGE_FILE, 1, 1));
         resetStrength();
-        this.setMaximunSpeedInX(0.8);
+        this.setMaximumSpeedInX(0.8);
         jumpTime = 250;
         jumpTimer = new Timer(jumpTime);
         jumpTimer.setActive(false);

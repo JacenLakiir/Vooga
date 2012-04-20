@@ -15,6 +15,7 @@ public class Koopa extends NPC
 {
    
     private static final String IMAGE_FILE = "resources/Koopa.png";
+    private static final String SHELL_IMAGE_FILE = "resources/KoopaShell.png";
 
     private ShellState myShellState;
 
@@ -37,7 +38,7 @@ public class Koopa extends NPC
     {
         if (!myShellState.isActive())
         {
-            setImages(getGame().getImages("resources/KoopaShell.png", 1, 1));
+            setImages(getGame().getImages(SHELL_IMAGE_FILE, 1, 1));
             deactivateAllOtherStates(myShellState);
             myShellState.setActive(true);
         }
