@@ -17,9 +17,9 @@ import com.golden.gamedev.object.Timer;
 
 import core.characters.GameElement;
 
-public abstract class TileDecorator extends Tile {
+public class TileDecorator extends Tile {
 
-    protected final Tile decoratedPlatform;
+    private final Tile decoratedPlatform;
 
 
     public TileDecorator(Tile decoratedPlatform) {
@@ -51,13 +51,7 @@ public abstract class TileDecorator extends Tile {
     /*
      * The following methods allow the PlatformDecorator to act as a ConcretePlatform
      * (Sprite) by allowing access to the inner sprite's methods.
-     */
-    	
-    	public void set(BufferedImage[] images, double x, double y) {
-            decoratedPlatform.setImages(images);
-            decoratedPlatform.setLocation(x, y);
-        }
-    	
+     */    	
     	protected void addGravity() {
             if (decoratedPlatform.isUnmovable() == false) {
             	decoratedPlatform.addAcceleration(0, -stdGravity);
@@ -403,6 +397,10 @@ public abstract class TileDecorator extends Tile {
     	
     	public void update(long elapsedTime){
     		decoratedPlatform.update(elapsedTime);
+    	}
+    	
+    	protected Tile getDecoratedPlatform(){
+    		return decoratedPlatform;
     	}
 
 }

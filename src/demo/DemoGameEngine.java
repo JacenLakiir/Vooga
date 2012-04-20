@@ -14,13 +14,12 @@ import com.golden.gamedev.GameLoader;
  *
  */
 public class DemoGameEngine extends GameEngine2D{
-    private boolean initial = true;
     public void initResources(){
         super.initResources();
         initializeGameList();
-        if(initial){
-            nextGameID = idMap.get(Menu.class.getName());
-            initial = false;
+        if(isInitial()){
+            setInitialGameObject(Menu.class);
+            setInitial(false);
         }
     }
     

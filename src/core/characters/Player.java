@@ -6,6 +6,8 @@ package core.characters;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import com.golden.gamedev.GameObject;
 import core.items.CollectibleItem;
@@ -14,9 +16,8 @@ import core.items.CollectibleItem;
 public class Player extends Character{
     
     protected double strengthUp, strengthDown, strengthLeft, strengthRight;
-    protected ArrayList<CollectibleItem> myInventory, myActiveInventory;
-    protected double myAttackPower, myDefensePower, myLevel, myPoints;
-    protected HashMap<String, Double> myStateValues, myBaseValues;
+    protected List<CollectibleItem> myInventory, myActiveInventory;
+    protected Map<String, Double> myStateValues, myBaseValues;
     
     public Player(GameObject game) {
         super(game);
@@ -117,11 +118,11 @@ public class Player extends Character{
     	return myStateValues.get(attribute);
     }
     
-    public ArrayList<CollectibleItem> getMyInventory() {
+    public List<CollectibleItem> getMyInventory() {
     	return myInventory;
     }
     
-    public ArrayList<CollectibleItem> getMyActiveInventory() {
+    public List<CollectibleItem> getMyActiveInventory() {
     	return myActiveInventory;
     }
     

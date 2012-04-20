@@ -8,6 +8,14 @@ import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;
 
 public abstract class GameEngine2D extends GameEngine{
+    private boolean isInitial = true;
+
+    protected boolean isInitial() {
+        return isInitial;
+    }
+    protected void setInitial(boolean isInitial) {
+        this.isInitial = isInitial;
+    }
 
     private List<GameObject> list = new ArrayList<GameObject>();
     protected void addGameObject(GameObject object){
@@ -16,7 +24,11 @@ public abstract class GameEngine2D extends GameEngine{
     public abstract void constructGameList();
     
     private HashMap<String, GameObject> map = new HashMap<String, GameObject>();  
-    protected HashMap<String, Integer> idMap = new HashMap<String, Integer>();
+    private HashMap<String, Integer> idMap = new HashMap<String, Integer>();
+    protected HashMap<String, Integer> getIdMap() {
+        return idMap;
+    }
+
     private int previousGameID;
     
     protected int getPreviousGameID(){

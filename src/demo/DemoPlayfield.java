@@ -3,31 +3,16 @@ package demo;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import com.golden.gamedev.object.background.ColorBackground;
-import core.characters.NPC;
-import core.characters.Player;
-import core.characters.ai.MoveState;
-import core.characters.ai.PatrolState;
-import core.collision.CharacterPlatformCollision;
-import core.collision.GameElementCollision;
-import core.collision.PlayerCollectibleItemCollision;
-import core.gamestate.GameEngine2D;
-import core.gamestate.GameObject2D;
-import core.gamestate.Pause;
-import core.items.CollectibleInstantItem;
-import core.items.CollectibleTimelapseItem;
-import core.keyconfiguration.KeyAnnotation;
-import core.keyconfiguration.KeyConfig;
-import core.playfield.AdvancedPlayField;
-import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
-import core.tiles.BaseTile;
-import core.tiles.BreakableDecorator;
-import core.tiles.FallingDecorator;
-import core.tiles.ItemDecorator;
-import core.tiles.MovingDecorator;
-import core.tiles.Tile;
-import demo.custom.Goomba;
-import demo.custom.Koopa;
-import demo.custom.Mario;
+import core.characters.*;
+import core.characters.ai.*;
+import core.collision.*;
+import core.gamestate.*;
+import core.items.*;
+import core.keyconfiguration.*;
+import core.playfield.*;
+import core.playfield.scroller.*;
+import core.tiles.*;
+import demo.custom.*;
 
 /**
  * @author Siyang Chen
@@ -122,19 +107,18 @@ public class DemoPlayfield extends GameObject2D {
         goomba4.setMovable(true);
         myPlayfield.addCharacter(goomba4);
 
-        Tile temp1 = new BaseTile(this);
+        Tile temp1 = new Tile(this);
         temp1.setImages(this.getImages("resources/Bar.png", 1, 1));
         temp1.setLocation(0, 440);
         myPlayfield.addSetting(temp1);
 
-        Tile temp2 = new BaseTile(this);
+        Tile temp2 = new Tile(this);
         temp2.setImages(this.getImages("resources/Bar.png", 1, 1));
         temp2.setLocation(600, 440);
         myPlayfield.addSetting(temp2);
 
-        Tile block2 = new BreakableDecorator(new BaseTile(this));
-        block2.setMass(6);
-        block2.setMovable(false);
+        ActionDecorator block2 = new BreakableDecorator(new Tile(this), 2);
+        block2.setBottomAction(true);
         block2.setImages(this.getImages("resources/Block2Break.png", 8, 1));
         block2.setLocation(160, 200);
         myPlayfield.addSetting(block2);
@@ -155,18 +139,22 @@ public class DemoPlayfield extends GameObject2D {
         poison.addState("hitPoints", -1);
         myPlayfield.addItem(poison);
         
-        ItemDecorator block1 = new ItemDecorator(new BaseTile(this));
-        block1.set(this.getImages("resources/Block1.png", 1, 1),100, 200);
+        ItemDecorator block1 = new ItemDecorator(new Tile(this));
+        block1.setBottomAction(true);
+        block1.setImages(this.getImages("resources/Block1.png", 1, 1));
+        block1.setLocation(100, 200);
         block1.addItem(coin);
         myPlayfield.addSetting(block1);
         
-        Tile middleBar = new MovingDecorator(new BaseTile(this), 260,
+        Tile middleBar = new MovingDecorator(new Tile(this), 260,
                 240, 700, 60, 0.05);
         middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
         myPlayfield.addSetting(middleBar);
 
-      Tile otherBar = new FallingDecorator(new BaseTile(this), 1000);
-      otherBar.set(getImages("resources/SmallBar.png",1,1), 1250, 300);
+      ActionDecorator otherBar = new FallingDecorator(new Tile(this), 1000);
+      otherBar.setTopAction(true);
+      otherBar.setImages(getImages("resources/SmallBar.png",1,1));
+      otherBar.setLocation(1250, 300);
       myPlayfield.addSetting(otherBar);
 	}
 
