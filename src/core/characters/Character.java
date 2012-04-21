@@ -10,6 +10,8 @@ import levelio.Modifiable;
 
 import com.golden.gamedev.GameObject;
 
+import core.physicsengine.physicsplugin.DefaultPhysicsAttribute;
+
 @SuppressWarnings("serial")
 public abstract class Character extends GameElement {
 
@@ -18,8 +20,8 @@ public abstract class Character extends GameElement {
 
     protected transient Map<String, Double> myStateValues, myBaseValues;
 
-    public Character(GameObject game) {
-	super(game);
+    public Character(GameObject game, DefaultPhysicsAttribute physicsAttribute) {
+	super(game, physicsAttribute);
 	myBaseValues = new HashMap<String, Double>();
 	myStateValues = new HashMap<String, Double>();
     }

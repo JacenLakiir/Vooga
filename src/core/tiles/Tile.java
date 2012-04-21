@@ -12,14 +12,15 @@ import java.awt.image.BufferedImage;
 import com.golden.gamedev.GameObject;
 
 import core.characters.GameElement;
+import core.physicsengine.physicsplugin.DefaultPhysicsAttribute;
 
 public class Tile extends GameElement{
 
     /*
      * Constructor for a Concrete Platform
      */
-    public Tile (GameObject owner) {
-        super(owner);
+    public Tile (GameObject owner, DefaultPhysicsAttribute physicsAttribute) {
+        super(owner, physicsAttribute);
         this.setMovable(false);
         this.setPenetrable(false);
     }

@@ -16,19 +16,19 @@ public class RestitutionAndFrictionPlugin extends PhysicsPlugin{
         int collisionSide = myCollision.getCollisionSide();
         if (((collisionSide & GameElementCollision.LEFT_RIGHT_COLLISION) != 0) || 
                 (collisionSide & GameElementCollision.RIGHT_LEFT_COLLISION) != 0) {
-            if (s1.isUnmovable() == false) {
+            if (s1.getPhysicsAttribute().isUnmovable() == false) {
                 checkCollisionInXDirection(s1, s2);
             }
-            if (s2.isUnmovable() == false) {
+            if (s2.getPhysicsAttribute().isUnmovable() == false) {
                 checkCollisionInXDirection(s2, s1);
             }
         }
         if (((collisionSide & GameElementCollision.TOP_BOTTOM_COLLISION) != 0) ||
                 (collisionSide & GameElementCollision.BOTTOM_TOP_COLLISION) != 0) {
-            if (s1.isUnmovable() == false) {
+            if (s1.getPhysicsAttribute().isUnmovable() == false) {
                 checkCollisionInYDirection(s1, s2);
             }
-            if (s2.isUnmovable() == false) {
+            if (s2.getPhysicsAttribute().isUnmovable() == false) {
                 checkCollisionInYDirection(s2, s1);
             }
         }        
@@ -37,12 +37,12 @@ public class RestitutionAndFrictionPlugin extends PhysicsPlugin{
     protected void checkCollisionInXDirection(GameElement s1, GameElement s2) {
         double vx1 = s1.getVelocity().getX(), vx2 = s2.getVelocity().getX(), 
                 vy1 = s1.getVelocity().getY(), vy2 = s2.getVelocity().getY(), 
-                m1 = s1.getMass(), m2 = s2.getMass(),
-                cr = s2.getCoefficintOfRestitutionInXDirection(),
-                cf = s2.getCoefficintOfFrictionInYDirection();
+                m1 = s1.getPhysicsAttribute().getMass(), m2 = s2.getPhysicsAttribute().getMass(),
+                cr = s2.getPhysicsAttribute().getCoefficintOfRestitutionInXDirection(),
+                cf = s2.getPhysicsAttribute().getCoefficintOfFrictionInYDirection();
 
         double ux1;
-        if (s2.isUnmovable()) {
+        if (s2.getPhysicsAttribute().isUnmovable()) {
             ux1 = vx2 + cr*(vx2 - vx1);
         }
         else {
@@ -68,12 +68,12 @@ public class RestitutionAndFrictionPlugin extends PhysicsPlugin{
     protected void checkCollisionInYDirection(GameElement s1, GameElement s2) {
         double vx1 = s1.getVelocity().getX(), vx2 = s2.getVelocity().getX(), 
                 vy1 = s1.getVelocity().getY(), vy2 = s2.getVelocity().getY(), 
-                m1 = s1.getMass(), m2 = s2.getMass(),
-                cr = s2.getCoefficintOfRestitutionInYDirection(),
-                cf = s2.getCoefficintOfFrictionInXDirection();
+                m1 = s1.getPhysicsAttribute().getMass(), m2 = s2.getPhysicsAttribute().getMass(),
+                cr = s2.getPhysicsAttribute().getCoefficintOfRestitutionInYDirection(),
+                cf = s2.getPhysicsAttribute().getCoefficintOfFrictionInXDirection();
 
         double uy1;
-        if (s2.isUnmovable()) {
+        if (s2.getPhysicsAttribute().isUnmovable()) {
             uy1 = vy2 + cr*(vy2 - vy1);
         }
         else {

@@ -6,6 +6,7 @@ import com.golden.gamedev.object.Timer;
 import core.characters.GameElement;
 import core.characters.Player;
 import core.keyconfiguration.KeyAnnotation;
+import core.physicsengine.physicsplugin.DefaultPhysicsAttribute;
 
 /**
  * @author Kuang Han
@@ -19,8 +20,8 @@ public class Mario extends Player {
     protected Timer jumpTimer;
     protected int jumpTime;
 
-    public Mario(GameObject game) {
-	super(game);
+    public Mario(GameObject game, DefaultPhysicsAttribute physicsAttribute) {
+	super(game, physicsAttribute);
 	setImages(game.getImages(IMAGE_FILE, 1, 1));
 	resetStrength();
 	this.setMaximumSpeedInX(0.8);

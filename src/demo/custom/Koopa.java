@@ -5,6 +5,7 @@ import com.golden.gamedev.GameObject;
 import core.characters.NPC;
 import core.characters.ai.DeadState;
 import core.characters.ai.State;
+import core.physicsengine.physicsplugin.DefaultPhysicsAttribute;
 import demo.custom.ShellState;
 
 /**
@@ -18,8 +19,8 @@ public class Koopa extends NPC {
 
     private ShellState myShellState;
 
-    public Koopa(GameObject game) {
-	super(game);
+    public Koopa(GameObject game, DefaultPhysicsAttribute physicsAttribute) {
+	super(game, physicsAttribute);
 	setImages(game.getImages(IMAGE_FILE, 1, 1));
 	setMovable(true);
 	myShellState = new ShellState(this);
@@ -27,8 +28,8 @@ public class Koopa extends NPC {
 	addPossibleState(myShellState);
     }
 
-    public Koopa(GameObject game, List<State> possibleStates) {
-	super(game, possibleStates);
+    public Koopa(GameObject game, DefaultPhysicsAttribute physicsAttribute, List<State> possibleStates) {
+	super(game, physicsAttribute, possibleStates);
     }
 
     public void afterHitFromTopBy(Mario m) {

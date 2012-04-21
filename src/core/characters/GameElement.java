@@ -6,6 +6,7 @@ package core.characters;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import levelio.Modifiable;
@@ -17,6 +18,7 @@ import core.physicsengine.coordinatesystem.Acceleration;
 import core.physicsengine.coordinatesystem.Displacement;
 import core.physicsengine.coordinatesystem.DuringAcceleration;
 import core.physicsengine.coordinatesystem.Velocity;
+import core.physicsengine.physicsplugin.DefaultPhysicsAttribute;
 
 public class GameElement extends AdvanceSprite {
 
@@ -26,26 +28,8 @@ public class GameElement extends AdvanceSprite {
     private List<DuringAcceleration> duringAccList;
     private Velocity vel;
     private Displacement disp;
-
-    @Modifiable(classification = "Physics")
-    private double mass = 10;
-    @Modifiable(classification = "Physics")
-    private double density = 1.0;
-    @Modifiable(classification = "Physics")
-    private double coefOfFrictionInX = 0.5;
-    @Modifiable(classification = "Physics")
-    private double coefOfFrictionInY = 0;
-    @Modifiable(classification = "Physics")
-    private double coefOfRestitutionInX = 0.2;
-    @Modifiable(classification = "Physics")
-    private double coefOfRestitutionInY = 0.1;
-    @Modifiable(classification = "Physics")
-    private double dragCoef = 0;
-    protected double stdGravity = 0.004;
-    @Modifiable(classification = "Physics")
-    private boolean isUnmovable = false;
-    @Modifiable(classification = "Physics")
-    private boolean isPenetrable = false;
+        
+    private DefaultPhysicsAttribute physicsAttribute;
 
     private double maximumSpeedInX = Double.MAX_VALUE;
     private double maximumSpeedInY = Double.MAX_VALUE;
@@ -75,13 +59,31 @@ public class GameElement extends AdvanceSprite {
 //            }
 //        }));
         myGame = null;
+        physicsAttribute = null;
     }
 
-    public GameElement(GameObject game) {
+    public GameElement(GameObject game, DefaultPhysicsAttribute physicsAttribute) {
         this();
+        myGame = game;
+        this.physicsAttribute = physicsAttribute;
+    }
+    
+    public void setGame(GameObject game) {
         myGame = game;
     }
 
+    public GameObject getGame() {
+        return myGame;
+    }
+    
+    public void setPhysicsAttribute(DefaultPhysicsAttribute a) {
+        this.physicsAttribute = a;
+    }
+    
+    public DefaultPhysicsAttribute getPhysicsAttribute() {
+        return this.physicsAttribute;
+    }
+    
     @Override
     public void update(long milliSec) {
         super.update(milliSec);
@@ -89,11 +91,11 @@ public class GameElement extends AdvanceSprite {
     }
 
     private void addGravity() {
-        if (isUnmovable == false) {
-            this.addAcceleration(0, -stdGravity);
+        if (this.isUnmovable() == false) {
+            this.addAcceleration(0, -this.getGravitationalAcceleration());
         }
     }
-
+    
     @Override
     protected void updateMovement(long t) {
         updateDuringAcceleration(t);
@@ -248,92 +250,8 @@ public class GameElement extends AdvanceSprite {
     }
 
     public void givenAForceOf(double fx, double fy) {
-        double ax = fx / mass, ay = fy / mass;
+        double ax = fx / this.getPhysicsAttribute().getMass(), ay = fy / this.getPhysicsAttribute().getMass();
         this.addAcceleration(ax, ay);
-    }
-
-    public double getMass() {
-        return mass;
-    }
-
-    public double getCoefficintOfFrictionInXDirection() {
-        return coefOfFrictionInX;
-    }
-
-    public double getCoefficintOfFrictionInYDirection() {
-        return coefOfFrictionInY;
-    }
-
-    public double getCoefficintOfRestitutionInXDirection() {
-        return coefOfRestitutionInX;
-    }
-
-    public double getCoefficintOfRestitutionInYDirection() {
-        return coefOfRestitutionInY;
-    }
-
-    public boolean isUnmovable() {
-        return isUnmovable;
-    }
-
-    public boolean isPenetrable() {
-        return isPenetrable;
-    }
-
-    public double getGravitationalAcceleration() {
-        return stdGravity;
-    }
-
-    public void setMovable(boolean movable) {
-        isUnmovable = !movable;
-    }
-
-    public void setPenetrable(boolean penetrable) {
-        isPenetrable = penetrable;
-    }
-
-    public double getDragCoefficient() {
-        return dragCoef;
-    }
-
-    public double getDensity() {
-        return density;
-    }
-
-    public void setDensity(double density) {
-        this.density = density;
-    }
-
-    public void setCoefficientOfFrictionInX(double coef) {
-        this.coefOfFrictionInX = coef;
-    }
-
-    public void setCoefficientOfFrictionInY(double coef) {
-        this.coefOfFrictionInY = coef;
-    }
-
-    public void setCoefficientOfRestitutionInX(double coef) {
-        this.coefOfRestitutionInX = coef;
-    }
-
-    public void setCoefficientOfRestitutionInY(double coef) {
-        this.coefOfRestitutionInY = coef;
-    }
-
-    public void setDragCoefficient(double coef) {
-        this.dragCoef = coef;
-    }
-
-    public void setMass(double m) {
-        this.mass = m;
-    }
-
-    public void setGame(GameObject game) {
-        myGame = game;
-    }
-
-    public GameObject getGame() {
-        return myGame;
     }
 
     public void setMaximumSpeedInX(double x) {
@@ -343,6 +261,77 @@ public class GameElement extends AdvanceSprite {
     public void setMaximumSpeedInY(double y) {
         this.maximumSpeedInY = y;
     }
+    
+    public double getMass() {
+        return this.getPhysicsAttribute().getMass();
+    }
+    public void setMass(double m) {
+        this.getPhysicsAttribute().setMass(m);
+    }
+
+    public double getDensity() {
+        return this.getPhysicsAttribute().getDensity();
+    }
+    public void setDensity(double density) {
+        this.getPhysicsAttribute().setDensity(density);
+    }
+
+    public double getCoefficintOfFrictionInXDirection() {
+        return this.getPhysicsAttribute().getCoefficintOfFrictionInXDirection();
+    }
+    public void setCoefficientOfFrictionInX(double coef) {
+        this.getPhysicsAttribute().setCoefficientOfFrictionInX(coef);
+    }
+
+    public double getCoefficintOfFrictionInYDirection() {
+        return this.getCoefficintOfFrictionInYDirection();
+    }
+    public void setCoefficientOfFrictionInY(double coef) {
+        this.getPhysicsAttribute().setCoefficientOfFrictionInY(coef);
+    }
+
+    public double getCoefficintOfRestitutionInXDirection() {
+        return this.getPhysicsAttribute().getCoefficintOfRestitutionInXDirection();
+    }
+    public void setCoefficientOfRestitutionInX(double coef) {
+        this.getPhysicsAttribute().setCoefficientOfRestitutionInX(coef);
+    }
+
+    public double getCoefficintOfRestitutionInYDirection() {
+        return this.getPhysicsAttribute().getCoefficintOfRestitutionInYDirection();
+    }
+    public void setCoefficientOfRestitutionInY(double coef) {
+        this.getPhysicsAttribute().setCoefficientOfRestitutionInY(coef);
+    }
+    
+    public double getDragCoefficient() {
+        return this.getPhysicsAttribute().getDragCoefficient();
+    }
+    public void setDragCoefficient(double coef) {
+        this.getPhysicsAttribute().setDragCoefficient(coef);
+    }
+
+    public double getGravitationalAcceleration() {
+        return this.getPhysicsAttribute().getGravitationalAcceleration();
+    }
+    public void setGravitationalAcceleration(double coef) {
+        this.getPhysicsAttribute().setGravitationalAcceleration(coef);
+    }
+
+    public boolean isUnmovable() {
+        return this.getPhysicsAttribute().isUnmovable();
+    }
+    public void setMovable(boolean movable) {
+        this.getPhysicsAttribute().setMovable(movable);
+    }
+
+    public boolean isPenetrable() {
+        return this.getPhysicsAttribute().isPenetrable();
+    }
+    public void setPenetrable(boolean penetrable) {
+        this.getPhysicsAttribute().setPenetrable(penetrable);
+    }
+
 
     // try all the methods with parameter e or superclasses of e.
     public void reflectionCalled(GameElement e, String key) {

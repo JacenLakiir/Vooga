@@ -16,6 +16,7 @@ import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.Timer;
 
 import core.characters.GameElement;
+import core.physicsengine.physicsplugin.DefaultPhysicsAttribute;
 
 public class TileDecorator extends Tile {
 
@@ -48,6 +49,15 @@ public class TileDecorator extends Tile {
      * The following methods allow the PlatformDecorator to act as a ConcretePlatform
      * (Sprite) by allowing access to the inner sprite's methods.
      */    	
+    
+    public void setPhysicsAttribute(DefaultPhysicsAttribute a) {
+        decoratedPlatform.setPhysicsAttribute(a);
+    }
+    
+    public DefaultPhysicsAttribute getPhysicsAttribute() {
+        return decoratedPlatform.getPhysicsAttribute();
+    }
+
     	protected void addGravity() {
             if (decoratedPlatform.isUnmovable() == false) {
             	decoratedPlatform.addAcceleration(0, -this.getGravitationalAcceleration());

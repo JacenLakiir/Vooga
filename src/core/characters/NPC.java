@@ -5,6 +5,7 @@ import java.util.List;
 import com.golden.gamedev.GameObject;
 
 import core.characters.ai.State;
+import core.physicsengine.physicsplugin.DefaultPhysicsAttribute;
 
 /**
  * @author ericmercer (JacenLakiir)
@@ -16,16 +17,16 @@ public class NPC extends Character {
     private transient List<State> myPossibleStates;
     private transient List<State> myCurrentStates;
 
-    public NPC(GameObject game)
+    public NPC(GameObject game, DefaultPhysicsAttribute physicsAttribute)
     {
-    	super(game);
+    	super(game, physicsAttribute);
     	myPossibleStates = new ArrayList<State>();
     	myCurrentStates = new ArrayList<State>();
     }
 
-    public NPC(GameObject game, List<State> possibleStates)
+    public NPC(GameObject game, DefaultPhysicsAttribute physicsAttribute, List<State> possibleStates)
     {
-    	super(game);
+    	super(game, physicsAttribute);
     	myPossibleStates = possibleStates;
     	myCurrentStates = new ArrayList<State>();
     }

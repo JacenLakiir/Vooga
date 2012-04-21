@@ -19,6 +19,7 @@ public class GameElementCollision extends CollisionGroup{
     public GameElementCollision() {
         super();
         this.pixelPerfectCollision = true;
+        physicsPlugins = null;
     }
     
     public void setPhysicsPlugIns(List<PhysicsPlugin> list) {

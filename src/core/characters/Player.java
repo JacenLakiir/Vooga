@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.golden.gamedev.GameObject;
 import core.items.CollectibleItem;
+import core.physicsengine.physicsplugin.DefaultPhysicsAttribute;
 
 @SuppressWarnings("serial")
 public class Player extends Character {
@@ -16,8 +17,8 @@ public class Player extends Character {
     protected double strengthUp, strengthDown, strengthLeft, strengthRight;
     protected List<CollectibleItem> myInventory, myActiveInventory;
 
-    public Player(GameObject game) {
-	super(game);
+    public Player(GameObject game, DefaultPhysicsAttribute physicsAttribute) {
+	super(game, physicsAttribute);
 	myInventory = new ArrayList<CollectibleItem>();
 	myActiveInventory = new ArrayList<CollectibleItem>();
     }

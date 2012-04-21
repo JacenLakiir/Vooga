@@ -19,6 +19,7 @@ import core.keyconfiguration.KeyAnnotation;
 import core.keyconfiguration.KeyConfig;
 import core.keyconfiguration.Mouse;
 import core.keyconfiguration.MouseInput;
+import core.physicsengine.physicsplugin.DefaultPhysicsAttribute;
 import core.playfield.AdvancedPlayField;
 import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
 import core.tiles.ActionDecorator;
@@ -47,11 +48,12 @@ public class DemoAI extends GameObject2D
     @Override
     public void initResources ()
     { 
+        
         myPlayfield = new AdvancedPlayField(10000, 500);
         myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
         myPlayfield.setBackground(new ColorBackground(Color.gray, 640, 480));
         
-        Player mario = new Mario(this);
+        Player mario = new Mario(this, new DefaultPhysicsAttribute());
         setKeyList(new KeyConfig(this,false).getKeyList());
         addMouse(new MouseInput(this, mario,"sequence"));
         //add the element or game you want the key to control
@@ -89,33 +91,33 @@ public class DemoAI extends GameObject2D
 //        koopa2.setLocation(300, 400);
 //        myPlayfield.addCharacter(koopa2);
         
-        NPC goomba4 = new Goomba(this);
+        NPC goomba4 = new Goomba(this, new DefaultPhysicsAttribute());
         goomba4.addPossibleState(new FollowState(goomba4, mario, 1, 200));
         goomba4.setLocation(300, 400);
         myPlayfield.addCharacter(goomba4);
         
-        NPC goomba5 = new Goomba(this);
+        NPC goomba5 = new Goomba(this, new DefaultPhysicsAttribute());
         goomba5.addPossibleState(new EvadeState(goomba5, mario, 2, 200));
         goomba5.setLocation(400, 400);
         myPlayfield.addCharacter(goomba5);
         
-        Tile floor = new Tile(this);
+        Tile floor = new Tile(this, new DefaultPhysicsAttribute());
         floor.setImages(this.getImages("resources/Bar.png", 1, 1));
         floor.setLocation(0, 440);
         myPlayfield.addSetting(floor);
         
-        Tile ceiling = new Tile(this);
+        Tile ceiling = new Tile(this, new DefaultPhysicsAttribute());
         ceiling.setImages(this.getImages("resources/Bar.png", 1, 1));
         ceiling.setLocation(70, -20);
         myPlayfield.addSetting(ceiling);
 
-        AutoInUseAutoNotInUseItem coin = new AutoInUseAutoNotInUseItem(this);
+        AutoInUseAutoNotInUseItem coin = new AutoInUseAutoNotInUseItem(this, new DefaultPhysicsAttribute());
         coin.setImages(this.getImages("resources/Coin.png", 1, 1));
         coin.setActive(false);
         coin.addState("points", 3);
         myPlayfield.addItem(coin);
         
-        ItemDecorator block1 = new ItemDecorator(new Tile(this));
+        ItemDecorator block1 = new ItemDecorator(new Tile(this, new DefaultPhysicsAttribute()));
         block1.setMass(6);
         block1.setMovable(false);
         block1.setImages(this.getImages("resources/Block1.png", 1, 1));
@@ -123,18 +125,18 @@ public class DemoAI extends GameObject2D
         block1.addItem(coin);
         myPlayfield.addSetting(block1);
 
-        ActionDecorator block2 = new BreakableDecorator(new Tile(this), 1);
+        ActionDecorator block2 = new BreakableDecorator(new Tile(this, new DefaultPhysicsAttribute()), 1);
         block2.setBottomAction(true);
         block2.setImages(this.getImages("resources/Block2Break.png", 8, 1));
         block2.setLocation(160, 200);
         myPlayfield.addSetting(block2);
         
-        Tile wall1 = new Tile(this);
+        Tile wall1 = new Tile(this, new DefaultPhysicsAttribute());
         wall1.setImages(this.getImages("resources/Wall.png", 1, 1));
         wall1.setLocation(0, 0);
         myPlayfield.addSetting(wall1);
         
-        Tile wall2 = new Tile(this);
+        Tile wall2 = new Tile(this, new DefaultPhysicsAttribute());
         wall2.setImages(this.getImages("resources/Wall.png", 1, 1));
         wall2.setLocation(620, 0);
         myPlayfield.addSetting(wall2);
