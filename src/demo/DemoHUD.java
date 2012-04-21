@@ -22,7 +22,7 @@ import core.items.CollectibleItem;
 import core.items.SetInUseSetNotInUseItem;
 import core.keyconfiguration.KeyAnnotation;
 import core.keyconfiguration.KeyConfig;
-import core.physicsengine.physicsplugin.DefaultPhysicsAttribute;
+import core.physicsengine.physicsplugin.PhysicsAttributes;
 import core.playfield.AdvancedPlayField;
 import core.playfield.hud.BarWidget;
 import core.playfield.hud.DataProxy;
@@ -75,7 +75,7 @@ public class DemoHUD extends GameObject2D {
         // SpriteGroups already exist in AdvancedPlayfield
         // use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
 
-        Player temp = new Mario(this, new DefaultPhysicsAttribute());
+        Player temp = new Mario(this, new PhysicsAttributes());
         setKeyList(new KeyConfig(this,false).getKeyList());
         //add the element or the game you want the key to control
         addKeyListeners(temp);
@@ -108,62 +108,62 @@ public class DemoHUD extends GameObject2D {
 			}
         }));
                 
-        NPC koopa1 = new Koopa(this, new DefaultPhysicsAttribute());
+        NPC koopa1 = new Koopa(this, new PhysicsAttributes());
         koopa1.addPossibleState(new MoveState(koopa1, 1, true));
         koopa1.setLocation(500, 400);
         myPlayfield.addCharacter(koopa1);
         
-        NPC goomba1 = new Goomba(this, new DefaultPhysicsAttribute());
+        NPC goomba1 = new Goomba(this, new PhysicsAttributes());
         goomba1.addPossibleState(new MoveState(goomba1, 1, true));
         goomba1.setLocation(800, 400);
         myPlayfield.addCharacter(goomba1);
         
-        NPC goomba2 = new Goomba(this, new DefaultPhysicsAttribute());
+        NPC goomba2 = new Goomba(this, new PhysicsAttributes());
         goomba2.addPossibleState(new MoveState(goomba2, 1, true));
         goomba2.setLocation(900, 400);
         myPlayfield.addCharacter(goomba2);
         
-        NPC goomba3 = new Goomba(this, new DefaultPhysicsAttribute());
+        NPC goomba3 = new Goomba(this, new PhysicsAttributes());
         goomba3.addPossibleState(new MoveState(goomba3, 1, true));
         goomba3.setLocation(1000, 400);
         myPlayfield.addCharacter(goomba3);
         
-        NPC goomba4 = new Goomba(this, new DefaultPhysicsAttribute());
+        NPC goomba4 = new Goomba(this, new PhysicsAttributes());
         goomba4.addPossibleState(new PatrolState(goomba4, 1, 325));
         goomba4.setLocation(575, 200);
         myPlayfield.addCharacter(goomba4);
 
-        Tile temp1 = new FrictionlessDecorator(new Tile(this, new DefaultPhysicsAttribute()));
+        Tile temp1 = new FrictionlessDecorator(new Tile(this, new PhysicsAttributes()));
         temp1.setImages(this.getImages("resources/IceFloor.png", 1, 1));
         temp1.setLocation(600, 440);
         myPlayfield.addSetting(temp1);
 
-        Tile temp2 = new Tile(this, new DefaultPhysicsAttribute());
+        Tile temp2 = new Tile(this, new PhysicsAttributes());
         temp2.setImages(this.getImages("resources/Bar.png", 1, 1));
         temp2.setLocation(0, 440);
         myPlayfield.addSetting(temp2);
 
-        ActionDecorator block2 = new BreakableDecorator(new Tile(this, new DefaultPhysicsAttribute()), 1);
+        ActionDecorator block2 = new BreakableDecorator(new Tile(this, new PhysicsAttributes()), 1);
         block2.setBottomAction(true);
         block2.setImages(this.getImages("resources/Block2Break.png", 8, 1));
         block2.setLocation(160, 200);
         myPlayfield.addSetting(block2);
         
-        ActionDecorator block3 = new PushableDecorator(new Tile(this, new DefaultPhysicsAttribute()));
+        ActionDecorator block3 = new PushableDecorator(new Tile(this, new PhysicsAttributes()));
         block3.setRightAction(true);
         block3.setLeftAction(true);
         block3.setImages(getImages("resources/Block3.png", 1, 1));
         block3.setLocation(200, 400);
         myPlayfield.addSetting(block3);
 
-        ItemDecorator block1 = new ItemDecorator(new Tile(this, new DefaultPhysicsAttribute()));
+        ItemDecorator block1 = new ItemDecorator(new Tile(this, new PhysicsAttributes()));
         block1.setBottomAction(true);
         block1.setImages(this.getImages("resources/Block1.png", 1, 1));
         block1.setLocation(100, 200);
         myPlayfield.addSetting(block1);
         
         for(int i=0; i<10; i++){
-        	CollectibleItem coin = new AutoInUseAutoNotInUseItem(this, new DefaultPhysicsAttribute());
+        	CollectibleItem coin = new AutoInUseAutoNotInUseItem(this, new PhysicsAttributes());
         	coin.setImages(this.getImages("resources/Coin.png", 1, 1));
         	coin.setActive(false);
         	coin.addState("points", 3);
@@ -171,7 +171,7 @@ public class DemoHUD extends GameObject2D {
         	myPlayfield.addItem(coin);
         }
         
-        CollectibleItem coin2 = new AutoInUseAutoNotInUseItem(this, new DefaultPhysicsAttribute());
+        CollectibleItem coin2 = new AutoInUseAutoNotInUseItem(this, new PhysicsAttributes());
         coin2.setImages(this.getImages("resources/Coin.png", 1, 1));
         coin2.setActive(true);
         coin2.setMovable(false);
@@ -179,7 +179,7 @@ public class DemoHUD extends GameObject2D {
         coin2.addState("points", 3);
         myPlayfield.addItem(coin2);
         
-        CollectibleItem fireball = new SetInUseSetNotInUseItem(this, new DefaultPhysicsAttribute());
+        CollectibleItem fireball = new SetInUseSetNotInUseItem(this, new PhysicsAttributes());
         fireball.setImages(this.getImages("resources/Fireball.png", 4, 1));
         fireball.setLoopAnim(true);
         fireball.setAnimate(true);
@@ -189,7 +189,7 @@ public class DemoHUD extends GameObject2D {
         fireball.addState("attackPower", 2);
         myPlayfield.addItem(fireball);
         
-        AutoNotInUseItem poison = new AutoInUseAutoNotInUseItem(this, new DefaultPhysicsAttribute());
+        AutoNotInUseItem poison = new AutoInUseAutoNotInUseItem(this, new PhysicsAttributes());
         poison.setImages(this.getImages("resources/Poison.png", 1, 1));
         poison.setActive(true);
         poison.setMovable(false);
@@ -199,7 +199,7 @@ public class DemoHUD extends GameObject2D {
         poison.addState("hitPoints", -1);
         myPlayfield.addItem(poison);
         
-        Tile middleBar = new MovingDecorator(new Tile(this, new DefaultPhysicsAttribute()), 260,
+        Tile middleBar = new MovingDecorator(new Tile(this, new PhysicsAttributes()), 260,
                 240, 700, 60, 0.05);
         middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
         myPlayfield.addSetting(middleBar);

@@ -6,11 +6,11 @@ package core.characters;
 
 import java.util.HashMap;
 import java.util.Map;
-import levelio.Modifiable;
+import levelio.annotations.Modifiable;
 
 import com.golden.gamedev.GameObject;
 
-import core.physicsengine.physicsplugin.DefaultPhysicsAttribute;
+import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 @SuppressWarnings("serial")
 public abstract class Character extends GameElement {
@@ -20,7 +20,7 @@ public abstract class Character extends GameElement {
 
     protected transient Map<String, Double> myStateValues, myBaseValues;
 
-    public Character(GameObject game, DefaultPhysicsAttribute physicsAttribute) {
+    public Character(GameObject game, PhysicsAttributes physicsAttribute) {
 	super(game, physicsAttribute);
 	myBaseValues = new HashMap<String, Double>();
 	myStateValues = new HashMap<String, Double>();

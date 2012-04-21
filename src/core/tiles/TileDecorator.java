@@ -12,7 +12,7 @@ import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.Timer;
 
 import core.characters.GameElement;
-import core.physicsengine.physicsplugin.DefaultPhysicsAttribute;
+import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 public class TileDecorator extends Tile {
 
@@ -44,11 +44,11 @@ public class TileDecorator extends Tile {
      * (Sprite) by allowing access to the inner sprite's methods.
      */    	
     
-    public void setPhysicsAttribute(DefaultPhysicsAttribute a) {
+    public void setPhysicsAttribute(PhysicsAttributes a) {
         decoratedPlatform.setPhysicsAttribute(a);
     }
     
-    public DefaultPhysicsAttribute getPhysicsAttribute() {
+    public PhysicsAttributes getPhysicsAttribute() {
         return decoratedPlatform.getPhysicsAttribute();
     }
 

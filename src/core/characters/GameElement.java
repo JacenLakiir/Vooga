@@ -6,19 +6,14 @@ package core.characters;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
-import levelio.Modifiable;
-
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.sprite.AdvanceSprite;
-
 import core.physicsengine.coordinatesystem.Acceleration;
 import core.physicsengine.coordinatesystem.Displacement;
 import core.physicsengine.coordinatesystem.DuringAcceleration;
 import core.physicsengine.coordinatesystem.Velocity;
-import core.physicsengine.physicsplugin.DefaultPhysicsAttribute;
+import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 public class GameElement extends AdvanceSprite {
 
@@ -29,7 +24,7 @@ public class GameElement extends AdvanceSprite {
     private Velocity vel;
     private Displacement disp;
         
-    private DefaultPhysicsAttribute physicsAttribute;
+    private PhysicsAttributes physicsAttribute;
 
     private double maximumSpeedInX = Double.MAX_VALUE;
     private double maximumSpeedInY = Double.MAX_VALUE;
@@ -62,7 +57,7 @@ public class GameElement extends AdvanceSprite {
         physicsAttribute = null;
     }
 
-    public GameElement(GameObject game, DefaultPhysicsAttribute physicsAttribute) {
+    public GameElement(GameObject game, PhysicsAttributes physicsAttribute) {
         this();
         myGame = game;
         this.physicsAttribute = physicsAttribute;
@@ -76,11 +71,11 @@ public class GameElement extends AdvanceSprite {
         return myGame;
     }
     
-    public void setPhysicsAttribute(DefaultPhysicsAttribute a) {
+    public void setPhysicsAttribute(PhysicsAttributes a) {
         this.physicsAttribute = a;
     }
     
-    public DefaultPhysicsAttribute getPhysicsAttribute() {
+    public PhysicsAttributes getPhysicsAttribute() {
         return this.physicsAttribute;
     }
     

@@ -2,11 +2,11 @@ package core.items;
 
 import com.golden.gamedev.GameObject;
 
-import core.physicsengine.physicsplugin.DefaultPhysicsAttribute;
+import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 public class SetInUseAutoNotInUseItem extends AutoNotInUseItem {
 
-	public SetInUseAutoNotInUseItem(GameObject game, DefaultPhysicsAttribute physicsAttribute) {
+	public SetInUseAutoNotInUseItem(GameObject game, PhysicsAttributes physicsAttribute) {
 	    super(game, physicsAttribute);
     }
 	

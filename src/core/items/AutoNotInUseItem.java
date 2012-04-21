@@ -4,7 +4,7 @@ import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Timer;
 
 import core.characters.Player;
-import core.physicsengine.physicsplugin.DefaultPhysicsAttribute;
+import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 public abstract class AutoNotInUseItem extends CollectibleItem {
 
@@ -17,7 +17,7 @@ public abstract class AutoNotInUseItem extends CollectibleItem {
 		timePassed = elapsedTime;
 	}
 	
-	public AutoNotInUseItem(GameObject game, DefaultPhysicsAttribute physicsAttribute) {
+	public AutoNotInUseItem(GameObject game, PhysicsAttributes physicsAttribute) {
 	    super(game, physicsAttribute);
 	    setTimerStart(0);
 		setTimerEnd(0);

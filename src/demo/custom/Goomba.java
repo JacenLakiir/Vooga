@@ -6,7 +6,7 @@ import core.characters.GameElement;
 import core.characters.NPC;
 import core.characters.ai.DeadState;
 import core.characters.ai.State;
-import core.physicsengine.physicsplugin.DefaultPhysicsAttribute;
+import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 /**
  * @author Eric Mercer (JacenLakiir)
@@ -16,13 +16,13 @@ public class Goomba extends NPC {
 
     private static final String IMAGE_FILE = "resources/Goomba.png";
 
-    public Goomba(GameObject game, DefaultPhysicsAttribute physicsAttribute) {
+    public Goomba(GameObject game, PhysicsAttributes physicsAttribute) {
 	super(game, physicsAttribute);
 	setImages(game.getImages(IMAGE_FILE, 1, 1));
 	setMovable(true);
     }
 
-    public Goomba(GameObject game, DefaultPhysicsAttribute physicsAttribute, List<State> possibleStates) {
+    public Goomba(GameObject game, PhysicsAttributes physicsAttribute, List<State> possibleStates) {
 	super(game, physicsAttribute, possibleStates);
     }
 

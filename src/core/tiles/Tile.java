@@ -7,19 +7,17 @@
 
 package core.tiles;
 
-import java.awt.image.BufferedImage;
-
 import com.golden.gamedev.GameObject;
 
 import core.characters.GameElement;
-import core.physicsengine.physicsplugin.DefaultPhysicsAttribute;
+import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 public class Tile extends GameElement {
 
     /*
      * Constructor for a Concrete Platform
      */
-    public Tile(GameObject owner, DefaultPhysicsAttribute physicsAttribute) {
+    public Tile(GameObject owner, PhysicsAttributes physicsAttribute) {
     super(owner, physicsAttribute);
     this.setMovable(false);
     this.setPenetrable(false);
