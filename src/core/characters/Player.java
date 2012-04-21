@@ -17,10 +17,16 @@ public class Player extends Character {
     protected double strengthUp, strengthDown, strengthLeft, strengthRight;
     protected List<CollectibleItem> myInventory, myActiveInventory;
 
+    public Player() {
+    super();
+    myInventory = new ArrayList<CollectibleItem>();
+    myActiveInventory = new ArrayList<CollectibleItem>();
+    }
+    
     public Player(GameObject game, DefaultPhysicsAttribute physicsAttribute) {
-	super(game, physicsAttribute);
-	myInventory = new ArrayList<CollectibleItem>();
-	myActiveInventory = new ArrayList<CollectibleItem>();
+    super(game, physicsAttribute);
+    myInventory = new ArrayList<CollectibleItem>();
+    myActiveInventory = new ArrayList<CollectibleItem>();
     }
 
     @Override

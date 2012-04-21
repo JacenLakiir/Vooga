@@ -4,14 +4,11 @@
 package levelio;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import leveleditor.VoogaUtilities;
 
 public class LevelState implements Serializable {
     
@@ -36,26 +33,16 @@ public class LevelState implements Serializable {
     public List<SpriteWrapper> getSprites() {
 	return mySprites;
     }
-
+    
     public static LevelState loadLevel(File file) {
-	LevelState level = null;
-	try {
-	    ObjectInputStream in = new ObjectInputStream(new FileInputStream(
-		    file));
-	    level = (LevelState) in.readObject();
-	    level.reconstruct();
-	    in.close();
-	} catch (IOException e) {
-	    e.printStackTrace();
-	} catch (ClassNotFoundException e) {
-	    e.printStackTrace();
-	}
-	return level;
+	LevelState state = (LevelState) VoogaUtilities.deserialize(file);
+	state.linkExternalResource();
+	return state;
     }
 
-    private void reconstruct() {
+    private void linkExternalResource() {
 	for (SpriteWrapper sp : mySprites)
-	    sp.reconstruct();
+	    sp.linkExternalResource();
     }
     
 }

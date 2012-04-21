@@ -18,7 +18,7 @@ import leveleditor.LevelEditor;
 import levelio.SpriteWrapper;
 
 @SuppressWarnings("serial")
-public class SpriteSelectionHandler extends TransferHandler implements
+public class SpriteCreateTransferHandler extends TransferHandler implements
 	Transferable {
 
     private LevelEditor myView;
@@ -27,7 +27,7 @@ public class SpriteSelectionHandler extends TransferHandler implements
     private SpriteWrapper spritewrapper;
     private DataFlavor spriteWrapperFlavor;
 
-    public SpriteSelectionHandler(LevelEditor view) {
+    public SpriteCreateTransferHandler(LevelEditor view) {
 	myView = view;
 	String spriteWrapperType = DataFlavor.javaJVMLocalObjectMimeType
 		+ ";class=" + SpriteWrapper.class.getName();
@@ -61,7 +61,7 @@ public class SpriteSelectionHandler extends TransferHandler implements
 	if (comp instanceof JLabel) {
 	    JLabel label = (JLabel) comp;
 	    spritewrapper = myView.getSpritePanel().getUniqueLabelWrapperMap()
-		    .get(label);
+		    .get(label).clone();
 	    // source = label;
 	    return this;
 	}
@@ -82,7 +82,7 @@ public class SpriteSelectionHandler extends TransferHandler implements
 			    .getTransferData(flavors[0]);
 		    ImageIcon icon = new ImageIcon(spritewrapper.getImageSrc());
 		    label.setIcon(icon);
-		    label.setTransferHandler(new SpriteSelectionHandler(myView));
+		    label.setTransferHandler(new SpriteCreateTransferHandler(myView));
 		    label.addMouseListener(new MoveSpriteListener(myView));
 		    label.addMouseMotionListener(new MoveSpriteListener(myView));
 		    JPanel canvaspane = myView.getCanvas().getCanvasPane();

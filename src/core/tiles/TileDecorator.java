@@ -7,10 +7,6 @@ package core.tiles;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-
-
-
-
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.Timer;
@@ -22,28 +18,26 @@ public class TileDecorator extends Tile {
 
     private final Tile decoratedPlatform;
 
-
     public TileDecorator(Tile decoratedPlatform) {
-        this.decoratedPlatform = decoratedPlatform;
-        this.myGame = decoratedPlatform.getGame();
+	this.decoratedPlatform = decoratedPlatform;
+	this.myGame = decoratedPlatform.getGame();
     }
 
-    public void afterHitFromBottomBy(GameElement e) {	
-//        decoratedPlatform.afterHitFromBottomBy(e);
+    public void afterHitFromBottomBy(GameElement e) {
+	// decoratedPlatform.afterHitFromBottomBy(e);
     }
 
-    public void afterHitFromTopBy(GameElement e) {  
-//        decoratedPlatform.afterHitFromTopBy(e);
+    public void afterHitFromTopBy(GameElement e) {
+	// decoratedPlatform.afterHitFromTopBy(e);
     }
 
-    public void afterHitFromRightBy(GameElement e) {  
-//        decoratedPlatform.afterHitFromRightBy(e);
+    public void afterHitFromRightBy(GameElement e) {
+	// decoratedPlatform.afterHitFromRightBy(e);
     }
 
-    public void afterHitFromLeftBy(GameElement e) {  
-//        decoratedPlatform.afterHitFromLeftBy(e);
+    public void afterHitFromLeftBy(GameElement e) {
+	// decoratedPlatform.afterHitFromLeftBy(e);
     }
-
 
     /*
      * The following methods allow the PlatformDecorator to act as a ConcretePlatform
@@ -408,5 +402,4 @@ public class TileDecorator extends Tile {
     	protected Tile getDecoratedPlatform(){
     		return decoratedPlatform;
     	}
-
 }
