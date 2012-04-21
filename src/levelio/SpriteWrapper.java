@@ -33,7 +33,7 @@ public class SpriteWrapper implements Cloneable, Serializable {
 	myImagesrc = imgsrc;
 	myGameElement = new GameElement();
 	buildAttributeMap(clazz, null);
-	reconstruct();
+	linkExternalResource();
     }
     
     public SpriteWrapper(String name, SpriteGroupIdentifier group, String imgsrc, GameElement sprite) {
@@ -43,7 +43,7 @@ public class SpriteWrapper implements Cloneable, Serializable {
 	myImagesrc = imgsrc;
 	myGameElement = sprite;
 	buildAttributeMap(sprite.getClass(), sprite);
-	reconstruct();
+	linkExternalResource();
     }
     
     private void buildAttributeMap(Class<?> clazz, GameElement sprite) {
@@ -58,13 +58,17 @@ public class SpriteWrapper implements Cloneable, Serializable {
 		    Class<?> ftype = f.getType();
 		    String fclassification = 
 			    ((Modifiable) f.getAnnotation(Modifiable.class)).classification();
-		    try {
-			myAttributeMap.put(new SpriteAttribute(fname, ftype, fclassification), (Serializable) f.get(sprite));
-		    } catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		    } catch (IllegalAccessException e) {
-			e.printStackTrace();
-		    }
+			try {
+			    if (sprite != null) 
+				myAttributeMap.put(new SpriteAttribute(fname, ftype, 
+					fclassification), (Serializable) f.get(sprite));
+			    else myAttributeMap.put(new SpriteAttribute(fname, ftype, 
+					fclassification), null);
+			} catch (IllegalArgumentException e) {
+			    e.printStackTrace();
+			} catch (IllegalAccessException e) {
+			    e.printStackTrace();
+			}
 		    fieldset.add(f);
 		}
 	    }
@@ -103,7 +107,7 @@ public class SpriteWrapper implements Cloneable, Serializable {
 	return Collections.unmodifiableMap(myAttributeMap);
     }
     
-    public void reconstruct() {
+    public void linkExternalResource() {
 	BufferedImage[] dummyimages = new BufferedImage[1];
 	dummyimages[0] = VoogaUtilities.getImageFromString(myImagesrc);
 	myGameElement.setImages(dummyimages);

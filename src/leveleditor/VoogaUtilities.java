@@ -14,12 +14,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
-
 import javax.swing.ImageIcon;
 import com.golden.gamedev.util.ImageUtil;
 import com.google.gson.Gson;
@@ -123,6 +123,20 @@ public class VoogaUtilities {
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
+    }
+    
+    public static Object deserialize(File file) {
+	Object o = null;
+	try {
+	    ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+	    o = in.readObject();
+	    in.close();
+	} catch (IOException e) {
+	    e.printStackTrace();
+	} catch (ClassNotFoundException e) {
+	    e.printStackTrace();
+	}
+	return o;
     }
 
 }

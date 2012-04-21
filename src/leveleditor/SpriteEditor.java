@@ -27,6 +27,7 @@ public class SpriteEditor extends JFrame {
     
     private static SpriteEditor myInstance;
     private LevelEditor myView;
+    private SpriteWrapper mySprite;
     private Map<JTextField, SpriteAttribute> myTextFieldAttributeMap;
     
     public static SpriteEditor getInstance(LevelEditor view, SpriteWrapper wrapper) {
@@ -39,6 +40,7 @@ public class SpriteEditor extends JFrame {
     
     private SpriteEditor(LevelEditor view, SpriteWrapper wrapper) {
 	myView = view;
+	mySprite = wrapper;
 	myTextFieldAttributeMap = new HashMap<JTextField, SpriteAttribute>();
 	setSize(300, 200);
 	setLocationRelativeTo(view);
@@ -69,7 +71,7 @@ public class SpriteEditor extends JFrame {
    	    }
    	});
    	confirmcancelpanel.add(confirm);
-   	//confirm.addActionListener(new CreateSpriteListener(imagesrc));
+   	confirm.addActionListener(new EditSpriteListener());
    	confirmcancelpanel.add(cancel);
    	rightpanel.add(confirmcancelpanel);
    	setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -93,20 +95,15 @@ public class SpriteEditor extends JFrame {
 	}
     }
     
-//    private class EditSpriteListener implements ActionListener {
-//	private String myImagesrc;
-//	
-//	public CreateSpriteListener(String imagesrc) {
-//	    myImagesrc = imagesrc;
-//	}
-//
-//	public void actionPerformed(ActionEvent e) {
-//	    BufferedImage image = VoogaUtilities.getImageFromString(myImagesrc);
-//	    myView.getSpritePanel().importSprite(new SpriteWrapper(new Sprite(image), 
-//		    namefield.getText(), myImagesrc));
-//	    myInstance.dispose();
-//	}
-//	
-//    }
+    private class EditSpriteListener implements ActionListener {
+	
+	public void actionPerformed(ActionEvent e) {
+	    BufferedImage image = VoogaUtilities.getImageFromString(myImagesrc);
+	    myView.getSpritePanel().importSprite(new SpriteWrapper(new Sprite(image), 
+		    namefield.getText(), myImagesrc));
+	    myInstance.dispose();
+	}
+	
+    }
     
 }

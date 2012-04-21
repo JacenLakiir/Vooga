@@ -13,24 +13,22 @@ import com.golden.gamedev.GameObject;
 
 import core.characters.GameElement;
 
-public class Tile extends GameElement{
+public class Tile extends GameElement {
 
     /*
      * Constructor for a Concrete Platform
      */
-    public Tile (GameObject owner) {
-        super(owner);
-        this.setMovable(false);
-        this.setPenetrable(false);
+    public Tile(GameObject owner) {
+	super(owner);
+	this.setMovable(false);
+	this.setPenetrable(false);
     }
 
     /*
-     * Constructor for a Platform Decorator 
+     * Constructor for a Platform Decorator
      */
-    public Tile () {
-        super();
+    public Tile() {
+	super();
     }
-    
-    
-}
 
+}

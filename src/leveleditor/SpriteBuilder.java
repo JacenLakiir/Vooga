@@ -27,6 +27,9 @@ import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
+import javax.swing.tree.DefaultMutableTreeNode;
+
+import levelio.SpriteWrapper;
 import levelio.SpriteWrapper.SpriteGroupIdentifier;
 
 @SuppressWarnings("serial")
@@ -35,6 +38,7 @@ public class SpriteBuilder extends JFrame {
     private LevelEditor myView;
     private static SpriteBuilder myInstance;
     private JTextField namefield;
+    private String myImageSrc;
     private JLabel imagelabel;
     private ButtonGroup myTypeGroup;
     private JRadioButton myPlayerButton;
@@ -90,7 +94,8 @@ public class SpriteBuilder extends JFrame {
    	myTypeGroup.add(myPlayerButton);
    	myTypeGroup.add(myCharacterButton);
    	myTypeGroup.add(mySettingButton);
-   	myTypeGroup.setSelected(myCharacterButton.getModel(), true);
+   	myTypeGroup.add(myItemButton);
+   	myTypeGroup.setSelected(myPlayerButton.getModel(), true);
    	JPanel radiopanel = new JPanel();
 	radiopanel.setBorder(BorderFactory.createTitledBorder
    		(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Sprite Group"));
@@ -134,7 +139,8 @@ public class SpriteBuilder extends JFrame {
 	    File f = myView.loadFile("Load Image...");
 	    if (f == null) return;
 	    try {
-		imagelabel.setIcon(new ImageIcon(f.getCanonicalPath()));
+		myImageSrc = f.getCanonicalPath();
+		imagelabel.setIcon(new ImageIcon(myImageSrc));
 		imagelabel.setLayout(null);
 	    } catch (IOException ex) {
 		ex.printStackTrace();
@@ -147,7 +153,17 @@ public class SpriteBuilder extends JFrame {
 
 	public void actionPerformed(ActionEvent e) {
 	    SpriteGroupIdentifier gid = checkSelectedButton();
-	    
+	    String name = namefield.getText();
+	    JTree tree = myView.getClassTree();
+	    DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+	    if (node == null) {
+		myView.showError("Please specify a special attribute or load a file first!");
+		return;
+	    }
+	    Class<?> clazz = (Class<?>) node.getUserObject();
+	    SpriteWrapper created = new SpriteWrapper(name, gid, clazz, myImageSrc);
+	    myView.getSpritePanel().importSprite(created);
+	    myInstance.dispose();
 	}
 	
     }
