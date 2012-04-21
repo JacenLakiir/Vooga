@@ -5,16 +5,24 @@
 package core.playfield;
 
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.golden.gamedev.object.Background;
+import com.golden.gamedev.object.CollisionManager;
 import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ParallaxBackground;
 
 import core.characters.*;
 import core.characters.Character;
+import core.collision.GameElementCollision;
 import core.collision.SideScrollerBoundsCollision;
 import core.items.CollectibleItem;
+import core.physicsengine.physicsplugin.BuoyancyPlugin;
+import core.physicsengine.physicsplugin.PhysicsPlugin;
+import core.physicsengine.physicsplugin.RestitutionAndFrictionPlugin;
+import core.physicsengine.physicsplugin.ViscosityPlugin;
 import core.playfield.hud.HUD;
 import core.playfield.hud.HUDWidget;
 import core.playfield.hud.VerticalFlowLayout;
@@ -30,7 +38,8 @@ public class AdvancedPlayField extends PlayField {
     private SpriteGroup Characters;
     private SpriteGroup Setting;
     private SpriteGroup Items;
-
+    private List<PhysicsPlugin> physicsPlugins;
+    
     /*
      * Initialize PlayField, Background, and common SpriteGroups
      */
@@ -41,13 +50,51 @@ public class AdvancedPlayField extends PlayField {
 	Characters = this.addGroup(new SpriteGroup("Character Group"));
 	Setting = this.addGroup(new SpriteGroup("Setting Group"));
 	Items = this.addGroup(new SpriteGroup("Setting Group"));
-
+	physicsPlugins = new ArrayList<PhysicsPlugin>();
+	initializeDefaultPhysicsPlugins();
+	
 	// Add Bounds Collsion
 	this.addCollisionGroup(this.getPlayers(), null,
 		new SideScrollerBoundsCollision(this.getBackground()));
 
 	hud = new HUD(new VerticalFlowLayout(100, 100));
     }
+    
+    /*
+     * Initialize Default PhysicsPlugins
+     */
+    private void initializeDefaultPhysicsPlugins() {
+        physicsPlugins.add(new BuoyancyPlugin());
+        physicsPlugins.add(new ViscosityPlugin());
+        physicsPlugins.add(new RestitutionAndFrictionPlugin());
+    }
+    
+    /*
+     * Add Customized PhysicsPlugins
+     */
+    public void addPhysicsPlugin(PhysicsPlugin p) {
+        physicsPlugins.add(p);
+    }
+    
+    /*
+     * Remove PhysicsPlugins
+     */
+    public void removePhysicsPlugin(PhysicsPlugin p) {
+        physicsPlugins.remove(p);
+    }
+    
+    /*
+     * Override default method to add physics plug-ins.
+     */
+    @Override
+    public void addCollisionGroup(SpriteGroup group1, SpriteGroup group2, CollisionManager collisionGroup) {
+        if (collisionGroup instanceof GameElementCollision) {
+            ((GameElementCollision)collisionGroup).setPhysicsPlugIns(physicsPlugins);
+        }
+        super.addCollisionGroup(group1, group2, collisionGroup);
+    }
+
+
 
     /*
      * GameScroller Methods
