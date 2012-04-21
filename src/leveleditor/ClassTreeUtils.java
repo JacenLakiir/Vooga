@@ -13,7 +13,7 @@ import javax.swing.tree.*;
 
 import core.characters.GameElement;
 
-public class ClassTreeBuilder {
+public class ClassTreeUtils {
 
     public static JTree getClassTree(String packageName) {
 	Map<Class<?>, DefaultMutableTreeNode> nodemap = new HashMap<Class<?>, DefaultMutableTreeNode>();
@@ -22,7 +22,7 @@ public class ClassTreeBuilder {
 		GameElement.class);
 	nodemap.put(GameElement.class, root);
 	JTree classtree = new ClassTree(root);
-	Class<?>[] classes = getClassesInPackage(packageName, null);
+	Class<?>[] classes = getClassesInPackages(packageName, null);
 	boolean flag = false;
 	while (!flag) {
 	    flag = true;
@@ -53,7 +53,7 @@ public class ClassTreeBuilder {
      *            an optional class name pattern.
      * @return The classes
      */
-    public static Class<?>[] getClassesInPackage(String packageNames,
+    public static Class<?>[] getClassesInPackages(String packageNames,
 	    String regexFilter) {
 	Pattern regex = null;
 	if (regexFilter != null)

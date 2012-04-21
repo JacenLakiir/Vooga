@@ -1,4 +1,4 @@
-package levelio;
+package levelio.annotations;
 
 import java.lang.annotation.*;
 

@@ -34,6 +34,10 @@ public class LevelState implements Serializable {
 	return mySprites;
     }
     
+    public void saveLevel(String path) {
+	VoogaUtilities.serialize(path, this);
+    }
+    
     public static LevelState loadLevel(File file) {
 	LevelState state = (LevelState) VoogaUtilities.deserialize(file);
 	state.linkExternalResource();

@@ -1,10 +1,15 @@
 package core.physicsengine.physicsplugin;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
+import java.io.*;
+import levelio.annotations.*;
 
-public class DefaultPhysicsAttribute {
+@DefaultPhysicsAttribute
+public class PhysicsAttributes implements java.io.Serializable {
 
-/*    
+/*  @Deprecated   
     public static enum Attribute {
         mass,
         density,
@@ -19,9 +24,12 @@ public class DefaultPhysicsAttribute {
     }
 */
     
-    protected static HashMap<String, Object> defaultPhysicsPara;
+    private static final long serialVersionUID = 4195772754476104956L;
+    
+    @DefaultValueMap(classification = "Physics")
+    protected static Map<String, Serializable> defaultPhysicsPara;
     static {
-        defaultPhysicsPara = new HashMap<String, Object>();
+        defaultPhysicsPara = new HashMap<String, Serializable>();
         defaultPhysicsPara.put("mass", 10.0);
         defaultPhysicsPara.put("density", 1.0);
         defaultPhysicsPara.put("coefOfFrictionInX", 0.5);
@@ -34,14 +42,22 @@ public class DefaultPhysicsAttribute {
         defaultPhysicsPara.put("isPenetrable", false);
     }
     
-    protected HashMap<String, Object> physicsPara;
+    @ModifiableMap(classification = "Physics")
+    protected HashMap<String, Serializable> physicsPara;
 
-    public DefaultPhysicsAttribute() {
-        physicsPara = new HashMap<String, Object>(defaultPhysicsPara);
+    public PhysicsAttributes() {
+        physicsPara = new HashMap<String, Serializable>(defaultPhysicsPara);
     }
     
+    public PhysicsAttributes(Map<String, Serializable> physicspara) {
+        physicsPara = new HashMap<String, Serializable>(physicspara);
+    }
     
-    protected void setPhysicsParameter(String s, Object t) {
+    public Map<String, Serializable> getPhysicsAttrMap() {
+	return Collections.unmodifiableMap(physicsPara);
+    }
+    
+    protected void setPhysicsParameter(String s, Serializable t) {
         physicsPara.put(s, t);
     }
     
@@ -118,6 +134,5 @@ public class DefaultPhysicsAttribute {
     public void setPenetrable(boolean penetrable) {
         this.setPhysicsParameter("isPenetrable", penetrable);
     }
-
 
 }

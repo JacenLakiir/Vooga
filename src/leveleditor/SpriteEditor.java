@@ -71,7 +71,7 @@ public class SpriteEditor extends JFrame {
    	    }
    	});
    	confirmcancelpanel.add(confirm);
-   	confirm.addActionListener(new EditSpriteListener());
+   	//confirm.addActionListener(new EditSpriteListener());
    	confirmcancelpanel.add(cancel);
    	rightpanel.add(confirmcancelpanel);
    	setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -80,14 +80,21 @@ public class SpriteEditor extends JFrame {
 	
     public void generateFields(SpriteWrapper wrapper, JPanel editpanel) {
 	Map<SpriteAttribute, Serializable> attributemap = wrapper.getAttributeMap();
-	editpanel.setLayout(new GridLayout(attributemap.keySet().size(), 2));
-	TreeSet<SpriteAttribute> attributeset = new TreeSet<SpriteAttribute>(attributemap.keySet());
+	Map<SpriteAttribute, Serializable> physicsattrmap = wrapper.getPhysicsAttributeMap();
+	editpanel.setLayout(new GridLayout(attributemap.keySet().size() 
+		+ physicsattrmap.keySet().size(), 2));
+	TreeSet<SpriteAttribute> attributeset = new TreeSet<SpriteAttribute>();
+	attributeset.addAll(attributemap.keySet());
+	attributeset.addAll(physicsattrmap.keySet());
 	for (SpriteAttribute sa: attributeset) {
-	    if (!sa.getAttributeType().equals(Boolean.TYPE)) {
+	    if (!sa.getAttributeType().equals(Boolean.class) && 
+		    !sa.getAttributeType().equals(Boolean.TYPE)) {
 		JLabel attributelabel = new JLabel(sa.getName() + ": ");
 		JTextField attributefield = new JTextField();
 		if (attributemap.get(sa) != null)
 		    attributefield.setText(attributemap.get(sa).toString());
+		if (physicsattrmap.get(sa) != null)
+		    attributefield.setText(physicsattrmap.get(sa).toString());
 		editpanel.add(attributelabel);
 		editpanel.add(attributefield);
 		myTextFieldAttributeMap.put(attributefield, sa);
@@ -95,15 +102,15 @@ public class SpriteEditor extends JFrame {
 	}
     }
     
-    private class EditSpriteListener implements ActionListener {
-	
-	public void actionPerformed(ActionEvent e) {
-	    BufferedImage image = VoogaUtilities.getImageFromString(myImagesrc);
-	    myView.getSpritePanel().importSprite(new SpriteWrapper(new Sprite(image), 
-		    namefield.getText(), myImagesrc));
-	    myInstance.dispose();
-	}
-	
-    }
+//    private class EditSpriteListener implements ActionListener {
+//	
+//	public void actionPerformed(ActionEvent e) {
+//	    BufferedImage image = VoogaUtilities.getImageFromString(myImagesrc);
+//	    myView.getSpritePanel().importSprite(new SpriteWrapper(new Sprite(image), 
+//		    namefield.getText(), myImagesrc));
+//	    myInstance.dispose();
+//	}
+//	
+//    }
     
 }

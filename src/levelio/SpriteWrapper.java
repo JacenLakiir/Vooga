@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.*;
 import leveleditor.VoogaUtilities;
-
+import levelio.annotations.Modifiable;
 import core.characters.GameElement;
 
 public class SpriteWrapper implements Cloneable, Serializable {
@@ -23,31 +23,37 @@ public class SpriteWrapper implements Cloneable, Serializable {
     private SpriteGroupIdentifier myGroup;
     private Class<?> myClass;
     private String myImagesrc;
-    private Map<SpriteAttribute, Serializable> myAttributeMap;
+    private Map<SpriteAttribute, Serializable> myModifiableAttributeMap;
+    private Map<SpriteAttribute, Serializable> myPhysicsAttributeMap;
     private GameElement myGameElement;
     
-    public SpriteWrapper(String name, SpriteGroupIdentifier group, Class<?> clazz, String imgsrc) {
+    public SpriteWrapper(String name, SpriteGroupIdentifier group, Class<?> clazz, 
+	    Map<SpriteAttribute, Serializable> attributes, String imgsrc) {
+	System.out.println(attributes);
 	myName = name;
 	myGroup = group;
 	myClass = clazz;
 	myImagesrc = imgsrc;
 	myGameElement = new GameElement();
+	myPhysicsAttributeMap = new HashMap<SpriteAttribute, Serializable>(attributes);
 	buildAttributeMap(clazz, null);
 	linkExternalResource();
     }
     
-    public SpriteWrapper(String name, SpriteGroupIdentifier group, String imgsrc, GameElement sprite) {
+    public SpriteWrapper(String name, SpriteGroupIdentifier group, Map<SpriteAttribute, Serializable> attributes, 
+	    String imgsrc, GameElement sprite) {
 	myName = name;
 	myGroup = group;
 	myClass = sprite.getClass();
 	myImagesrc = imgsrc;
 	myGameElement = sprite;
+	myPhysicsAttributeMap = new HashMap<SpriteAttribute, Serializable>(attributes);
 	buildAttributeMap(sprite.getClass(), sprite);
 	linkExternalResource();
     }
     
     private void buildAttributeMap(Class<?> clazz, GameElement sprite) {
-	myAttributeMap = new HashMap<SpriteAttribute, Serializable>();
+	myModifiableAttributeMap = new HashMap<SpriteAttribute, Serializable>();
 	Set<Field> fieldset = new HashSet<Field>();
 	Class<?> curr = clazz;
 	while (true) {
@@ -60,9 +66,9 @@ public class SpriteWrapper implements Cloneable, Serializable {
 			    ((Modifiable) f.getAnnotation(Modifiable.class)).classification();
 			try {
 			    if (sprite != null) 
-				myAttributeMap.put(new SpriteAttribute(fname, ftype, 
+				myModifiableAttributeMap.put(new SpriteAttribute(fname, ftype, 
 					fclassification), (Serializable) f.get(sprite));
-			    else myAttributeMap.put(new SpriteAttribute(fname, ftype, 
+			    else myModifiableAttributeMap.put(new SpriteAttribute(fname, ftype, 
 					fclassification), null);
 			} catch (IllegalArgumentException e) {
 			    e.printStackTrace();
@@ -78,13 +84,22 @@ public class SpriteWrapper implements Cloneable, Serializable {
     }
     
     public SpriteWrapper clone() {
-	SpriteWrapper cloned = new SpriteWrapper(myName, myGroup, myClass, myImagesrc);
-	cloned.myAttributeMap = new HashMap<SpriteAttribute, Serializable>(myAttributeMap);
+	SpriteWrapper cloned = new SpriteWrapper(myName, myGroup, myPhysicsAttributeMap, myImagesrc, myGameElement);
+	cloned.myModifiableAttributeMap = 
+		new HashMap<SpriteAttribute, Serializable>(myModifiableAttributeMap);
 	return cloned;
     }
     
     public void updateAttributeMap(SpriteAttribute sa, Serializable o) {
-	myAttributeMap.put(sa, o);
+	myModifiableAttributeMap.put(sa, o);
+    }
+    
+    public void updatePhysicsAttributeMap(SpriteAttribute sa, Serializable o) {
+	myPhysicsAttributeMap.put(sa, o);
+    }
+    
+    public Class<?> getSpriteClass() {
+	return myClass;
     }
     
     public String getName() {
@@ -104,7 +119,11 @@ public class SpriteWrapper implements Cloneable, Serializable {
     }
     
     public Map<SpriteAttribute, Serializable> getAttributeMap() {
-	return Collections.unmodifiableMap(myAttributeMap);
+	return Collections.unmodifiableMap(myModifiableAttributeMap);
+    }
+    
+    public Map<SpriteAttribute, Serializable> getPhysicsAttributeMap() {
+	return Collections.unmodifiableMap(myPhysicsAttributeMap);
     }
     
     public void linkExternalResource() {
@@ -131,8 +150,8 @@ public class SpriteWrapper implements Cloneable, Serializable {
 //	return myName.equals(another.myName);
 //    }
     
-    public void save(String path) {
-	
+    public void saveSprite(String path) {
+	VoogaUtilities.serialize(path, this);
     }
     
 }

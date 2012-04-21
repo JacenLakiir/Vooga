@@ -48,6 +48,7 @@ public class SpritePanel extends JScrollPane {
     }
     
     protected void importSprite(SpriteWrapper wrapper) {
+	//System.out.println(wrapper.getPhysicsAttributeMap());
 	myUniqueWrapperSet.add(wrapper);
 	myInternalPanel.setLayout(new GridLayout(myUniqueWrapperSet.size(), 1));
 	CopySpriteListener listener = new CopySpriteListener(myView);

@@ -28,8 +28,7 @@ public class LevelEditorController {
 
     protected void export(File file) {
 	Canvas canvas = myView.getCanvas();
-	if (canvas.getBackgroundImageSrc() == null)
-	    return;
+	if (canvas.getBackgroundImageSrc() == null) return;
 	List<SpriteWrapper> sprites = new ArrayList<SpriteWrapper>();
 	for (JLabel l : canvas.getLabelWrapperMap().keySet()) {
 	    SpriteWrapper tosave = canvas.getLabelWrapperMap().get(l).clone();
@@ -38,8 +37,8 @@ public class LevelEditorController {
 	    sprites.add(tosave);
 	}
 	try {
-	    VoogaUtilities.serialize(file.getCanonicalPath(), 
-		    new LevelState(canvas.getBackgroundImageSrc(), sprites));
+	    LevelState lvl = new LevelState(canvas.getBackgroundImageSrc(), sprites);
+	    lvl.saveLevel(file.getCanonicalPath());
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}

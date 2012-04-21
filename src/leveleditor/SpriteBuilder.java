@@ -99,7 +99,7 @@ public class SpriteBuilder extends JFrame {
    	JPanel radiopanel = new JPanel();
 	radiopanel.setBorder(BorderFactory.createTitledBorder
    		(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Sprite Group"));
-   	radiopanel.setLayout(new GridLayout(1, 4));
+   	radiopanel.setLayout(new GridLayout(4, 1));
    	radiopanel.add(myPlayerButton);
    	radiopanel.add(myCharacterButton);
    	radiopanel.add(mySettingButton);
@@ -152,6 +152,10 @@ public class SpriteBuilder extends JFrame {
     private class SpriteCreateListener implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
+	    if (myImageSrc == null) {
+		myView.showError("Please specify an image file!");
+		return;
+	    }
 	    SpriteGroupIdentifier gid = checkSelectedButton();
 	    String name = namefield.getText();
 	    JTree tree = myView.getClassTree();
@@ -161,7 +165,8 @@ public class SpriteBuilder extends JFrame {
 		return;
 	    }
 	    Class<?> clazz = (Class<?>) node.getUserObject();
-	    SpriteWrapper created = new SpriteWrapper(name, gid, clazz, myImageSrc);
+	    SpriteWrapper created = new SpriteWrapper(name, gid, clazz, 
+		    myView.getDefaultPhysicsAttributesMap(), myImageSrc);
 	    myView.getSpritePanel().importSprite(created);
 	    myInstance.dispose();
 	}
