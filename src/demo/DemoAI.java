@@ -116,8 +116,7 @@ public class DemoAI extends GameObject2D
         myPlayfield.addItem(coin);
         
         ItemDecorator block1 = new ItemDecorator(new Tile(this));
-        block1.setMass(6);
-        block1.setMovable(false);
+        block1.setBottomAction(true);
         block1.setImages(this.getImages("resources/Block1.png", 1, 1));
         block1.setLocation(100, 200);
         block1.addItem(coin);

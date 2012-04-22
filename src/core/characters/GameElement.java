@@ -347,6 +347,7 @@ public class GameElement extends AdvanceSprite {
     // try all the methods with parameter e or superclasses of e.
     public void reflectionCalled(GameElement e, String key) {
 	Class<?> c = e.getClass();
+	System.out.println(c);
 	Class<?> ge = null;
 	try {
 	    ge = Class.forName("core.characters.GameElement");

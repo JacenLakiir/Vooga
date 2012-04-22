@@ -30,6 +30,20 @@ public class Tile extends GameElement{
     public Tile () {
         super();
     }
+
+	public void afterHitFromBottomBy(GameElement e) {
+		System.out.println("hit");
+		
+	}
+	public void afterHitFromTopBy(GameElement e) {
+		
+	}
+	public void afterHitFromLeftBy(GameElement e) {
+	
+}
+	public void afterHitFromRightBy(GameElement e) {
+	
+}
     
     
 }

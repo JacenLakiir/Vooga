@@ -66,9 +66,6 @@ public class DemoHUD extends GameObject2D {
         
         myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
                 myPlayfield.getCharacters(), new GameElementCollision());
-        
-        myPlayfield.addCollisionGroup(myPlayfield.getSetting(),
-                myPlayfield.getSetting(), new GameElementCollision());
 
         // Sprite Init / Or load funcitonality
         // SpriteGroups already exist in AdvancedPlayfield
@@ -149,7 +146,6 @@ public class DemoHUD extends GameObject2D {
         myPlayfield.addSetting(block2);
         
         ActionDecorator block3 = new PushableDecorator(new Tile(this));
-        block3.setRightAction(true);
         block3.setLeftAction(true);
         block3.setImages(getImages("resources/Block3.png", 1, 1));
         block3.setLocation(200, 400);

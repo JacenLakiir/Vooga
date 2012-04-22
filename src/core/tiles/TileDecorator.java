@@ -28,19 +28,19 @@ public class TileDecorator extends Tile {
     }
 
     public void afterHitFromBottomBy(GameElement e) {	
-//        decoratedPlatform.afterHitFromBottomBy(e);
+        decoratedPlatform.afterHitFromBottomBy(e);
     }
 
     public void afterHitFromTopBy(GameElement e) {  
-//        decoratedPlatform.afterHitFromTopBy(e);
+        decoratedPlatform.afterHitFromTopBy(e);
     }
 
     public void afterHitFromRightBy(GameElement e) {  
-//        decoratedPlatform.afterHitFromRightBy(e);
+        decoratedPlatform.afterHitFromRightBy(e);
     }
 
     public void afterHitFromLeftBy(GameElement e) {  
-//        decoratedPlatform.afterHitFromLeftBy(e);
+       decoratedPlatform.afterHitFromLeftBy(e);
     }
 
 
