@@ -3,6 +3,8 @@
  */
 package leveleditor;
 
+import io.*;
+import io.annotations.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -12,8 +14,6 @@ import java.util.List;
 import javax.swing.*;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
-import levelio.*;
-import levelio.annotations.*;
 
 @SuppressWarnings("serial")
 public class LevelEditor extends JFrame {

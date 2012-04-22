@@ -3,6 +3,7 @@
  */
 package leveleditor;
 
+import io.SpriteWrapper;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -17,7 +18,6 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
 import leveleditor.eventhandlers.CopySpriteListener;
-import levelio.SpriteWrapper;
 
 @SuppressWarnings("serial")
 public class SpritePanel extends JScrollPane {

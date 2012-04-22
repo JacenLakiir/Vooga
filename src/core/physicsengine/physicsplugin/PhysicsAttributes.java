@@ -1,10 +1,10 @@
 package core.physicsengine.physicsplugin;
 
+import io.annotations.*;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.*;
-import levelio.annotations.*;
 
 @DefaultPhysicsAttribute
 public class PhysicsAttributes implements java.io.Serializable {

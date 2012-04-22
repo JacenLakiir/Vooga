@@ -3,6 +3,7 @@
  */
 package leveleditor.eventhandlers;
 
+import io.SpriteWrapper;
 import java.awt.Component;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragSourceContext;
@@ -19,7 +20,6 @@ import javax.swing.event.MouseInputListener;
 
 import leveleditor.LevelEditor;
 import leveleditor.SpriteEditor;
-import levelio.SpriteWrapper;
 
 public class CopySpriteListener implements MouseInputListener {
 

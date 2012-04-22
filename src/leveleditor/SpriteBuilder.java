@@ -3,6 +3,8 @@
  */
 package leveleditor;
 
+import io.SpriteWrapper;
+import io.SpriteWrapper.SpriteGroupIdentifier;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -29,8 +31,6 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
 
-import levelio.SpriteWrapper;
-import levelio.SpriteWrapper.SpriteGroupIdentifier;
 
 @SuppressWarnings("serial")
 public class SpriteBuilder extends JFrame {

@@ -4,11 +4,12 @@
 
 package test;
 
-import java.util.LinkedList;
-import com.google.gson.Gson;
+import java.io.*;
+import java.util.*;
+import org.yaml.snakeyaml.Yaml;
 
 
-public class LoadSaveTest
+public class LoadSaveTest implements Serializable
 {
     public static void main (String[] args)
     {
@@ -17,6 +18,30 @@ public class LoadSaveTest
 
 
     void run ()
+    {
+        Graph g = buildGraph();
+        System.out.println(g);
+        String s = serialise(g);
+        System.out.println(s);
+        Graph h = (Graph) deserialise(s);
+        System.out.println(h);
+        System.out.println(g);
+    }
+
+
+    String serialise (Graph g)
+    {
+        return new Yaml().dump(g);
+    }
+
+
+    Object deserialise (String s)
+    {
+        return new Yaml().load(s);
+    }
+
+
+    Graph buildGraph ()
     {
         Node a = new Node("a"), b = new Node("b"), c = new Node("c");
         a.neighbors.add(b);
@@ -28,15 +53,7 @@ public class LoadSaveTest
         g.nodes.add(b);
         g.nodes.add(c);
 
-        Gson gson = new Gson();
-        String serialized = gson.toJson(g);
-        System.out.println(serialized);
-
-        Graph h = gson.fromJson(serialized, Graph.class);
-        System.out.println(h);
-        h.nodes.get(2).name = "d";
-        System.out.println(h);
-
+        return g;
     }
 
     class Node

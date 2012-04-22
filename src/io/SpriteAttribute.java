@@ -1,7 +1,7 @@
 /**
  * @author Michael Zhou (Dominator008)
  */
-package levelio;
+package io;
 
 import java.io.Serializable;
 import java.util.*;

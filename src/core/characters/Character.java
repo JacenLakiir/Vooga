@@ -4,9 +4,9 @@
 
 package core.characters;
 
+import io.annotations.Modifiable;
 import java.util.HashMap;
 import java.util.Map;
-import levelio.annotations.Modifiable;
 
 import com.golden.gamedev.GameObject;
 

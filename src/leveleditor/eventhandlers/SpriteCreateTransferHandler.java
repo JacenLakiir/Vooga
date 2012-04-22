@@ -3,6 +3,7 @@
  */
 package leveleditor.eventhandlers;
 
+import io.SpriteWrapper;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -15,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.TransferHandler;
 
 import leveleditor.LevelEditor;
-import levelio.SpriteWrapper;
 
 @SuppressWarnings("serial")
 public class SpriteCreateTransferHandler extends TransferHandler implements

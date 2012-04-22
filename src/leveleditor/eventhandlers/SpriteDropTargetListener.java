@@ -3,6 +3,7 @@
  */
 package leveleditor.eventhandlers;
 
+import io.SpriteWrapper;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
@@ -12,7 +13,6 @@ import java.awt.dnd.DropTargetDropEvent;
 import javax.swing.TransferHandler;
 
 import leveleditor.LevelEditor;
-import levelio.SpriteWrapper;
 
 public class SpriteDropTargetListener extends DropTargetAdapter {
 

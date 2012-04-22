@@ -1,12 +1,12 @@
 /**
  * @author Michael Zhou (Dominator008), Siyang Chen
  */
-package levelio;
+package io;
 
-import levelio.SpriteWrapper.SpriteGroupIdentifier;
 import core.characters.*;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import demo.*;
+import io.SpriteWrapper.SpriteGroupIdentifier;
 import java.util.*;
 import java.io.Serializable;
 

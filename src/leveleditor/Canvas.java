@@ -3,6 +3,7 @@
  */
 package leveleditor;
 
+import io.SpriteWrapper;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -24,7 +25,6 @@ import core.characters.GameElement;
 import leveleditor.eventhandlers.MoveSpriteListener;
 import leveleditor.eventhandlers.SpriteDropTargetListener;
 import leveleditor.eventhandlers.SpriteCreateTransferHandler;
-import levelio.SpriteWrapper;
 
 @SuppressWarnings("serial")
 public class Canvas extends JScrollPane {

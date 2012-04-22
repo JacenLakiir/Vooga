@@ -1,10 +1,10 @@
-package levelio.annotations;
+package io.annotations;
 
 import java.lang.annotation.*;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface DefaultValueMap {
+public @interface Modifiable {
     
     public String classification();
     
