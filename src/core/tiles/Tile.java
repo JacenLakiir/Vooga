@@ -7,32 +7,30 @@
 
 package core.tiles;
 
-import java.awt.image.BufferedImage;
-
 import com.golden.gamedev.GameObject;
 
 import core.characters.GameElement;
+import core.physicsengine.physicsplugin.PhysicsAttributes;
 
-public class Tile extends GameElement{
+public class Tile extends GameElement {
 
     /*
      * Constructor for a Concrete Platform
      */
-    public Tile (GameObject owner) {
-        super(owner);
-        this.setMovable(false);
-        this.setPenetrable(false);
+    public Tile(GameObject owner, PhysicsAttributes physicsAttribute) {
+    super(owner, physicsAttribute);
+    this.setMovable(false);
+    this.setPenetrable(false);
     }
 
     /*
-     * Constructor for a Platform Decorator 
+     * Constructor for a Platform Decorator
      */
-    public Tile () {
-        super();
+    public Tile() {
+	super();
     }
 
 	public void afterHitFromBottomBy(GameElement e) {
-		System.out.println("hit");
 		
 	}
 	public void afterHitFromTopBy(GameElement e) {
@@ -44,7 +42,4 @@ public class Tile extends GameElement{
 	public void afterHitFromRightBy(GameElement e) {
 	
 }
-    
-    
 }
-

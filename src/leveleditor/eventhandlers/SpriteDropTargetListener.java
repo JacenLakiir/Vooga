@@ -3,6 +3,7 @@
  */
 package leveleditor.eventhandlers;
 
+import io.SpriteWrapper;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
@@ -12,7 +13,6 @@ import java.awt.dnd.DropTargetDropEvent;
 import javax.swing.TransferHandler;
 
 import leveleditor.LevelEditor;
-import levelio.SpriteWrapper;
 
 public class SpriteDropTargetListener extends DropTargetAdapter {
 
@@ -33,15 +33,12 @@ public class SpriteDropTargetListener extends DropTargetAdapter {
     public void dragEnter(DropTargetDragEvent event) {}
 
     public void drop(DropTargetDropEvent event) {
-	// System.out.println("drop called");
 	event.acceptDrop(DnDConstants.ACTION_COPY_OR_MOVE);
 	Transferable transferable = event.getTransferable();
-	// DataFlavor[] flavors = transferable.getTransferDataFlavors();
 	if (transferable.isDataFlavorSupported(spriteWrapperFlavor)) {
-	    TransferHandler handler = new SpriteSelectionHandler(myView);
+	    TransferHandler handler = new SpriteCreateTransferHandler(myView);
 	    handler.importData(myView.getCanvas().getCanvasPane(), transferable);
 	}
-	// System.out.println(mySpriteLabelSrcMap.keySet().size());
 	event.dropComplete(true);
     }
     

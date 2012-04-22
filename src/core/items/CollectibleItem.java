@@ -7,6 +7,7 @@ import com.golden.gamedev.GameObject;
 
 import core.characters.GameElement;
 import core.characters.Player;
+import core.physicsengine.physicsplugin.PhysicsAttributes;
 import core.tiles.Tile;
 
 /**
@@ -20,8 +21,8 @@ public abstract class CollectibleItem extends GameElement {
 	protected transient HashMap<String, Double> myStateValues;
 
 	// Constructor for a collectible item
-	public CollectibleItem(GameObject game) {
-		super(game);
+	public CollectibleItem(GameObject game, PhysicsAttributes physicsAttribute) {
+		super(game, physicsAttribute);
 		myStateValues = new HashMap<String, Double>();
 	}
 

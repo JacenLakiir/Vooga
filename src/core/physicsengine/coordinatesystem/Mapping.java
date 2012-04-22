@@ -2,7 +2,7 @@
  * @author Kuang Han
  */
 
-package core.physicsengine;
+package core.physicsengine.coordinatesystem;
 
 import core.characters.GameElement;
 

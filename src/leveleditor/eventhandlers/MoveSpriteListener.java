@@ -3,6 +3,7 @@
  */
 package leveleditor.eventhandlers;
 
+import io.SpriteWrapper;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Point;
@@ -20,7 +21,6 @@ import javax.swing.event.MouseInputListener;
 
 import leveleditor.LevelEditor;
 import leveleditor.SpriteEditor;
-import levelio.SpriteWrapper;
 
 public class MoveSpriteListener implements MouseInputListener,
 	MouseMotionListener {

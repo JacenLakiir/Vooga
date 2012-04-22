@@ -3,13 +3,17 @@
  */
 package leveleditor;
 
+import io.*;
+import io.annotations.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.lang.reflect.Field;
+import java.util.*;
 import java.util.List;
 import javax.swing.*;
+import core.physicsengine.physicsplugin.PhysicsAttributes;
 
-import levelio.SpriteWrapper;
 
 @SuppressWarnings("serial")
 public class LevelEditor extends JFrame {
@@ -20,11 +24,14 @@ public class LevelEditor extends JFrame {
     private SpritePanel mySpritePanel;
     private JMenuBar myMenuBar = new JMenuBar();
     private JTree myClassTree;
+    private PhysicsAttributes myPhysicsAttributes;
+    private Map<SpriteAttribute, Serializable> myDefaultPhysicsAttributeMap;
     
     public LevelEditor(LevelEditorController controller) {
 	myView = this;
 	myController = controller;
-	myClassTree = ClassTreeBuilder.getClassTree("core");
+	myClassTree = ClassTreeUtils.getClassTree("core, demo");
+	retrievePhysicsAttributes();
 	setTitle("Vooga Level Editor (Demo Version)");
 	setLayout(new GridBagLayout());
 	setUpMenu();
@@ -124,6 +131,45 @@ public class LevelEditor extends JFrame {
     
     public JTree getClassTree() {
 	return myClassTree;
+    }
+    
+    public Map<SpriteAttribute, Serializable> getDefaultPhysicsAttributesMap() {
+	return myDefaultPhysicsAttributeMap;
+    }
+    
+    public PhysicsAttributes getDefaultPhysicsAttributes() {
+	return myPhysicsAttributes;
+    }
+    
+    private void retrievePhysicsAttributes() {
+	myDefaultPhysicsAttributeMap = new HashMap<SpriteAttribute, Serializable>();
+	Class<?>[] clazzes = ClassTreeUtils.getClassesInPackages("core", null);
+	for (Class<?> clazz: clazzes) {
+	    if (clazz.isAnnotationPresent(DefaultPhysicsAttribute.class) &&
+		    PhysicsAttributes.class.isAssignableFrom(clazz)) {
+		try {
+		    myPhysicsAttributes = (PhysicsAttributes) clazz.newInstance();
+		    for (Field f: myPhysicsAttributes.getClass().getDeclaredFields()) {
+			f.setAccessible(true);
+			if (f.isAnnotationPresent(ModifiableMap.class)) {
+			    @SuppressWarnings("unchecked")
+			    Map<String, Serializable> dummymap = 
+				    (Map<String, Serializable>) f.get(myPhysicsAttributes);
+			    myDefaultPhysicsAttributeMap = 
+				    SpriteAttribute.convertkeyToAttribute(dummymap,
+					    ((ModifiableMap)f.getAnnotation(ModifiableMap.class))
+						.classification());
+			    return;
+			}
+		    }
+		} catch (InstantiationException e) {
+		    e.printStackTrace();
+		} catch (IllegalAccessException e) {
+		    e.printStackTrace();
+		}
+		return;
+	    }
+	}
     }
     
     public void showError(String message) {

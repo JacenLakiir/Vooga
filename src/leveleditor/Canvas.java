@@ -3,6 +3,7 @@
  */
 package leveleditor;
 
+import io.SpriteWrapper;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -23,8 +24,7 @@ import core.characters.GameElement;
 
 import leveleditor.eventhandlers.MoveSpriteListener;
 import leveleditor.eventhandlers.SpriteDropTargetListener;
-import leveleditor.eventhandlers.SpriteSelectionHandler;
-import levelio.SpriteWrapper;
+import leveleditor.eventhandlers.SpriteCreateTransferHandler;
 
 @SuppressWarnings("serial")
 public class Canvas extends JScrollPane {
@@ -68,12 +68,14 @@ public class Canvas extends JScrollPane {
 	myBackGroundLabel.setBounds(0, 0, icon.getIconWidth(),
 		icon.getIconHeight());
 	myBackGroundImgSrc = imagesrc;
+	myCanvasPane.revalidate();
     }
     
     public void deleteSpriteLabel(JLabel l) {
 	l.setVisible(false);
 	myCanvasPane.remove(l);
 	myCanvasPane.revalidate();
+	myCanvasPane.repaint();
 	myLabelWrapperMap.remove(l);
     }
     
@@ -102,7 +104,7 @@ public class Canvas extends JScrollPane {
 	    JLabel label = new JLabel();
 	    ImageIcon icon = new ImageIcon(currentImage);
 	    label.setIcon(icon);
-	    label.setTransferHandler(new SpriteSelectionHandler(myView));
+	    label.setTransferHandler(new SpriteCreateTransferHandler(myView));
 	    label.addMouseListener(new MoveSpriteListener(myView));
 	    label.addMouseMotionListener(new MoveSpriteListener(myView));
 	    myCanvasPane.add(label, 0);

@@ -3,6 +3,7 @@
  */
 package leveleditor;
 
+import io.SpriteWrapper;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -17,13 +18,13 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
 import leveleditor.eventhandlers.CopySpriteListener;
-import levelio.SpriteWrapper;
 
 @SuppressWarnings("serial")
 public class SpritePanel extends JScrollPane {
     
     private Map<JLabel, SpriteWrapper> myUniqueLabelWrapperMap;
     private Set<SpriteWrapper> myUniqueWrapperSet;
+    private Set<String> myUniqueNameSet;
     private LevelEditor myView;
     private JPanel myInternalPanel;
 
@@ -43,9 +44,11 @@ public class SpritePanel extends JScrollPane {
 	getViewport().add(myInternalPanel);
 	myUniqueLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
 	myUniqueWrapperSet = new HashSet<SpriteWrapper>();
+	myUniqueNameSet = new HashSet<String>();
     }
     
     protected void importSprite(SpriteWrapper wrapper) {
+	//System.out.println(wrapper.getPhysicsAttributeMap());
 	myUniqueWrapperSet.add(wrapper);
 	myInternalPanel.setLayout(new GridLayout(myUniqueWrapperSet.size(), 1));
 	CopySpriteListener listener = new CopySpriteListener(myView);
@@ -57,18 +60,27 @@ public class SpritePanel extends JScrollPane {
 	label.addMouseListener(listener);
 	myUniqueLabelWrapperMap.put(label, wrapper);
 	myInternalPanel.revalidate();
+	myInternalPanel.repaint();
+    }
+    
+    public void deleteSpriteLabel(JLabel label) {
+	myUniqueNameSet.remove(myUniqueLabelWrapperMap.get(label).getName());
+	myUniqueWrapperSet.remove(myUniqueLabelWrapperMap.get(label));
+	myUniqueLabelWrapperMap.remove(label);
+	myInternalPanel.remove(label);
+	myInternalPanel.setLayout(new GridLayout(myUniqueWrapperSet.size(), 1));
+	myInternalPanel.revalidate();
+	myInternalPanel.repaint();
     }
 
     protected void loadSprites(List<SpriteWrapper> sprites) {
 	myInternalPanel.removeAll();
 	myInternalPanel.revalidate();
-	Set<String> uniquenames = new HashSet<String>();
 	for (SpriteWrapper sw: sprites)
-	    if (!uniquenames.contains(sw.getName())) {
+	    if (!myUniqueNameSet.contains(sw.getName())) {
 		myUniqueWrapperSet.add(sw);
-		uniquenames.add(sw.getName());
+		myUniqueNameSet.add(sw.getName());
 	    }
-	myUniqueLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
 	for (SpriteWrapper wrapper: myUniqueWrapperSet)
 	    importSprite(wrapper);
     }

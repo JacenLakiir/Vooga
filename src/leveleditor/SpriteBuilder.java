@@ -3,6 +3,8 @@
  */
 package leveleditor;
 
+import io.SpriteWrapper;
+import io.SpriteWrapper.SpriteGroupIdentifier;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -27,7 +29,8 @@ import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
-import levelio.SpriteWrapper.SpriteGroupIdentifier;
+import javax.swing.tree.DefaultMutableTreeNode;
+
 
 @SuppressWarnings("serial")
 public class SpriteBuilder extends JFrame {
@@ -35,6 +38,7 @@ public class SpriteBuilder extends JFrame {
     private LevelEditor myView;
     private static SpriteBuilder myInstance;
     private JTextField namefield;
+    private String myImageSrc;
     private JLabel imagelabel;
     private ButtonGroup myTypeGroup;
     private JRadioButton myPlayerButton;
@@ -90,11 +94,12 @@ public class SpriteBuilder extends JFrame {
    	myTypeGroup.add(myPlayerButton);
    	myTypeGroup.add(myCharacterButton);
    	myTypeGroup.add(mySettingButton);
-   	myTypeGroup.setSelected(myCharacterButton.getModel(), true);
+   	myTypeGroup.add(myItemButton);
+   	myTypeGroup.setSelected(myPlayerButton.getModel(), true);
    	JPanel radiopanel = new JPanel();
 	radiopanel.setBorder(BorderFactory.createTitledBorder
    		(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Sprite Group"));
-   	radiopanel.setLayout(new GridLayout(1, 4));
+   	radiopanel.setLayout(new GridLayout(4, 1));
    	radiopanel.add(myPlayerButton);
    	radiopanel.add(myCharacterButton);
    	radiopanel.add(mySettingButton);
@@ -132,8 +137,10 @@ public class SpriteBuilder extends JFrame {
 
 	public void actionPerformed(ActionEvent e) {
 	    File f = myView.loadFile("Load Image...");
+	    if (f == null) return;
 	    try {
-		imagelabel.setIcon(new ImageIcon(f.getCanonicalPath()));
+		myImageSrc = f.getCanonicalPath();
+		imagelabel.setIcon(new ImageIcon(myImageSrc));
 		imagelabel.setLayout(null);
 	    } catch (IOException ex) {
 		ex.printStackTrace();
@@ -145,8 +152,23 @@ public class SpriteBuilder extends JFrame {
     private class SpriteCreateListener implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
+	    if (myImageSrc == null) {
+		myView.showError("Please specify an image file!");
+		return;
+	    }
 	    SpriteGroupIdentifier gid = checkSelectedButton();
-	    
+	    String name = namefield.getText();
+	    JTree tree = myView.getClassTree();
+	    DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+	    if (node == null) {
+		myView.showError("Please specify a special attribute or load a file first!");
+		return;
+	    }
+	    Class<?> clazz = (Class<?>) node.getUserObject();
+	    SpriteWrapper created = new SpriteWrapper(name, gid, clazz, 
+		    myView.getDefaultPhysicsAttributesMap(), myImageSrc);
+	    myView.getSpritePanel().importSprite(created);
+	    myInstance.dispose();
 	}
 	
     }

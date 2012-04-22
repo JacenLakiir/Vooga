@@ -7,24 +7,20 @@ package core.tiles;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-
-
-
-
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.Timer;
 
 import core.characters.GameElement;
+import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 public class TileDecorator extends Tile {
 
     private final Tile decoratedPlatform;
 
-
     public TileDecorator(Tile decoratedPlatform) {
-        this.decoratedPlatform = decoratedPlatform;
-        this.myGame = decoratedPlatform.getGame();
+	this.decoratedPlatform = decoratedPlatform;
+	this.myGame = decoratedPlatform.getGame();
     }
 
     public void afterHitFromBottomBy(GameElement e) {	
@@ -43,11 +39,19 @@ public class TileDecorator extends Tile {
        decoratedPlatform.afterHitFromLeftBy(e);
     }
 
-
     /*
      * The following methods allow the PlatformDecorator to act as a ConcretePlatform
      * (Sprite) by allowing access to the inner sprite's methods.
      */    	
+    
+    public void setPhysicsAttribute(PhysicsAttributes a) {
+        decoratedPlatform.setPhysicsAttribute(a);
+    }
+    
+    public PhysicsAttributes getPhysicsAttribute() {
+        return decoratedPlatform.getPhysicsAttribute();
+    }
+
     	protected void addGravity() {
             if (decoratedPlatform.isUnmovable() == false) {
             	decoratedPlatform.addAcceleration(0, -this.getGravitationalAcceleration());
@@ -398,5 +402,4 @@ public class TileDecorator extends Tile {
     	protected Tile getDecoratedPlatform(){
     		return decoratedPlatform;
     	}
-
 }
