@@ -3,12 +3,16 @@ package core.gamestate;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+
 import core.keyconfiguration.KeyAnnotation;
+import core.keyconfiguration.KeyParser;
+
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
 import demo.DemoAI;
 import demo.DemoHUD;
 import demo.DemoPlayfield;
+import demo.custom.DemoKeyAdapter;
 
 /**
  * 
@@ -69,5 +73,10 @@ public class Menu extends MenuGameObject{
         }
         switchToGameObject(getNextGameObject());
         finish();
+    }
+
+    @Override
+    public void initialKeyList() {
+        setKeyList(new KeyParser(this, true, new DemoKeyAdapter("key_type")).constructKeyList());        
     }
 }

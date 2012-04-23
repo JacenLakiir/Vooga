@@ -15,7 +15,7 @@ import core.gamestate.GameObject2D;
 import core.gamestate.Pause;
 import core.items.AutoInUseAutoNotInUseItem;
 import core.keyconfiguration.KeyAnnotation;
-import core.keyconfiguration.KeyConfig;
+import core.keyconfiguration.KeyParser;
 import core.keyconfiguration.MouseInput;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import core.playfield.AdvancedPlayField;
@@ -24,6 +24,7 @@ import core.tiles.ActionDecorator;
 import core.tiles.BreakableDecorator;
 import core.tiles.ItemDecorator;
 import core.tiles.Tile;
+import demo.custom.DemoKeyAdapter;
 import demo.custom.Goomba;
 import demo.custom.Mario;
 
@@ -51,7 +52,7 @@ public class DemoAI extends GameObject2D
         myPlayfield.setBackground(new ColorBackground(Color.gray, 640, 480));
         
         Player mario = new Mario(this, new PhysicsAttributes());
-        setKeyList(new KeyConfig(this,false).getKeyList());
+        setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type")).constructKeyList());
         addMouse(new MouseInput(this, mario,"sequence"));
         //add the element or game you want the key to control
         addKeyListeners(mario);

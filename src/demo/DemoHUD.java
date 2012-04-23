@@ -21,7 +21,7 @@ import core.items.AutoNotInUseItem;
 import core.items.CollectibleItem;
 import core.items.SetInUseSetNotInUseItem;
 import core.keyconfiguration.KeyAnnotation;
-import core.keyconfiguration.KeyConfig;
+import core.keyconfiguration.KeyParser;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import core.playfield.AdvancedPlayField;
 import core.playfield.hud.BarWidget;
@@ -30,6 +30,7 @@ import core.playfield.hud.IconWidget;
 import core.playfield.hud.TextWidget;
 import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
 import core.tiles.*;
+import demo.custom.DemoKeyAdapter;
 import demo.custom.Goomba;
 import demo.custom.Koopa;
 import demo.custom.Mario;
@@ -73,7 +74,7 @@ public class DemoHUD extends GameObject2D {
         // use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
 
         Player temp = new Mario(this, new PhysicsAttributes());
-        setKeyList(new KeyConfig(this,false).getKeyList());
+        setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type")).constructKeyList());
         //add the element or the game you want the key to control
         addKeyListeners(temp);
         addKeyListeners(this);

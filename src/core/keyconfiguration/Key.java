@@ -12,8 +12,14 @@ import com.golden.gamedev.GameObject;
 public abstract class Key {
     protected String keyValue;
     private String action;
+    private String keyType;
     private List<KeyObserver> observers;
     private GameObject myGame;
+    private boolean isSystemOnly;
+    
+    public boolean isSystemOnly(){
+        return isSystemOnly;
+    }
     
     protected GameObject getMyGame() {
         return myGame;
@@ -21,11 +27,10 @@ public abstract class Key {
 
     public abstract boolean isKeyDown(long milliSec);
     
-    public Key(String value, String actionName, GameObject game) {
-        keyValue = value;
-        action = actionName;
-        myGame = game;    
+    public void initial(GameObject game, boolean isSystemOnly){
+        myGame = game;
         observers = new ArrayList<KeyObserver>();
+        this.isSystemOnly = isSystemOnly;
     }
     public String getAction(){
         return action;

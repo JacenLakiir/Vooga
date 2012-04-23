@@ -1,1 +1,10 @@
-{"inputKeyMap":{"left":"1"},"systemKeyMap":{}}
+[{"key_value":"37","action":"left", "key_type":"keydown"},
+ {"key_value":"39","action":"right","key_type":"keydown"},
+ {"key_value":"38","action":"up","key_type":"keydown"},
+ {"key_value":"40","action":"down","key_type":"keydown"},
+ {"key_value":"37,37,40","action":"right","key_type":"keysequence"},
+ {"key_value":"27","action":"ESC","key_type":"keypress"},
+ {"key_value":"38","action":"up","key_type":"keypress"},
+ {"key_value":"40","action":"down","key_type":"keypress"},
+ {"key_value":"10","action":"enter","key_type":"keypress"} 
+ ]

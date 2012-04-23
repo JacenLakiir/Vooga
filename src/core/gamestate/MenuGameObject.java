@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import core.keyconfiguration.KeyAnnotation;
-import core.keyconfiguration.KeyConfig;
+import core.keyconfiguration.KeyParser;
 /**
  * 
  * @author Hui Dong
@@ -38,15 +38,17 @@ public abstract  class MenuGameObject extends GameObject2D{
 
     public abstract void buildMenu();
     
+    public abstract void initialKeyList();
     
     protected Class<? extends GameObject2D> getNextGameObject(){
         getEngine().storeCurrentGameID(map.get(optionID));
         return map.get(optionID);
     }
     
+    
     @Override
     public void initResources() {
-        setKeyList(new KeyConfig(this, true).getKeyList());
+        initialKeyList();
         addKeyListeners(this);
         buildMenu();
     }
