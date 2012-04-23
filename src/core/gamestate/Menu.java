@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import core.keyconfiguration.KeyAnnotation;
-import core.keyconfiguration.KeyParser;
+import core.configuration.key.KeyAnnotation;
+import core.configuration.key.KeyParser;
 
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;

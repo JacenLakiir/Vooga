@@ -5,7 +5,7 @@ import com.golden.gamedev.object.Timer;
 
 import core.characters.GameElement;
 import core.characters.Player;
-import core.keyconfiguration.KeyAnnotation;
+import core.configuration.key.KeyAnnotation;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 /**

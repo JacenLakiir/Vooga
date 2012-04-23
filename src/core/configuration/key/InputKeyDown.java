@@ -1,4 +1,5 @@
-package core.keyconfiguration;
+package core.configuration.key;
+
 
 /**
  * 

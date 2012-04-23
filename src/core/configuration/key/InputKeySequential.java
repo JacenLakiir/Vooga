@@ -1,6 +1,7 @@
-package core.keyconfiguration;
+package core.configuration.key;
 
 import com.golden.gamedev.GameObject;
+
 /**
  * 
  * @author Hui Dong

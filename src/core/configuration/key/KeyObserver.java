@@ -1,7 +1,8 @@
-package core.keyconfiguration;
+package core.configuration.key;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
 
 
 /**

@@ -1,9 +1,9 @@
 package demo.custom;
 
-import core.keyconfiguration.InputKeyDown;
-import core.keyconfiguration.InputKeyPress;
-import core.keyconfiguration.InputKeySequential;
-import core.keyconfiguration.KeyAdapter;
+import core.configuration.key.InputKeyDown;
+import core.configuration.key.InputKeyPress;
+import core.configuration.key.InputKeySequential;
+import core.configuration.key.KeyAdapter;
 /**
  * 
  * @author Hui Dong

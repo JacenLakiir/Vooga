@@ -1,4 +1,4 @@
-package core.keyconfiguration;
+package core.configuration.mouse;
 import com.golden.gamedev.GameObject;
 
 import core.characters.GameElement;

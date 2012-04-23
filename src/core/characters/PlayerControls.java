@@ -1,6 +1,6 @@
 package core.characters;
 
-import core.keyconfiguration.KeyAnnotation;
+import core.configuration.key.KeyAnnotation;
 
 public class PlayerControls extends Character {
     private static final long serialVersionUID = 1293093288749871823L;

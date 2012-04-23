@@ -1,4 +1,4 @@
-package core.keyconfiguration;
+package core.configuration.key;
 
 
 import java.lang.reflect.Type;
@@ -14,6 +14,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+
 /**
  * 
  * @author Hui Dong

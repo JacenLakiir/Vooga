@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import core.keyconfiguration.KeyAnnotation;
-import core.keyconfiguration.KeyParser;
+
+import core.configuration.key.KeyAnnotation;
+import core.configuration.key.KeyParser;
 /**
  * 
  * @author Hui Dong

@@ -1,4 +1,4 @@
-package core.keyconfiguration;
+package core.configuration.key;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

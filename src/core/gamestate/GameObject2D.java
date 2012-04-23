@@ -4,8 +4,9 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 import com.golden.gamedev.GameObject;
-import core.keyconfiguration.Key;
-import core.keyconfiguration.Mouse;
+
+import core.configuration.key.Key;
+import core.configuration.mouse.Mouse;
 
 public abstract class GameObject2D extends GameObject {
     private List<Key> keyList;

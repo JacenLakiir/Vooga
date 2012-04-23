@@ -1,4 +1,4 @@
-package core.keyconfiguration;
+package core.configuration.key;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +13,7 @@ import com.golden.gamedev.GameObject;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 
 import demo.custom.DemoKeyAdapter;
 
