@@ -4,7 +4,11 @@ import core.keyconfiguration.InputKeyDown;
 import core.keyconfiguration.InputKeyPress;
 import core.keyconfiguration.InputKeySequential;
 import core.keyconfiguration.KeyAdapter;
-
+/**
+ * 
+ * @author Hui Dong
+ *
+ */
 public class DemoKeyAdapter extends KeyAdapter{
 
     public DemoKeyAdapter(String elementName) {

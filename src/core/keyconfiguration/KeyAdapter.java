@@ -14,7 +14,11 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-
+/**
+ * 
+ * @author Hui Dong
+ *
+ */
 public abstract class KeyAdapter implements JsonDeserializer<Key>, JsonSerializer<Key> {
     private String keyElementName;
     private Gson gson;

@@ -77,6 +77,6 @@ public class Menu extends MenuGameObject{
 
     @Override
     public void initialKeyList() {
-        setKeyList(new KeyParser(this, true, new DemoKeyAdapter("key_type")).constructKeyList());        
+        setKeyList(new KeyParser(this, true, new DemoKeyAdapter("key_type")).parseKeyConfig());        
     }
 }

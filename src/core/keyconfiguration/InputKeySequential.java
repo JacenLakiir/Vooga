@@ -12,16 +12,9 @@ public class InputKeySequential extends Key{
     private boolean[] iskeyPressed;
     private  String[] values;
     private boolean isInitial  = true;
-//    public InputKeySequential(String value, String actionName, GameObject game) {
-////        super(value, actionName, game);
-//
-//    }
-    
-    
-    
+  
     @Override
     public void initial(GameObject game, boolean isSystemOnly) {
-        // TODO Auto-generated method stub
         super.initial(game, isSystemOnly);
         values = keyValue.split(",");
         iskeyPressed = new boolean[values.length];

@@ -24,6 +24,11 @@ public abstract class Key {
     protected GameObject getMyGame() {
         return myGame;
     }
+    
+    public void setKeyValue(String keyValue, String action){
+        this.keyValue = keyValue;
+        this.action = action;
+    }
 
     public abstract boolean isKeyDown(long milliSec);
     
