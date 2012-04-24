@@ -81,10 +81,4 @@ public  class KeyParser {
         keyList.get(index).setKeyValue(keyValue, action);
     }
     
-    public static void main(String[] args){
-        KeyParser parser = new KeyParser();
-        List<Key> list = parser.parseKeyConfig();
-        parser.setKey("39", "right", 1);
-        parser.outputJsonFile("configurations/test1.json");
-    }
 }  
