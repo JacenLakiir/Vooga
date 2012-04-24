@@ -2,7 +2,6 @@ package core.collision;
 
 import com.golden.gamedev.object.Sprite;
 import core.characters.Character;
-import core.characters.Player;
 
 import core.items.CollectibleItem;
 
@@ -15,7 +14,7 @@ public class CharacterWeaponCollision extends GameElementCollision {
 		super.collided(character, weapon);
 		character.setActive(true);
 		// implement this method with the npc
-		((CollectibleItem) weapon).updateStateValues((Player) character,
+		((CollectibleItem) weapon).updateStateValues((Character) character,
 		        "hitPoints",
 		        ((CollectibleItem) weapon).getStateValue("hitPoints"));
 		((CollectibleItem) weapon).setIsInUse(false);

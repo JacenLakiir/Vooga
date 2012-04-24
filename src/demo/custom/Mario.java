@@ -4,7 +4,7 @@ import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Timer;
 
 import core.characters.GameElement;
-import core.characters.Player;
+import core.characters.Character;
 import core.configuration.key.KeyAnnotation;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
@@ -12,7 +12,7 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
  * @author Kuang Han
  */
 @SuppressWarnings("serial")
-public class Mario extends Player {
+public class Mario extends Character {
 
     private static final String IMAGE_FILE = "resources/Mario1.png";
 

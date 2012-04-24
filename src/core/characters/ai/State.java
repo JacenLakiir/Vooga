@@ -1,18 +1,18 @@
 package core.characters.ai;
 
-import core.characters.NPC;
+import core.characters.Character;
 
 /**
  * @author Eric Mercer (JacenLakiir)
  */
 public abstract class State
 {
-    protected NPC myNPC;
+    protected Character myCharacter;
     protected boolean isActivated;
     
-    public State (NPC npc)
+    public State (Character character)
     {
-        myNPC = npc;
+        myCharacter = character;
         isActivated = true;
     }
     

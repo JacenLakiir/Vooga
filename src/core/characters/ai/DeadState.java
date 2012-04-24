@@ -1,6 +1,6 @@
 package core.characters.ai;
 
-import core.characters.NPC;
+import core.characters.Character;
 
 /**
  * @author Eric Mercer (JacenLakiir)
@@ -8,16 +8,16 @@ import core.characters.NPC;
 public class DeadState extends State
 {
     
-    public DeadState (NPC npc)
+    public DeadState (Character character)
     {
-        super(npc);
+        super(character);
     }
     
     @Override
     public void execute (long milliSec)
     {
-        myNPC.deactivateAllOtherStates(this);
-        myNPC.setActive(isActivated);
+        myCharacter.deactivateAllOtherStates(this);
+        myCharacter.setActive(isActivated);
     }
     
     @Override

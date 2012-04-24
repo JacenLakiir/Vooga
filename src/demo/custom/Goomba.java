@@ -3,7 +3,7 @@ package demo.custom;
 import java.util.List;
 import com.golden.gamedev.GameObject;
 import core.characters.GameElement;
-import core.characters.NPC;
+import core.characters.Character;
 import core.characters.ai.DeadState;
 import core.characters.ai.State;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
@@ -12,7 +12,7 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
  * @author Eric Mercer (JacenLakiir)
  */
 @SuppressWarnings("serial")
-public class Goomba extends NPC {
+public class Goomba extends Character {
 
     private static final String IMAGE_FILE = "resources/Goomba.png";
 
@@ -23,7 +23,7 @@ public class Goomba extends NPC {
     }
 
     public Goomba(GameObject game, PhysicsAttributes physicsAttribute, List<State> possibleStates) {
-	super(game, physicsAttribute, possibleStates);
+	super(game, physicsAttribute);
     }
 
     public void afterHitFromRightBy(GameElement e) {
@@ -39,11 +39,11 @@ public class Goomba extends NPC {
     }
 
     public void afterHitFromRightBy(Mario m) {
-	m.updateStateValues("hitPoints", -1 * m.getMyStateValue("hitPoints"));
+	m.updateAttributeValues("hitPoints", -1 * m.getMyAttributeValue("hitPoints"));
     }
 
     public void afterHitFromLeftBy(Mario m) {
-	m.updateStateValues("hitPoints", -1 * m.getMyStateValue("hitPoints"));
+	m.updateAttributeValues("hitPoints", -1 * m.getMyAttributeValue("hitPoints"));
     }
 
     public void afterHitFromRightBy(Koopa k) {

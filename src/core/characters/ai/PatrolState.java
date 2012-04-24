@@ -1,6 +1,6 @@
 package core.characters.ai;
 
-import core.characters.NPC;
+import core.characters.Character;
 
 /**
  * @author Eric Mercer (JacenLakiir)
@@ -12,9 +12,9 @@ public class PatrolState extends State
     private double mySpeed;
     private double myDistanceTraveled;
     
-    public PatrolState (NPC npc, double speed, double patrolRange)
+    public PatrolState (Character character, double speed, double patrolRange)
     {
-        super(npc);
+        super(character);
         mySpeed = speed;
         myPatrolRange = patrolRange;
         myDistanceTraveled = 0;
@@ -25,7 +25,7 @@ public class PatrolState extends State
     {
         if (myDistanceTraveled >= myPatrolRange)
             updateDirection();
-        myNPC.move(myNPC.getDirection() * mySpeed, 0);
+        myCharacter.move(myCharacter.getDirection() * mySpeed, 0);
         myDistanceTraveled += Math.abs(mySpeed);
     }
     
@@ -37,11 +37,11 @@ public class PatrolState extends State
     }
 
     private void updateDirection() {
-    	int dir = myNPC.getDirection();
+    	int dir = myCharacter.getDirection();
     	if (dir == -1)
-    	    myNPC.setDirection(1);
+    	    myCharacter.setDirection(1);
     	else if (dir == 1)
-    	    myNPC.setDirection(-1);
+    	    myCharacter.setDirection(-1);
     	myDistanceTraveled = 0;
     }
 

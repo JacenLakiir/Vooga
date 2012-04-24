@@ -4,8 +4,6 @@ import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionBounds;
 
-import core.characters.Player;
-
 public class SideScrollerBoundsCollision extends CollisionBounds {
 
 	public SideScrollerBoundsCollision(Background arg0) {

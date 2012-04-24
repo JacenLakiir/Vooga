@@ -1,15 +1,15 @@
 package demo;
 
-import java.awt.Color;
+import java.awt.Color;	
 import java.awt.Graphics2D;
 import com.golden.gamedev.object.background.ColorBackground;
-import core.characters.NPC;
-import core.characters.Player;
+
+import core.characters.Character;
 import core.characters.ai.EvadeState;
 import core.characters.ai.FollowState;
 import core.collision.CharacterPlatformCollision;
 import core.collision.GameElementCollision;
-import core.collision.PlayerCollectibleItemCollision;
+import core.collision.CharacterCollectibleItemCollision;
 import core.configuration.key.KeyAnnotation;
 import core.configuration.key.KeyParser;
 import core.configuration.mouse.MouseInput;
@@ -51,7 +51,7 @@ public class DemoAI extends GameObject2D
         myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
         myPlayfield.setBackground(new ColorBackground(Color.gray, 640, 480));
         
-        Player mario = new Mario(this, new PhysicsAttributes());
+        Character mario = new Mario(this, new PhysicsAttributes());
         setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type")).parseKeyConfig());
         addMouse(new MouseInput(this, mario,"sequence"));
         //add the element or game you want the key to control
@@ -60,41 +60,41 @@ public class DemoAI extends GameObject2D
         addMouseListeners(mario);
         
         mario.setLocation(25, 400);
-        mario.addState("points", 0);
-        mario.addState("hitPoints", 10);
-        mario.addState("lives", 3);
+        mario.addAttribute("points", 0);
+        mario.addAttribute("hitPoints", 10);
+        mario.addAttribute("lives", 3);
         myPlayfield.addPlayer(mario);
         
-//        NPC goomba1 = new Goomba(this, new PhysicsAttributes());
+//        Character goomba1 = new Goomba(this, new PhysicsAttributes());
 //        goomba1.setLocation(325, 400);
 //        myPlayfield.addCharacter(goomba1);
 //       
-//        NPC goomba2 = new Goomba(this, new PhysicsAttributes());
+//        Character goomba2 = new Goomba(this, new PhysicsAttributes());
 //        goomba2.addPossibleState(new PatrolState(goomba2, 1, 150));
 //        goomba2.setLocation(575, 400);
 //        myPlayfield.addCharacter(goomba2);
 //        
-//        NPC goomba3 = new Goomba(this, new PhysicsAttributes());
+//        Character goomba3 = new Goomba(this, new PhysicsAttributes());
 //        goomba3.addPossibleState(new MoveState(goomba3, 1, true));
 //        goomba3.setLocation(275, 400);
 //        myPlayfield.addCharacter(goomba3);
         
-//        NPC koopa1 = new Koopa(this, new PhysicsAttributes());
+//        Character koopa1 = new Koopa(this, new PhysicsAttributes());
 //        koopa1.addPossibleState(new MoveState(koopa1, 1, true));
 //        koopa1.setLocation(500, 400);
 //        myPlayfield.addCharacter(koopa1);
 //        
-//        NPC koopa2 = new Koopa(this, new PhysicsAttributes());
+//        Character koopa2 = new Koopa(this, new PhysicsAttributes());
 //        koopa2.addPossibleState(new MoveState(koopa2, 1, true));
 //        koopa2.setLocation(300, 400);
 //        myPlayfield.addCharacter(koopa2);
         
-        NPC goomba4 = new Goomba(this, new PhysicsAttributes());
+        Character goomba4 = new Goomba(this, new PhysicsAttributes());
         goomba4.addPossibleState(new FollowState(goomba4, mario, 1, 200));
         goomba4.setLocation(300, 400);
         myPlayfield.addCharacter(goomba4);
         
-        NPC goomba5 = new Goomba(this, new PhysicsAttributes());
+        Character goomba5 = new Goomba(this, new PhysicsAttributes());
         goomba5.addPossibleState(new EvadeState(goomba5, mario, 2, 200));
         goomba5.setLocation(400, 400);
         myPlayfield.addCharacter(goomba5);
@@ -139,7 +139,7 @@ public class DemoAI extends GameObject2D
         
         myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
                                       myPlayfield.getItems(),
-                                      new PlayerCollectibleItemCollision());
+                                      new CharacterCollectibleItemCollision());
         
         // currently no way to check all characters against setting in one collision
         
