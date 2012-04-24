@@ -341,7 +341,7 @@ public class GameElement extends AdvanceSprite {
             try {
                 Method method = this.getClass().getDeclaredMethod(key, c);
                 method.invoke(this, e);
-                System.out.println(method.toString());
+//                System.out.println(method.toString());
             } catch (Exception ex) {}
             c = c.getSuperclass();
         }

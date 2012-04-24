@@ -1,6 +1,5 @@
 package core.characters.ai;
 
-import core.characters.NPC;
 import core.characters.Character;
 
 /**
@@ -13,9 +12,9 @@ public class EvadeState extends State
     private double mySpeed;
     private double myEvadeRange;
     
-    public EvadeState (NPC npc, Character toAvoid, double speed, double evadeRange)
+    public EvadeState (Character character, Character toAvoid, double speed, double evadeRange)
     {
-        super(npc);
+        super(character);
         beingAvoided = toAvoid;
         mySpeed = speed;
         myEvadeRange = evadeRange;
@@ -24,15 +23,15 @@ public class EvadeState extends State
     @Override
     public void execute (long milliSec)
     {
-        double horizontalDistance = beingAvoided.getX() - myNPC.getX();
+        double horizontalDistance = beingAvoided.getX() - myCharacter.getX();
         int directionToFlee = (horizontalDistance < 0) ? 1 : -1;
-        myNPC.move(directionToFlee * mySpeed, 0);
+        myCharacter.move(directionToFlee * mySpeed, 0);
     }
 
     @Override
     public boolean areConditionsMet ()
     {
-        return (myNPC.getDistance(beingAvoided) <= myEvadeRange);
+        return (myCharacter.getDistance(beingAvoided) <= myEvadeRange);
     }
     
 }

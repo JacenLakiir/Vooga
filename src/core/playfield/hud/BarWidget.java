@@ -10,8 +10,8 @@ import com.golden.gamedev.object.GameFont;
 public class BarWidget extends HUDWidget {
 
     String title;
-    double myValue;
-    double maxHP;
+    Double myValue;
+    Double maxHP;
     DataProxy dp;
 
     public BarWidget(String title, DataProxy dp) {
@@ -31,8 +31,9 @@ public class BarWidget extends HUDWidget {
 	h.getFont().drawString(g, title + ":", GameFont.LEFT, xPos, yPos, 100);
 	g.draw(new Rectangle(xPos + 22, yPos + 3, 101, 10));
 	g.setColor(Color.red);
-	g.fill(new Rectangle(xPos + 23, yPos + 4,
-		(int) (myValue / maxHP * 100), 9));
+	if (myValue != null && maxHP != null)
+		g.fill(new Rectangle(xPos + 23, yPos + 4,
+			(int) (myValue / maxHP * 100), 9));
     }
 
 }

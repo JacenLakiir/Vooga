@@ -5,8 +5,8 @@ import java.util.HashMap;
 
 import com.golden.gamedev.GameObject;
 
+import core.characters.Character;
 import core.characters.GameElement;
-import core.characters.Player;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import core.tiles.Tile;
 
@@ -30,7 +30,7 @@ public abstract class CollectibleItem extends GameElement {
 		super();
 	}
 
-	public void decorate(Player player) {
+	public void decorate(Character player) {
 
 		for (String state : myStateValues.keySet()) {
 			updateStateValues(player, state, myStateValues.get(state));
@@ -51,11 +51,11 @@ public abstract class CollectibleItem extends GameElement {
 		return isInUse;
 	}
 
-	public void updateStateValues(Player player, String state, double newValue) {
-		player.updateStateValues(state, newValue);
+	public void updateStateValues(Character player, String state, double newValue) {
+		player.updateAttributeValues(state, newValue);
 	}
 
-	public void updateBaseValues(Player player, String state, double newValue) {
+	public void updateBaseValues(Character player, String state, double newValue) {
 		player.updateBaseValues(state, newValue);
 	}
 

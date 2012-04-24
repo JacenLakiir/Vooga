@@ -2,7 +2,7 @@ package demo.custom;
 
 import java.util.List;
 import com.golden.gamedev.GameObject;
-import core.characters.NPC;
+import core.characters.Character;
 import core.characters.ai.DeadState;
 import core.characters.ai.State;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
@@ -12,7 +12,7 @@ import demo.custom.ShellState;
  * @author Eric Mercer (JacenLakiir)
  */
 @SuppressWarnings("serial")
-public class Koopa extends NPC {
+public class Koopa extends Character {
 
     private static final String IMAGE_FILE = "resources/Koopa.png";
     private static final String SHELL_IMAGE_FILE = "resources/KoopaShell.png";
@@ -29,7 +29,7 @@ public class Koopa extends NPC {
     }
 
     public Koopa(GameObject game, PhysicsAttributes physicsAttribute, List<State> possibleStates) {
-	super(game, physicsAttribute, possibleStates);
+	super(game, physicsAttribute);
     }
 
     public void afterHitFromTopBy(Mario m) {
@@ -87,11 +87,11 @@ public class Koopa extends NPC {
 	    myShellState.setSpeed(50 * Math.abs(m.getVelocity().getX()));
 	    setDirection(isHitOnLeft ? 1 : -1);
 	} else if (isInShell && getShellSpeed() != 0) {
-	    m.updateStateValues("hitPoints",
-		    -1 * m.getMyStateValue("hitPoints"));
+	    m.updateAttributeValues("hitPoints",
+		    -1 * m.getMyAttributeValue("hitPoints"));
 	} else if (!isInShell) {
-	    m.updateStateValues("hitPoints",
-		    -1 * m.getMyStateValue("hitPoints"));
+	    m.updateAttributeValues("hitPoints",
+		    -1 * m.getMyAttributeValue("hitPoints"));
 	}
     }
 

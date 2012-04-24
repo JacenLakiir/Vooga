@@ -16,7 +16,7 @@ public class ShellState extends State
     @Override
     public void execute (long milliSec)
     {
-        myNPC.move(myNPC.getDirection() * mySpeed, 0);
+        myCharacter.move(myCharacter.getDirection() * mySpeed, 0);
     }
     
     @Override

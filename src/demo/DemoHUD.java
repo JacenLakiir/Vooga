@@ -6,13 +6,12 @@ import java.awt.Graphics2D;
 
 import com.golden.gamedev.object.background.ColorBackground;
 
-import core.characters.NPC;
-import core.characters.Player;
+import core.characters.Character;
 import core.characters.ai.MoveState;
 import core.characters.ai.PatrolState;
 import core.collision.CharacterPlatformCollision;
 import core.collision.GameElementCollision;
-import core.collision.PlayerCollectibleItemCollision;
+import core.collision.CharacterCollectibleItemCollision;
 import core.configuration.key.KeyAnnotation;
 import core.configuration.key.KeyParser;
 import core.gamestate.GameEngine2D;
@@ -58,7 +57,7 @@ public class DemoHUD extends GameObject2D {
                 myPlayfield.getSetting(), new CharacterPlatformCollision());
 
         myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-                myPlayfield.getItems(), new PlayerCollectibleItemCollision());
+                myPlayfield.getItems(), new CharacterCollectibleItemCollision());
         
         myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
                 myPlayfield.getSetting(), new CharacterPlatformCollision());
@@ -73,60 +72,61 @@ public class DemoHUD extends GameObject2D {
         // SpriteGroups already exist in AdvancedPlayfield
         // use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
 
-        Player temp = new Mario(this, new PhysicsAttributes());
+        Character temp = new Mario(this, new PhysicsAttributes());
         setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type")).parseKeyConfig());
         //add the element or the game you want the key to control
         addKeyListeners(temp);
         addKeyListeners(this);
         temp.setLocation(25, 400);
-        temp.addState("hitPoints", 10);
-        temp.addState("points", 0);
-        temp.addState("hitPoints", 10);
-        temp.addState("lives", 3);
+        temp.addAttribute("hitPoints", 10);
+        temp.addAttribute("points", 0);
+        temp.addAttribute("lives", 3);
         myPlayfield.addPlayer(temp);
         
         
         // HUD must be init after player
         myPlayfield.addHUDWidget(new TextWidget("Coins", new DataProxy(){
 			public Object get() {
-				return myPlayfield.getPlayer().getMyStateValue("points");
+				return myPlayfield.getPlayer().getMyAttributeValue("points");
 			}
         }));
         
         
         myPlayfield.addHUDWidget(new IconWidget("Lives", this.getImage("resources/life.png"), new DataProxy(){
 			public Object get() {
-				return myPlayfield.getPlayer().getMyStateValue("lives");
+				return myPlayfield.getPlayer().getMyAttributeValue("lives");
 			}
         }));
         
         myPlayfield.addHUDWidget(new BarWidget("HP", new DataProxy(){
 			public Object get() {
-				return myPlayfield.getPlayer().getMyStateValue("hitPoints");
+				if (myPlayfield.getPlayer().getMyAttributeValue("hitPoints") != null)
+					return myPlayfield.getPlayer().getMyAttributeValue("hitPoints");
+				return null;
 			}
         }));
                 
-        NPC koopa1 = new Koopa(this, new PhysicsAttributes());
+        Character koopa1 = new Koopa(this, new PhysicsAttributes());
         koopa1.addPossibleState(new MoveState(koopa1, 1, true));
         koopa1.setLocation(500, 400);
         myPlayfield.addCharacter(koopa1);
         
-        NPC goomba1 = new Goomba(this, new PhysicsAttributes());
+        Character goomba1 = new Goomba(this, new PhysicsAttributes());
         goomba1.addPossibleState(new MoveState(goomba1, 1, true));
         goomba1.setLocation(800, 400);
         myPlayfield.addCharacter(goomba1);
         
-        NPC goomba2 = new Goomba(this, new PhysicsAttributes());
+        Character goomba2 = new Goomba(this, new PhysicsAttributes());
         goomba2.addPossibleState(new MoveState(goomba2, 1, true));
         goomba2.setLocation(900, 400);
         myPlayfield.addCharacter(goomba2);
         
-        NPC goomba3 = new Goomba(this, new PhysicsAttributes());
+        Character goomba3 = new Goomba(this, new PhysicsAttributes());
         goomba3.addPossibleState(new MoveState(goomba3, 1, true));
         goomba3.setLocation(1000, 400);
         myPlayfield.addCharacter(goomba3);
         
-        NPC goomba4 = new Goomba(this, new PhysicsAttributes());
+        Character goomba4 = new Goomba(this, new PhysicsAttributes());
         goomba4.addPossibleState(new PatrolState(goomba4, 1, 325));
         goomba4.setLocation(575, 200);
         myPlayfield.addCharacter(goomba4);

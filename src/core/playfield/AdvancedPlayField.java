@@ -172,7 +172,7 @@ public class AdvancedPlayField extends PlayField
     /*
      * Common Sprite Groups
      */
-    public void addPlayer (Player p)
+    public void addPlayer (Character p)
     {
         Players.add(p);
     }
@@ -205,9 +205,9 @@ public class AdvancedPlayField extends PlayField
     }
 
 
-    public Player getPlayer ()
+    public Character getPlayer ()
     {
-        return (Player) Players.getActiveSprite();
+        return (Character) Players.getActiveSprite();
     }
 
 

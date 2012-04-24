@@ -4,6 +4,7 @@
 package io;
 
 import core.characters.*;
+import core.characters.Character;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import demo.*;
 import io.SpriteWrapper.SpriteGroupIdentifier;
@@ -17,7 +18,7 @@ public class HardCodedLevelGenerator {
 	String badguysrc = "resources/Mario1.png";
 	DemoPlayfield dummygame = new DemoPlayfield(new DemoGameEngine());
 	String background = "resources/mario2s.gif";
-	Player hero = new Player(dummygame, new PhysicsAttributes());
+	Character hero = new Player(dummygame, new PhysicsAttributes());
 	List<SpriteWrapper> sprites = new ArrayList<SpriteWrapper>();
 	hero.setLocation(0, 0);
 	NPC badguyone = new NPC(dummygame, new PhysicsAttributes());

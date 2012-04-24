@@ -1,6 +1,6 @@
 package core.characters.ai;
 
-import core.characters.NPC;
+import core.characters.Character;
 
 /**
  * @author Eric Mercer (JacenLakiir)
@@ -10,17 +10,17 @@ public class MoveState extends State
     
     private double mySpeed;
         
-    public MoveState (NPC npc, double speed, boolean isMovingLeft)
+    public MoveState (Character character, double speed, boolean isMovingLeft)
     {
-        super(npc);
+        super(character);
         mySpeed = speed;
-        myNPC.setDirection(isMovingLeft ? -1 : 1);
+        myCharacter.setDirection(isMovingLeft ? -1 : 1);
     }
     
     @Override
     public void execute (long milliSec)
     {
-        myNPC.move(myNPC.getDirection() * mySpeed, 0);
+        myCharacter.move(myCharacter.getDirection() * mySpeed, 0);
     }
     
     @Override

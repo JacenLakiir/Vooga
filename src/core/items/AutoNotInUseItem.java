@@ -3,7 +3,7 @@ package core.items;
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Timer;
 
-import core.characters.Player;
+import core.characters.Character;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 public abstract class AutoNotInUseItem extends CollectibleItem {
@@ -24,7 +24,7 @@ public abstract class AutoNotInUseItem extends CollectibleItem {
     }
 
 	@Override
-	public void decorate(Player player) {
+	public void decorate(Character player) {
 		if (timerStart.action(timePassed))
 		{
 			for (String state : myStateValues.keySet()) {
