@@ -33,10 +33,6 @@ public  class KeyParser {
         isSystemOnly = isSystemKeyOnly;
     }
     
-    public KeyParser(){
-        this.adapter = new DemoKeyAdapter("key_type");
-    }
-
     public List<Key> parseKeyConfig(){
         Scanner scanner;
        
