@@ -8,7 +8,6 @@ import com.golden.gamedev.object.background.ColorBackground;
 import core.characters.Character;
 import core.characters.ai.MoveState;
 import core.characters.ai.PatrolState;
-import core.collision.CharacterPlatformCollision;
 import core.collision.GameElementCollision;
 import core.collision.CharacterCollectibleItemCollision;
 import core.configuration.key.KeyAnnotation;
@@ -54,7 +53,7 @@ public class DemoHUD extends GameObject2D {
 
 		// Collisions
 		myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-		        myPlayfield.getSetting(), new CharacterPlatformCollision());
+		        myPlayfield.getSetting(), new GameElementCollision());
 
 		myPlayfield
 		        .addCollisionGroup(myPlayfield.getPlayers(),
@@ -62,7 +61,7 @@ public class DemoHUD extends GameObject2D {
 		                new CharacterCollectibleItemCollision());
 
 		myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-		        myPlayfield.getSetting(), new CharacterPlatformCollision());
+		        myPlayfield.getSetting(), new GameElementCollision());
 
 		myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
 		        myPlayfield.getCharacters(), new GameElementCollision());

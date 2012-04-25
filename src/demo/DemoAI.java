@@ -7,7 +7,6 @@ import com.golden.gamedev.object.background.ColorBackground;
 import core.characters.Character;
 import core.characters.ai.EvadeState;
 import core.characters.ai.FollowState;
-import core.collision.CharacterPlatformCollision;
 import core.collision.GameElementCollision;
 import core.collision.CharacterCollectibleItemCollision;
 import core.configuration.key.KeyAnnotation;
@@ -147,10 +146,10 @@ public class DemoAI extends GameObject2D
         // checking characters against setting, but physics didn't work
         myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
                                       myPlayfield.getSetting(),
-                                      new CharacterPlatformCollision());
+                                      new GameElementCollision());
         myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
                                       myPlayfield.getSetting(),
-                                      new CharacterPlatformCollision());
+                                      new GameElementCollision());
         
         // same flaws as the two collisions above and uses GameElementCollision
         // since no PlayerCharacterCollision or CharacterCharacterCollision exists
