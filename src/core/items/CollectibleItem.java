@@ -8,7 +8,6 @@ import com.golden.gamedev.GameObject;
 import core.characters.Character;
 import core.characters.GameElement;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
-import core.tiles.Tile;
 
 /**
  * @author Kathleen Oshima

@@ -20,7 +20,6 @@ import core.items.AutoInUseAutoNotInUseItem;
 import core.items.AutoNotInUseItem;
 import core.items.CollectibleItem;
 import core.items.FiringWeapons;
-import core.items.SetInUseAutoNotInUseItem;
 import core.items.SetInUseSetNotInUseItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import core.playfield.AdvancedPlayField;

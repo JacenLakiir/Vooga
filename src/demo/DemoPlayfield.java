@@ -3,7 +3,6 @@ package demo;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import com.golden.gamedev.object.background.ColorBackground;
-import core.characters.*;
 import core.characters.Character;
 import core.characters.ai.*;
 import core.collision.*;

@@ -1,6 +1,6 @@
 /**
  * @author Kathleen Oshima
- * @author Eric Mercer
+ * @author Eric Mercer (JacenLakiir)
  */
 
 package core.characters;
@@ -16,9 +16,9 @@ import core.characters.ai.State;
 import core.items.CollectibleItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
+@SuppressWarnings("serial")
 public class Character extends GameElement {
 	
-    protected double strengthUp, strengthDown, strengthLeft, strengthRight;
 	private transient List<CollectibleItem> myInventory, myActiveInventory;
 	private transient List<State> myPossibleStates;
 
@@ -88,47 +88,6 @@ public class Character extends GameElement {
             System.out.println("dead");
         }
     }
-
-	public void keyAPressed() {
-		shoot();
-	}
-
-	public void keyBPressed() {
-	    specialSkill();
-	}
-
-	public void shoot() {
-	}
-
-	public void specialSkill() {
-	}
-	
-    public void giveStrengthUp() {
-        addAcceleration(0, strengthUp * this.getGravitationalAcceleration());
-    }
-    
-	public void setStrengthUp(double s) {
-		strengthUp = s;
-	}
-
-	public void setStrengthDown(double s) {
-		strengthDown = s;
-	}
-
-	public void setStrengthLeft(double s) {
-		strengthLeft = s;
-	}
-
-	public void setStrengthRight(double s) {
-		strengthRight = s;
-	}
-
-	public void setStrength(double s) {
-		setStrengthDown(s);
-		setStrengthLeft(s);
-		setStrengthRight(s);
-		setStrengthUp(s);
-	}
 	
 	public void addAttribute(String attribute, double defaultValue) {
 		myBaseAttributeValues.put(attribute.toLowerCase(), defaultValue);

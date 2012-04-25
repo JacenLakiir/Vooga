@@ -3,7 +3,6 @@ package core.tiles;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import core.characters.GameElement;
 import core.items.CollectibleItem;
 
 public class ItemDecorator extends ActionDecorator {

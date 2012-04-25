@@ -2,9 +2,6 @@ package core.collision;
 
 import com.golden.gamedev.object.Sprite;
 
-import core.characters.Character;
-import core.tiles.Tile;
-
 public class CharacterPlatformCollision extends GameElementCollision {
 	// Character groups should deal with what happens to the character after
 	// collision.
