@@ -85,7 +85,7 @@ public abstract class GameObject2D extends GameObject {
     public void resetEngine() {
 	engine.initResources();
     }
-
+    
     public void switchToGameObject(Class<? extends GameObject2D> gameClass) {
 	engine.nextGameID = engine.getIdMap().get(gameClass.getName());
 	finish();

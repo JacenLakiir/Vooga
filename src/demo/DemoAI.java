@@ -14,6 +14,7 @@ import core.configuration.key.KeyAnnotation;
 import core.configuration.key.KeyParser;
 import core.configuration.mouse.MouseInput;
 import core.gamestate.GameEngine2D;
+import core.gamestate.Game2D;
 import core.gamestate.GameObject2D;
 import core.gamestate.Pause;
 import core.items.AutoInUseAutoNotInUseItem;
@@ -37,7 +38,7 @@ public class DemoAI extends GameObject2D
 {
    
     private AdvancedPlayField   myPlayfield;  
-    
+    private Character mario;
     public DemoAI (GameEngine2D arg0)
     {
         super(arg0);
@@ -51,7 +52,7 @@ public class DemoAI extends GameObject2D
         myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
         myPlayfield.setBackground(new ColorBackground(Color.gray, 640, 480));
         
-        Character mario = new Mario(this, new PhysicsAttributes());
+         mario = new Mario(this, new PhysicsAttributes());
         setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type")).parseKeyConfig());
         addMouse(new MouseInput(this, mario,"sequence"));
         //add the element or game you want the key to control
@@ -166,8 +167,11 @@ public class DemoAI extends GameObject2D
     public void update (long t)
     {
         super.update(t);
+        
         myPlayfield.update(t);
     }
+    
+    
     
 
     @Override
