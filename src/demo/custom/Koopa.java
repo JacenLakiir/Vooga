@@ -87,10 +87,10 @@ public class Koopa extends Character {
 	    myShellState.setSpeed(50 * Math.abs(m.getVelocity().getX()));
 	    setDirection(isHitOnLeft ? 1 : -1);
 	} else if (isInShell && getShellSpeed() != 0) {
-	    m.updateAttributeValues("hitPoints",
+	    m.updateAttributeValue("hitPoints",
 		    -1 * m.getMyAttributeValue("hitPoints"));
 	} else if (!isInShell) {
-	    m.updateAttributeValues("hitPoints",
+	    m.updateAttributeValue("hitPoints",
 		    -1 * m.getMyAttributeValue("hitPoints"));
 	}
     }

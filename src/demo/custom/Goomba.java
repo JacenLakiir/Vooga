@@ -39,11 +39,11 @@ public class Goomba extends Character {
     }
 
     public void afterHitFromRightBy(Mario m) {
-	m.updateAttributeValues("hitPoints", -1 * m.getMyAttributeValue("hitPoints"));
+	m.updateAttributeValue("hitPoints", -1 * m.getMyAttributeValue("hitPoints"));
     }
 
     public void afterHitFromLeftBy(Mario m) {
-	m.updateAttributeValues("hitPoints", -1 * m.getMyAttributeValue("hitPoints"));
+	m.updateAttributeValue("hitPoints", -1 * m.getMyAttributeValue("hitPoints"));
     }
 
     public void afterHitFromRightBy(Koopa k) {
