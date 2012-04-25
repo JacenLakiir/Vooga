@@ -12,8 +12,10 @@ import core.collision.GameElementCollision;
 import core.collision.CharacterCollectibleItemCollision;
 import core.configuration.key.KeyAnnotation;
 import core.configuration.key.KeyParser;
+import core.gamestate.Game2D;
 import core.gamestate.GameEngine2D;
 import core.gamestate.GameObject2D;
+import core.gamestate.Menu;
 import core.gamestate.Pause;
 import core.items.AutoInUseAutoNotInUseItem;
 import core.items.AutoNotInUseItem;
@@ -39,10 +41,11 @@ import demo.custom.Mario;
 /**
  * @author Glenn Rivkees (grivkees)
  */
-public class DemoHUD extends GameObject2D {
+public class DemoHUD extends Game2D {
 
 	private AdvancedPlayField myPlayfield;
-
+    private double endOfPlatform;
+    private Character mario;
 	public DemoHUD(GameEngine2D arg0) {
 		super(arg0);
 	}
@@ -79,17 +82,17 @@ public class DemoHUD extends GameObject2D {
 		// SpriteGroups already exist in AdvancedPlayfield
 		// use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
 
-		Character temp = new Mario(this, new PhysicsAttributes());
+		mario = new Mario(this, new PhysicsAttributes());
 		setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type"))
 				.parseKeyConfig());
 		// add the element or the game you want the key to control
-		addKeyListeners(temp);
+		addKeyListeners(mario);
 		addKeyListeners(this);
-		temp.setLocation(25, 400);
-		temp.addAttribute("hitPoints", 10);
-		temp.addAttribute("points", 0);
-		temp.addAttribute("lives", 3);
-		myPlayfield.addPlayer(temp);
+		mario.setLocation(25, 400);
+		mario.addAttribute("hitPoints", 10);
+		mario.addAttribute("points", 0);
+		mario.addAttribute("lives", 3);
+		myPlayfield.addPlayer(mario);
 
 		// HUD must be init after player
 		myPlayfield.addHUDWidget(new TextWidget("Coins", new StringProxy() {
@@ -150,6 +153,7 @@ public class DemoHUD extends GameObject2D {
 				new PhysicsAttributes()));
 		temp1.setImages(this.getImages("resources/IceFloor.png", 1, 1));
 		temp1.setLocation(600, 440);
+		endOfPlatform = temp1.getX() + temp1.getWidth() - 30;
 		myPlayfield.addSetting(temp1);
 
 		Tile temp2 = new Tile(this, new PhysicsAttributes());
@@ -248,5 +252,19 @@ public class DemoHUD extends GameObject2D {
 	public void pause() {
 		switchToGameObject(Pause.class);
 	}
+
+    @Override
+    public boolean isWin() {
+        if(mario.getX() >= endOfPlatform){
+            restart();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void setNextLevel() {
+        registerNextLevel(Menu.class);  
+    }
 
 }

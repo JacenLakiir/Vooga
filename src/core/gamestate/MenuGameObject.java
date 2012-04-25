@@ -17,9 +17,7 @@ public abstract  class MenuGameObject extends GameObject2D{
     private int numberOfItems;
     private  Map<Integer, Class<? extends GameObject2D>> map = new HashMap<Integer, Class<? extends GameObject2D>>();
     private List<String> nameList = new ArrayList<String>();
-    
-
-    
+        
     protected int getOptionID(){
         return optionID;
     }

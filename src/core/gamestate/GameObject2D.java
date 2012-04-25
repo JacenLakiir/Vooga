@@ -81,6 +81,10 @@ public abstract class GameObject2D extends GameObject {
 	continueGame();
 	engine.initResources();
     }
+    
+    public void restart(){
+        engine.initResources();
+    }
 
     public void resetEngine() {
 	engine.initResources();
@@ -91,7 +95,7 @@ public abstract class GameObject2D extends GameObject {
 	finish();
     }
 
-    public void switchToNextLevel() {
+    public void nextLevel() {
     }
 
 }

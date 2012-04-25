@@ -33,11 +33,12 @@ import demo.custom.Mario;
  * 
  * For testing NPC AI
  */
-public class DemoAI extends GameObject2D
+public class DemoAI extends Game2D
 {
    
     private AdvancedPlayField   myPlayfield;  
     private Character mario;
+    private double endOfPlatform;
     public DemoAI (GameEngine2D arg0)
     {
         super(arg0);
@@ -102,6 +103,7 @@ public class DemoAI extends GameObject2D
         Tile floor = new Tile(this, new PhysicsAttributes());
         floor.setImages(this.getImages("resources/Bar.png", 1, 1));
         floor.setLocation(0, 440);
+        endOfPlatform = floor.getX() + floor.getWidth() -50;
         myPlayfield.addSetting(floor);
         
         Tile ceiling = new Tile(this, new PhysicsAttributes());
@@ -182,6 +184,18 @@ public class DemoAI extends GameObject2D
     @KeyAnnotation(action = "ESC")
     public void pause(){
         switchToGameObject(Pause.class);
+    }
+
+    @Override
+    public boolean isWin() {
+        if(mario.getX() >= (endOfPlatform))
+            return true;
+        return false;
+    }
+
+    @Override
+    public void setNextLevel() {
+        registerNextLevel(DemoPlayfield.class);
     }
 
 }

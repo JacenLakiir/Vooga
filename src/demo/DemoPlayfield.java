@@ -26,10 +26,12 @@ import demo.custom.*;
  * @author Glenn Rivkees (grivkees)
  * @author Michael Zhou
  */
-public class DemoPlayfield extends GameObject2D {
+public class DemoPlayfield extends Game2D {
     
     private AdvancedPlayField myPlayfield;
-    
+    private double endOfPlatform;
+    private  Character mario;
+
     public DemoPlayfield(GameEngine2D arg0) {
         super(arg0);
     }
@@ -64,16 +66,16 @@ public class DemoPlayfield extends GameObject2D {
         // SpriteGroups already exist in AdvancedPlayfield
         // use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
 
-        Character temp = new Mario(this, new PhysicsAttributes());
+        mario = new Mario(this, new PhysicsAttributes());
         setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type")).parseKeyConfig());
         //add the element or the game you want the key to control
-        addKeyListeners(temp);
+        addKeyListeners(mario);
         addKeyListeners(this);
-        temp.setLocation(25, 400);
-        temp.addAttribute("hitPoints", 10);
-        temp.addAttribute("points", 0);
-        temp.addAttribute("lives", 3);
-        myPlayfield.addPlayer(temp);
+        mario.setLocation(25, 400);
+        mario.addAttribute("hitPoints", 10);
+        mario.addAttribute("points", 0);
+        mario.addAttribute("lives", 3);
+        myPlayfield.addPlayer(mario);
         
         Character koopa1 = new Koopa(this, new PhysicsAttributes());
         koopa1.addPossibleState(new MoveState(koopa1, 1, true));
@@ -148,6 +150,7 @@ public class DemoPlayfield extends GameObject2D {
       otherBar.setTopAction(true);
       otherBar.setImages(getImages("resources/SmallBar.png",1,1));
       otherBar.setLocation(1250, 300);
+      endOfPlatform = otherBar.getX() + otherBar.getWidth() - 30;
       myPlayfield.addSetting(otherBar);
 	}
 
@@ -164,6 +167,18 @@ public class DemoPlayfield extends GameObject2D {
     @KeyAnnotation(action = "ESC")
     public void pause(){
         switchToGameObject(Pause.class);
+    }
+
+    @Override
+    public boolean isWin() {
+        if(mario.getX() >= endOfPlatform)
+            return true;
+        return false;
+    }
+
+    @Override
+    public void setNextLevel() {
+        registerNextLevel(DemoHUD.class);       
     }
 	
 }
