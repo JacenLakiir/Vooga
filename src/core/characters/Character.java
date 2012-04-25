@@ -147,7 +147,7 @@ public class Character extends GameElement {
     		}
     	}
     	for (CollectibleItem item : myActiveInventory) {
-    		item.decorate(this);
+    		item.updatePlayerAttributes(this);
     		for (String state : myAttributeValues.keySet()) {
     			System.out.print(state + myAttributeValues.get(state));
     			System.out.println();

@@ -118,7 +118,7 @@ public class DemoPlayfield extends GameObject2D {
         AutoInUseAutoNotInUseItem coin = new AutoInUseAutoNotInUseItem(this, new PhysicsAttributes());
         coin.setImages(this.getImages("resources/Coin.png", 1, 1));
         coin.setActive(false);
-        coin.addState("points", 3);
+        coin.addAttribute("points", 3);
         myPlayfield.addItem(coin);
         
         AutoInUseAutoNotInUseItem poison = new AutoInUseAutoNotInUseItem(this, new PhysicsAttributes());
@@ -128,7 +128,7 @@ public class DemoPlayfield extends GameObject2D {
         poison.setLocation(300, 400);
         poison.setTimerStart(1000);
         poison.setTimerEnd(4000);
-        poison.addState("hitPoints", -1);
+        poison.addAttribute("hitPoints", -1);
         myPlayfield.addItem(poison);
         
         ItemDecorator block1 = new ItemDecorator(new Tile(this, new PhysicsAttributes()));

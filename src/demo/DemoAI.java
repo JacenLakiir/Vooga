@@ -112,7 +112,7 @@ public class DemoAI extends GameObject2D
         AutoInUseAutoNotInUseItem coin = new AutoInUseAutoNotInUseItem(this, new PhysicsAttributes());
         coin.setImages(this.getImages("resources/Coin.png", 1, 1));
         coin.setActive(false);
-        coin.addState("points", 3);
+        coin.addAttribute("points", 3);
         myPlayfield.addItem(coin);
         
         ItemDecorator block1 = new ItemDecorator(new Tile(this, new PhysicsAttributes()));

@@ -6,6 +6,8 @@ import com.golden.gamedev.object.Timer;
 import core.characters.GameElement;
 import core.characters.Character;
 import core.configuration.key.KeyAnnotation;
+import core.items.FiringWeapons;
+import core.items.SetInUseSetNotInUseItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 /**
@@ -66,10 +68,11 @@ public class Mario extends Character {
 	this.addAcceleration(strengthRight * getGravitationalAcceleration(), 0);
     }
 
-    @KeyAnnotation(action = "space")
-    // public Weapon keySpacePressed() {
-    // return Weapon.useWeapon();
-    // }
+//    @KeyAnnotation(action = "space")
+//     public SetInUseSetNotInUseItem keySpacePressed() {
+//    	return FiringWeapons.useWeapon();
+//     }
+    
     // this is only used for swimming
     public void resetStrength() {
 	strengthUp = 2;

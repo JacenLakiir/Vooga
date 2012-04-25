@@ -5,7 +5,12 @@ import com.golden.gamedev.object.Timer;
 
 import core.characters.Character;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
-
+/**
+ * 
+ * @author Kathleen Oshima
+ *
+ *For one-time-use items that automatically disable after they have been used
+ */
 public abstract class AutoNotInUseItem extends CollectibleItem {
 
 	Timer timerStart;
@@ -24,11 +29,11 @@ public abstract class AutoNotInUseItem extends CollectibleItem {
     }
 
 	@Override
-	public void decorate(Character player) {
+	public void updatePlayerAttributes(Character player) {
 		if (timerStart.action(timePassed))
 		{
-			for (String state : myStateValues.keySet()) {
-				updateBaseValues(player, state, myStateValues.get(state));
+			for (String state : myAttributeValues.keySet()) {
+				updateBaseValues(player, state, myAttributeValues.get(state));
 			}
 		}
 		if (timerEnd.action(timePassed)) {

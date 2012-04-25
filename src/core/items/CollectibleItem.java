@@ -18,22 +18,22 @@ public abstract class CollectibleItem extends GameElement {
 
 	protected transient GameObject game;
 	private boolean isInUse;
-	protected transient HashMap<String, Double> myStateValues;
+	protected transient HashMap<String, Double> myAttributeValues;
 
 	// Constructor for a collectible item
 	public CollectibleItem(GameObject game, PhysicsAttributes physicsAttribute) {
 		super(game, physicsAttribute);
-		myStateValues = new HashMap<String, Double>();
+		myAttributeValues = new HashMap<String, Double>();
 	}
 
 	public CollectibleItem() {
 		super();
 	}
 
-	public void decorate(Character player) {
+	public void updatePlayerAttributes(Character player) {
 
-		for (String state : myStateValues.keySet()) {
-			updateStateValues(player, state, myStateValues.get(state));
+		for (String state : myAttributeValues.keySet()) {
+			updateAttributeValues(player, state, myAttributeValues.get(state));
 		}
 		this.setIsInUse(true);
 	}
@@ -51,7 +51,7 @@ public abstract class CollectibleItem extends GameElement {
 		return isInUse;
 	}
 
-	public void updateStateValues(Character player, String state, double newValue) {
+	public void updateAttributeValues(Character player, String state, double newValue) {
 		player.updateAttributeValues(state, newValue);
 	}
 
@@ -59,12 +59,12 @@ public abstract class CollectibleItem extends GameElement {
 		player.updateBaseValues(state, newValue);
 	}
 
-	public void addState(String attribute, double defaultValue) {
-		myStateValues.put(attribute, defaultValue);
+	public void addAttribute(String attribute, double defaultValue) {
+		myAttributeValues.put(attribute, defaultValue);
 	}
 
-	public double getStateValue(String state) {
-		return myStateValues.get(state);
+	public double getAttributeValue(String state) {
+		return myAttributeValues.get(state);
 	}
 
 	public abstract boolean canSetInUse();
