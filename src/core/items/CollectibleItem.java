@@ -8,7 +8,6 @@ import com.golden.gamedev.GameObject;
 import core.characters.Character;
 import core.characters.GameElement;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
-import core.tiles.Tile;
 
 /**
  * @author Kathleen Oshima
@@ -52,11 +51,11 @@ public abstract class CollectibleItem extends GameElement {
 	}
 
 	public void updateAttributeValues(Character player, String state, double newValue) {
-		player.updateAttributeValues(state, newValue);
+		player.updateAttributeValue(state, newValue);
 	}
 
 	public void updateBaseValues(Character player, String state, double newValue) {
-		player.updateBaseValues(state, newValue);
+		player.updateBaseValue(state, newValue);
 	}
 
 	public void addAttribute(String attribute, double defaultValue) {

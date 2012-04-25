@@ -2,8 +2,6 @@ package core.tiles;
 
 import com.golden.gamedev.object.Timer;
 
-import core.characters.GameElement;
-
 public class FallingDecorator extends ActionDecorator {
 	private Timer fallTimer;
 	private boolean falling;

@@ -13,7 +13,6 @@ import com.golden.gamedev.object.CollisionManager;
 import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ParallaxBackground;
-import core.characters.*;
 import core.characters.Character;
 import core.collision.GameElementCollision;
 import core.collision.SideScrollerBoundsCollision;

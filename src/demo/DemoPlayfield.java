@@ -3,7 +3,6 @@ package demo;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import com.golden.gamedev.object.background.ColorBackground;
-import core.characters.*;
 import core.characters.Character;
 import core.characters.ai.*;
 import core.collision.*;
@@ -43,13 +42,13 @@ public class DemoPlayfield extends GameObject2D {
 
         // Collisions
         myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-                myPlayfield.getSetting(), new CharacterPlatformCollision());
+                myPlayfield.getSetting(), new GameElementCollision());
 
         myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
                 myPlayfield.getItems(), new CharacterCollectibleItemCollision());
         
         myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-                myPlayfield.getSetting(), new CharacterPlatformCollision());
+                myPlayfield.getSetting(), new GameElementCollision());
         
         myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
                 myPlayfield.getCharacters(), new GameElementCollision());
@@ -72,6 +71,8 @@ public class DemoPlayfield extends GameObject2D {
         addKeyListeners(this);
         temp.setLocation(25, 400);
         temp.addAttribute("hitPoints", 10);
+        temp.addAttribute("points", 0);
+        temp.addAttribute("lives", 3);
         myPlayfield.addPlayer(temp);
         
         Character koopa1 = new Koopa(this, new PhysicsAttributes());

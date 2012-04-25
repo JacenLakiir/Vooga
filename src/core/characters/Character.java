@@ -1,6 +1,6 @@
 /**
  * @author Kathleen Oshima
- * @author Eric Mercer
+ * @author Eric Mercer (JacenLakiir)
  */
 
 package core.characters;
@@ -16,13 +16,13 @@ import core.characters.ai.State;
 import core.items.CollectibleItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
+@SuppressWarnings("serial")
 public class Character extends GameElement {
 	
-    protected double strengthUp, strengthDown, strengthLeft, strengthRight;
 	private transient List<CollectibleItem> myInventory, myActiveInventory;
 	private transient List<State> myPossibleStates;
 
-	protected transient Map<String, Double> myAttributeValues, myBaseAttributeValues;
+	private transient Map<String, Double> myAttributeValues, myBaseAttributeValues;
 
 	public Character(GameObject game, PhysicsAttributes physicsAttribute) {
 		super(game, physicsAttribute);
@@ -41,57 +41,70 @@ public class Character extends GameElement {
 		myActiveInventory = new ArrayList<CollectibleItem>();
 		myPossibleStates = new ArrayList<State>();
 	}
-
 	
-	protected void giveStrengthUp() {
-		this.addAcceleration(0,
-			strengthUp * this.getGravitationalAcceleration());
-	    }
+	@Override
+    public void update(long milliSec) {
+    
+        updateAbilities();
+        updateState(milliSec);              
+        super.update(milliSec);
+        checkIfDead();
+    }
+    
+    public void updateAbilities() {
+        for (CollectibleItem item : myInventory) {
+            if (item.isInUse()) {
+                myActiveInventory.add(item);
+            } else {
+                myActiveInventory.remove(item);
+            }
+        }
+        for (CollectibleItem item : myActiveInventory) {
+            item.updatePlayerAttributes(this);
+            for (String state : myAttributeValues.keySet()) {
+                System.out.print(state + myAttributeValues.get(state));
+                System.out.println();
+            }
+        }
+    }
 
-	    public void keyAPressed() {
-		shoot();
-	    }
-
-	    public void keyBPressed() {
-		specialSkill();
-	    }
-
-	    public void shoot() {
-	    }
-
-	    public void specialSkill() {
-	    }
-
-	    public void setStrengthUp(double s) {
-		strengthUp = s;
-	    }
-
-	    public void setStrengthDown(double s) {
-		strengthDown = s;
-	    }
-
-	    public void setStrengthLeft(double s) {
-		strengthLeft = s;
-	    }
-
-	    public void setStrengthRight(double s) {
-		strengthRight = s;
-	    }
-
-	    public void setStrength(double s) {
-		this.setStrengthDown(s);
-		this.setStrengthLeft(s);
-		this.setStrengthRight(s);
-		this.setStrengthUp(s);
-	    }
+    public void updateState (long milliSec)
+    {
+        List<State> myCurrentStates = new ArrayList<State>();
+        for (State s : myPossibleStates)
+            if (s.isActive())
+                myCurrentStates.add(s);
+        for (State s : myCurrentStates)
+            s.execute(milliSec);
+    }
+    
+    public void checkIfDead ()
+    {
+        Double currHP = getMyAttributeValue("hitPoints");
+        if (currHP != null && currHP <= 0) {
+            updateBaseValue("lives", -1);
+            addAttribute("hitPoints", 10);
+            this.setLocation(0, 0);
+            System.out.println("dead");
+        }
+    }
 	
 	public void addAttribute(String attribute, double defaultValue) {
 		myBaseAttributeValues.put(attribute.toLowerCase(), defaultValue);
 		myAttributeValues.put(attribute.toLowerCase(), myBaseAttributeValues.get(attribute.toLowerCase()));
-
 	}
+	
+    public void addPossibleState(State state) {
+        myPossibleStates.add(state);
+    }
 
-	public void updateBaseValues(String attribute, double newValue) {
+    public void deactivateAllOtherStates(State toRemainActive) {
+        for (State s : myPossibleStates)
+            if (!s.equals(toRemainActive))
+                s.setActive(false);
+    }
+
+	public void updateBaseValue(String attribute, double newValue) {
 		String sanitizedAttribute = attribute.toLowerCase();
 		if (!myBaseAttributeValues.containsKey(sanitizedAttribute)) {
 			return;
@@ -100,31 +113,13 @@ public class Character extends GameElement {
 		myAttributeValues.put(sanitizedAttribute, myBaseAttributeValues.get(sanitizedAttribute));
 	}
 
-	public double getMyBaseValue(String attribute) {
-		return myBaseAttributeValues.get(attribute.toLowerCase());
-	}
-
-	public void updateAttributeValues(String attribute, double newValue) {
+	public void updateAttributeValue(String attribute, double newValue) {
 		if (!myBaseAttributeValues.containsKey(attribute.toLowerCase())) {
 //			myBaseAttributeValues.put(attribute.toLowerCase(), (double) 0);
 			return;
 		}
 		myAttributeValues.put(attribute.toLowerCase(), myBaseAttributeValues.get(attribute.toLowerCase()) + newValue);
 	}
-
-	public Double getMyAttributeValue(String attribute) {
-		if (myAttributeValues.get(attribute.toLowerCase()) == null )
-			return null;
-		return myAttributeValues.get(attribute.toLowerCase());
-	}
-
-	public List<CollectibleItem> getMyInventory() {
-    	return myInventory;
-    }
-
-	public List<CollectibleItem> getMyActiveInventory() {
-    	return myActiveInventory;
-    }
 
 	public void updateMyInventory(CollectibleItem item) {
     	myInventory.remove(item);
@@ -137,63 +132,27 @@ public class Character extends GameElement {
 	public void unuseInventoryItem(CollectibleItem item) {
     	item.setActive(false);
     }
-
-	public void updateAbilities() {
-    	for (CollectibleItem item : myInventory) {
-    		if (item.isInUse()) {
-    			myActiveInventory.add(item);
-    		} else {
-    			myActiveInventory.remove(item);
-    		}
-    	}
-    	for (CollectibleItem item : myActiveInventory) {
-    		item.updatePlayerAttributes(this);
-    		for (String state : myAttributeValues.keySet()) {
-    			System.out.print(state + myAttributeValues.get(state));
-    			System.out.println();
-    		}
-    	}
+	
+	public double getMyBaseValue(String attribute) {
+        return myBaseAttributeValues.get(attribute.toLowerCase());
     }
 	
-	public void addPossibleState(State state) {
-		myPossibleStates.add(state);
-	}
+	public Double getMyAttributeValue(String attribute) {
+        if (myAttributeValues.get(attribute.toLowerCase()) == null )
+            return null;
+        return myAttributeValues.get(attribute.toLowerCase());
+    }
 
-	public void deactivateAllOtherStates(State toRemainActive) {
-		for (State s : myPossibleStates)
-			if (!s.equals(toRemainActive))
-				s.setActive(false);
-	}
+    public List<CollectibleItem> getMyInventory() {
+        return myInventory;
+    }
+
+    public List<CollectibleItem> getMyActiveInventory() {
+        return myActiveInventory;
+    }
 
 	public List<State> getPossibleStates() {
 		return myPossibleStates;
 	}
-
-	@Override
-    public void update(long milliSec) {
-    
-    	updateAbilities();
-    	
-		List<State> myCurrentStates = new ArrayList<State>();
-		for (State s : myPossibleStates)
-			if (s.isActive())
-				myCurrentStates.add(s);
-
-		for (State s : myCurrentStates)
-			s.execute(milliSec);
-		myCurrentStates.clear();
-
-				
-    	super.update(milliSec);
-    	
-    	// check dead
-    	Double currHP = getMyAttributeValue("hitPoints");
-    	if (currHP != null && currHP <= 0) {
-    		updateBaseValues("lives", -1);
-    		addAttribute("hitPoints", 10);
-    		this.setLocation(0, 0);
-    		System.out.println("dead");
-    	}
-    }
 
 }

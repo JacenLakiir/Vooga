@@ -8,7 +8,6 @@ import com.golden.gamedev.object.background.ColorBackground;
 import core.characters.Character;
 import core.characters.ai.MoveState;
 import core.characters.ai.PatrolState;
-import core.collision.CharacterPlatformCollision;
 import core.collision.GameElementCollision;
 import core.collision.CharacterCollectibleItemCollision;
 import core.configuration.key.KeyAnnotation;
@@ -20,7 +19,6 @@ import core.items.AutoInUseAutoNotInUseItem;
 import core.items.AutoNotInUseItem;
 import core.items.CollectibleItem;
 import core.items.FiringWeapons;
-import core.items.SetInUseAutoNotInUseItem;
 import core.items.SetInUseSetNotInUseItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import core.playfield.AdvancedPlayField;
@@ -58,7 +56,7 @@ public class DemoHUD extends GameObject2D {
 
 		// Collisions
 		myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-				myPlayfield.getSetting(), new CharacterPlatformCollision());
+				myPlayfield.getSetting(), new GameElementCollision());
 
 		myPlayfield
 				.addCollisionGroup(myPlayfield.getPlayers(),
@@ -66,7 +64,7 @@ public class DemoHUD extends GameObject2D {
 						new CharacterCollectibleItemCollision());
 
 		myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-				myPlayfield.getSetting(), new CharacterPlatformCollision());
+				myPlayfield.getSetting(), new GameElementCollision());
 
 		myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
 				myPlayfield.getCharacters(), new GameElementCollision());
@@ -104,17 +102,20 @@ public class DemoHUD extends GameObject2D {
 		myPlayfield.addHUDWidget(new IconWidget("Lives", this
 				.getImage("resources/life.png"), new IntProxy() {
 			public int get() {
-				return  myPlayfield.getPlayer().getMyAttributeValue("lives").intValue();
+				return myPlayfield.getPlayer().getMyAttributeValue("lives")
+						.intValue();
 			}
 		}));
 
 		myPlayfield.addHUDWidget(new BarWidget("HP", new BarProxy() {
 			public double get() {
 				if (myPlayfield.getPlayer().getMyAttributeValue("hitpoints") != null)
-					return myPlayfield.getPlayer().getMyAttributeValue("hitpoints");
+					return myPlayfield.getPlayer().getMyAttributeValue(
+							"hitpoints");
 				else
 					return 0;
 			}
+
 			public double getInit() {
 				return myPlayfield.getPlayer().getMyBaseValue("hitPoints");
 			}
