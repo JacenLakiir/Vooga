@@ -75,15 +75,14 @@ public class Mario extends Character {
     }
     
     public void giveStrengthUp() {
-        addAcceleration(0, strengthUp * this.getGravitationalAcceleration());
-        if (!jumpEnable) {
+        if (!jumpEnable)
             return;
-        }
         else {
             if (jumpTimer.isActive() == false) {
                 jumpTimer.setActive(true);
                 jumpTimer.refresh();
             }
+            addAcceleration(0, strengthUp * this.getGravitationalAcceleration());
         }
     }
     
