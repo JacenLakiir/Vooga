@@ -1,13 +1,13 @@
 package core.collision;
 
-
-
-
 import com.golden.gamedev.object.Sprite;
 
 import core.characters.Character;
 import core.items.CollectibleItem;
 
+/**
+ * @author Kathleen Oshima
+ */
 public class CharacterCollectibleItemCollision extends GameElementCollision {
 
 	@Override

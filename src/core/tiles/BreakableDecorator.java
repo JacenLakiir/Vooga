@@ -3,10 +3,6 @@
  */
 package core.tiles;
 
-
-import core.characters.GameElement;
-
-
 public class BreakableDecorator extends ActionDecorator {
 	private boolean broken;
 	private int blockStrength;

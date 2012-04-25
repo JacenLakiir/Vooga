@@ -4,13 +4,15 @@ import java.awt.Graphics2D;
 
 import com.golden.gamedev.object.GameFont;
 
+import core.playfield.hud.StringProxy;
+
 public class TextWidget extends HUDWidget {
 
 	String title;
 	String myValue;
-	DataProxy dp;
+	StringProxy dp;
 
-	public TextWidget(String title, DataProxy dp) {
+	public TextWidget(String title, StringProxy dp) {
 		super(50,15);
 		this.title = title;
 		this.dp = dp;
@@ -18,7 +20,7 @@ public class TextWidget extends HUDWidget {
 
 	@Override
 	public void update(long t) {
-		myValue = Double.toString((Double)dp.get());
+		myValue = dp.get();
 	}
 
 	@Override
