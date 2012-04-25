@@ -9,31 +9,32 @@ import com.golden.gamedev.object.GameFont;
 
 public class BarWidget extends HUDWidget {
 
-    String title;
-    Double myValue;
-    Double maxHP;
-    DataProxy dp;
+	String title;
+	Double myValue;
+	Double maxHP;
+	BarProxy dp;
 
-    public BarWidget(String title, DataProxy dp) {
-	super(50, 15);
-	this.title = title;
-	this.dp = dp;
-	this.maxHP = (Double) dp.get();
-    }
+	public BarWidget(String title, BarProxy dp) {
+		super(50, 15);
+		this.title = title;
+		this.dp = dp;
+	}
 
-    @Override
-    public void update(long t) {
-	myValue = (Double) dp.get();
-    }
+	@Override
+	public void update(long t) {
+		this.myValue = dp.get();
+		this.maxHP = dp.getInit();
+		//System.out.println(dp.get());
+	}
 
-    @Override
-    public void render(Graphics2D g, HUD h) {
-	h.getFont().drawString(g, title + ":", GameFont.LEFT, xPos, yPos, 100);
-	g.draw(new Rectangle(xPos + 22, yPos + 3, 101, 10));
-	g.setColor(Color.red);
-	if (myValue != null && maxHP != null)
-		g.fill(new Rectangle(xPos + 23, yPos + 4,
-			(int) (myValue / maxHP * 100), 9));
-    }
+	@Override
+	public void render(Graphics2D g, HUD h) {
+		h.getFont().drawString(g, title + ":", GameFont.LEFT, xPos, yPos, 100);
+		g.draw(new Rectangle(xPos + 22, yPos + 3, 101, 10));
+		g.setColor(Color.red);
+		if (myValue != null && maxHP != null)
+			g.fill(new Rectangle(xPos + 23, yPos + 4,
+					(int) (myValue / maxHP * 100), 9));
+	}
 
 }

@@ -87,7 +87,7 @@ public class Character extends GameElement {
 	
 	public void addAttribute(String attribute, double defaultValue) {
 		myBaseAttributeValues.put(attribute.toLowerCase(), defaultValue);
-		myAttributeValues.put(attribute.toLowerCase(), myBaseAttributeValues.get(attribute));
+		myAttributeValues.put(attribute.toLowerCase(), myBaseAttributeValues.get(attribute.toLowerCase()));
 
 	}
 

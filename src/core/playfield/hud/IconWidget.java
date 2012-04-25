@@ -3,6 +3,8 @@ package core.playfield.hud;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import core.playfield.hud.IntProxy;
+
 import com.golden.gamedev.object.GameFont;
 
 public class IconWidget extends HUDWidget {
@@ -10,9 +12,9 @@ public class IconWidget extends HUDWidget {
 	String title;
 	int myValue;
 	BufferedImage img;
-	DataProxy dp;
+	IntProxy dp;
 
-	public IconWidget(String title, BufferedImage img, DataProxy dp) {
+	public IconWidget(String title, BufferedImage img, IntProxy dp) {
 		super(50, 15);
 		this.title = title;
 		this.img = img;
@@ -21,7 +23,7 @@ public class IconWidget extends HUDWidget {
 	
 	@Override
 	public void update(long t) {
-		myValue = (int) ((double)(Double)dp.get());
+		myValue = dp.get();
 	}
 
 	@Override
