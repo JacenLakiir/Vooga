@@ -9,6 +9,8 @@ public abstract class Game2D extends GameObject2D{
         registerGameOverEvent();
     }
     
+    
+    
     public abstract boolean isWin();
     public abstract boolean isFail();
     
