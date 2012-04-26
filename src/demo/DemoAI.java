@@ -14,7 +14,6 @@ import core.configuration.key.KeyParser;
 import core.configuration.mouse.MouseInput;
 import core.gamestate.GameEngine2D;
 import core.gamestate.Game2D;
-import core.gamestate.GameObject2D;
 import core.items.AutoInUseAutoNotInUseItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import core.playfield.AdvancedPlayField;

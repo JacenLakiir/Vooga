@@ -1,11 +1,9 @@
 package demo.custom;
 
-import java.util.List;
 import com.golden.gamedev.GameObject;
 import core.characters.Character;
 import core.characters.GameElement;
 import core.characters.ai.DeadState;
-import core.characters.ai.State;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import demo.custom.ShellState;
 
@@ -27,11 +25,6 @@ public class Koopa extends Character {
         myShellState = new ShellState(this);
         myShellState.setActive(false);
         addPossibleState(myShellState);
-        setTag("Koopa");
-    }
-
-    public Koopa(GameObject game, PhysicsAttributes physicsAttribute, List<State> possibleStates) {
-        super(game, physicsAttribute);
         setTag("Koopa");
     }
 

@@ -1,11 +1,9 @@
 package demo.custom;
 
-import java.util.List;
 import com.golden.gamedev.GameObject;
 import core.characters.GameElement;
 import core.characters.Character;
 import core.characters.ai.DeadState;
-import core.characters.ai.State;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 /**
@@ -20,11 +18,6 @@ public class Goomba extends Character {
         super(game, physicsAttribute);
         setImages(game.getImages(IMAGE_FILE, 1, 1));
         setMovable(true);
-        setTag("Goomba");
-    }
-
-    public Goomba(GameObject game, PhysicsAttributes physicsAttribute, List<State> possibleStates) {
-        super(game, physicsAttribute);
         setTag("Goomba");
     }
 
