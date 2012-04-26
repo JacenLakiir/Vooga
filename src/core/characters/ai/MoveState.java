@@ -18,15 +18,15 @@ public class MoveState extends State
     }
     
     @Override
-    public void execute (long milliSec)
-    {
-        myCharacter.move(myCharacter.getDirection() * mySpeed, 0);
-    }
-    
-    @Override
     public boolean areConditionsMet ()
     {
         return true;
+    }
+    
+    @Override
+    public void execute (long milliSec)
+    {
+        myCharacter.move(myCharacter.getDirection() * mySpeed, 0);
     }
 
 }

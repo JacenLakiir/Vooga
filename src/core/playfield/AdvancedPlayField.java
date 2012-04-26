@@ -5,13 +5,13 @@
 package core.playfield;
 
 import java.awt.Graphics2D;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.CollisionManager;
 import com.golden.gamedev.object.PlayField;
-import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ParallaxBackground;
 import core.characters.Character;
 import core.collision.GameElementCollision;
@@ -25,10 +25,11 @@ import core.playfield.hud.HUD;
 import core.playfield.hud.HUDWidget;
 import core.playfield.hud.VerticalFlowLayout;
 import core.playfield.scroller.GameScroller;
+import core.sprites.SpriteGroup;
 import core.tiles.Tile;
 
 
-public class AdvancedPlayField extends PlayField
+public class AdvancedPlayField extends PlayField implements Serializable
 {
 
     private GameScroller gamescroller;
@@ -65,6 +66,13 @@ public class AdvancedPlayField extends PlayField
     }
 
 
+    public SpriteGroup addGroup (SpriteGroup group)
+    {
+        super.addGroup(group);
+        return group;
+    }
+
+
     /*
      * Initialize Default PhysicsPlugins
      */
@@ -97,7 +105,6 @@ public class AdvancedPlayField extends PlayField
     /*
      * Override default method to add physics plug-ins.
      */
-    @Override
     public void addCollisionGroup (SpriteGroup group1,
                                    SpriteGroup group2,
                                    CollisionManager collisionGroup)

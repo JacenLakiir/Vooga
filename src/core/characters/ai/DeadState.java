@@ -14,16 +14,16 @@ public class DeadState extends State
     }
     
     @Override
+    public boolean areConditionsMet ()
+    {
+        return true;
+    }
+    
+    @Override
     public void execute (long milliSec)
     {
         myCharacter.deactivateAllOtherStates(this);
         myCharacter.setActive(!isActivated);
-    }
-    
-    @Override
-    public boolean areConditionsMet ()
-    {
-        return true;
     }
 
 }

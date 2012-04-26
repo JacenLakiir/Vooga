@@ -21,17 +21,17 @@ public class FollowState extends State
     }
 
     @Override
+    public boolean areConditionsMet ()
+    {
+        return (myCharacter.getDistance(beingFollowed) <= myFollowRange);
+    }
+
+    @Override
     public void execute (long milliSec)
     {
         double horizontalDistance = beingFollowed.getX() - myCharacter.getX();
         int directionOfTarget = (horizontalDistance < 0) ? -1 : 1;
         myCharacter.move(directionOfTarget * mySpeed, 0);
-    }
-
-    @Override
-    public boolean areConditionsMet ()
-    {
-        return (myCharacter.getDistance(beingFollowed) <= myFollowRange);
     }
     
 }

@@ -16,10 +16,10 @@ public abstract class State
         isActivated = true;
     }
     
-    public abstract void execute (long milliSec);
-    
     public abstract boolean areConditionsMet ();
     
+    public abstract void execute (long milliSec);
+        
     public boolean isActive ()
     {
         return (isActivated && areConditionsMet());

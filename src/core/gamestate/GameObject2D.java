@@ -1,98 +1,191 @@
 package core.gamestate;
 
 import java.awt.Graphics2D;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFileChooser;
 import com.golden.gamedev.GameObject;
-
 import core.configuration.key.Key;
 import core.configuration.mouse.Mouse;
 
-public abstract class GameObject2D extends GameObject {
+
+public abstract class GameObject2D extends GameObject implements Serializable
+{
+    private final static long serialVersionUID = 6172500678229491464L;
     private List<Key> keyList;
     private List<Mouse> mouseList = new ArrayList<Mouse>();
 
-    public List<Mouse> getMouseList() {
-	return mouseList;
+
+    public List<Mouse> getMouseList ()
+    {
+        return mouseList;
     }
 
     private GameEngine2D engine;
 
-    public void setKeyList(List<Key> keys) {
-	keyList = keys;
+
+    public void setKeyList (List<Key> keys)
+    {
+        keyList = keys;
     }
 
-    public void addMouse(Mouse mouse) {
-	mouseList.add(mouse);
+
+    public void addMouse (Mouse mouse)
+    {
+        mouseList.add(mouse);
     }
 
-    public GameObject2D(GameEngine2D engine) {
-	super(engine);
-	this.engine = engine;
+
+    public GameObject2D (GameEngine2D engine)
+    {
+        super(engine);
+        this.engine = engine;
     }
+
 
     @Override
-    public abstract void initResources();
+    public abstract void initResources ();
+
 
     @Override
-    public abstract void render(Graphics2D graphic);
+    public abstract void render (Graphics2D graphic);
+
 
     @Override
-    public void update(long milliSec) {
-	checkKeyboardInput(milliSec);
-	checkMouseInput(milliSec);
+    public void update (long milliSec)
+    {
+        checkKeyboardInput(milliSec);
+        checkMouseInput(milliSec);
     }
 
-    protected GameEngine2D getEngine() {
-	return engine;
+
+    protected GameEngine2D getEngine ()
+    {
+        return engine;
     }
 
-    public void addKeyListeners(Object object) {
-	for (Key key : keyList) {
-	    key.addKeyListenenr(object);
-	}
+
+    public void addKeyListeners (Object object)
+    {
+        for (Key key : keyList)
+        {
+            key.addKeyListenenr(object);
+        }
     }
 
-    public void addMouseListeners(Object object) {
-	for (Mouse mouse : mouseList) {
-	    mouse.addMouseListenenr(object);
-	}
+
+    public void addMouseListeners (Object object)
+    {
+        for (Mouse mouse : mouseList)
+        {
+            mouse.addMouseListenenr(object);
+        }
     }
 
-    private void checkKeyboardInput(long milliSec) {
-	for (Key key : keyList)
-	    if (key.isKeyDown(milliSec))
-		key.notifyObserver();
+
+    private void checkKeyboardInput (long milliSec)
+    {
+        for (Key key : keyList)
+            if (key.isKeyDown(milliSec)) key.notifyObserver();
     }
 
-    private void checkMouseInput(long milliSec) {
-	for (Mouse mouse : getMouseList()) {
-	    if (mouse.isMouseClicked()) {
-		mouse.notifyObserver();
-	    }
-	}
+
+    private void checkMouseInput (long milliSec)
+    {
+        for (Mouse mouse : getMouseList())
+        {
+            if (mouse.isMouseClicked())
+            {
+                mouse.notifyObserver();
+            }
+        }
     }
 
-    public void continueGame() {
-	engine.nextGameID = engine.getCurrentGameID();
+
+    public void continueGame ()
+    {
+        engine.nextGameID = engine.getCurrentGameID();
     }
 
-    public void saveGame() {
-	continueGame();
-	engine.saveGame();
+
+    public void saveNextGame ()
+    {
+        continueGame();
+        engine.saveNextGame();
     }
 
-    public void restartGame() {
-	continueGame();
-	engine.initResources();
+
+    private void writeObject (ObjectOutputStream stream) throws IOException
+    {
+        System.err.println("serializing GameObject");
+        System.err.println(getClass());
+        //stream.defaultWriteObject();
+        //stream.writeObject("lol");
+        //System.out.println("left cookie");
+        //System.out.printf("writing node %s\n", name);
     }
 
-    public void reset() {
-	engine.initResources();
+
+    public void saveGame (File file)
+    {
+        try
+        {
+            ObjectOutputStream out =
+                new ObjectOutputStream(new FileOutputStream(file));
+            out.writeObject(this);
+            out.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
-    
-    public void switchToGameObject(Class<? extends GameObject2D> gameClass) {
-	engine.nextGameID = engine.getIdMap().get(gameClass.getName());
-	finish();
+
+
+    public void saveGame (String path)
+    {
+        saveGame(new File(path));
+    }
+
+
+    public void saveGame ()
+    {
+        // testing
+        saveGame("tmp");
+        /*
+         * JFileChooser chooser = new JFileChooser();
+         * chooser.setDialogType(JFileChooser.SAVE_DIALOG); int returnVal =
+         * chooser.showOpenDialog(null); if (returnVal ==
+         * JFileChooser.APPROVE_OPTION) { File file = chooser.getSelectedFile();
+         * try { saveGame(file); } catch (Exception e) { e.printStackTrace(); }
+         * }
+         */
+    }
+
+
+    public void restartGame ()
+    {
+        continueGame();
+        engine.initResources();
+    }
+
+
+    public void reset ()
+    {
+        engine.initResources();
+    }
+
+
+    public void switchToGameObject (Class<? extends GameObject2D> gameClass)
+    {
+        engine.nextGameID = engine.getIdMap().get(gameClass.getName());
+        finish();
     }
 }
