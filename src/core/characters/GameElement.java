@@ -55,8 +55,8 @@ public class GameElement extends AdvanceSprite {
 //                }
 //            }
 //        }));
-        myGame = null;
-        physicsAttribute = null;
+        //myGame = null;
+        //physicsAttribute = null;
     }
 
     public GameElement(GameObject game, PhysicsAttributes physicsAttribute) {

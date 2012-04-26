@@ -3,6 +3,8 @@
  */
 package leveleditor;
 
+import io.LevelState;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
@@ -15,22 +17,25 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.PixelGrabber;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import com.golden.gamedev.util.ImageUtil;
 
 public class VoogaUtilities {
+    
     public static BufferedImage getImage(String src) {
 	BufferedImage toreturn = null;
 	try {
 	    toreturn = ImageUtil.getImage(
-		    new URL("file://" + new File(src).getCanonicalPath()),
+		    new URL("file://" + new File(src).getAbsolutePath()),
 		    Color.MAGENTA);
 	} catch (MalformedURLException e) {
-	    e.printStackTrace();
-	} catch (IOException e) {
 	    e.printStackTrace();
 	}
 	return toreturn;
@@ -40,11 +45,9 @@ public class VoogaUtilities {
 	BufferedImage[] toreturn = null;
 	try {
 	    toreturn = ImageUtil.getImages(
-		    new URL("file://" + new File(src).getCanonicalPath()), row, col, 
+		    new URL("file://" + new File(src).getAbsolutePath()), row, col, 
 		    Color.MAGENTA);
 	} catch (MalformedURLException e) {
-	    e.printStackTrace();
-	} catch (IOException e) {
 	    e.printStackTrace();
 	}
 	return toreturn;
@@ -98,6 +101,30 @@ public class VoogaUtilities {
 	return cm.hasAlpha();
     }
     
+    public static Object deserialize(File file) {
+	Object res = null;
+	try {
+	    ObjectInputStream in = new ObjectInputStream(new FileInputStream(
+		    file));
+	    res = in.readObject();
+	    in.close();
+	} catch (IOException e) {
+	    e.printStackTrace();
+	} catch (ClassNotFoundException e) {
+	    e.printStackTrace();
+	}
+	return res;
+    }
     
+    public static void serialize(Object o, File file) {
+	try {
+	    ObjectOutputStream out = new ObjectOutputStream(
+		    new FileOutputStream(file));
+	    out.writeObject(o);
+	    out.close();
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
+    }
     
 }

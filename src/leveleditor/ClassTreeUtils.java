@@ -89,7 +89,7 @@ public class ClassTreeUtils {
 
     /**
      * Recursive method used to find all classes in a given path (directory or
-     * zip file url). Directories are searched recursively. (zip files are
+     * zip file url). Directories are searched recursively.
      * Adapted from http://snippets.dzone.com/posts/show/4831 and extended to
      * support use of JAR files
      * 

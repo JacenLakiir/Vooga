@@ -24,7 +24,7 @@ public class TextWidget extends HUDWidget {
 	}
 
 	@Override
-	public void render(Graphics2D g, HUD h) {
+	public void render(Graphics2D g, HUDGroup h) {
 		h.getFont().drawString(g, title + ":" + myValue, GameFont.LEFT, xPos,
 				yPos, 100);
 	}

@@ -18,6 +18,9 @@ public class RestitutionAndFrictionPlugin extends PhysicsPlugin
     @Override
     public void exertOn (GameElement s1, GameElement s2)
     {
+        if (s1.getPhysicsAttribute().isPenetrable() || s2.getPhysicsAttribute().isPenetrable()) {
+            return;
+        }
         int collisionSide = myCollision.getCollisionSide();
         if (((collisionSide & GameElementCollision.LEFT_RIGHT_COLLISION) != 0) ||
             (collisionSide & GameElementCollision.RIGHT_LEFT_COLLISION) != 0)

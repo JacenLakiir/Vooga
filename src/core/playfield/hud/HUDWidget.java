@@ -27,6 +27,6 @@ public abstract class HUDWidget
     public abstract void update (long t);
 
 
-    public abstract void render (Graphics2D g, HUD h);
+    public abstract void render (Graphics2D g, HUDGroup h);
 
 }
