@@ -1,4 +1,4 @@
-package core.gamestate;
+package demo;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
 
 import core.configuration.key.KeyAnnotation;
 import core.configuration.key.KeyParser;
+import core.gamestate.GameEngine2D;
+import core.gamestate.MenuGameObject;
 
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
@@ -81,7 +83,7 @@ public class Pause extends MenuGameObject {
 
     @Override
     public void initialKeyList() {
-       setKeyList(new KeyParser(this, true, new DemoKeyAdapter("key_type")).parseKeyConfig());
+       setKeyList(new KeyParser(this, true, new DemoKeyAdapter("key_type")).parseKeyConfig("configurations/keyconfig.json"));
 
         
     }

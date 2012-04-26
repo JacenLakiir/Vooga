@@ -15,8 +15,6 @@ import core.configuration.key.KeyParser;
 import core.gamestate.Game2D;
 import core.gamestate.GameEngine2D;
 import core.gamestate.GameObject2D;
-import core.gamestate.Menu;
-import core.gamestate.Pause;
 import core.items.AutoInUseAutoNotInUseItem;
 import core.items.AutoNotInUseItem;
 import core.items.CollectibleItem;
@@ -84,7 +82,7 @@ public class DemoHUD extends Game2D {
 
 		mario = new Mario(this, new PhysicsAttributes());
 		setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type"))
-				.parseKeyConfig());
+				.parseKeyConfig("configurations/keyconfig.json"));
 		// add the element or the game you want the key to control
 		addKeyListeners(mario);
 		addKeyListeners(this);
@@ -263,8 +261,8 @@ public class DemoHUD extends Game2D {
     }
 
     @Override
-    public void setNextLevel() {
-        registerNextLevel(Menu.class);  
+    public void registerNextLevel() {
+        setNextLevel(Menu.class);  
     }
 
 }

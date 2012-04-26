@@ -67,7 +67,7 @@ public class DemoPlayfield extends Game2D {
         // use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
 
         mario = new Mario(this, new PhysicsAttributes());
-        setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type")).parseKeyConfig());
+        setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type")).parseKeyConfig("configurations/keyconfig.json"));
         //add the element or the game you want the key to control
         addKeyListeners(mario);
         addKeyListeners(this);
@@ -177,8 +177,8 @@ public class DemoPlayfield extends Game2D {
     }
 
     @Override
-    public void setNextLevel() {
-        registerNextLevel(DemoHUD.class);       
+    public void registerNextLevel() {
+        setNextLevel(DemoHUD.class);       
     }
 	
 }

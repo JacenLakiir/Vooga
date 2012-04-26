@@ -15,7 +15,6 @@ import core.configuration.mouse.MouseInput;
 import core.gamestate.GameEngine2D;
 import core.gamestate.Game2D;
 import core.gamestate.GameObject2D;
-import core.gamestate.Pause;
 import core.items.AutoInUseAutoNotInUseItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import core.playfield.AdvancedPlayField;
@@ -53,7 +52,7 @@ public class DemoAI extends Game2D
         myPlayfield.setBackground(new ColorBackground(Color.gray, 640, 480));
         
          mario = new Mario(this, new PhysicsAttributes());
-        setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type")).parseKeyConfig());
+        setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type")).parseKeyConfig("configurations/keyconfig.json"));
         addMouse(new MouseInput(this, mario,"sequence"));
         //add the element or game you want the key to control
         addKeyListeners(mario);
@@ -194,8 +193,8 @@ public class DemoAI extends Game2D
     }
 
     @Override
-    public void setNextLevel() {
-        registerNextLevel(DemoPlayfield.class);
+    public void registerNextLevel() {
+        setNextLevel(DemoPlayfield.class);
     }
 
 }

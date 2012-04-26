@@ -1,17 +1,18 @@
-package core.gamestate;
+package demo;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import leveleditor.LevelEditorController;
+
 import core.configuration.key.KeyAnnotation;
 import core.configuration.key.KeyParser;
+import core.gamestate.GameEngine2D;
+import core.gamestate.MenuGameObject;
 
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
-import demo.DemoAI;
-import demo.DemoHUD;
-import demo.DemoPlayfield;
 import demo.custom.DemoKeyAdapter;
 
 /**
@@ -34,8 +35,8 @@ public class Menu extends MenuGameObject{
     @Override
     public void buildMenu() {
         addOptionToMenu("DemoAI", DemoAI.class);
-        addOptionToMenu("DemoHUD", DemoHUD.class);
         addOptionToMenu("DemoPlayfield", DemoPlayfield.class);
+        addOptionToMenu("DemoHUD", DemoHUD.class);
         addOptionToMenu("Exit");
     }
     
@@ -77,6 +78,6 @@ public class Menu extends MenuGameObject{
 
     @Override
     public void initialKeyList() {
-        setKeyList(new KeyParser(this, true, new DemoKeyAdapter("key_type")).parseKeyConfig());        
+        setKeyList(new KeyParser(this, true, new DemoKeyAdapter("key_type")).parseKeyConfig("configurations/keyconfig.json"));        
     }
 }
