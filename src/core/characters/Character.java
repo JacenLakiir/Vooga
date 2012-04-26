@@ -1,5 +1,7 @@
 package core.characters;
 
+import io.annotations.DefaultValueMap;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -21,7 +23,8 @@ public class Character extends GameElement {
 	
 	private transient Map<String, Double> myAttributeValues, myBaseAttributeValues;
 	private transient Map<String, State> myPossibleStates;
-	
+	    
+	@DefaultValueMap(classification = "Gameplay")
 	private Map<String, Double> myDefaultBaseAttributeValues;
 
 	public Character(GameObject game, PhysicsAttributes physicsAttribute) {
