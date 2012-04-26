@@ -32,6 +32,7 @@ import demo.custom.Mario;
  * 
  * For testing NPC AI
  */
+@SuppressWarnings("serial")
 public class DemoAI extends Game2D
 {
    

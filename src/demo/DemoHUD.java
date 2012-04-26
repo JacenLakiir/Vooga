@@ -37,6 +37,7 @@ import demo.custom.Mario;
 /**
  * @author Glenn Rivkees (grivkees)
  */
+@SuppressWarnings("serial")
 public class DemoHUD extends Game2D {
 
 	private AdvancedPlayField myPlayfield;

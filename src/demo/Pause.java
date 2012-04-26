@@ -15,6 +15,7 @@ import demo.custom.DemoKeyAdapter;
 /**
  * @author Hui Dong
  */
+@SuppressWarnings("serial")
 public class Pause extends MenuGameObject
 {
 
