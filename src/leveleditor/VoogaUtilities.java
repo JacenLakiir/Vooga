@@ -33,9 +33,11 @@ public class VoogaUtilities {
 	BufferedImage toreturn = null;
 	try {
 	    toreturn = ImageUtil.getImage(
-		    new URL("file://" + new File(src).getAbsolutePath()),
+		    new URL("file:\\/\\/" + new File(src).getCanonicalPath()),
 		    Color.MAGENTA);
 	} catch (MalformedURLException e) {
+	    e.printStackTrace();
+	} catch (IOException e) {
 	    e.printStackTrace();
 	}
 	return toreturn;
@@ -45,9 +47,11 @@ public class VoogaUtilities {
 	BufferedImage[] toreturn = null;
 	try {
 	    toreturn = ImageUtil.getImages(
-		    new URL("file://" + new File(src).getAbsolutePath()), row, col, 
+		    new URL("file:\\/\\/" + new File(src).getCanonicalPath()), row, col, 
 		    Color.MAGENTA);
 	} catch (MalformedURLException e) {
+	    e.printStackTrace();
+	} catch (IOException e) {
 	    e.printStackTrace();
 	}
 	return toreturn;

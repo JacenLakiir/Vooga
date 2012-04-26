@@ -40,6 +40,7 @@ public abstract class AutoNotInUseItem extends CollectibleItem {
 			timerStart.setActive(false);
 			timerEnd.setActive(false);
 			this.setIsInUse(false);
+			player.getInventory().remove(this);
 		}
 	}
 	
