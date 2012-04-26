@@ -19,6 +19,7 @@ public class Koopa extends Character {
 
     public Koopa(GameObject game, PhysicsAttributes physicsAttribute) {
         super(game, physicsAttribute);
+        addDefaultBaseAttributeEntry("hitPoints", 1);
         setTag("Koopa");
         setImages(game.getImages(IMAGE_FILE, 1, 1));
         getPhysicsAttribute().setMovable(true);

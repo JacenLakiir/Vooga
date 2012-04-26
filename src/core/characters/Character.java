@@ -26,11 +26,14 @@ public class Character extends GameElement {
 	
 	private transient Map<String, Double> myAttributeValues, myBaseAttributeValues;
 	private transient Map<String, State> myPossibleStates;
+	
+	private Map<String, Double> myDefaultBaseAttributeValues;
 
 	public Character(GameObject game, PhysicsAttributes physicsAttribute) {
 		super(game, physicsAttribute);
 //		myInventory = new ItemInventory();
 		myBaseAttributeValues = new HashMap<String, Double>();
+		myDefaultBaseAttributeValues = new HashMap<String, Double>();
 		myAttributeValues = new HashMap<String, Double>();
 		myInventory = new ArrayList<CollectibleItem>();
 		myActiveInventory = new ArrayList<CollectibleItem>();
@@ -166,6 +169,10 @@ public class Character extends GameElement {
 	
     public State getPossibleState(String label) {
         return myPossibleStates.get(label);
+    }
+    
+    protected void addDefaultBaseAttributeEntry(String str, double init) {
+	myDefaultBaseAttributeValues.put(str, init);
     }
 
 	public Collection<State> getPossibleStates() {

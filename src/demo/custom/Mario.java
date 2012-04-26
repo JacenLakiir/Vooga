@@ -1,5 +1,7 @@
 package demo.custom;
 
+import io.annotations.Modifiable;
+
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Timer;
 
@@ -19,9 +21,11 @@ public class Mario extends Character {
 
     private static final String IMAGE_FILE = "resources/Mario1.png";
     private double strengthUp, strengthDown, strengthLeft, strengthRight;
-
+    
+    @Modifiable(classification = "Gameplay")
     private boolean jumpEnable;
     private Timer jumpTimer;
+    @Modifiable(classification = "Gameplay")
     private int jumpTime;
 
     public Mario(GameObject game, PhysicsAttributes physicsAttribute) {
@@ -33,6 +37,11 @@ public class Mario extends Character {
     	jumpTimer = new Timer(jumpTime);
     	jumpTimer.setActive(false);
     	setTag("Mario");
+    }
+    
+    public Mario(PhysicsAttributes physicsAttribute) {
+	super();
+        addDefaultBaseAttributeEntry("hitPoints", 1);
     }
 
     @Override

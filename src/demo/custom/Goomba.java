@@ -16,6 +16,7 @@ public class Goomba extends Character {
 
     public Goomba(GameObject game, PhysicsAttributes physicsAttribute) {
         super(game, physicsAttribute);
+        addDefaultBaseAttributeEntry("hitPoints", 1);
         setTag("Goomba");
         setImages(game.getImages(IMAGE_FILE, 1, 1));
         getPhysicsAttribute().setMovable(true);
