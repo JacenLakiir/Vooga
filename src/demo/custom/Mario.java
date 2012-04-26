@@ -6,6 +6,9 @@ import com.golden.gamedev.object.Timer;
 import core.characters.GameElement;
 import core.characters.Character;
 import core.configuration.key.KeyAnnotation;
+import core.items.CollectibleItem;
+import core.items.FiringWeapon;
+import core.items.SetInUseSetNotInUseItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 /**
@@ -67,10 +70,15 @@ public class Mario extends Character {
         addAcceleration(strengthRight * this.getPhysicsAttribute().getGravitationalAcceleration(), 0);
     }
 
-//    @KeyAnnotation(action = "space")
-//     public SetInUseSetNotInUseItem keySpacePressed() {
-//    	return FiringWeapons.useWeapon();
-//     }
+    @KeyAnnotation(action = "space")
+    public SetInUseSetNotInUseItem keySpacePressed() {
+    	for (CollectibleItem item : this.getMyInventory()) {
+    		if (item.canSetInUse() && item.isInUse()) {
+    			return ((FiringWeapon) item).useWeapon();
+    		}
+    	}
+    	return null;
+    }
 
     public void specialSkill() {
     }

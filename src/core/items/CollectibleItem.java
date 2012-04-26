@@ -30,7 +30,6 @@ public abstract class CollectibleItem extends GameElement {
 	}
 
 	public void updatePlayerAttributes(Character player) {
-
 		for (String state : myAttributeValues.keySet()) {
 			updateAttributeValues(player, state, myAttributeValues.get(state));
 		}

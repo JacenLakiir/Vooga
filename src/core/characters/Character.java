@@ -15,18 +15,21 @@ import com.golden.gamedev.GameObject;
 
 import core.characters.ai.State;
 import core.items.CollectibleItem;
+import core.items.ItemInventory;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 @SuppressWarnings("serial")
 public class Character extends GameElement {
 	
 	private transient List<CollectibleItem> myInventory, myActiveInventory;
-
+//	private transient ItemInventory myInventory, myActiveInventory;
+	
 	private transient Map<String, Double> myAttributeValues, myBaseAttributeValues;
 	private transient Map<String, State> myPossibleStates;
 
 	public Character(GameObject game, PhysicsAttributes physicsAttribute) {
 		super(game, physicsAttribute);
+//		myInventory = new ItemInventory();
 		myBaseAttributeValues = new HashMap<String, Double>();
 		myAttributeValues = new HashMap<String, Double>();
 		myInventory = new ArrayList<CollectibleItem>();
@@ -38,6 +41,7 @@ public class Character extends GameElement {
 		super();
 		myBaseAttributeValues = new HashMap<String, Double>();
 		myAttributeValues = new HashMap<String, Double>();
+//		myInventory = new ItemInventory();
 		myInventory = new ArrayList<CollectibleItem>();
 		myActiveInventory = new ArrayList<CollectibleItem>();
 		myPossibleStates = new HashMap<String, State>();
@@ -45,7 +49,6 @@ public class Character extends GameElement {
 	
 	@Override
     public void update(long milliSec) {
-    
         updateAbilities();
         updateState(milliSec);              
         super.update(milliSec);
@@ -81,7 +84,7 @@ public class Character extends GameElement {
     
     public void checkIfDead ()
     {
-        Double currHP = getMyAttributeValue("hitPoints");
+        Double currHP = getAttributeValue("hitPoints");
         if (currHP != null && currHP <= 0) {
             updateBaseValue("lives", -1);
             addAttribute("hitPoints", 10);
@@ -91,8 +94,8 @@ public class Character extends GameElement {
     }
 	
 	public void addAttribute(String attribute, double defaultValue) {
-		myBaseAttributeValues.put(attribute.toLowerCase(), defaultValue);
-		myAttributeValues.put(attribute.toLowerCase(), myBaseAttributeValues.get(attribute.toLowerCase()));
+		myBaseAttributeValues.put(attribute, defaultValue);
+		myAttributeValues.put(attribute, myBaseAttributeValues.get(attribute));
 	}
 	
     public void addPossibleState(String label, State state) {
@@ -118,23 +121,38 @@ public class Character extends GameElement {
     }
 
 	public void updateBaseValue(String attribute, double newValue) {
-		String sanitizedAttribute = attribute.toLowerCase();
-		if (!myBaseAttributeValues.containsKey(sanitizedAttribute)) {
+		if (!myBaseAttributeValues.containsKey(attribute)) {
 			return;
 		}
-		myBaseAttributeValues.put(sanitizedAttribute, myBaseAttributeValues.get(sanitizedAttribute) + newValue);
-		myAttributeValues.put(sanitizedAttribute, myBaseAttributeValues.get(sanitizedAttribute));
+		myBaseAttributeValues.put(attribute, myBaseAttributeValues.get(attribute) + newValue);
+		myAttributeValues.put(attribute, myBaseAttributeValues.get(attribute));
 	}
 
 	public void updateAttributeValue(String attribute, double newValue) {
-		if (!myBaseAttributeValues.containsKey(attribute.toLowerCase())) {
-//			myBaseAttributeValues.put(attribute.toLowerCase(), (double) 0);
+		if (!myBaseAttributeValues.containsKey(attribute)) {
 			return;
 		}
-		myAttributeValues.put(attribute.toLowerCase(), myBaseAttributeValues.get(attribute.toLowerCase()) + newValue);
+		myAttributeValues.put(attribute, myBaseAttributeValues.get(attribute) + newValue);
 	}
+	
+	public double getBaseValue(String attribute) {
+        return myBaseAttributeValues.get(attribute);
+    }
+	
+	public Double getAttributeValue(String attribute) {
+        if (myAttributeValues.get(attribute) == null )
+            return null;
+        return myAttributeValues.get(attribute);
+    }
 
-	public void updateMyInventory(CollectibleItem item) {
+    public List<CollectibleItem> getMyInventory() {
+        return myInventory;
+    }
+
+    public List<CollectibleItem> getMyActiveInventory() {
+        return myActiveInventory;
+    }
+	public void updateInventory(CollectibleItem item) {
     	myInventory.remove(item);
     }
 
@@ -146,24 +164,6 @@ public class Character extends GameElement {
     	item.setActive(false);
     }
 	
-	public double getMyBaseValue(String attribute) {
-        return myBaseAttributeValues.get(attribute.toLowerCase());
-    }
-	
-	public Double getMyAttributeValue(String attribute) {
-        if (myAttributeValues.get(attribute.toLowerCase()) == null )
-            return null;
-        return myAttributeValues.get(attribute.toLowerCase());
-    }
-
-    public List<CollectibleItem> getMyInventory() {
-        return myInventory;
-    }
-
-    public List<CollectibleItem> getMyActiveInventory() {
-        return myActiveInventory;
-    }
-    
     public State getPossibleState(String label) {
         return myPossibleStates.get(label);
     }
