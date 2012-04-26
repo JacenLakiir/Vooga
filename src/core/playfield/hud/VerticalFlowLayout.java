@@ -6,10 +6,13 @@ import java.awt.Point;
 public class VerticalFlowLayout extends HUDLayoutManager
 {
 
-    public VerticalFlowLayout (int startX, int startY)
+	private static final long serialVersionUID = 7979018578539774757L;
+
+
+	public VerticalFlowLayout (int startX, int startY)
     {
         super(startX, startY);
-        this.nextPosition = new Point(startY, startY);
+        this.nextPosition = new Point(startX, startY);
     }
 
 

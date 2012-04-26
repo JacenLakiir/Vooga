@@ -1,14 +1,9 @@
 package core.playfield.hud;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import com.golden.gamedev.object.GameFont;
-import com.golden.gamedev.object.font.SystemFont;
 
 
 public class HUD implements Serializable
@@ -24,9 +19,9 @@ public class HUD implements Serializable
     public HUD ()
     {
     	myHUDGroups[TOP_LEFT] = new HUDGroup(new VerticalFlowLayout(0, 0));
-    	myHUDGroups[TOP_RIGHT] = new HUDGroup(new VerticalFlowLayout(100, 0));
-    	myHUDGroups[BOTTOM_LEFT] = new HUDGroup(new VerticalFlowLayout(0, 100));
-    	myHUDGroups[BOTTOM_RIGHT] = new HUDGroup(new VerticalFlowLayout(100, 100));
+    	myHUDGroups[TOP_RIGHT] = new HUDGroup(new VerticalFlowLayout(300, 0));
+    	myHUDGroups[BOTTOM_LEFT] = new HUDGroup(new VerticalFlowLayout(0, 300));
+    	myHUDGroups[BOTTOM_RIGHT] = new HUDGroup(new VerticalFlowLayout(300, 300));
     }
 
 
