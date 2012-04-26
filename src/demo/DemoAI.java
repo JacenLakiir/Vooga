@@ -6,6 +6,7 @@ import com.golden.gamedev.object.background.ColorBackground;
 
 import core.characters.Character;
 import core.characters.ai.HomingState;
+import core.characters.ai.MoveState;
 import core.collision.GameElementCollision;
 import core.collision.CharacterCollectibleItemCollision;
 import core.configuration.key.KeyAnnotation;
@@ -23,6 +24,7 @@ import core.tiles.ItemDecorator;
 import core.tiles.Tile;
 import demo.custom.DemoKeyAdapter;
 import demo.custom.Goomba;
+import demo.custom.HammerBrother;
 import demo.custom.Mario;
 
 /**
@@ -100,6 +102,11 @@ public class DemoAI extends Game2D
         goomba6.addPossibleState("Homing", new HomingState(goomba6, mario, 1000, 1));
         goomba6.setLocation(500, 100);
         myPlayfield.addCharacter(goomba6);
+        
+        Character hammerBro1 = new HammerBrother(this, new PhysicsAttributes());
+        hammerBro1.addPossibleState("Patrol", new MoveState(hammerBro1, 1, true));
+        hammerBro1.setLocation(575, 395);
+        myPlayfield.addCharacter(hammerBro1);
         
         Tile floor = new Tile(this, new PhysicsAttributes());
         floor.setImages(this.getImages("resources/Bar.png", 1, 1));
