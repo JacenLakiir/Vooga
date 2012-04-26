@@ -10,14 +10,16 @@ public class PushableDecorator extends ActionDecorator{
 		super(decoratedPlatform);
 	}
 
-	public void afterHitFromRightBy(GameElement e){
+	@Override
+	public void afterHitFromRightBy(GameElement e, String tag){
 		positiveDirection = false;
-		super.afterHitFromRightBy(e);
+		super.afterHitFromRightBy(e, tag);
 	}
 	
-	public void afterHitFromLeftBy(GameElement e){
+	@Override
+	public void afterHitFromLeftBy(GameElement e, String tag){
 		positiveDirection = true;
-		super.afterHitFromLeftBy(e);
+		super.afterHitFromLeftBy(e, tag);
 	}
 	
 	public void update(long elapsedTime){

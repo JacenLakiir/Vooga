@@ -27,26 +27,30 @@ public class MovingDecorator extends TileDecorator{
 		this.endY = endY;
 	}
 	
-	public void afterHitFromBottomBy(GameElement e) {
+	@Override
+	public void afterHitFromBottomBy(GameElement e, String tag) {
 		//Will only affect the vertical factor of a sprite beneath
 		e.move(0, getY()-getOldY());
-		super.afterHitFromBottomBy(e);
+		super.afterHitFromBottomBy(e, tag);
 	}
 
-	public void afterHitFromTopBy(GameElement e) {
+	@Override
+	public void afterHitFromTopBy(GameElement e, String tag) {
 		//Will carry player on top
 		e.move(getX()-getOldX(), getY()-getOldY());
-		super.afterHitFromTopBy(e);
+		super.afterHitFromTopBy(e, tag);
 	}
 	
-	public void afterHitFromLeftBy(GameElement e) {
+	@Override
+	public void afterHitFromLeftBy(GameElement e, String tag) {
 		e.move(getX()-getOldX(), 0);
-		super.afterHitFromLeftBy(e);
+		super.afterHitFromLeftBy(e, tag);
 	}
 	
-	public void afterHitFromRightBy(GameElement e) {
+	@Override
+	public void afterHitFromRightBy(GameElement e, String tag) {
 		e.move(getX()-getOldX(), 0);
-		super.afterHitFromRightBy(e);
+		super.afterHitFromRightBy(e, tag);
 	}
 	
 	@Override

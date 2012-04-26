@@ -18,28 +18,16 @@ public class Tile extends GameElement {
      * Constructor for a Concrete Platform
      */
     public Tile(GameObject owner, PhysicsAttributes physicsAttribute) {
-    super(owner, physicsAttribute);
-    this.setMovable(false);
-    this.setPenetrable(false);
+        super(owner, physicsAttribute);
+        this.setMovable(false);
+        this.setPenetrable(false);
     }
 
     /*
      * Constructor for a Platform Decorator
      */
     public Tile() {
-	super();
+        super();
     }
 
-	public void afterHitFromBottomBy(GameElement e) {
-		
-	}
-	public void afterHitFromTopBy(GameElement e) {
-		
-	}
-	public void afterHitFromLeftBy(GameElement e) {
-	
-}
-	public void afterHitFromRightBy(GameElement e) {
-	
-}
 }
