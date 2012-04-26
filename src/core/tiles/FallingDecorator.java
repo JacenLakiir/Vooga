@@ -16,7 +16,7 @@ public class FallingDecorator extends ActionDecorator {
 	public void update(long elapsedTime){
 		super.update(elapsedTime);
 		if(falling && fallTimer.action(elapsedTime)){
-			this.setMovable(true);
+			this.getPhysicsAttribute().setMovable(true);
 			
 		}
 	}
