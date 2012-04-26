@@ -25,20 +25,16 @@ public class Character extends GameElement {
 	private Map<String, Double> myDefaultBaseAttributeValues;
 
 	public Character(GameObject game, PhysicsAttributes physicsAttribute) {
-		super(game, physicsAttribute);
+		this(physicsAttribute);
+		setGame(game);
 //		myInventory = new ItemInventory();
-		myBaseAttributeValues = new HashMap<String, Double>();
-		myDefaultBaseAttributeValues = new HashMap<String, Double>();
-		myAttributeValues = new HashMap<String, Double>();
-		myInventory = new ArrayList<CollectibleItem>();
-		myActiveInventory = new ArrayList<CollectibleItem>();
-		myPossibleStates = new HashMap<String, State>();
 	}
 
-	public Character() {
-		super();
+	public Character(PhysicsAttributes physicsAttribute) {
+		super(physicsAttribute);
 		myBaseAttributeValues = new HashMap<String, Double>();
 		myAttributeValues = new HashMap<String, Double>();
+		myDefaultBaseAttributeValues = new HashMap<String, Double>();
 //		myInventory = new ItemInventory();
 		myInventory = new ArrayList<CollectibleItem>();
 		myActiveInventory = new ArrayList<CollectibleItem>();

@@ -1,5 +1,7 @@
 package demo.custom;
 
+import leveleditor.VoogaUtilities;
+
 import com.golden.gamedev.GameObject;
 import core.characters.Character;
 import core.characters.GameElement;
@@ -18,15 +20,20 @@ public class Koopa extends Character {
     private ShellState myShellState;
 
     public Koopa(GameObject game, PhysicsAttributes physicsAttribute) {
-        super(game, physicsAttribute);
+	this(physicsAttribute);
+	setGame(game);
+    }
+
+    public Koopa(PhysicsAttributes physicsAttribute) {
+	super(physicsAttribute);
         addDefaultBaseAttributeEntry("hitPoints", 1);
         setTag("Koopa");
-        setImages(game.getImages(IMAGE_FILE, 1, 1));
+        setImages(VoogaUtilities.getImages(IMAGE_FILE, 1, 1));
         getPhysicsAttribute().setMovable(true);
         myShellState = new ShellState(this);
         addPossibleState("Shell", myShellState);
     }
-
+    
     @Override
     public void afterHitFromLeftBy(GameElement e, String tag) {
         if (tag.equals("Mario")) {
