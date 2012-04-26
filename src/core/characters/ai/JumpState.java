@@ -9,6 +9,7 @@ public class JumpState extends State
     private double myJumpStrength;
     private int myJumpTime;
     private Timer myJumpTimer;
+    private boolean canJump;
 
     public JumpState (Character character, double jumpStrength, int jumpTime)
     {
@@ -29,16 +30,28 @@ public class JumpState extends State
     public void execute (long milliSec)
     {
         if (myJumpTimer.action(milliSec))
-            myJumpTimer.setActive(false);
-        else
         {
+            System.out.println("IF");
+            myJumpTimer.setActive(false);
+            canJump = false;
+        }
+        if (canJump)
+        {
+            System.out.println("ELSE");
             if (myJumpTimer.isActive() == false)
             {
+                System.out.println("REFRESH");
                 myJumpTimer.setActive(true);
                 myJumpTimer.refresh();
             }
             myCharacter.addAcceleration(0, myJumpStrength * myCharacter.getPhysicsAttribute().getGravitationalAcceleration());
         }
     }
-
+    
+    public void notifyHitFromBottom ()
+    {
+        System.out.println("HIT");
+        canJump = true;
+        myJumpTimer.setActive(false);
+    }
 }
