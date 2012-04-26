@@ -1,5 +1,6 @@
 package demo.custom;
 
+import leveleditor.VoogaUtilities;
 import io.annotations.Modifiable;
 
 import com.golden.gamedev.GameObject;
@@ -29,19 +30,20 @@ public class Mario extends Character {
     private int jumpTime;
 
     public Mario(GameObject game, PhysicsAttributes physicsAttribute) {
-    	super(game, physicsAttribute);
-    	setImages(game.getImages(IMAGE_FILE, 1, 1));
+    	this(physicsAttribute);
+    	setGame(game);
+    }
+    
+    public Mario(PhysicsAttributes physicsAttribute) {
+	super(physicsAttribute);
+        addDefaultBaseAttributeEntry("hitPoints", 1);
+    	setImages(VoogaUtilities.getImages(IMAGE_FILE, 1, 1));
     	resetStrength();
     	setMaximumSpeedInX(0.8);
     	jumpTime = 250;
     	jumpTimer = new Timer(jumpTime);
     	jumpTimer.setActive(false);
     	setTag("Mario");
-    }
-    
-    public Mario(PhysicsAttributes physicsAttribute) {
-	super();
-        addDefaultBaseAttributeEntry("hitPoints", 1);
     }
 
     @Override
