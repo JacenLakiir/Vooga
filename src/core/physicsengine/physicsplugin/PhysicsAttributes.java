@@ -1,3 +1,7 @@
+/**
+ * @author Kuang Han
+ */
+
 package core.physicsengine.physicsplugin;
 
 import io.annotations.*;

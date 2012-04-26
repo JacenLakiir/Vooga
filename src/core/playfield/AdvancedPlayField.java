@@ -42,15 +42,17 @@ public class AdvancedPlayField extends PlayField implements Serializable {
     /*
      * Initialize PlayField, Background, and common SpriteGroups
      */
-    public AdvancedPlayField(int width, int height) {
-	super(new ParallaxBackground(new Background[] {
-		new Background(width, height), new Background() }));
-	Players = this.addGroup(new SpriteGroup("Player Group"));
-	Characters = this.addGroup(new SpriteGroup("Character Group"));
-	Setting = this.addGroup(new SpriteGroup("Setting Group"));
-	Items = this.addGroup(new SpriteGroup("Setting Group"));
-	physicsPlugins = new ArrayList<PhysicsPlugin>();
-	initializeDefaultPhysicsPlugins();
+    public AdvancedPlayField (int width, int height)
+    {
+        super(new ParallaxBackground(new Background[] {
+                new Background(width, height),
+                new Background() }));
+        Setting = this.addGroup(new SpriteGroup("Setting Group"));
+        Items = this.addGroup(new SpriteGroup("Setting Group"));
+        Characters = this.addGroup(new SpriteGroup("Character Group"));
+        Players = this.addGroup(new SpriteGroup("Player Group"));
+        physicsPlugins = new ArrayList<PhysicsPlugin>();
+        initializeDefaultPhysicsPlugins();
 
 	// Add Bounds Collsion
 	this.addCollisionGroup(this.getPlayers(), null,
