@@ -10,79 +10,37 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+
+import leveleditor.VoogaUtilities;
 import core.playfield.AdvancedPlayField;
 
-
-public class LevelState implements Serializable
-{
+public class LevelState implements Serializable {
     private static final long serialVersionUID = 3910981230998281239L;
 
-    private String backgroundPath;
-    private List<SpriteWrapper> sprites;
+    private String myBackgroundPath;
+    private List<SpriteWrapper> mySprites;
 
-
-    public LevelState (AdvancedPlayField playField)
-    {
-
+    public LevelState(String backgroundPath, List<SpriteWrapper> sprites) {
+	myBackgroundPath = backgroundPath;
+	mySprites = new ArrayList<SpriteWrapper>(sprites);
+    }
+    
+    public void save(String path) {
+	VoogaUtilities.serialize(this, new File(path));
     }
 
-
-    private void reconstruct ()
-    {
-        for (SpriteWrapper sp : sprites)
-            sp.reconstruct();
+    public static LevelState load(File file) {
+	return (LevelState) VoogaUtilities.deserialize(file);
     }
-
-
-    public void save (File file)
-    {
-        try
-        {
-            ObjectOutputStream out =
-                new ObjectOutputStream(new FileOutputStream(file));
-            out.writeObject(this);
-            out.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+    
+    public List<SpriteWrapper> getSprites() {
+	return mySprites;
     }
-
-
-    public void save (String path)
-    {
-        save(new File(path));
-    }
-
-
-    public static LevelState load (File file)
-    {
-        LevelState res = null;
-        try
-        {
-            ObjectInputStream in =
-                new ObjectInputStream(new FileInputStream(file));
-            res = (LevelState) in.readObject();
-            in.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-        res.reconstruct();
-        return res;
-    }
-
-
-    public static LevelState load (String path)
-    {
-        return load(new File(path));
+    
+    public String getBackgroundImageSrc() {
+	return myBackgroundPath;
     }
 
 }
