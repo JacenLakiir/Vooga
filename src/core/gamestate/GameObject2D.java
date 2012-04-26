@@ -124,12 +124,7 @@ public abstract class GameObject2D extends GameObject implements Serializable
 
     private void writeObject (ObjectOutputStream stream) throws IOException
     {
-        System.err.println("serializing GameObject");
-        System.err.println(getClass());
-        //stream.defaultWriteObject();
-        //stream.writeObject("lol");
-        //System.out.println("left cookie");
-        //System.out.printf("writing node %s\n", name);
+        System.err.printf("serializing GameObject of type %s\n", getClass());
     }
 
 
