@@ -82,7 +82,7 @@ public class DemoHUD extends Game2D {
 
 		mario = new Mario(this, new PhysicsAttributes());
 		setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type"))
-				.parseKeyConfig());
+				.parseKeyConfig("configurations/keyconfig.json"));
 		// add the element or the game you want the key to control
 		addKeyListeners(mario);
 		addKeyListeners(this);

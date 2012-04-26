@@ -30,11 +30,11 @@ public  class KeyParser {
         isSystemOnly = isSystemKeyOnly;
     }
     
-    public List<Key> parseKeyConfig(){
+    public List<Key> parseKeyConfig(String fileName){
         Scanner scanner;
        
             try {
-                scanner = new Scanner(new File("configurations/test.json"));
+                scanner = new Scanner(new File(fileName));
                 String wholeFile = scanner.useDelimiter("\\A").next();
                 
                 GsonBuilder gsonBuilder = new GsonBuilder();

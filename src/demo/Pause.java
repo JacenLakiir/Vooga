@@ -83,7 +83,7 @@ public class Pause extends MenuGameObject {
 
     @Override
     public void initialKeyList() {
-       setKeyList(new KeyParser(this, true, new DemoKeyAdapter("key_type")).parseKeyConfig());
+       setKeyList(new KeyParser(this, true, new DemoKeyAdapter("key_type")).parseKeyConfig("configurations/keyconfig.json"));
 
         
     }

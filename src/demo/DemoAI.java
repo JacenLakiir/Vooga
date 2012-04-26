@@ -52,7 +52,7 @@ public class DemoAI extends Game2D
         myPlayfield.setBackground(new ColorBackground(Color.gray, 640, 480));
         
          mario = new Mario(this, new PhysicsAttributes());
-        setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type")).parseKeyConfig());
+        setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type")).parseKeyConfig("configurations/keyconfig.json"));
         addMouse(new MouseInput(this, mario,"sequence"));
         //add the element or game you want the key to control
         addKeyListeners(mario);
