@@ -177,8 +177,8 @@ public class DemoPlayfield extends Game2D {
     }
 
     @Override
-    public void setNextLevel() {
-        registerNextLevel(DemoHUD.class);       
+    public void registerNextLevel() {
+        setNextLevel(DemoHUD.class);       
     }
 	
 }

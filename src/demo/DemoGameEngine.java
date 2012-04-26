@@ -3,8 +3,6 @@ package demo;
 
 import java.awt.Dimension;
 import core.gamestate.GameEngine2D;
-import core.gamestate.Menu;
-import core.gamestate.Pause;
 import com.golden.gamedev.GameLoader;
 
 
@@ -30,7 +28,7 @@ public class DemoGameEngine extends GameEngine2D{
     }
 
     @Override
-    public void constructGameList() {
+    public void registerGameObjects() {
         addGameObject(new Menu(this));
         addGameObject(new DemoAI(this));
         addGameObject(new DemoPlayfield(this));

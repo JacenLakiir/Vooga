@@ -15,7 +15,6 @@ import core.configuration.mouse.MouseInput;
 import core.gamestate.GameEngine2D;
 import core.gamestate.Game2D;
 import core.gamestate.GameObject2D;
-import core.gamestate.Pause;
 import core.items.AutoInUseAutoNotInUseItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import core.playfield.AdvancedPlayField;
@@ -194,8 +193,8 @@ public class DemoAI extends Game2D
     }
 
     @Override
-    public void setNextLevel() {
-        registerNextLevel(DemoPlayfield.class);
+    public void registerNextLevel() {
+        setNextLevel(DemoPlayfield.class);
     }
 
 }

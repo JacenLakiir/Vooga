@@ -4,7 +4,7 @@ public abstract class Game2D extends GameObject2D{
     Class<? extends GameObject2D> mclass;
     public Game2D(GameEngine2D engine) {
         super(engine);
-        setNextLevel();
+        registerNextLevel();
     }
     
     public abstract boolean isWin();
@@ -20,11 +20,11 @@ public abstract class Game2D extends GameObject2D{
         super.update(milliSec);
     }
     
-    public void registerNextLevel(Class<? extends GameObject2D> mclass){
+    public void setNextLevel(Class<? extends GameObject2D> mclass){
         this.mclass = mclass;
     }
     
-    public abstract void setNextLevel();
+    public abstract void registerNextLevel();
     
     
 

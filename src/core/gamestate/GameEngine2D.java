@@ -24,7 +24,7 @@ public abstract class GameEngine2D extends GameEngine {
         list.add(object);
     }
 
-    public abstract void constructGameList();
+    public abstract void registerGameObjects();
 
     private HashMap<String, GameObject> map = new HashMap<String, GameObject>();
     private HashMap<String, Integer> idMap = new HashMap<String, Integer>();
@@ -42,7 +42,7 @@ public abstract class GameEngine2D extends GameEngine {
     @Override
     public void initResources() {
         super.initResources();
-        constructGameList();
+        registerGameObjects();
         int id = 0;
         for (GameObject object : list) {
             String name = object.getClass().getName();

@@ -94,8 +94,4 @@ public abstract class GameObject2D extends GameObject {
 	engine.nextGameID = engine.getIdMap().get(gameClass.getName());
 	finish();
     }
-
-    public void nextLevel() {
-    }
-
 }
