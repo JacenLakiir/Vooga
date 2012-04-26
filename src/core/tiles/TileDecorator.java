@@ -12,6 +12,9 @@ import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.Timer;
 
 import core.characters.GameElement;
+import core.physicsengine.coordinatesystem.Acceleration;
+import core.physicsengine.coordinatesystem.Displacement;
+import core.physicsengine.coordinatesystem.Velocity;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 public class TileDecorator extends Tile {
@@ -66,78 +69,89 @@ public class TileDecorator extends Tile {
         	decoratedPlatform.givenAForceOf(fx, fy);
         }
     
-//        public double getMass() {
-//            return decoratedPlatform.getPhysicsAttribute().getMass();
-//        }
-//    
-//        public double getCoefficintOfFrictionInXDirection() {
-//            return decoratedPlatform.getPhysicsAttribute().getCoefficintOfFrictionInXDirection();
-//        }
-//    
-//        public double getCoefficintOfFrictionInYDirection() {
-//            return decoratedPlatform.getPhysicsAttribute().getCoefficintOfFrictionInYDirection();
-//        }
-//    
-//        public double getCoefficintOfRestitutionInXDirection() {
-//            return decoratedPlatform.getPhysicsAttribute().getCoefficintOfRestitutionInXDirection();
-//        }
-//    
-//        public double getCoefficintOfRestitutionInYDirection() {
-//            return decoratedPlatform.getPhysicsAttribute().getCoefficintOfRestitutionInYDirection();
-//        }
-//    
-//        public boolean isUnmovable() {
-//            return decoratedPlatform.getPhysicsAttribute().isUnmovable();
-//        }
-//    
-//        public boolean isPenetrable() {
-//            return decoratedPlatform.getPhysicsAttribute().isPenetrable();
-//        }
-//    
-//        public double getGravitationalAcceleration() {
-//            return decoratedPlatform.getPhysicsAttribute().getGravitationalAcceleration();
-//        }
-//    
-//        public void setMovable(boolean movable) {
-//        	decoratedPlatform.getPhysicsAttribute().setMovable(movable); 
-//        }
-//        
-//        public void setPenetrable(boolean penetrable) {
-//        	decoratedPlatform.getPhysicsAttribute().setPenetrable(penetrable);
-//        }
-//        
-//        public double getDragCoefficient() {
-//            return decoratedPlatform.getPhysicsAttribute().getDragCoefficient();
-//        }
-//    
-//        public double getDensity() {
-//            return decoratedPlatform.getPhysicsAttribute().getDensity();
-//        }
-//        
-//        public void setDensity(double density) {
-//        	decoratedPlatform.getPhysicsAttribute().setDensity(density);
-//        }
-//        
-//        public void setCoefficientOfFrictionInX(double coef) {
-//        	decoratedPlatform.getPhysicsAttribute().setCoefficientOfFrictionInX(coef);
-//        }
-//        
-//        public void setCoefficientOfFrictionInY(double coef) {
-//        	decoratedPlatform.getPhysicsAttribute().setCoefficientOfFrictionInY(coef);
-//        }
-//        
-//        public void setCoefficientOfRestitutionInX(double coef) {
-//        	decoratedPlatform.getPhysicsAttribute().setCoefficientOfRestitutionInX(coef);
-//        }
-//        
-//        public void setCoefficientOfRestitutionInY(double coef) {
-//        	decoratedPlatform.getPhysicsAttribute().setCoefficientOfRestitutionInY(coef);
-//        }
-//        
-//        public void setDragCoefficient(double coef) {
-//            decoratedPlatform.getPhysicsAttribute().setDragCoefficient(coef);
-//        }
+        public double getMass() {
+            return decoratedPlatform.getPhysicsAttribute().getMass();
+        }
+    
+        public double getCoefficintOfFrictionInXDirection() {
+            return decoratedPlatform.getPhysicsAttribute().getCoefficintOfFrictionInXDirection();
+        }
+    
+        public double getCoefficintOfFrictionInYDirection() {
+            return decoratedPlatform.getPhysicsAttribute().getCoefficintOfFrictionInYDirection();
+        }
+    
+        public double getCoefficintOfRestitutionInXDirection() {
+            return decoratedPlatform.getPhysicsAttribute().getCoefficintOfRestitutionInXDirection();
+        }
+    
+        public double getCoefficintOfRestitutionInYDirection() {
+            return decoratedPlatform.getPhysicsAttribute().getCoefficintOfRestitutionInYDirection();
+        }
+    
+        public boolean isUnmovable() {
+            return decoratedPlatform.getPhysicsAttribute().isUnmovable();
+        }
+    
+        public boolean isPenetrable() {
+            return decoratedPlatform.getPhysicsAttribute().isPenetrable();
+        }
+    
+        public double getGravitationalAcceleration() {
+            return decoratedPlatform.getPhysicsAttribute().getGravitationalAcceleration();
+        }
+    
+        public void setMovable(boolean movable) {
+        	decoratedPlatform.getPhysicsAttribute().setMovable(movable); 
+        }
+        
+        public void setPenetrable(boolean penetrable) {
+        	decoratedPlatform.getPhysicsAttribute().setPenetrable(penetrable);
+        }
+        
+        public double getDragCoefficient() {
+            return decoratedPlatform.getPhysicsAttribute().getDragCoefficient();
+        }
+        
+        public Displacement getDisplacement() {
+        	return decoratedPlatform.getDisplacement();
+        }
+        
+        public Acceleration getAcceleration() {
+        	return decoratedPlatform.getAcceleration();
+        }
+    
+        public double getDensity() {
+            return decoratedPlatform.getPhysicsAttribute().getDensity();
+        }
+        
+        public void setDensity(double density) {
+        	decoratedPlatform.getPhysicsAttribute().setDensity(density);
+        }
+        
+        public void setCoefficientOfFrictionInX(double coef) {
+        	decoratedPlatform.getPhysicsAttribute().setCoefficientOfFrictionInX(coef);
+        }
+        
+        public void setCoefficientOfFrictionInY(double coef) {
+        	decoratedPlatform.getPhysicsAttribute().setCoefficientOfFrictionInY(coef);
+        }
+        
+        public void setCoefficientOfRestitutionInX(double coef) {
+        	decoratedPlatform.getPhysicsAttribute().setCoefficientOfRestitutionInX(coef);
+        }
+        
+        public void setCoefficientOfRestitutionInY(double coef) {
+        	decoratedPlatform.getPhysicsAttribute().setCoefficientOfRestitutionInY(coef);
+        }
+        
+        public void setDragCoefficient(double coef) {
+            decoratedPlatform.getPhysicsAttribute().setDragCoefficient(coef);
+        }
     	
+        public Velocity getVelocity() {
+            return decoratedPlatform.getVelocity();
+        }
     	
     	public void addHorizontalSpeed(long elapsedTime, double accel, double maxSpeed){
     		decoratedPlatform.addHorizontalSpeed(elapsedTime, accel, maxSpeed);
