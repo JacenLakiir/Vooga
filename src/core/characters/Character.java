@@ -64,7 +64,7 @@ public class Character extends GameElement {
 //            for (String state : myAttributeValues.keySet()) {
 //                System.out.print(state + myAttributeValues.get(state));
 //                System.out.println();
-            }
+//            }
         }
     }
 
