@@ -8,6 +8,7 @@ import java.io.*;
 import java.util.*;
 
 
+@SuppressWarnings("serial")
 public class LoadSaveTest implements Serializable
 {
     public static void main (String[] args) throws Exception
@@ -22,7 +23,7 @@ public class LoadSaveTest implements Serializable
         System.out.println(g);
 
         serialise(g);
-        
+
         Graph h = (Graph) deserialise();
         System.out.println(h);
     }
@@ -62,10 +63,17 @@ public class LoadSaveTest implements Serializable
         return g;
     }
 
+    class Blah
+    {
+        Blah (int x)
+        {}
+    }
+
     class Node implements Serializable
     {
         LinkedList<Node> neighbors = new LinkedList<Node>();
         String name;
+        Blah blah = new Blah(5);
 
 
         Node (String _name)
@@ -77,6 +85,25 @@ public class LoadSaveTest implements Serializable
         public String toString ()
         {
             return name;
+        }
+
+
+        private void writeObject (ObjectOutputStream stream) throws IOException
+        {
+            stream.defaultWriteObject();
+            stream.writeObject("lol");
+            System.out.println("left cookie");
+            System.out.printf("writing node %s\n", name);
+        }
+
+
+        private void readObject (ObjectInputStream stream)
+            throws ClassNotFoundException,
+                IOException
+        {
+            stream.defaultReadObject();
+            System.out.printf("read cookie: %s\n", (String) stream.readObject());
+            System.out.printf("reading node %s\n", name);
         }
     }
 

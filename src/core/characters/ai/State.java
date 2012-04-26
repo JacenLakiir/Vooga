@@ -8,7 +8,7 @@ import core.characters.Character;
 public abstract class State
 {
     protected Character myCharacter;
-    protected boolean isActivated;
+    private boolean isActivated;
     
     public State (Character character)
     {
@@ -16,10 +16,10 @@ public abstract class State
         isActivated = true;
     }
     
-    public abstract void execute (long milliSec);
-    
     public abstract boolean areConditionsMet ();
     
+    public abstract void execute (long milliSec);
+        
     public boolean isActive ()
     {
         return (isActivated && areConditionsMet());

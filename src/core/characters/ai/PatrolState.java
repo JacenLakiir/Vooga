@@ -19,6 +19,12 @@ public class PatrolState extends State
         myPatrolRange = patrolRange;
         myDistanceTraveled = 0;
     }
+    
+    @Override
+    public boolean areConditionsMet ()
+    {
+        return true;
+    }
 
     @Override
     public void execute (long milliSec)
@@ -28,15 +34,9 @@ public class PatrolState extends State
         myCharacter.move(myCharacter.getDirection() * mySpeed, 0);
         myDistanceTraveled += Math.abs(mySpeed);
     }
-    
-    
-    @Override
-    public boolean areConditionsMet ()
-    {
-        return true;
-    }
 
-    private void updateDirection() {
+    private void updateDirection()
+    {
     	int dir = myCharacter.getDirection();
     	if (dir == -1)
     	    myCharacter.setDirection(1);

@@ -18,6 +18,7 @@ import demo.custom.DemoKeyAdapter;
  * @author Hui Dong
  *
  */
+@SuppressWarnings("serial")
 public class Menu extends MenuGameObject{
    
     private static final int WINDOW_WIDTH = 640;

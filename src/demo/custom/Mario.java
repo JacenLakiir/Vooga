@@ -1,5 +1,8 @@
 package demo.custom;
 
+import leveleditor.VoogaUtilities;
+import io.annotations.Modifiable;
+
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Timer;
 
@@ -19,6 +22,7 @@ public class Mario extends Character {
 
     private boolean jumpEnable, reversed;
     private Timer jumpTimer;
+    @Modifiable(classification = "Gameplay")
     private int jumpTime;
 
     public Mario(GameObject game, PhysicsAttributes physicsAttribute) {
@@ -67,6 +71,16 @@ public class Mario extends Character {
     public void keyRightPressed() {
         addAcceleration(strengthRight * Math.abs(this.getPhysicsAttribute().getGravitationalAcceleration()), 0);
     }
+
+//    @KeyAnnotation(action = "space")
+//    public SetInUseSetNotInUseItem keySpacePressed() {
+//    	for (CollectibleItem item : this.getMyActiveInventory()) {
+//    		if (item.canSetInUse() && item.isInUse()) {
+//    			return ((FiringWeapon) item).useWeapon();
+//    		}    
+//    	}
+//    	return null;
+//    }
 
     public void specialSkill() {
     }

@@ -5,8 +5,8 @@ import java.awt.Graphics2D;
 import com.golden.gamedev.object.background.ColorBackground;
 
 import core.characters.Character;
-import core.characters.ai.EvadeState;
-import core.characters.ai.FollowState;
+import core.characters.ai.HomingState;
+import core.characters.ai.MoveState;
 import core.collision.GameElementCollision;
 import core.collision.CharacterCollectibleItemCollision;
 import core.configuration.key.KeyAnnotation;
@@ -24,6 +24,7 @@ import core.tiles.ItemDecorator;
 import core.tiles.Tile;
 import demo.custom.DemoKeyAdapter;
 import demo.custom.Goomba;
+import demo.custom.HammerBrother;
 import demo.custom.Mario;
 
 /**
@@ -31,6 +32,7 @@ import demo.custom.Mario;
  * 
  * For testing NPC AI
  */
+@SuppressWarnings("serial")
 public class DemoAI extends Game2D
 {
    
@@ -87,20 +89,30 @@ public class DemoAI extends Game2D
 //        koopa2.setLocation(300, 400);
 //        myPlayfield.addCharacter(koopa2);
         
-        Character goomba4 = new Goomba(this, new PhysicsAttributes());
-        goomba4.addPossibleState("Evade", new FollowState(goomba4, mario, 1, 200));
-        goomba4.setLocation(300, 400);
-        myPlayfield.addCharacter(goomba4);
+//        Character goomba4 = new Goomba(this, new PhysicsAttributes());
+//        goomba4.addPossibleState("Evade", new FollowState(goomba4, mario, 1, 200));
+//        goomba4.setLocation(300, 400);
+//        myPlayfield.addCharacter(goomba4);
+//        
+//        Character goomba5 = new Goomba(this, new PhysicsAttributes());
+//        goomba5.addPossibleState("Evade", new EvadeState(goomba5, mario, 2, 200));
+//        goomba5.setLocation(400, 400);
+//        myPlayfield.addCharacter(goomba5);
         
-        Character goomba5 = new Goomba(this, new PhysicsAttributes());
-        goomba5.addPossibleState("Evade", new EvadeState(goomba5, mario, 2, 200));
-        goomba5.setLocation(400, 400);
-        myPlayfield.addCharacter(goomba5);
+        Character goomba6 = new Goomba(this, new PhysicsAttributes());
+        goomba6.addPossibleState("Homing", new HomingState(goomba6, mario, 1000, 1));
+        goomba6.setLocation(500, 100);
+        myPlayfield.addCharacter(goomba6);
+        
+        Character hammerBro1 = new HammerBrother(this, new PhysicsAttributes());
+        hammerBro1.addPossibleState("Patrol", new MoveState(hammerBro1, 1, true));
+        hammerBro1.setLocation(575, 395);
+        myPlayfield.addCharacter(hammerBro1);
         
         Tile floor = new Tile(this, new PhysicsAttributes());
         floor.setImages(this.getImages("resources/Bar.png", 1, 1));
         floor.setLocation(0, 440);
-        endOfPlatform = floor.getX() + floor.getWidth() -50;
+        endOfPlatform = floor.getX() + floor.getWidth() - 50;
         myPlayfield.addSetting(floor);
         
         Tile ceiling = new Tile(this, new PhysicsAttributes());
@@ -165,12 +177,8 @@ public class DemoAI extends Game2D
     public void update (long t)
     {
         super.update(t);
-        
         myPlayfield.update(t);
     }
-    
-    
-    
 
     @Override
     public void render (Graphics2D g)
@@ -185,9 +193,7 @@ public class DemoAI extends Game2D
 
     @Override
     public boolean isWin() {
-        if(mario.getX() >= (endOfPlatform))
-            return true;
-        return false;
+        return (mario.getX() >= (endOfPlatform));
     }
 
     @Override

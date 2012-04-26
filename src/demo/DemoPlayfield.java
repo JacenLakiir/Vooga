@@ -26,6 +26,7 @@ import demo.custom.*;
  * @author Glenn Rivkees (grivkees)
  * @author Michael Zhou
  */
+@SuppressWarnings("serial")
 public class DemoPlayfield extends Game2D {
     
     private AdvancedPlayField myPlayfield;
@@ -174,9 +175,7 @@ public class DemoPlayfield extends Game2D {
 
     @Override
     public boolean isWin() {
-        if(mario.getX() >= endOfPlatform)
-            return true;
-        return false;
+        return (mario.getX() >= endOfPlatform);
     }
 
     @Override

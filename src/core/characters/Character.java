@@ -1,51 +1,48 @@
-/**
- * @author Kathleen Oshima
- * @author Eric Mercer (JacenLakiir)
- */
-
 package core.characters;
+
+import io.annotations.DefaultValueMap;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.golden.gamedev.GameObject;
-
 import core.characters.ai.State;
 import core.items.CollectibleItem;
+import core.items.ItemInventory;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
-@SuppressWarnings("serial")
+/**
+ * @author Kathleen Oshima
+ * @author Eric Mercer (JacenLakiir)
+ */
 public class Character extends GameElement {
 	
-	private transient List<CollectibleItem> myInventory, myActiveInventory;
-
+	private transient ItemInventory inventory;
+	
 	private transient Map<String, Double> myAttributeValues, myBaseAttributeValues;
 	private transient Map<String, State> myPossibleStates;
+	    
+	@DefaultValueMap(classification = "Gameplay")
+	private Map<String, Double> myDefaultBaseAttributeValues;
 
 	public Character(GameObject game, PhysicsAttributes physicsAttribute) {
-		super(game, physicsAttribute);
-		myBaseAttributeValues = new HashMap<String, Double>();
-		myAttributeValues = new HashMap<String, Double>();
-		myInventory = new ArrayList<CollectibleItem>();
-		myActiveInventory = new ArrayList<CollectibleItem>();
-		myPossibleStates = new HashMap<String, State>();
+		this(physicsAttribute);
+		setGame(game);
 	}
 
-	public Character() {
-		super();
+	public Character(PhysicsAttributes physicsAttribute) {
+		super(physicsAttribute);
 		myBaseAttributeValues = new HashMap<String, Double>();
 		myAttributeValues = new HashMap<String, Double>();
-		myInventory = new ArrayList<CollectibleItem>();
-		myActiveInventory = new ArrayList<CollectibleItem>();
+		inventory = new ItemInventory();
+		myDefaultBaseAttributeValues = new HashMap<String, Double>();
 		myPossibleStates = new HashMap<String, State>();
 	}
 	
 	@Override
     public void update(long milliSec) {
-    
         updateAbilities();
         updateState(milliSec);              
         super.update(milliSec);
@@ -53,14 +50,14 @@ public class Character extends GameElement {
     }
     
     public void updateAbilities() {
-        for (CollectibleItem item : myInventory) {
+        for (CollectibleItem item : inventory.getMyInventory()) {
             if (item.isInUse()) {
-                myActiveInventory.add(item);
+                inventory.getMyActiveInventory().add(item);
             } else {
-                myActiveInventory.remove(item);
+                inventory.getMyActiveInventory().remove(item);
             }
         }
-        for (CollectibleItem item : myActiveInventory) {
+        for (CollectibleItem item : inventory.getMyActiveInventory()) {
             item.updatePlayerAttributes(this);
 //            for (String state : myAttributeValues.keySet()) {
 //                System.out.print(state + myAttributeValues.get(state));
@@ -81,7 +78,7 @@ public class Character extends GameElement {
     
     public void checkIfDead ()
     {
-        Double currHP = getMyAttributeValue("hitPoints");
+        Double currHP = getAttributeValue("hitPoints");
         if (currHP != null && currHP <= 0) {
             updateBaseValue("lives", -1);
             addAttribute("hitPoints", 10);
@@ -91,8 +88,8 @@ public class Character extends GameElement {
     }
 	
 	public void addAttribute(String attribute, double defaultValue) {
-		myBaseAttributeValues.put(attribute.toLowerCase(), defaultValue);
-		myAttributeValues.put(attribute.toLowerCase(), myBaseAttributeValues.get(attribute.toLowerCase()));
+		myBaseAttributeValues.put(attribute, defaultValue);
+		myAttributeValues.put(attribute, myBaseAttributeValues.get(attribute));
 	}
 	
     public void addPossibleState(String label, State state) {
@@ -118,54 +115,44 @@ public class Character extends GameElement {
     }
 
 	public void updateBaseValue(String attribute, double newValue) {
-		String sanitizedAttribute = attribute.toLowerCase();
-		if (!myBaseAttributeValues.containsKey(sanitizedAttribute)) {
+		if (!myBaseAttributeValues.containsKey(attribute)) {
 			return;
 		}
-		myBaseAttributeValues.put(sanitizedAttribute, myBaseAttributeValues.get(sanitizedAttribute) + newValue);
-		myAttributeValues.put(sanitizedAttribute, myBaseAttributeValues.get(sanitizedAttribute));
+		myBaseAttributeValues.put(attribute, myBaseAttributeValues.get(attribute) + newValue);
+		myAttributeValues.put(attribute, myBaseAttributeValues.get(attribute));
 	}
 
 	public void updateAttributeValue(String attribute, double newValue) {
-		if (!myBaseAttributeValues.containsKey(attribute.toLowerCase())) {
-//			myBaseAttributeValues.put(attribute.toLowerCase(), (double) 0);
+		if (!myBaseAttributeValues.containsKey(attribute)) {
 			return;
 		}
-		myAttributeValues.put(attribute.toLowerCase(), myBaseAttributeValues.get(attribute.toLowerCase()) + newValue);
+		myAttributeValues.put(attribute, myBaseAttributeValues.get(attribute) + newValue);
 	}
-
-	public void updateMyInventory(CollectibleItem item) {
-    	myInventory.remove(item);
-    }
-
-	public void useInventoryItem(CollectibleItem item) {
-    	item.setActive(true);
-    }
-
-	public void unuseInventoryItem(CollectibleItem item) {
-    	item.setActive(false);
+	
+	public double getBaseValue(String attribute) {
+        return myBaseAttributeValues.get(attribute);
     }
 	
-	public double getMyBaseValue(String attribute) {
-        return myBaseAttributeValues.get(attribute.toLowerCase());
-    }
-	
-	public Double getMyAttributeValue(String attribute) {
-        if (myAttributeValues.get(attribute.toLowerCase()) == null )
+	public Double getAttributeValue(String attribute) {
+        if (myAttributeValues.get(attribute) == null )
             return null;
-        return myAttributeValues.get(attribute.toLowerCase());
+        return myAttributeValues.get(attribute);
     }
-
-    public List<CollectibleItem> getMyInventory() {
-        return myInventory;
-    }
-
-    public List<CollectibleItem> getMyActiveInventory() {
-        return myActiveInventory;
-    }
-    
+	
+	public List<CollectibleItem> getInventory() {
+		return inventory.getMyInventory();
+	}
+	
+	public List<CollectibleItem> getActiveInventory() {
+		return inventory.getMyActiveInventory();
+	}
+	
     public State getPossibleState(String label) {
         return myPossibleStates.get(label);
+    }
+    
+    protected void addDefaultBaseAttributeEntry(String str, double init) {
+	myDefaultBaseAttributeValues.put(str, init);
     }
 
 	public Collection<State> getPossibleStates() {
