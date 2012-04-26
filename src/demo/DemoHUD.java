@@ -17,7 +17,7 @@ import core.gamestate.GameEngine2D;
 import core.items.AutoInUseAutoNotInUseItem;
 import core.items.AutoNotInUseItem;
 import core.items.CollectibleItem;
-import core.items.FiringWeapons;
+import core.items.FiringWeapon;
 import core.items.SetInUseSetNotInUseItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import core.playfield.AdvancedPlayField;
@@ -93,7 +93,7 @@ public class DemoHUD extends Game2D {
 		// HUD must be init after player
 		myPlayfield.addHUDWidget(new TextWidget("Coins", new StringProxy() {
 			public String get() {
-				return myPlayfield.getPlayer().getMyAttributeValue("points")
+				return myPlayfield.getPlayer().getAttributeValue("points")
 						.toString();
 			}
 		}));
@@ -101,22 +101,22 @@ public class DemoHUD extends Game2D {
 		myPlayfield.addHUDWidget(new IconWidget("Lives", this
 				.getImage("resources/life.png"), new IntProxy() {
 			public int get() {
-				return myPlayfield.getPlayer().getMyAttributeValue("lives")
+				return myPlayfield.getPlayer().getAttributeValue("lives")
 						.intValue();
 			}
 		}));
 
 		myPlayfield.addHUDWidget(new BarWidget("HP", new BarProxy() {
 			public double get() {
-				if (myPlayfield.getPlayer().getMyAttributeValue("hitpoints") != null)
-					return myPlayfield.getPlayer().getMyAttributeValue(
-							"hitpoints");
+				if (myPlayfield.getPlayer().getAttributeValue("hitPoints") != null)
+					return myPlayfield.getPlayer().getAttributeValue(
+							"hitPoints");
 				else
 					return 0;
 			}
 
 			public double getInit() {
-				return myPlayfield.getPlayer().getMyBaseValue("hitPoints");
+				return myPlayfield.getPlayer().getBaseValue("hitPoints");
 			}
 		}));
 
@@ -198,7 +198,7 @@ public class DemoHUD extends Game2D {
 		coin2.addAttribute("points", 3);
 		myPlayfield.addItem(coin2);
 
-		CollectibleItem fireball = new SetInUseSetNotInUseItem(this,
+		SetInUseSetNotInUseItem fireball = new FiringWeapon(this,
 				new PhysicsAttributes());
 		fireball.setImages(this.getImages("resources/Fireball.png", 4, 1));
 		fireball.setLoopAnim(true);
@@ -220,7 +220,7 @@ public class DemoHUD extends Game2D {
 		poison.addAttribute("hitPoints", -1);
 		myPlayfield.addItem(poison);
 
-		FiringWeapons bullets = new FiringWeapons(this, new PhysicsAttributes());
+		FiringWeapon bullets = new FiringWeapon(this, new PhysicsAttributes());
 		bullets.setImages(this.getImages("resources/Bullet.png", 1, 1));
 		bullets.setActive(false);
 		bullets.getPhysicsAttribute().setMovable(false);
@@ -268,7 +268,7 @@ public class DemoHUD extends Game2D {
 
     @Override
     public boolean isFail() {
-        if(mario.getMyBaseValue("lives") == 0){
+        if(mario.getBaseValue("lives") == 0){
             reset();
             return true;        
         }

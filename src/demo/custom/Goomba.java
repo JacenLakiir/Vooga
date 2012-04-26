@@ -25,7 +25,7 @@ public class Goomba extends Character {
     public void afterHitFromRightBy(GameElement e, String tag) {
         setDirection(-1);
         if (tag.equals("Mario")) {
-            ((Mario)e).updateAttributeValue("hitPoints", -1 * ((Mario)e).getMyAttributeValue("hitPoints"));
+            ((Mario)e).updateAttributeValue("hitPoints", -1 * ((Mario)e).getAttributeValue("hitPoints"));
         }
         else if (tag.equals("Koopa")) {
             handleKoopaSideCollision((Koopa)e, false);
@@ -36,7 +36,7 @@ public class Goomba extends Character {
     public void afterHitFromLeftBy(GameElement e, String tag) {
         setDirection(1);
         if (tag.equals("Mario")) {
-            ((Mario)e).updateAttributeValue("hitPoints", -1 * ((Mario)e).getMyAttributeValue("hitPoints"));
+            ((Mario)e).updateAttributeValue("hitPoints", -1 * ((Mario)e).getAttributeValue("hitPoints"));
         }
         else if (tag.equals("Koopa")) {
             handleKoopaSideCollision((Koopa)e, true);
