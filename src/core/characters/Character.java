@@ -1,8 +1,3 @@
-/**
- * @author Kathleen Oshima
- * @author Eric Mercer (JacenLakiir)
- */
-
 package core.characters;
 
 import java.util.ArrayList;
@@ -10,14 +5,15 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.golden.gamedev.GameObject;
-
 import core.characters.ai.State;
 import core.items.CollectibleItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
-@SuppressWarnings("serial")
+/**
+ * @author Kathleen Oshima
+ * @author Eric Mercer (JacenLakiir)
+ */
 public class Character extends GameElement {
 	
 	private transient List<CollectibleItem> myInventory, myActiveInventory;
