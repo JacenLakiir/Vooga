@@ -1,16 +1,24 @@
 package core.playfield.hud;
 
-public class VerticalFlowLayout extends HUDLayoutManager {
+import java.awt.Point;
 
-	public VerticalFlowLayout(int width, int height) {
-		super(width, height);
-		this.nextPosition = new SimplePoint(0,0);
-	}
 
-	public SimplePoint nextWidgetPosition(HUDWidget w) {
-		SimplePoint temp = this.nextPosition;
-		this.nextPosition =  new SimplePoint(temp.getX(), temp.getY() + w.height);
-		return temp;
-	}
+public class VerticalFlowLayout extends HUDLayoutManager
+{
+
+    public VerticalFlowLayout (int width, int height)
+    {
+        super(width, height);
+        this.nextPosition = new Point(0, 0);
+    }
+
+
+    public Point nextWidgetPosition (HUDWidget w)
+    {
+        Point temp = this.nextPosition;
+        this.nextPosition =
+            new Point((int) temp.getX(), (int) temp.getY() + w.height);
+        return temp;
+    }
 
 }

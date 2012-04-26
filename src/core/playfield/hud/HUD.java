@@ -3,6 +3,8 @@ package core.playfield.hud;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import com.golden.gamedev.object.GameFont;
@@ -56,4 +58,10 @@ public class HUD implements Serializable
         return font;
     }
 
+
+    private void writeObject (ObjectOutputStream stream) throws IOException
+    {
+        stream.writeObject(myWidgets);
+        stream.writeObject(layoutManager);
+    }
 }

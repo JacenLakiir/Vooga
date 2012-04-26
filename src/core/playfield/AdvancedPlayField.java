@@ -31,7 +31,7 @@ import core.tiles.Tile;
 
 public class AdvancedPlayField extends PlayField implements Serializable
 {
-
+    private final static long serialVersionUID = 7728006129947893063L;
     private GameScroller gamescroller;
     private HUD hud;
 
