@@ -38,7 +38,7 @@ public class HardCodedLevelGenerator {
 	sprites.add(badguyonew);
 	sprites.add(badguytwow);
 	LevelState lv1 = new LevelState(background, sprites);
-	lv1.saveLevel("saves/level1.lvl");
+	lv1.save("saves/level1.lvl");
     }
 
 }

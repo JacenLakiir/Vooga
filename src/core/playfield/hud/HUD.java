@@ -1,67 +1,56 @@
 package core.playfield.hud;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import com.golden.gamedev.object.GameFont;
-import com.golden.gamedev.object.font.SystemFont;
 
 
 public class HUD implements Serializable
 {
-    private final static long serialVersionUID = 912402285760541314L;
-    private GameFont font =
-        new SystemFont(new Font("Monospaced", Font.BOLD, 12));
-    private ArrayList<HUDWidget> myWidgets = new ArrayList<HUDWidget>();
-    private HUDLayoutManager layoutManager;
+    
+	private static final long serialVersionUID = 2509857881191452463L;
+
+	public final static int TOP_LEFT = 0, TOP_RIGHT = 1, BOTTOM_LEFT = 2, BOTTOM_RIGHT = 3;
+    
+    HUDGroup[] myHUDGroups = new HUDGroup[4];
 
 
-    public HUD (HUDLayoutManager m)
+    public HUD ()
     {
-        this.layoutManager = m;
+    	myHUDGroups[TOP_LEFT] = new HUDGroup(new VerticalFlowLayout(0, 0));
+    	myHUDGroups[TOP_RIGHT] = new HUDGroup(new VerticalFlowLayout(300, 0));
+    	myHUDGroups[BOTTOM_LEFT] = new HUDGroup(new VerticalFlowLayout(0, 300));
+    	myHUDGroups[BOTTOM_RIGHT] = new HUDGroup(new VerticalFlowLayout(300, 300));
     }
 
 
-    public void addWidget (HUDWidget w)
+    public void addWidget (HUDWidget w, int Position)
     {
-        myWidgets.add(w);
-        w.setPosition(layoutManager.nextWidgetPosition(w));
+    	myHUDGroups[Position].addWidget(w);
     }
 
 
     public void update (long t)
     {
-        for (HUDWidget w : myWidgets)
-        {
-            w.update(t);
-        }
+    	myHUDGroups[TOP_LEFT].update(t);
+    	myHUDGroups[TOP_RIGHT].update(t);
+    	myHUDGroups[BOTTOM_LEFT].update(t);
+    	myHUDGroups[BOTTOM_RIGHT].update(t);
     }
 
 
     public void render (Graphics2D g)
     {
-        // g.clearRect(0,0,layoutManager.width,layoutManager.height);
-        for (HUDWidget w : myWidgets)
-        {
-            g.setColor(Color.black);
-            w.render(g, this);
-        }
-    }
-
-
-    public GameFont getFont ()
-    {
-        return font;
+    	myHUDGroups[TOP_LEFT].render(g);
+    	myHUDGroups[TOP_RIGHT].render(g);
+    	myHUDGroups[BOTTOM_LEFT].render(g);
+    	myHUDGroups[BOTTOM_RIGHT].render(g);
     }
 
 
     private void writeObject (ObjectOutputStream stream) throws IOException
     {
-        stream.writeObject(myWidgets);
-        stream.writeObject(layoutManager);
+        stream.writeObject(myHUDGroups);
     }
 }

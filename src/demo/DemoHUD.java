@@ -2,6 +2,7 @@ package demo;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.List;
 
 import com.golden.gamedev.object.background.ColorBackground;
 
@@ -22,10 +23,13 @@ import core.items.SetInUseSetNotInUseItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import core.playfield.AdvancedPlayField;
 import core.playfield.hud.BarWidget;
+import core.playfield.hud.HUD;
 import core.playfield.hud.IconWidget;
+import core.playfield.hud.InventoryWidget;
 import core.playfield.hud.StringProxy;
 import core.playfield.hud.IntProxy;
 import core.playfield.hud.BarProxy;
+import core.playfield.hud.InventoryProxy;
 import core.playfield.hud.TextWidget;
 import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
 import core.tiles.*;
@@ -98,7 +102,7 @@ public class DemoHUD extends Game2D {
 				return myPlayfield.getPlayer().getAttributeValue("points")
 				        .toString();
 			}
-		}));
+		}), HUD.TOP_LEFT);
 
 		myPlayfield.addHUDWidget(new IconWidget("Lives", this
 		        .getImage("resources/life.png"), new IntProxy() {
@@ -106,21 +110,23 @@ public class DemoHUD extends Game2D {
 				return myPlayfield.getPlayer().getAttributeValue("lives")
 				        .intValue();
 			}
-		}));
+		}), HUD.TOP_LEFT);
 
 		myPlayfield.addHUDWidget(new BarWidget("HP", new BarProxy() {
 			public double get() {
-				if (myPlayfield.getPlayer().getAttributeValue("hitPoints") != null)
-					return myPlayfield.getPlayer().getAttributeValue(
-					        "hitPoints");
-				else
-					return 0;
+				return myPlayfield.getPlayer().getAttributeValue("hitPoints");
 			}
 
 			public double getInit() {
 				return myPlayfield.getPlayer().getBaseValue("hitPoints");
 			}
-		}));
+		}), HUD.TOP_LEFT);
+		
+		myPlayfield.addHUDWidget(new InventoryWidget("Inventory:", new InventoryProxy() {
+			public List<CollectibleItem> get() {
+				return myPlayfield.getPlayer().getInventory();
+			}
+		}), HUD.BOTTOM_LEFT);
 
 		Character koopa1 = new Koopa(this, new PhysicsAttributes());
 		koopa1.addPossibleState("Move", new MoveState(koopa1, 1, true));

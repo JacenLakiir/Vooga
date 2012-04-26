@@ -56,7 +56,8 @@ public class AdvancedPlayField extends PlayField implements Serializable {
 	this.addCollisionGroup(this.getPlayers(), null,
 		new SideScrollerBoundsCollision(this.getBackground()));
 
-	hud = new HUD(new VerticalFlowLayout(100, 100));
+	//hud = new HUD(new VerticalFlowLayout(100, 100));
+        hud = new HUD();
     }
 
     public SpriteGroup addGroup(SpriteGroup group) {
@@ -113,7 +114,12 @@ public class AdvancedPlayField extends PlayField implements Serializable {
      * Heads Up Display
      */
     public void addHUDWidget(HUDWidget w) {
-	hud.addWidget(w);
+	hud.addWidget(w, 0);
+    }
+    
+    public void addHUDWidget (HUDWidget w, int Position)
+    {
+        hud.addWidget(w, Position);
     }
 
     /*

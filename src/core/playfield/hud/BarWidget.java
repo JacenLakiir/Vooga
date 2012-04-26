@@ -26,7 +26,7 @@ public class BarWidget extends HUDWidget {
 	}
 
 	@Override
-	public void render(Graphics2D g, HUD h) {
+	public void render(Graphics2D g, HUDGroup h) {
 		h.getFont().drawString(g, title + ":", GameFont.LEFT, xPos, yPos, 100);
 		g.draw(new Rectangle(xPos + 22, yPos + 3, 101, 10));
 		g.setColor(Color.red);

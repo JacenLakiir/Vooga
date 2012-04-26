@@ -13,6 +13,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.golden.gamedev.object.Background;
+import com.golden.gamedev.object.background.ImageBackground;
+import com.golden.gamedev.object.background.ParallaxBackground;
+
 import leveleditor.VoogaUtilities;
 import core.playfield.AdvancedPlayField;
 
@@ -20,11 +24,13 @@ public class LevelState implements Serializable {
     private static final long serialVersionUID = 3910981230998281239L;
 
     private String myBackgroundPath;
+    private Background myBackground;
     private List<SpriteWrapper> mySprites;
 
     public LevelState(String backgroundPath, List<SpriteWrapper> sprites) {
 	myBackgroundPath = backgroundPath;
 	mySprites = new ArrayList<SpriteWrapper>(sprites);
+	reconstruct();
     }
     
     public void save(String path) {
@@ -42,5 +48,21 @@ public class LevelState implements Serializable {
     public String getBackgroundImageSrc() {
 	return myBackgroundPath;
     }
-
+    
+    public Background getBackground() {
+	return myBackground;
+    }
+    
+    private void reconstruct() {
+	Background[] bkg = new Background[1];
+	bkg[0] = new ImageBackground(VoogaUtilities.getImage(myBackgroundPath));
+	myBackground = new ParallaxBackground(bkg);
+    }
+    
+    private void readObject(ObjectInputStream stream) 
+	    throws ClassNotFoundException, IOException {
+	stream.defaultReadObject();
+	reconstruct();
+    }
+    
 }

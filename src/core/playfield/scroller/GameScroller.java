@@ -5,7 +5,7 @@ package core.playfield.scroller;
 
 import java.io.Serializable;
 import com.golden.gamedev.object.Background;
-import core.sprites.SpriteGroup;
+import com.golden.gamedev.object.SpriteGroup;
 
 
 public abstract class GameScroller implements Serializable
