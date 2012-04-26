@@ -33,6 +33,7 @@ public class DemoGameEngine extends GameEngine2D{
         addGameObject(new DemoAI(this));
         addGameObject(new DemoPlayfield(this));
         addGameObject(new DemoHUD(this));
+        addGameObject(new DemoAntigravity(this));
         addGameObject(new Pause(this));        
     }  
 }

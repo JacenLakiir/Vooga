@@ -31,16 +31,13 @@ public class JumpState extends State
     {
         if (myJumpTimer.action(milliSec))
         {
-            System.out.println("IF");
             myJumpTimer.setActive(false);
             canJump = false;
         }
         if (canJump)
         {
-            System.out.println("ELSE");
             if (myJumpTimer.isActive() == false)
             {
-                System.out.println("REFRESH");
                 myJumpTimer.setActive(true);
                 myJumpTimer.refresh();
             }
@@ -50,7 +47,6 @@ public class JumpState extends State
     
     public void notifyHitFromBottom ()
     {
-        System.out.println("HIT");
         canJump = true;
         myJumpTimer.setActive(false);
     }

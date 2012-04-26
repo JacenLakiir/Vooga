@@ -36,6 +36,7 @@ public class Menu extends MenuGameObject{
         addOptionToMenu("DemoAI", DemoAI.class);
         addOptionToMenu("DemoPlayfield", DemoPlayfield.class);
         addOptionToMenu("DemoHUD", DemoHUD.class);
+        addOptionToMenu("DemoAntigravity", DemoAntigravity.class);
         addOptionToMenu("Exit");
     }
     
