@@ -13,7 +13,6 @@ import com.golden.gamedev.GameObject;
 public abstract class Key {
     protected String keyValue;
     private String action;
-    private String keyType;
     private List<InputObserver> observers;
     private GameObject myGame;
     private boolean isSystemOnly;

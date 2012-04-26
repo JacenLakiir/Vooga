@@ -2,15 +2,12 @@ package core.gamestate;
 
 import java.awt.Graphics2D;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFileChooser;
 import com.golden.gamedev.GameObject;
 import core.configuration.key.Key;
 import core.configuration.mouse.Mouse;

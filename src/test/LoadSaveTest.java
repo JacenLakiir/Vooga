@@ -8,6 +8,7 @@ import java.io.*;
 import java.util.*;
 
 
+@SuppressWarnings("serial")
 public class LoadSaveTest implements Serializable
 {
     public static void main (String[] args) throws Exception

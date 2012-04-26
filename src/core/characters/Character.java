@@ -15,7 +15,6 @@ import com.golden.gamedev.GameObject;
 
 import core.characters.ai.State;
 import core.items.CollectibleItem;
-import core.items.ItemInventory;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 @SuppressWarnings("serial")
