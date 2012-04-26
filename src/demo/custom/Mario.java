@@ -29,6 +29,7 @@ public class Mario extends Character {
     	jumpTime = 250;
     	jumpTimer = new Timer(jumpTime);
     	jumpTimer.setActive(false);
+    	setTag("Mario");
     }
 
     @Override
@@ -116,7 +117,8 @@ public class Mario extends Character {
         strengthLeft = strengthRight = 1;
     }
 
-    public void afterHitFromBottomBy(GameElement e) {
+    @Override
+    public void afterHitFromBottomBy(GameElement e, String tag) {
     	jumpEnable = true;
     	jumpTimer.setActive(false);
     }

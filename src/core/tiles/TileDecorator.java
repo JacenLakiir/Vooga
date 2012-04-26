@@ -23,20 +23,24 @@ public class TileDecorator extends Tile {
 	this.myGame = decoratedPlatform.getGame();
     }
 
-    public void afterHitFromBottomBy(GameElement e) {	
-        decoratedPlatform.afterHitFromBottomBy(e);
+    @Override
+    public void afterHitFromBottomBy(GameElement e, String tag) {	
+        decoratedPlatform.afterHitFromBottomBy(e, tag);
     }
 
-    public void afterHitFromTopBy(GameElement e) {  
-        decoratedPlatform.afterHitFromTopBy(e);
+    @Override
+    public void afterHitFromTopBy(GameElement e, String tag) {  
+        decoratedPlatform.afterHitFromTopBy(e, tag);
     }
 
-    public void afterHitFromRightBy(GameElement e) {  
-        decoratedPlatform.afterHitFromRightBy(e);
+    @Override
+    public void afterHitFromRightBy(GameElement e, String tag) {  
+        decoratedPlatform.afterHitFromRightBy(e, tag);
     }
 
-    public void afterHitFromLeftBy(GameElement e) {  
-       decoratedPlatform.afterHitFromLeftBy(e);
+    @Override
+    public void afterHitFromLeftBy(GameElement e, String tag) {  
+       decoratedPlatform.afterHitFromLeftBy(e, tag);
     }
 
     /*

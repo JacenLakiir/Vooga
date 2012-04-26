@@ -30,6 +30,8 @@ public class GameElement extends AdvanceSprite {
     private double maximumSpeedInY = Double.MAX_VALUE;
 
     protected transient GameObject myGame;
+    
+    private String tag = "GameElement";
 
     public GameElement() {
         super();
@@ -328,23 +330,21 @@ public class GameElement extends AdvanceSprite {
     }
 
 
-    // try all the methods with parameter e or superclasses of e.
-    public void reflectionCalled(GameElement e, String key) {
-        Class<?> c = e.getClass();
-        Class<?> ge = null;
-        try {
-            ge = Class.forName("core.characters.GameElement");
-        } catch (ClassNotFoundException e1) {
-            e1.printStackTrace();
-        }
-        while (ge.isAssignableFrom(c)) {
-            try {
-                Method method = this.getClass().getDeclaredMethod(key, c);
-                method.invoke(this, e);
-//                System.out.println(method.toString());
-            } catch (Exception ex) {}
-            c = c.getSuperclass();
-        }
+    public void beforeHitFromLeftBy(GameElement e, String tag) {};
+    public void beforeHitFromRightBy(GameElement e, String tag) {};
+    public void beforeHitFromTopBy(GameElement e, String tag) {};
+    public void beforeHitFromBottomBy(GameElement e, String tag) {};
+    public void afterHitFromLeftBy(GameElement e, String tag) {};
+    public void afterHitFromRightBy(GameElement e, String tag) {};
+    public void afterHitFromTopBy(GameElement e, String tag) {};
+    public void afterHitFromBottomBy(GameElement e, String tag) {};
+    
+    public void setTag(String s) {
+        this.tag = s;
+    }
+    
+    public String getTag() {
+        return this.tag;
     }
 
 }
