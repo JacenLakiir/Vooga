@@ -1,5 +1,6 @@
 package core.items;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemInventory {
@@ -7,6 +8,8 @@ public class ItemInventory {
 	private transient List<CollectibleItem> myInventory, myActiveInventory;
 
 	public ItemInventory() {
+		myInventory = new ArrayList<CollectibleItem>();
+		myActiveInventory = new ArrayList<CollectibleItem>();
 	}
 	
     public void updateInventory(CollectibleItem item) {

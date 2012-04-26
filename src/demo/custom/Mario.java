@@ -71,15 +71,15 @@ public class Mario extends Character {
         addAcceleration(strengthRight * this.getPhysicsAttribute().getGravitationalAcceleration(), 0);
     }
 
-    @KeyAnnotation(action = "space")
-    public SetInUseSetNotInUseItem keySpacePressed() {
-    	for (CollectibleItem item : this.getMyActiveInventory()) {
-    		if (item.canSetInUse() && item.isInUse()) {
-    			return ((FiringWeapon) item).useWeapon();
-    		}    
-    	}
-    	return null;
-    }
+//    @KeyAnnotation(action = "space")
+//    public SetInUseSetNotInUseItem keySpacePressed() {
+//    	for (CollectibleItem item : this.getMyActiveInventory()) {
+//    		if (item.canSetInUse() && item.isInUse()) {
+//    			return ((FiringWeapon) item).useWeapon();
+//    		}    
+//    	}
+//    	return null;
+//    }
 
     public void specialSkill() {
     }

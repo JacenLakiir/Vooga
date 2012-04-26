@@ -21,19 +21,16 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
 @SuppressWarnings("serial")
 public class Character extends GameElement {
 	
-	private transient List<CollectibleItem> myInventory, myActiveInventory;
-//	private transient ItemInventory myInventory, myActiveInventory;
+	private transient ItemInventory inventory;
 	
 	private transient Map<String, Double> myAttributeValues, myBaseAttributeValues;
 	private transient Map<String, State> myPossibleStates;
 
 	public Character(GameObject game, PhysicsAttributes physicsAttribute) {
 		super(game, physicsAttribute);
-//		myInventory = new ItemInventory();
+		inventory = new ItemInventory();
 		myBaseAttributeValues = new HashMap<String, Double>();
 		myAttributeValues = new HashMap<String, Double>();
-		myInventory = new ArrayList<CollectibleItem>();
-		myActiveInventory = new ArrayList<CollectibleItem>();
 		myPossibleStates = new HashMap<String, State>();
 	}
 
@@ -41,9 +38,7 @@ public class Character extends GameElement {
 		super();
 		myBaseAttributeValues = new HashMap<String, Double>();
 		myAttributeValues = new HashMap<String, Double>();
-//		myInventory = new ItemInventory();
-		myInventory = new ArrayList<CollectibleItem>();
-		myActiveInventory = new ArrayList<CollectibleItem>();
+		inventory = new ItemInventory();
 		myPossibleStates = new HashMap<String, State>();
 	}
 	
@@ -56,14 +51,14 @@ public class Character extends GameElement {
     }
     
     public void updateAbilities() {
-        for (CollectibleItem item : myInventory) {
+        for (CollectibleItem item : inventory.getMyInventory()) {
             if (item.isInUse()) {
-                myActiveInventory.add(item);
+                inventory.getMyActiveInventory().add(item);
             } else {
-                myActiveInventory.remove(item);
+                inventory.getMyActiveInventory().remove(item);
             }
         }
-        for (CollectibleItem item : myActiveInventory) {
+        for (CollectibleItem item : inventory.getMyActiveInventory()) {
             item.updatePlayerAttributes(this);
 //            for (String state : myAttributeValues.keySet()) {
 //                System.out.print(state + myAttributeValues.get(state));
@@ -144,25 +139,14 @@ public class Character extends GameElement {
             return null;
         return myAttributeValues.get(attribute);
     }
-
-    public List<CollectibleItem> getMyInventory() {
-        return myInventory;
-    }
-
-    public List<CollectibleItem> getMyActiveInventory() {
-        return myActiveInventory;
-    }
-	public void updateInventory(CollectibleItem item) {
-    	myInventory.remove(item);
-    }
-
-	public void useInventoryItem(CollectibleItem item) {
-    	item.setActive(true);
-    }
-
-	public void unuseInventoryItem(CollectibleItem item) {
-    	item.setActive(false);
-    }
+	
+	public List<CollectibleItem> getInventory() {
+		return inventory.getMyInventory();
+	}
+	
+	public List<CollectibleItem> getActiveInventory() {
+		return inventory.getMyActiveInventory();
+	}
 	
     public State getPossibleState(String label) {
         return myPossibleStates.get(label);

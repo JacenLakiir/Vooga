@@ -218,7 +218,7 @@ public class DemoHUD extends Game2D {
 		poison.setLocation(300, 400);
 		poison.setTimerStart(1000);
 		poison.setTimerEnd(4000);
-//		poison.addAttribute("hitPoints", -1);
+		poison.addAttribute("hitPoints", -1);
 		myPlayfield.addItem(poison);
 
 		FiringWeapon bullets = new FiringWeapon(this, new PhysicsAttributes());

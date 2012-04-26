@@ -6,6 +6,14 @@ public class AttributeValues {
 	
 	private transient Map<String, Double> myAttributeValues, myBaseAttributeValues;
 	
+	public Map<String, Double> getBaseAttributeValues() {
+		return myBaseAttributeValues;
+	}
+	
+	public Map<String, Double> getAttributeValues() {
+		return myAttributeValues;
+	}
+	
 	public double getBaseValue(String attribute) {
         return myBaseAttributeValues.get(attribute);
     }

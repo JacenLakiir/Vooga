@@ -20,6 +20,6 @@ public class CharacterCollectibleItemCollision extends GameElementCollision
         character.setActive(true);
         item.setActive(false);
         ((CollectibleItem) item).setIsInUse(true);
-        ((Character) character).getMyInventory().add((CollectibleItem) item);
+        ((Character) character).getInventory().add((CollectibleItem) item);
     }
 }
