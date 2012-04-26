@@ -29,6 +29,8 @@ public class SpriteWrapper implements Cloneable, Serializable {
     private String myImagesrc;
     private Map<SpriteAttribute, Serializable> myModifiableAttributeMap;
     private Map<SpriteAttribute, Serializable> myPhysicsAttributeMap;
+    private Map<SpriteAttribute, Serializable> myGamePlayAttributeMap;
+    
     private GameElement myGameElement;
 
     public SpriteWrapper(String name, SpriteGroupIdentifier group,
