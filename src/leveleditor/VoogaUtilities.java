@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.MalformedURLException;
-import java.net.URL;
 import javax.swing.ImageIcon;
 import com.golden.gamedev.util.ImageUtil;
 
@@ -32,8 +31,7 @@ public class VoogaUtilities {
     public static BufferedImage getImage(String src) {
 	BufferedImage toreturn = null;
 	try {
-	    toreturn = ImageUtil.getImage(
-		    new URL("file://" + new File(src).getAbsolutePath()),
+	    toreturn = ImageUtil.getImage(new File(src).toURI().toURL(),
 		    Color.MAGENTA);
 	} catch (MalformedURLException e) {
 	    e.printStackTrace();
@@ -44,8 +42,7 @@ public class VoogaUtilities {
     public static BufferedImage[] getImages(String src, int row, int col) {
 	BufferedImage[] toreturn = null;
 	try {
-	    toreturn = ImageUtil.getImages(
-		    new URL("file://" + new File(src).getAbsolutePath()), row, col, 
+	    toreturn = ImageUtil.getImages(new File(src).toURI().toURL(), row, col, 
 		    Color.MAGENTA);
 	} catch (MalformedURLException e) {
 	    e.printStackTrace();
