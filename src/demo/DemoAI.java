@@ -58,7 +58,6 @@ public class DemoAI extends Game2D
         addKeyListeners(mario);
         addKeyListeners(this);
         addMouseListeners(mario);
-        
         mario.setLocation(25, 400);
         mario.addAttribute("points", 0);
         mario.addAttribute("hitPoints", 10);

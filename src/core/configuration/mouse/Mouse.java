@@ -5,9 +5,9 @@ import java.util.List;
 
 import com.golden.gamedev.GameObject;
 
-import core.configuration.key.KeyObserver;
+import core.configuration.key.InputObserver;
 public abstract class Mouse {
-    private List<KeyObserver> observers;
+    private List<InputObserver> observers;
     
     private GameObject myGame;
     private String action;
@@ -18,7 +18,7 @@ public abstract class Mouse {
     
     public Mouse(GameObject game, String action){
         myGame = game;
-        observers = new ArrayList<KeyObserver>();
+        observers = new ArrayList<InputObserver>();
         this.action = action;
     }
 
@@ -27,14 +27,14 @@ public abstract class Mouse {
     }
     
     public void notifyObserver(){
-        for(KeyObserver observer : observers){
+        for(InputObserver observer : observers){
             observer.getActionMethods(action);
         }
     }
     
     
     public void addMouseListenenr(Object object){
-        KeyObserver observer = new KeyObserver(object);
+        InputObserver observer = new InputObserver(object);
         observers.add(observer); 
     }    
     public abstract boolean  isMouseClicked();

@@ -10,9 +10,9 @@ import java.lang.reflect.Method;
  * @author Hui Dong
  *
  */
-public  class KeyObserver { 
+public  class InputObserver { 
     private Object object;
-    public KeyObserver(Object object) {
+    public InputObserver(Object object) {
         this.object = object;
     }
     

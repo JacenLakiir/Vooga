@@ -14,7 +14,7 @@ public abstract class Key {
     protected String keyValue;
     private String action;
     private String keyType;
-    private List<KeyObserver> observers;
+    private List<InputObserver> observers;
     private GameObject myGame;
     private boolean isSystemOnly;
     
@@ -35,7 +35,7 @@ public abstract class Key {
     
     public void initial(GameObject game, boolean isSystemOnly){
         myGame = game;
-        observers = new ArrayList<KeyObserver>();
+        observers = new ArrayList<InputObserver>();
         this.isSystemOnly = isSystemOnly;
     }
     public String getAction(){
@@ -47,13 +47,13 @@ public abstract class Key {
     }
     
     public  void notifyObserver(){
-        for(KeyObserver observer : observers){
+        for(InputObserver observer : observers){
             observer.getActionMethods(action);        
         }
     }
     
     public void addKeyListenenr(Object object){
-        KeyObserver observer = new KeyObserver(object);
+        InputObserver observer = new InputObserver(object);
         observers.add(observer);
     }       
 }
