@@ -7,7 +7,7 @@ public class Liquid extends Tile{
 	
 	public Liquid(GameObject owner,  double strength) {
 		super(owner, null);
-		this.setPenetrable(true);
+		this.getPhysicsAttribute().setPenetrable(true);
 		this.strength = strength;
 	}
 	

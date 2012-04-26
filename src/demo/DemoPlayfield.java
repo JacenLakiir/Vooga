@@ -127,7 +127,7 @@ public class DemoPlayfield extends Game2D {
         AutoInUseAutoNotInUseItem poison = new AutoInUseAutoNotInUseItem(this, new PhysicsAttributes());
         poison.setImages(this.getImages("resources/Poison.png", 1, 1));
         poison.setActive(true);
-        poison.setMovable(false);
+        poison.getPhysicsAttribute().setMovable(false);
         poison.setLocation(300, 400);
         poison.setTimerStart(1000);
         poison.setTimerEnd(4000);

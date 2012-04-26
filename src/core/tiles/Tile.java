@@ -19,8 +19,8 @@ public class Tile extends GameElement {
      */
     public Tile(GameObject owner, PhysicsAttributes physicsAttribute) {
         super(owner, physicsAttribute);
-        this.setMovable(false);
-        this.setPenetrable(false);
+        this.getPhysicsAttribute().setMovable(false);
+        this.getPhysicsAttribute().setPenetrable(false);
     }
 
     /*

@@ -4,8 +4,8 @@ public class FrictionlessDecorator extends TileDecorator{
 
 	public FrictionlessDecorator(Tile decoratedPlatform) {
 		super(decoratedPlatform);
-		this.setCoefficientOfFrictionInX(0);
-		this.setCoefficientOfFrictionInY(0);
+		this.getPhysicsAttribute().setCoefficientOfFrictionInX(0);
+		this.getPhysicsAttribute().setCoefficientOfFrictionInY(0);
 	}
 
 }

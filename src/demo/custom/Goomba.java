@@ -17,7 +17,7 @@ public class Goomba extends Character {
     public Goomba(GameObject game, PhysicsAttributes physicsAttribute) {
         super(game, physicsAttribute);
         setImages(game.getImages(IMAGE_FILE, 1, 1));
-        setMovable(true);
+        this.getPhysicsAttribute().setMovable(true);
         setTag("Goomba");
     }
 
