@@ -23,7 +23,7 @@ public class DeadState extends State
     public void execute (long milliSec)
     {
         myCharacter.deactivateAllOtherStates(this);
-        myCharacter.setActive(!isActivated);
+        myCharacter.setActive(false);
     }
 
 }

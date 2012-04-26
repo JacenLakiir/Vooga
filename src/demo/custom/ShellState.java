@@ -1,6 +1,7 @@
 package demo.custom;
 
 import core.characters.ai.State;
+import leveleditor.VoogaUtilities;
 
 public class ShellState extends State
 {
@@ -43,7 +44,7 @@ public class ShellState extends State
     {
         if (!hasBeenHitFromTopByMario)
         {
-            myCharacter.setImages(myCharacter.getGame().getImages(SHELL_IMAGE_FILE, 1, 1));
+            myCharacter.setImages(VoogaUtilities.getImages(SHELL_IMAGE_FILE, 1, 1));
             myCharacter.deactivateAllOtherStates(this);
         }
         hasBeenHitFromTopByMario = true;
