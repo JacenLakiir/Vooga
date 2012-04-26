@@ -180,5 +180,16 @@ public class DemoPlayfield extends Game2D {
     public void registerNextLevel() {
         setNextLevel(DemoHUD.class);       
     }
+
+    @Override
+    public boolean isFail() {
+        //this demo will not fail
+        return false;
+    }
+
+    @Override
+    public void registerGameOverEvent() {
+        //this demo will not fail
+    }
 	
 }

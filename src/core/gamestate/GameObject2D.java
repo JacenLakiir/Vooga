@@ -82,7 +82,7 @@ public abstract class GameObject2D extends GameObject {
 	engine.initResources();
     }
     
-    public void restart(){
+    public void reset(){
         engine.initResources();
     }
 

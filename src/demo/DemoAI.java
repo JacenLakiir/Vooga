@@ -196,4 +196,15 @@ public class DemoAI extends Game2D
         setNextLevel(DemoPlayfield.class);
     }
 
+    @Override
+    public boolean isFail() {
+        //game will not fail in this demo
+        return false;
+    }
+
+    @Override
+    public void registerGameOverEvent() {
+        //this demo will not fail
+    }
+
 }

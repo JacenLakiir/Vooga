@@ -254,7 +254,7 @@ public class DemoHUD extends Game2D {
     @Override
     public boolean isWin() {
         if(mario.getX() >= endOfPlatform){
-            restart();
+            reset();
             return true;
         }
         return false;
@@ -263,6 +263,20 @@ public class DemoHUD extends Game2D {
     @Override
     public void registerNextLevel() {
         setNextLevel(Menu.class);  
+    }
+
+    @Override
+    public boolean isFail() {
+        if(mario.getMyBaseValue("lives") == 0){
+            reset();
+            return true;        
+        }
+        return false;
+    }
+
+    @Override
+    public void registerGameOverEvent() { 
+        setGameOverEvent(Menu.class);
     }
 
 }
