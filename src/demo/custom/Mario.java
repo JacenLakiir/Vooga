@@ -19,43 +19,37 @@ public class Mario extends Character {
 
     private static final String IMAGE_FILE = "resources/Mario1.png";
     private double strengthUp, strengthDown, strengthLeft, strengthRight;
-    
-    @Modifiable(classification = "Gameplay")
-    private boolean jumpEnable;
+
+    private boolean jumpEnable, reversed;
     private Timer jumpTimer;
     @Modifiable(classification = "Gameplay")
     private int jumpTime;
 
     public Mario(GameObject game, PhysicsAttributes physicsAttribute) {
-    	this(physicsAttribute);
-    	setGame(game);
-    }
-    
-    public Mario(PhysicsAttributes physicsAttribute) {
-    	super(physicsAttribute);
-        addDefaultBaseAttributeEntry("hitPoints", 1);
-    	setImages(VoogaUtilities.getImages(IMAGE_FILE, 1, 1));
-    	resetStrength();
-    	setMaximumSpeedInX(0.8);
-    	jumpTime = 250;
-    	jumpTimer = new Timer(jumpTime);
-    	jumpTimer.setActive(false);
-    	setTag("Mario");
+        super(game, physicsAttribute);
+        setImages(game.getImages(IMAGE_FILE, 1, 1));
+        resetStrength();
+        setMaximumSpeedInX(0.8);
+        jumpTime = 220;
+        jumpTimer = new Timer(jumpTime);
+        jumpTimer.setActive(false);
+        reversed = false;
+        setTag("Mario");
     }
 
     @Override
     public void update(long t) {
-    	super.update(t);
-    	resetStrength();
-    	if (jumpTimer.action(t)) {
-    	    jumpTimer.setActive(false);
-    	    jumpEnable = false;
-    	}
+        super.update(t);
+        resetStrength();
+        if (jumpTimer.action(t)) {
+            jumpTimer.setActive(false);
+            jumpEnable = false;
+        }
     }
 
     @KeyAnnotation(action = "sequence")
     public void sequenceKey() {
-    	setImages(myGame.getImages("resources/Mushroom.png", 1, 1));
+        setImages(myGame.getImages("resources/Mushroom.png", 1, 1));
     }
 
     @KeyAnnotation(action = "up")
@@ -70,12 +64,12 @@ public class Mario extends Character {
 
     @KeyAnnotation(action = "left")
     public void keyLeftPressed() {
-        addAcceleration(strengthLeft * -this.getPhysicsAttribute().getGravitationalAcceleration(), 0);
+        addAcceleration(strengthLeft * -Math.abs(this.getPhysicsAttribute().getGravitationalAcceleration()), 0);
     }
 
     @KeyAnnotation(action = "right")
     public void keyRightPressed() {
-        addAcceleration(strengthRight * this.getPhysicsAttribute().getGravitationalAcceleration(), 0);
+        addAcceleration(strengthRight * Math.abs(this.getPhysicsAttribute().getGravitationalAcceleration()), 0);
     }
 
 //    @KeyAnnotation(action = "space")
@@ -90,7 +84,7 @@ public class Mario extends Character {
 
     public void specialSkill() {
     }
-    
+
     public void giveStrengthUp() {
         if (!jumpEnable)
             return;
@@ -102,7 +96,7 @@ public class Mario extends Character {
             addAcceleration(0, strengthUp * this.getPhysicsAttribute().getGravitationalAcceleration());
         }
     }
-    
+
     public void setStrengthUp(double s) {
         strengthUp = s;
     }
@@ -125,7 +119,7 @@ public class Mario extends Character {
         setStrengthRight(s);
         setStrengthUp(s);
     }
-    
+
     // this is only used for swimming
     public void resetStrength() {
         strengthUp = 2;
@@ -134,9 +128,49 @@ public class Mario extends Character {
     }
 
     @Override
+    public void afterHitFromTopBy(GameElement e, String tag) {
+        if (tag.equals("Water")) {
+            this.handleWaterCollision((Water)e);
+        }
+        else if (reversed) {
+            jumpEnable = true;
+            jumpTimer.setActive(false);
+        }
+    }
+
+    @Override
     public void afterHitFromBottomBy(GameElement e, String tag) {
-    	jumpEnable = true;
-    	jumpTimer.setActive(false);
+        if (tag.equals("Water")) {
+            this.handleWaterCollision((Water)e);
+        }
+        else if (!reversed) {
+            jumpEnable = true;
+            jumpTimer.setActive(false);
+        }
+    }
+
+    @Override
+    public void afterHitFromLeftBy(GameElement e, String tag) {
+        if (tag.equals("Water")) {
+            this.handleWaterCollision((Water)e);
+        }
+    }
+
+    @Override
+    public void afterHitFromRightBy(GameElement e, String tag) {
+        if (tag.equals("Water")) {
+            this.handleWaterCollision((Water)e);
+        }
+    }
+
+    public void setReversed(boolean b) {
+        reversed = b;
+    }
+
+    private void handleWaterCollision(Water w) {
+        jumpEnable = true;
+        jumpTimer.setActive(false);
+        setStrength(w.getStrength());
     }
 
 }
