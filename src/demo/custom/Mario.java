@@ -26,6 +26,7 @@ public class Mario extends Character {
 
     public Mario(GameObject game, PhysicsAttributes physicsAttribute) {
     	super(game, physicsAttribute);
+    	SetInUseSetNotInUseItem bullets = new FiringWeapon(myGame, physicsAttribute);
     	setImages(game.getImages(IMAGE_FILE, 1, 1));
     	resetStrength();
     	setMaximumSpeedInX(0.8);
@@ -72,10 +73,10 @@ public class Mario extends Character {
 
     @KeyAnnotation(action = "space")
     public SetInUseSetNotInUseItem keySpacePressed() {
-    	for (CollectibleItem item : this.getMyInventory()) {
+    	for (CollectibleItem item : this.getMyActiveInventory()) {
     		if (item.canSetInUse() && item.isInUse()) {
     			return ((FiringWeapon) item).useWeapon();
-    		}
+    		}    
     	}
     	return null;
     }

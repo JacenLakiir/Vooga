@@ -4,6 +4,7 @@ import com.golden.gamedev.object.Sprite;
 import core.characters.Character;
 
 import core.items.CollectibleItem;
+import core.items.FiringWeapon;
 
 /**
  * @author Kathleen Oshima
@@ -16,7 +17,7 @@ public class CharacterBulletCollision extends GameElementCollision {
 		// implement this method with the npc
 		((CollectibleItem) weapon).updateAttributeValues((Character) character,
 		        "hitPoints",
-		        ((CollectibleItem) weapon).getAttributeValue("hitPoints"));
+		        ((FiringWeapon) weapon).getAttributeValue("hitPoints")*(-1));
 		((CollectibleItem) weapon).setIsInUse(false);
 
 		weapon.setActive(false);

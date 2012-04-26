@@ -11,8 +11,10 @@ public class FiringWeapon extends SetInUseSetNotInUseItem{
     }
 	
 	public SetInUseSetNotInUseItem useWeapon() {
+		System.out.println("hi");
+		this.setLocation(0, 100);
 		this.setActive(true);
-		this.setLocation(getX(), getY());
+		this.setSpeed(.2, 0);
 		return this;
 	}
 }
