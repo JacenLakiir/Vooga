@@ -55,7 +55,7 @@ public class DemoHUD extends Game2D {
 	public void initResources() {
 
 		// Playfield Init
-		myPlayfield = new AdvancedPlayField(2000, 500);
+		myPlayfield = new AdvancedPlayField(2000, 500, this.getWidth(), this.getHeight());
 		myPlayfield.setBackground(new ColorBackground(Color.gray));
 		myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
 
@@ -120,13 +120,21 @@ public class DemoHUD extends Game2D {
 			public double getInit() {
 				return myPlayfield.getPlayer().getBaseValue("hitPoints");
 			}
-		}), HUD.TOP_LEFT);
+		}), HUD.TOP_RIGHT);
 		
-		myPlayfield.addHUDWidget(new InventoryWidget("Inventory:", new InventoryProxy() {
+		myPlayfield.addHUDWidget(new IconWidget("Lives", this
+		        .getImage("resources/life.png"), new IntProxy() {
+			public int get() {
+				return myPlayfield.getPlayer().getAttributeValue("lives")
+				        .intValue();
+			}
+		}), HUD.BOTTOM_RIGHT);
+		
+		myPlayfield.addHUDWidget(new InventoryWidget("Inventory", new InventoryProxy() {
 			public List<CollectibleItem> get() {
 				return myPlayfield.getPlayer().getInventory();
 			}
-		}), HUD.BOTTOM_LEFT);
+		}), HUD.TOP_RIGHT);
 
 		Character koopa1 = new Koopa(this, new PhysicsAttributes());
 		koopa1.addPossibleState("Move", new MoveState(koopa1, 1, true));

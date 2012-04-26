@@ -16,12 +16,12 @@ public class HUD implements Serializable
     HUDGroup[] myHUDGroups = new HUDGroup[4];
 
 
-    public HUD ()
+    public HUD (int w, int h)
     {
-    	myHUDGroups[TOP_LEFT] = new HUDGroup(new VerticalFlowLayout(0, 0));
-    	myHUDGroups[TOP_RIGHT] = new HUDGroup(new VerticalFlowLayout(300, 0));
-    	myHUDGroups[BOTTOM_LEFT] = new HUDGroup(new VerticalFlowLayout(0, 300));
-    	myHUDGroups[BOTTOM_RIGHT] = new HUDGroup(new VerticalFlowLayout(300, 300));
+    	myHUDGroups[TOP_LEFT] = new HUDGroup(new VerticalFlowLayout(0, 0, false, false));
+    	myHUDGroups[TOP_RIGHT] = new HUDGroup(new VerticalFlowLayout(w, 0, false, true));
+    	myHUDGroups[BOTTOM_LEFT] = new HUDGroup(new VerticalFlowLayout(0, h, true, false));
+    	myHUDGroups[BOTTOM_RIGHT] = new HUDGroup(new VerticalFlowLayout(w, h, true, true));
     }
 
 

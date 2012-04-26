@@ -48,7 +48,7 @@ public class DemoAI extends Game2D
     public void initResources ()
     { 
         
-        myPlayfield = new AdvancedPlayField(10000, 500);
+        myPlayfield = new AdvancedPlayField(10000, 500, this.getWidth(), this.getHeight());
         myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
         myPlayfield.setBackground(new ColorBackground(Color.gray, 640, 480));
         
