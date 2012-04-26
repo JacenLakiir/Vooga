@@ -228,8 +228,11 @@ public class DemoHUD extends Game2D {
 		bullets.addAttribute("attackPower", 1);
 		myPlayfield.addItem(bullets);
 
-		Tile middleBar = new MovingDecorator(new Tile(this,
-				new PhysicsAttributes()), 260, 240, 700, 60, 0.05);
+		MovingDecorator middleBar = new MovingDecorator(new Tile(this,
+				new PhysicsAttributes()));
+		middleBar.setLocation(260, 240);
+		middleBar.setEndLocation(700, 60);
+		middleBar.setMoveSpeed(0.05);
 		middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
 		myPlayfield.addSetting(middleBar);
 

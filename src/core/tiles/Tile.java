@@ -29,5 +29,8 @@ public class Tile extends GameElement {
     public Tile() {
         super();
     }
-
+    
+    public Tile removeDecorator(){
+    	return this;
+    }
 }

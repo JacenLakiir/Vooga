@@ -403,6 +403,10 @@ public class TileDecorator extends Tile {
     		decoratedPlatform.update(elapsedTime);
     	}
     	
+    	public Tile removeDecorator(){
+        	return decoratedPlatform;
+        }
+    	
     	protected Tile getDecoratedPlatform(){
     		return decoratedPlatform;
     	}

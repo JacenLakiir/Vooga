@@ -5,26 +5,26 @@ import core.characters.GameElement;
 
 
 public class MovingDecorator extends TileDecorator{
-	private double startX, startY, endX, endY, speed;
-
-
-	public MovingDecorator(Tile decoratedPlatform, double startX, double startY, double endX, double endY, double speed) {
+	public MovingDecorator(Tile decoratedPlatform) {
 		super(decoratedPlatform);
-		setLocation(startX, startY);
-		setEndLocation(endX, endY);
-		this.speed = speed;
 	}
+
+	private double startX, startY, endX, endY, speed;
 	
 	@Override
 	public void setLocation(double xs, double ys){
 		startX = xs;
 		startY = ys;
-		getDecoratedPlatform().setLocation(xs, ys);
+		super.setLocation(xs, ys);
 	}
 	
 	public void setEndLocation (double endX, double endY){
 		this.endX = endX;
 		this.endY = endY;
+	}
+	
+	public void setMoveSpeed(double speed){
+		this.speed = speed;
 	}
 	
 	@Override
