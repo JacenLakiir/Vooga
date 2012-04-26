@@ -111,20 +111,21 @@ public abstract class GameObject2D extends GameObject implements Serializable
 
     public void continueGame ()
     {
-        engine.nextGameID = engine.getPreviousGameID();
+        engine.nextGameID = engine.getCurrentGameID();
     }
 
 
     public void saveNextGame ()
     {
         continueGame();
-        engine.saveGame();
+        engine.saveNextGame();
     }
 
 
     private void writeObject (ObjectOutputStream stream) throws IOException
     {
         System.err.println("serializing GameObject");
+        System.err.println(getClass());
         //stream.defaultWriteObject();
         //stream.writeObject("lol");
         //System.out.println("left cookie");
@@ -177,12 +178,6 @@ public abstract class GameObject2D extends GameObject implements Serializable
 
 
     public void reset ()
-    {
-        engine.initResources();
-    }
-
-
-    public void resetEngine ()
     {
         engine.initResources();
     }

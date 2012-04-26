@@ -89,7 +89,6 @@ public class Pause extends MenuGameObject
         }
         if (getOptionID() == 1)
         {
-            continueGame();
             saveNextGame();
         }
         if (getOptionID() == 2)
@@ -99,7 +98,7 @@ public class Pause extends MenuGameObject
         if (getOptionID() == getNumberOfItems() - 1)
         {
             switchToGameObject(Menu.class);
-            resetEngine();
+            reset();
         }
         finish();
     }

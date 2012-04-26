@@ -88,12 +88,12 @@ public class DemoAI extends Game2D
 //        myPlayfield.addCharacter(koopa2);
         
         Character goomba4 = new Goomba(this, new PhysicsAttributes());
-        goomba4.addPossibleState(new FollowState(goomba4, mario, 1, 200));
+        goomba4.addPossibleState("Evade", new FollowState(goomba4, mario, 1, 200));
         goomba4.setLocation(300, 400);
         myPlayfield.addCharacter(goomba4);
         
         Character goomba5 = new Goomba(this, new PhysicsAttributes());
-        goomba5.addPossibleState(new EvadeState(goomba5, mario, 2, 200));
+        goomba5.addPossibleState("Evade", new EvadeState(goomba5, mario, 2, 200));
         goomba5.setLocation(400, 400);
         myPlayfield.addCharacter(goomba5);
         

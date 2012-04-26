@@ -78,27 +78,27 @@ public class DemoPlayfield extends Game2D {
         myPlayfield.addPlayer(mario);
         
         Character koopa1 = new Koopa(this, new PhysicsAttributes());
-        koopa1.addPossibleState(new MoveState(koopa1, 1, true));
+        koopa1.addPossibleState("Move", new MoveState(koopa1, 1, true));
         koopa1.setLocation(500, 400);
         myPlayfield.addCharacter(koopa1);
         
         Character goomba1 = new Goomba(this, new PhysicsAttributes());
-        goomba1.addPossibleState(new MoveState(goomba1, 1, true));
+        goomba1.addPossibleState("Move", new MoveState(goomba1, 1, true));
         goomba1.setLocation(800, 400);
         myPlayfield.addCharacter(goomba1);
         
         Character goomba2 = new Goomba(this, new PhysicsAttributes());
-        goomba2.addPossibleState(new MoveState(goomba2, 1, true));
+        goomba2.addPossibleState("Move", new MoveState(goomba2, 1, true));
         goomba2.setLocation(900, 400);
         myPlayfield.addCharacter(goomba2);
         
         Character goomba3 = new Goomba(this, new PhysicsAttributes());
-        goomba3.addPossibleState(new MoveState(goomba3, 1, true));
+        goomba3.addPossibleState("Move", new MoveState(goomba3, 1, true));
         goomba3.setLocation(1000, 400);
         myPlayfield.addCharacter(goomba3);
         
         Character goomba4 = new Goomba(this, new PhysicsAttributes());
-        goomba4.addPossibleState(new PatrolState(goomba4, 1, 325));
+        goomba4.addPossibleState("Patrol", new PatrolState(goomba4, 1, 325));
         goomba4.setLocation(575, 200);
         myPlayfield.addCharacter(goomba4);
 
@@ -127,7 +127,7 @@ public class DemoPlayfield extends Game2D {
         AutoInUseAutoNotInUseItem poison = new AutoInUseAutoNotInUseItem(this, new PhysicsAttributes());
         poison.setImages(this.getImages("resources/Poison.png", 1, 1));
         poison.setActive(true);
-        poison.setMovable(false);
+        poison.getPhysicsAttribute().setMovable(false);
         poison.setLocation(300, 400);
         poison.setTimerStart(1000);
         poison.setTimerEnd(4000);
@@ -141,8 +141,11 @@ public class DemoPlayfield extends Game2D {
         block1.addItem(coin);
         myPlayfield.addSetting(block1);
         
-        Tile middleBar = new MovingDecorator(new Tile(this, new PhysicsAttributes()), 260,
-                240, 700, 60, 0.05);
+        MovingDecorator middleBar = new MovingDecorator(new Tile(this,
+				new PhysicsAttributes()));
+		middleBar.setLocation(260, 240);
+		middleBar.setEndLocation(700, 60);
+		middleBar.setMoveSpeed(0.05);
         middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
         myPlayfield.addSetting(middleBar);
 

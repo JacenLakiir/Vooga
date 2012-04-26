@@ -14,25 +14,22 @@ import demo.custom.ShellState;
 public class Koopa extends Character {
 
     private static final String IMAGE_FILE = "resources/Koopa.png";
-    private static final String SHELL_IMAGE_FILE = "resources/KoopaShell.png";
 
     private ShellState myShellState;
 
     public Koopa(GameObject game, PhysicsAttributes physicsAttribute) {
         super(game, physicsAttribute);
         setImages(game.getImages(IMAGE_FILE, 1, 1));
-        setMovable(true);
+        this.getPhysicsAttribute().setMovable(true);
         myShellState = new ShellState(this);
-        myShellState.setActive(false);
-        addPossibleState(myShellState);
+        addPossibleState("Shell", myShellState);
         setTag("Koopa");
     }
 
     @Override
     public void afterHitFromLeftBy(GameElement e, String tag) {
         if (tag.equals("Mario")) {
-            if (myShellState.isActive())
-                handleMarioCollision((Mario)e, true);
+            handleMarioCollision((Mario)e, true);
         }
         else if (tag.equals("Goomba")) {
             setDirection(myShellState.isActive() ? getDirection() : -1
@@ -46,8 +43,7 @@ public class Koopa extends Character {
     @Override
     public void afterHitFromRightBy(GameElement e, String tag) {
         if (tag.equals("Mario")) {
-            if (myShellState.isActive())
-                handleMarioCollision((Mario)e, false);
+            handleMarioCollision((Mario)e, false);
         }
         else if (tag.equals("Goomba")) {
             setDirection(myShellState.isActive() ? getDirection() : -1
@@ -62,16 +58,10 @@ public class Koopa extends Character {
     @Override
     public void afterHitFromTopBy(GameElement e, String tag) {
         if (tag.equals("Mario")) {
-            if (!myShellState.isActive()) {
-                setImages(getGame().getImages(SHELL_IMAGE_FILE, 1, 1));
-                deactivateAllOtherStates(myShellState);
-                myShellState.setActive(true);
-            }
+            myShellState.notifyHitFromTopByMario();
             myShellState.setSpeed(0);
         }
     }
-
-
 
     public double getShellSpeed() {
         return myShellState.getSpeed();
@@ -85,11 +75,11 @@ public class Koopa extends Character {
         return myShellState.isActive();
     }
 
-    private void handleMarioCollision(Mario m, boolean isHitOnLeft) {
+    private void handleMarioCollision(Mario m, boolean isThisHitOnLeft) {
         boolean isInShell = myShellState.isActive();
         if (isInShell && getShellSpeed() == 0) {
             myShellState.setSpeed(50 * Math.abs(m.getVelocity().getX()));
-            setDirection(isHitOnLeft ? 1 : -1);
+            setDirection(isThisHitOnLeft ? 1 : -1);
         } else if (isInShell && getShellSpeed() != 0) {
             m.updateAttributeValue("hitPoints",
                     -1 * m.getMyAttributeValue("hitPoints"));
@@ -105,10 +95,10 @@ public class Koopa extends Character {
                 setShellSpeed(50 * Math.abs(k.getVelocity().getX()));
                 setDirection(-1 * getDirection());
             } else if (k.isInShellState() && k.getShellSpeed() == 0)
-                k.addPossibleState(new DeadState(this));
+                k.addPossibleState("Dead", new DeadState(this));
         } else {
             if (k.getShellSpeed() != 0)
-                k.addPossibleState(new DeadState(this));
+                k.addPossibleState("Dead", new DeadState(this));
             else
                 setDirection(isThisHitOnLeft ? 1 : -1);
         }

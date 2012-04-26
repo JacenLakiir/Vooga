@@ -54,17 +54,17 @@ public class Mario extends Character {
 
     @KeyAnnotation(action = "down")
     public void keyDownPressed() {
-        addAcceleration(0, strengthDown * -this.getGravitationalAcceleration());
+        addAcceleration(0, strengthDown * -this.getPhysicsAttribute().getGravitationalAcceleration());
     }
 
     @KeyAnnotation(action = "left")
     public void keyLeftPressed() {
-        addAcceleration(strengthLeft * -getGravitationalAcceleration(), 0);
+        addAcceleration(strengthLeft * -this.getPhysicsAttribute().getGravitationalAcceleration(), 0);
     }
 
     @KeyAnnotation(action = "right")
     public void keyRightPressed() {
-        addAcceleration(strengthRight * getGravitationalAcceleration(), 0);
+        addAcceleration(strengthRight * this.getPhysicsAttribute().getGravitationalAcceleration(), 0);
     }
 
 //    @KeyAnnotation(action = "space")
@@ -83,7 +83,7 @@ public class Mario extends Character {
                 jumpTimer.setActive(true);
                 jumpTimer.refresh();
             }
-            addAcceleration(0, strengthUp * this.getGravitationalAcceleration());
+            addAcceleration(0, strengthUp * this.getPhysicsAttribute().getGravitationalAcceleration());
         }
     }
     
