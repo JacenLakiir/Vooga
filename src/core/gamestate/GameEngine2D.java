@@ -79,4 +79,7 @@ public abstract class GameEngine2D extends GameEngine {
         previousGameID = idMap.get(mclass.getName());
     }
 
+    public void saveGame() {
+    }
+
 }

@@ -6,38 +6,44 @@ package test;
 
 import java.io.*;
 import java.util.*;
-import org.yaml.snakeyaml.Yaml;
 
 
 public class LoadSaveTest implements Serializable
 {
-    public static void main (String[] args)
+    public static void main (String[] args) throws Exception
     {
         new LoadSaveTest().run();
     }
 
 
-    void run ()
+    void run () throws Exception
     {
         Graph g = buildGraph();
         System.out.println(g);
-        String s = serialise(g);
-        System.out.println(s);
-        Graph h = (Graph) deserialise(s);
+
+        serialise(g);
+        
+        Graph h = (Graph) deserialise();
         System.out.println(h);
-        System.out.println(g);
     }
 
 
-    String serialise (Graph g)
+    void serialise (Object o) throws Exception
     {
-        return new Yaml().dump(g);
+        ObjectOutputStream out =
+            new ObjectOutputStream(new FileOutputStream("tmp"));
+        out.writeObject(o);
+        out.close();
     }
 
 
-    Object deserialise (String s)
+    Object deserialise () throws Exception
     {
-        return new Yaml().load(s);
+        ObjectInputStream in =
+            new ObjectInputStream(new FileInputStream("tmp"));
+        Object ret = in.readObject();
+        in.close();
+        return ret;
     }
 
 
@@ -56,7 +62,7 @@ public class LoadSaveTest implements Serializable
         return g;
     }
 
-    class Node
+    class Node implements Serializable
     {
         LinkedList<Node> neighbors = new LinkedList<Node>();
         String name;
@@ -74,7 +80,7 @@ public class LoadSaveTest implements Serializable
         }
     }
 
-    class Graph
+    class Graph implements Serializable
     {
         LinkedList<Node> nodes = new LinkedList<Node>();
 

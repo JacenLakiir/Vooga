@@ -35,6 +35,7 @@ public class Pause extends MenuGameObject {
     @Override
     public void buildMenu() {
 	addOptionToMenu("Continue");
+	addOptionToMenu("Save");
 	addOptionToMenu("Restart");
 	addOptionToMenu("Menu");
     }
@@ -72,6 +73,9 @@ public class Pause extends MenuGameObject {
 	    continueGame();
 	}
 	if (getOptionID() == 1) {
+	    saveGame();
+	}
+	if (getOptionID() == 2) {
 	    restartGame();
 	}
 	if (getOptionID() == getNumberOfItems() - 1) {
