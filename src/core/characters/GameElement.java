@@ -131,12 +131,12 @@ public class GameElement extends AdvanceSprite {
 
     private void moveToDisplacement() {
         double dx = disp.getX() - this.getX();
-        double dy = 480 - disp.getY() - this.getY(); // need to change!!!!
+        double dy = myGame.getHeight() - disp.getY() - this.getY(); // need to change!!!!
         this.move(dx, dy);
     }
 
     private void setDisplacementFromLocation() {
-        disp.set(this.getX(), 480 - this.getY()); // need to change!!!!
+        disp.set(this.getX(), myGame.getHeight() - this.getY()); // need to change!!!!
     }
 
     public void addAcceleration(double x, double y) {
@@ -257,85 +257,21 @@ public class GameElement extends AdvanceSprite {
     public void setMaximumSpeedInY(double y) {
         this.maximumSpeedInY = y;
     }
-//    
-//    public double getMass() {
-//        return this.getPhysicsAttribute().getMass();
-//    }
-//    public void setMass(double m) {
-//        this.getPhysicsAttribute().setMass(m);
-//    }
-//
-//    public double getDensity() {
-//        return this.getPhysicsAttribute().getDensity();
-//    }
-//    public void setDensity(double density) {
-//        this.getPhysicsAttribute().setDensity(density);
-//    }
-//
-//    public double getCoefficintOfFrictionInXDirection() {
-//        return this.getPhysicsAttribute().getCoefficintOfFrictionInXDirection();
-//    }
-//    public void setCoefficientOfFrictionInX(double coef) {
-//        this.getPhysicsAttribute().setCoefficientOfFrictionInX(coef);
-//    }
-//
-//    public double getCoefficintOfFrictionInYDirection() {
-//        return this.getCoefficintOfFrictionInYDirection();
-//    }
-//    public void setCoefficientOfFrictionInY(double coef) {
-//        this.getPhysicsAttribute().setCoefficientOfFrictionInY(coef);
-//    }
-//
-//    public double getCoefficintOfRestitutionInXDirection() {
-//        return this.getPhysicsAttribute().getCoefficintOfRestitutionInXDirection();
-//    }
-//    public void setCoefficientOfRestitutionInX(double coef) {
-//        this.getPhysicsAttribute().setCoefficientOfRestitutionInX(coef);
-//    }
-//
-//    public double getCoefficintOfRestitutionInYDirection() {
-//        return this.getPhysicsAttribute().getCoefficintOfRestitutionInYDirection();
-//    }
-//    public void setCoefficientOfRestitutionInY(double coef) {
-//        this.getPhysicsAttribute().setCoefficientOfRestitutionInY(coef);
-//    }
-//    
-//    public double getDragCoefficient() {
-//        return this.getPhysicsAttribute().getDragCoefficient();
-//    }
-//    public void setDragCoefficient(double coef) {
-//        this.getPhysicsAttribute().setDragCoefficient(coef);
-//    }
-//
-//    public double getGravitationalAcceleration() {
-//        return this.getPhysicsAttribute().getGravitationalAcceleration();
-//    }
-//    public void setGravitationalAcceleration(double coef) {
-//        this.getPhysicsAttribute().setGravitationalAcceleration(coef);
-//    }
-//
-//    public boolean isUnmovable() {
-//        return this.getPhysicsAttribute().isUnmovable();
-//    }
-//    public void setMovable(boolean movable) {
-//        this.getPhysicsAttribute().setMovable(movable);
-//    }
-//
-//    public boolean isPenetrable() {
-//        return this.getPhysicsAttribute().isPenetrable();
-//    }
-//    public void setPenetrable(boolean penetrable) {
-//        this.getPhysicsAttribute().setPenetrable(penetrable);
-//    }
-
 
     public void beforeHitFromLeftBy(GameElement e, String tag) {};
+    
     public void beforeHitFromRightBy(GameElement e, String tag) {};
+    
     public void beforeHitFromTopBy(GameElement e, String tag) {};
+    
     public void beforeHitFromBottomBy(GameElement e, String tag) {};
+    
     public void afterHitFromLeftBy(GameElement e, String tag) {};
+    
     public void afterHitFromRightBy(GameElement e, String tag) {};
+    
     public void afterHitFromTopBy(GameElement e, String tag) {};
+    
     public void afterHitFromBottomBy(GameElement e, String tag) {};
     
     public void setTag(String s) {
