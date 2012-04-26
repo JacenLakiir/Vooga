@@ -42,9 +42,9 @@ public class AdvancedPlayField extends PlayField implements Serializable {
     /*
      * Initialize PlayField, Background, and common SpriteGroups
      */
-    public AdvancedPlayField(int width, int height) {
+    public AdvancedPlayField(int PlayFieldWidth, int PlayFieldHeight, int ScreenWidth, int ScreenHeight) {
 	super(new ParallaxBackground(new Background[] {
-		new Background(width, height), new Background() }));
+		new Background(PlayFieldWidth, PlayFieldHeight), new Background() }));
 	Players = this.addGroup(new SpriteGroup("Player Group"));
 	Characters = this.addGroup(new SpriteGroup("Character Group"));
 	Setting = this.addGroup(new SpriteGroup("Setting Group"));
@@ -57,7 +57,7 @@ public class AdvancedPlayField extends PlayField implements Serializable {
 		new SideScrollerBoundsCollision(this.getBackground()));
 
 	//hud = new HUD(new VerticalFlowLayout(100, 100));
-        hud = new HUD();
+        hud = new HUD(ScreenWidth, ScreenHeight);
     }
 
     public SpriteGroup addGroup(SpriteGroup group) {
