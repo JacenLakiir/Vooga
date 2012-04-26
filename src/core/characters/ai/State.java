@@ -8,7 +8,7 @@ import core.characters.Character;
 public abstract class State
 {
     protected Character myCharacter;
-    protected boolean isActivated;
+    private boolean isActivated;
     
     public State (Character character)
     {

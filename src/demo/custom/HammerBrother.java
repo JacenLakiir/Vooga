@@ -1,11 +1,10 @@
 package demo.custom;
 
-import leveleditor.VoogaUtilities;
-
 import com.golden.gamedev.GameObject;
 import core.characters.Character;
 import core.characters.GameElement;
 import core.characters.ai.JumpState;
+import leveleditor.VoogaUtilities;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 /**
@@ -16,8 +15,8 @@ public class HammerBrother extends Character {
     private static final String IMAGE_FILE = "resources/HammerBrother.gif";
 
     public HammerBrother(GameObject game, PhysicsAttributes physicsAttribute) {
-	this(physicsAttribute);
-	setGame(game);
+    this(physicsAttribute);
+    setGame(game);
     }
     
     public HammerBrother(PhysicsAttributes physicsAttribute) {

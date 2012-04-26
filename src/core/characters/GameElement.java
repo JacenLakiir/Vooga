@@ -64,6 +64,9 @@ public class GameElement extends AdvanceSprite {
         myGame = game;
     }
     
+    // for decorators
+    public GameElement() {}
+    
     public void setGame(GameObject game) {
         myGame = game;
     }
