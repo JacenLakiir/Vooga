@@ -19,6 +19,12 @@ public class EvadeState extends State
         mySpeed = speed;
         myEvadeRange = evadeRange;
     }
+    
+    @Override
+    public boolean areConditionsMet ()
+    {
+        return (myCharacter.getDistance(beingAvoided) <= myEvadeRange);
+    }
 
     @Override
     public void execute (long milliSec)
@@ -26,12 +32,6 @@ public class EvadeState extends State
         double horizontalDistance = beingAvoided.getX() - myCharacter.getX();
         int directionToFlee = (horizontalDistance < 0) ? 1 : -1;
         myCharacter.move(directionToFlee * mySpeed, 0);
-    }
-
-    @Override
-    public boolean areConditionsMet ()
-    {
-        return (myCharacter.getDistance(beingAvoided) <= myEvadeRange);
     }
     
 }
