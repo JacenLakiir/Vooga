@@ -263,7 +263,7 @@ public class DemoHUD extends Game2D {
 
     @Override
     public void registerNextLevel() {
-        setNextLevel(Menu.class);  
+        setNextLevel(DemoAntigravity.class);  
     }
 
     @Override

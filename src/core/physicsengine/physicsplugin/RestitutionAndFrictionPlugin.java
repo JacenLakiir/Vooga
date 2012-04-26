@@ -9,10 +9,13 @@ import core.collision.GameElementCollision;
 
 public class RestitutionAndFrictionPlugin extends PhysicsPlugin{
     
-    private double collisionTime = 10;   // elapsedTime!!!!
+    private double defaultCollisionTime = 10;   // elapsedTime!!!!
 
     @Override
     public void exertOn(GameElement s1, GameElement s2) {
+        if (s1.getPhysicsAttribute().isPenetrable() || s2.getPhysicsAttribute().isPenetrable()) {
+            return;
+        }
         int collisionSide = myCollision.getCollisionSide();
         if (((collisionSide & GameElementCollision.LEFT_RIGHT_COLLISION) != 0) || 
                 (collisionSide & GameElementCollision.RIGHT_LEFT_COLLISION) != 0) {
@@ -50,13 +53,13 @@ public class RestitutionAndFrictionPlugin extends PhysicsPlugin{
         }
         double uy1 = vy1;
         if (vy1 != vy2) {
-            double fNormal = (ux1 - vx1)*m1 / collisionTime;
+            double fNormal = (ux1 - vx1)*m1 / defaultCollisionTime;
             double fFraction = Math.abs(fNormal) * cf;
             double a = fFraction / m1;
             if (vy1 > 0) {
                 a = -a;
             }
-            uy1 += a * collisionTime;
+            uy1 += a * defaultCollisionTime;
             if ((vy1>0 && uy1<0) || (vy1<0) && (uy1>0)) {
                 uy1 = 0;
             }
@@ -81,13 +84,13 @@ public class RestitutionAndFrictionPlugin extends PhysicsPlugin{
         }
         double ux1 = vx1;
         if (vx1 != vx2) {
-            double fNormal = (uy1 - vy1)*m1 / collisionTime;
+            double fNormal = (uy1 - vy1)*m1 / defaultCollisionTime;
             double fFraction = Math.abs(fNormal) * cf;
             double a = fFraction / m1;
             if (vx1 > 0) {
                 a = -a;
             }
-            ux1 += a * collisionTime;
+            ux1 += a * defaultCollisionTime;
             if ((vx1>0 && ux1<0) || (vx1<0) && (ux1>0)) {
                 ux1 = 0;
             }

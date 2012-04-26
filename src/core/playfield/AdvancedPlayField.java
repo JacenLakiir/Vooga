@@ -49,10 +49,10 @@ public class AdvancedPlayField extends PlayField
         super(new ParallaxBackground(new Background[] {
                 new Background(width, height),
                 new Background() }));
-        Players = this.addGroup(new SpriteGroup("Player Group"));
-        Characters = this.addGroup(new SpriteGroup("Character Group"));
         Setting = this.addGroup(new SpriteGroup("Setting Group"));
         Items = this.addGroup(new SpriteGroup("Setting Group"));
+        Characters = this.addGroup(new SpriteGroup("Character Group"));
+        Players = this.addGroup(new SpriteGroup("Player Group"));
         physicsPlugins = new ArrayList<PhysicsPlugin>();
         initializeDefaultPhysicsPlugins();
 
