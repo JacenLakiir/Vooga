@@ -33,10 +33,10 @@ public abstract class GameEngine2D extends GameEngine {
         return idMap;
     }
 
-    private int previousGameID;
+    private int currentGameID;
 
-    protected int getPreviousGameID() {
-        return previousGameID;
+    public int getCurrentGameID() {
+        return currentGameID;
     }
 
     @Override
@@ -76,7 +76,7 @@ public abstract class GameEngine2D extends GameEngine {
     }
 
     public void storeCurrentGameID(Class<? extends GameObject2D> mclass) {
-        previousGameID = idMap.get(mclass.getName());
+        currentGameID = idMap.get(mclass.getName());
     }
 
     public void saveGame() {

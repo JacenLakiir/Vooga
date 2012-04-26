@@ -74,7 +74,7 @@ public abstract class GameObject2D extends GameObject {
     }
 
     public void continueGame() {
-	engine.nextGameID = engine.getPreviousGameID();
+	engine.nextGameID = engine.getCurrentGameID();
     }
 
     public void saveGame() {
@@ -88,10 +88,6 @@ public abstract class GameObject2D extends GameObject {
     }
 
     public void reset() {
-	engine.initResources();
-    }
-
-    public void resetEngine() {
 	engine.initResources();
     }
     
