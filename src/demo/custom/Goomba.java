@@ -16,19 +16,19 @@ public class Goomba extends Character {
 
     public Goomba(GameObject game, PhysicsAttributes physicsAttribute) {
         super(game, physicsAttribute);
-        setImages(game.getImages(IMAGE_FILE, 1, 1));
-        this.getPhysicsAttribute().setMovable(true);
         setTag("Goomba");
+        setImages(game.getImages(IMAGE_FILE, 1, 1));
+        getPhysicsAttribute().setMovable(true);
     }
 
     @Override
     public void afterHitFromRightBy(GameElement e, String tag) {
         setDirection(-1);
         if (tag.equals("Mario")) {
-            ((Mario)e).updateAttributeValue("hitPoints", -1 * ((Mario)e).getMyAttributeValue("hitPoints"));
+            ((Mario)e).updateAttributeValue("hitPoints", -1 * ((Mario)e).getAttributeValue("hitPoints"));
         }
         else if (tag.equals("Koopa")) {
-            handleKoopaSideCollision((Koopa)e, false);
+            Koopa.handleSideCollision(this, (Koopa)e, false);
         }
     }
 
@@ -36,10 +36,10 @@ public class Goomba extends Character {
     public void afterHitFromLeftBy(GameElement e, String tag) {
         setDirection(1);
         if (tag.equals("Mario")) {
-            ((Mario)e).updateAttributeValue("hitPoints", -1 * ((Mario)e).getMyAttributeValue("hitPoints"));
+            ((Mario)e).updateAttributeValue("hitPoints", -1 * ((Mario)e).getAttributeValue("hitPoints"));
         }
         else if (tag.equals("Koopa")) {
-            handleKoopaSideCollision((Koopa)e, true);
+            Koopa.handleSideCollision(this, (Koopa)e, true);
         }
     }
 
@@ -48,13 +48,6 @@ public class Goomba extends Character {
         if (tag.equals("Mario")) {
             addPossibleState("Dead", new DeadState(this));
         }
-    }
-
-    private void handleKoopaSideCollision(Koopa k, boolean isHitOnLeft) {
-        if (k.isInShellState() && k.getShellSpeed() != 0)
-            addPossibleState("Dead", new DeadState(this));
-        else
-            setDirection(isHitOnLeft ? 1 : -1);
     }
 
 }

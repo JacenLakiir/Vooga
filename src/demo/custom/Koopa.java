@@ -19,11 +19,11 @@ public class Koopa extends Character {
 
     public Koopa(GameObject game, PhysicsAttributes physicsAttribute) {
         super(game, physicsAttribute);
+        setTag("Koopa");
         setImages(game.getImages(IMAGE_FILE, 1, 1));
-        this.getPhysicsAttribute().setMovable(true);
+        getPhysicsAttribute().setMovable(true);
         myShellState = new ShellState(this);
         addPossibleState("Shell", myShellState);
-        setTag("Koopa");
     }
 
     @Override
@@ -37,6 +37,9 @@ public class Koopa extends Character {
         }
         else if (tag.equals("Koopa")) {
             handleKoopaCollision((Koopa)e, true);
+        }
+        else {
+            setDirection(1);
         }
     }
 
@@ -52,7 +55,9 @@ public class Koopa extends Character {
         else if (tag.equals("Koopa")) {
             handleKoopaCollision((Koopa)e, false);
         }
-
+        else {
+            setDirection(-1);
+        }
     }
 
     @Override
@@ -74,6 +79,13 @@ public class Koopa extends Character {
     public boolean isInShellState() {
         return myShellState.isActive();
     }
+    
+    public static void handleSideCollision(Character c, Koopa k, boolean isHitOnLeft) {
+        if (k.isInShellState() && k.getShellSpeed() != 0)
+            c.addPossibleState("Dead", new DeadState(c));
+        else
+            c.setDirection(isHitOnLeft ? 1 : -1);
+    }
 
     private void handleMarioCollision(Mario m, boolean isThisHitOnLeft) {
         boolean isInShell = myShellState.isActive();
@@ -81,11 +93,9 @@ public class Koopa extends Character {
             myShellState.setSpeed(50 * Math.abs(m.getVelocity().getX()));
             setDirection(isThisHitOnLeft ? 1 : -1);
         } else if (isInShell && getShellSpeed() != 0) {
-            m.updateAttributeValue("hitPoints",
-                    -1 * m.getMyAttributeValue("hitPoints"));
+            m.updateAttributeValue("hitPoints", -1 * m.getAttributeValue("hitPoints"));
         } else if (!isInShell) {
-            m.updateAttributeValue("hitPoints",
-                    -1 * m.getMyAttributeValue("hitPoints"));
+            m.updateAttributeValue("hitPoints", -1 * m.getAttributeValue("hitPoints"));
         }
     }
 
