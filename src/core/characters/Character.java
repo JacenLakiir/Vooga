@@ -6,6 +6,7 @@
 package core.characters;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,9 +21,9 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
 public class Character extends GameElement {
 	
 	private transient List<CollectibleItem> myInventory, myActiveInventory;
-	private transient List<State> myPossibleStates;
 
 	private transient Map<String, Double> myAttributeValues, myBaseAttributeValues;
+	private transient Map<String, State> myPossibleStates;
 
 	public Character(GameObject game, PhysicsAttributes physicsAttribute) {
 		super(game, physicsAttribute);
@@ -30,7 +31,7 @@ public class Character extends GameElement {
 		myAttributeValues = new HashMap<String, Double>();
 		myInventory = new ArrayList<CollectibleItem>();
 		myActiveInventory = new ArrayList<CollectibleItem>();
-		myPossibleStates = new ArrayList<State>();
+		myPossibleStates = new HashMap<String, State>();
 	}
 
 	public Character() {
@@ -39,7 +40,7 @@ public class Character extends GameElement {
 		myAttributeValues = new HashMap<String, Double>();
 		myInventory = new ArrayList<CollectibleItem>();
 		myActiveInventory = new ArrayList<CollectibleItem>();
-		myPossibleStates = new ArrayList<State>();
+		myPossibleStates = new HashMap<String, State>();
 	}
 	
 	@Override
@@ -71,7 +72,7 @@ public class Character extends GameElement {
     public void updateState (long milliSec)
     {
         List<State> myCurrentStates = new ArrayList<State>();
-        for (State s : myPossibleStates)
+        for (State s : myPossibleStates.values())
             if (s.isActive())
                 myCurrentStates.add(s);
         for (State s : myCurrentStates)
@@ -94,12 +95,24 @@ public class Character extends GameElement {
 		myAttributeValues.put(attribute.toLowerCase(), myBaseAttributeValues.get(attribute.toLowerCase()));
 	}
 	
-    public void addPossibleState(State state) {
-        myPossibleStates.add(state);
+    public void addPossibleState(String label, State state) {
+        myPossibleStates.put(label, state);
+    }
+    
+    public void removePossibleState(String label) {
+        myPossibleStates.remove(label);
+    }
+    
+    public void activatePossibleState(String label) {
+        myPossibleStates.get(label).setActive(true);
+    }
+    
+    public void deactivatePossibleState(String label) {
+        myPossibleStates.get(label).setActive(false);
     }
 
     public void deactivateAllOtherStates(State toRemainActive) {
-        for (State s : myPossibleStates)
+        for (State s : myPossibleStates.values())
             if (!s.equals(toRemainActive))
                 s.setActive(false);
     }
@@ -150,9 +163,13 @@ public class Character extends GameElement {
     public List<CollectibleItem> getMyActiveInventory() {
         return myActiveInventory;
     }
+    
+    public State getPossibleState(String label) {
+        return myPossibleStates.get(label);
+    }
 
-	public List<State> getPossibleStates() {
-		return myPossibleStates;
+	public Collection<State> getPossibleStates() {
+		return myPossibleStates.values();
 	}
 
 }

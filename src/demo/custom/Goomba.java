@@ -46,13 +46,13 @@ public class Goomba extends Character {
     @Override
     public void afterHitFromTopBy(GameElement e, String tag) {
         if (tag.equals("Mario")) {
-            addPossibleState(new DeadState(this));
+            addPossibleState("Dead", new DeadState(this));
         }
     }
 
     private void handleKoopaSideCollision(Koopa k, boolean isHitOnLeft) {
         if (k.isInShellState() && k.getShellSpeed() != 0)
-            addPossibleState(new DeadState(this));
+            addPossibleState("Dead", new DeadState(this));
         else
             setDirection(isHitOnLeft ? 1 : -1);
     }

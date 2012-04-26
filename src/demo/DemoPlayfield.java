@@ -78,27 +78,27 @@ public class DemoPlayfield extends Game2D {
         myPlayfield.addPlayer(mario);
         
         Character koopa1 = new Koopa(this, new PhysicsAttributes());
-        koopa1.addPossibleState(new MoveState(koopa1, 1, true));
+        koopa1.addPossibleState("Move", new MoveState(koopa1, 1, true));
         koopa1.setLocation(500, 400);
         myPlayfield.addCharacter(koopa1);
         
         Character goomba1 = new Goomba(this, new PhysicsAttributes());
-        goomba1.addPossibleState(new MoveState(goomba1, 1, true));
+        goomba1.addPossibleState("Move", new MoveState(goomba1, 1, true));
         goomba1.setLocation(800, 400);
         myPlayfield.addCharacter(goomba1);
         
         Character goomba2 = new Goomba(this, new PhysicsAttributes());
-        goomba2.addPossibleState(new MoveState(goomba2, 1, true));
+        goomba2.addPossibleState("Move", new MoveState(goomba2, 1, true));
         goomba2.setLocation(900, 400);
         myPlayfield.addCharacter(goomba2);
         
         Character goomba3 = new Goomba(this, new PhysicsAttributes());
-        goomba3.addPossibleState(new MoveState(goomba3, 1, true));
+        goomba3.addPossibleState("Move", new MoveState(goomba3, 1, true));
         goomba3.setLocation(1000, 400);
         myPlayfield.addCharacter(goomba3);
         
         Character goomba4 = new Goomba(this, new PhysicsAttributes());
-        goomba4.addPossibleState(new PatrolState(goomba4, 1, 325));
+        goomba4.addPossibleState("Patrol", new PatrolState(goomba4, 1, 325));
         goomba4.setLocation(575, 200);
         myPlayfield.addCharacter(goomba4);
 
