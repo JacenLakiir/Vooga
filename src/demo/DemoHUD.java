@@ -22,6 +22,7 @@ import core.items.SetInUseSetNotInUseItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import core.playfield.AdvancedPlayField;
 import core.playfield.hud.BarWidget;
+import core.playfield.hud.HUD;
 import core.playfield.hud.IconWidget;
 import core.playfield.hud.StringProxy;
 import core.playfield.hud.IntProxy;
@@ -98,7 +99,7 @@ public class DemoHUD extends Game2D {
 				return myPlayfield.getPlayer().getAttributeValue("points")
 				        .toString();
 			}
-		}));
+		}), HUD.TOP_LEFT);
 
 		myPlayfield.addHUDWidget(new IconWidget("Lives", this
 		        .getImage("resources/life.png"), new IntProxy() {
@@ -106,7 +107,7 @@ public class DemoHUD extends Game2D {
 				return myPlayfield.getPlayer().getAttributeValue("lives")
 				        .intValue();
 			}
-		}));
+		}), HUD.TOP_LEFT);
 
 		myPlayfield.addHUDWidget(new BarWidget("HP", new BarProxy() {
 			public double get() {
@@ -120,7 +121,7 @@ public class DemoHUD extends Game2D {
 			public double getInit() {
 				return myPlayfield.getPlayer().getBaseValue("hitPoints");
 			}
-		}));
+		}), HUD.TOP_LEFT);
 
 		Character koopa1 = new Koopa(this, new PhysicsAttributes());
 		koopa1.addPossibleState("Move", new MoveState(koopa1, 1, true));

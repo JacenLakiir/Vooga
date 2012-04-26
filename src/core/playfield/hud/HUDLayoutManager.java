@@ -7,14 +7,14 @@ import java.io.Serializable;
 public abstract class HUDLayoutManager implements Serializable
 {
     private final static long serialVersionUID = 1235573338455171053L;
-    protected int width, height;
+    protected int startX, startY;
     protected Point nextPosition;
 
 
-    public HUDLayoutManager (int width, int height)
+    public HUDLayoutManager (int startX, int startY)
     {
-        this.width = width;
-        this.height = height;
+        this.startX = startX;
+        this.startY = startY;
     }
 
 

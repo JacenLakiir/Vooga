@@ -27,7 +27,7 @@ public class IconWidget extends HUDWidget {
 	}
 
 	@Override
-	public void render(Graphics2D g, HUD h) {
+	public void render(Graphics2D g, HUDGroup h) {
 		h.getFont().drawString(g, title + ":", GameFont.LEFT, xPos,
 				yPos, 100);
 		for (int i = 0; i < myValue; i++ )

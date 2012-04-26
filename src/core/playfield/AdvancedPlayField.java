@@ -62,7 +62,7 @@ public class AdvancedPlayField extends PlayField implements Serializable
                                null,
                                new SideScrollerBoundsCollision(this.getBackground()));
 
-        hud = new HUD(new VerticalFlowLayout(100, 100));
+        hud = new HUD();
     }
 
 
@@ -132,9 +132,9 @@ public class AdvancedPlayField extends PlayField implements Serializable
     /*
      * Heads Up Display
      */
-    public void addHUDWidget (HUDWidget w)
+    public void addHUDWidget (HUDWidget w, int Position)
     {
-        hud.addWidget(w);
+        hud.addWidget(w, Position);
     }
 
 

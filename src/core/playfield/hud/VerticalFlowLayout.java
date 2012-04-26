@@ -6,10 +6,10 @@ import java.awt.Point;
 public class VerticalFlowLayout extends HUDLayoutManager
 {
 
-    public VerticalFlowLayout (int width, int height)
+    public VerticalFlowLayout (int startX, int startY)
     {
-        super(width, height);
-        this.nextPosition = new Point(0, 0);
+        super(startX, startY);
+        this.nextPosition = new Point(startY, startY);
     }
 
 
