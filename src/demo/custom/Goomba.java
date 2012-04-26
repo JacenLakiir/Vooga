@@ -1,5 +1,7 @@
 package demo.custom;
 
+import leveleditor.VoogaUtilities;
+
 import com.golden.gamedev.GameObject;
 import core.characters.GameElement;
 import core.characters.Character;
@@ -15,9 +17,15 @@ public class Goomba extends Character {
     private static final String IMAGE_FILE = "resources/Goomba.png";
 
     public Goomba(GameObject game, PhysicsAttributes physicsAttribute) {
-        super(game, physicsAttribute);
+        this(physicsAttribute);
+        setGame(game);
+    }
+    
+    public Goomba(PhysicsAttributes physicsAttribute) {
+        super(physicsAttribute);
+        addDefaultBaseAttributeEntry("hitPoints", 1);
         setTag("Goomba");
-        setImages(game.getImages(IMAGE_FILE, 1, 1));
+        setImages(VoogaUtilities.getImages(IMAGE_FILE, 1, 1));
         getPhysicsAttribute().setMovable(true);
     }
 

@@ -1,14 +1,14 @@
 package demo.custom;
 
+import leveleditor.VoogaUtilities;
+import io.annotations.Modifiable;
+
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Timer;
 
 import core.characters.GameElement;
 import core.characters.Character;
 import core.configuration.key.KeyAnnotation;
-import core.items.CollectibleItem;
-import core.items.FiringWeapon;
-import core.items.SetInUseSetNotInUseItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 /**
@@ -19,15 +19,22 @@ public class Mario extends Character {
 
     private static final String IMAGE_FILE = "resources/Mario1.png";
     private double strengthUp, strengthDown, strengthLeft, strengthRight;
-
+    
+    @Modifiable(classification = "Gameplay")
     private boolean jumpEnable;
     private Timer jumpTimer;
+    @Modifiable(classification = "Gameplay")
     private int jumpTime;
 
     public Mario(GameObject game, PhysicsAttributes physicsAttribute) {
-    	super(game, physicsAttribute);
-    	SetInUseSetNotInUseItem bullets = new FiringWeapon(myGame, physicsAttribute);
-    	setImages(game.getImages(IMAGE_FILE, 1, 1));
+    	this(physicsAttribute);
+    	setGame(game);
+    }
+    
+    public Mario(PhysicsAttributes physicsAttribute) {
+    	super(physicsAttribute);
+        addDefaultBaseAttributeEntry("hitPoints", 1);
+    	setImages(VoogaUtilities.getImages(IMAGE_FILE, 1, 1));
     	resetStrength();
     	setMaximumSpeedInX(0.8);
     	jumpTime = 250;

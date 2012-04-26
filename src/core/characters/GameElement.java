@@ -32,8 +32,9 @@ public class GameElement extends AdvanceSprite {
     
     private String tag = "GameElement";
 
-    public GameElement() {
+    public GameElement(PhysicsAttributes physicsAttribute) {
         super();
+        this.physicsAttribute = physicsAttribute;
         acc = new Acceleration(0, 0);
         vel = new Velocity(0, 0);
         disp = new Displacement(0, 0);
@@ -59,9 +60,8 @@ public class GameElement extends AdvanceSprite {
     }
 
     public GameElement(GameObject game, PhysicsAttributes physicsAttribute) {
-        this();
+        this(physicsAttribute);
         myGame = game;
-        this.physicsAttribute = physicsAttribute;
     }
     
     public void setGame(GameObject game) {

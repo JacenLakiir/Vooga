@@ -1,44 +1,43 @@
-/**
- * @author Kathleen Oshima
- * @author Eric Mercer (JacenLakiir)
- */
-
 package core.characters;
+
+import io.annotations.DefaultValueMap;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.golden.gamedev.GameObject;
-
 import core.characters.ai.State;
 import core.items.CollectibleItem;
 import core.items.ItemInventory;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
-@SuppressWarnings("serial")
+/**
+ * @author Kathleen Oshima
+ * @author Eric Mercer (JacenLakiir)
+ */
 public class Character extends GameElement {
 	
 	private transient ItemInventory inventory;
 	
 	private transient Map<String, Double> myAttributeValues, myBaseAttributeValues;
 	private transient Map<String, State> myPossibleStates;
+	    
+	@DefaultValueMap(classification = "Gameplay")
+	private Map<String, Double> myDefaultBaseAttributeValues;
 
 	public Character(GameObject game, PhysicsAttributes physicsAttribute) {
-		super(game, physicsAttribute);
-		inventory = new ItemInventory();
-		myBaseAttributeValues = new HashMap<String, Double>();
-		myAttributeValues = new HashMap<String, Double>();
-		myPossibleStates = new HashMap<String, State>();
+		this(physicsAttribute);
+		setGame(game);
 	}
 
-	public Character() {
-		super();
+	public Character(PhysicsAttributes physicsAttribute) {
+		super(physicsAttribute);
 		myBaseAttributeValues = new HashMap<String, Double>();
 		myAttributeValues = new HashMap<String, Double>();
 		inventory = new ItemInventory();
+		myDefaultBaseAttributeValues = new HashMap<String, Double>();
 		myPossibleStates = new HashMap<String, State>();
 	}
 	
@@ -150,6 +149,10 @@ public class Character extends GameElement {
 	
     public State getPossibleState(String label) {
         return myPossibleStates.get(label);
+    }
+    
+    protected void addDefaultBaseAttributeEntry(String str, double init) {
+	myDefaultBaseAttributeValues.put(str, init);
     }
 
 	public Collection<State> getPossibleStates() {

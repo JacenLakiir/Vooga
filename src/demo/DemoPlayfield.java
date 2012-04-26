@@ -26,6 +26,7 @@ import demo.custom.*;
  * @author Glenn Rivkees (grivkees)
  * @author Michael Zhou
  */
+@SuppressWarnings("serial")
 public class DemoPlayfield extends Game2D {
     
     private AdvancedPlayField myPlayfield;
