@@ -32,7 +32,7 @@ public class VerticalFlowLayout extends HUDLayoutManager
             new Point(0, (int) temp.getY() + (w.height * direction));
         if (alignment == CENTER) {
         	temp.x = dimmX/2 - w.width/2;
-        } else if (alignment == RIGHT){
+        } else if (alignment == RIGHT) {
         	temp.x = dimmX - w.width;
         }
         return temp;
