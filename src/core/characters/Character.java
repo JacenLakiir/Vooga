@@ -1,7 +1,6 @@
 package core.characters;
 
-import io.annotations.DefaultValueMap;
-import io.annotations.ModifiableMap;
+import io.annotations.Modifiable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -21,10 +20,9 @@ public class Character extends GameElement {
 	
 	private ItemInventory inventory;
 	
-	@ModifiableMap(classification = "Gameplay")
+	@Modifiable(classification = "Gameplay", type = "Map")
 	private Map<String, Double> myAttributeValues;
 	
-	@DefaultValueMap(classification = "Gameplay")
 	private Map<String, Double> myBaseAttributeValues;
 	
 	private Map<String, State> myPossibleStates;
