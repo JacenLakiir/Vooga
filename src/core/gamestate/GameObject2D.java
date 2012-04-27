@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import com.golden.gamedev.GameObject;
+import com.golden.gamedev.engine.timer.SystemTimer;
+
 import core.configuration.key.Key;
 import core.configuration.mouse.Mouse;
 
@@ -18,7 +20,7 @@ public abstract class GameObject2D extends GameObject implements Serializable
     private final static long serialVersionUID = 6172500678229491464L;
     private List<Key> keyList;
     private List<Mouse> mouseList = new ArrayList<Mouse>();
-
+    private SystemTimer timer = new SystemTimer();
 
     public List<Mouse> getMouseList ()
     {
@@ -90,7 +92,7 @@ public abstract class GameObject2D extends GameObject implements Serializable
     private void checkKeyboardInput (long milliSec)
     {
         for (Key key : keyList)
-            if (key.isKeyDown(milliSec)) key.notifyObserver();
+            if (key.isKeyDown(timer.getTime())) key.notifyObserver();
     }
 
 
