@@ -25,7 +25,7 @@ public class Koopa extends Character {
 
     public Koopa(PhysicsAttributes physicsAttribute) {
 	super(physicsAttribute);
-        addDefaultBaseAttributeEntry("hitPoints", 1);
+        addAttribute("hitPoints", 1);
         setTag("Koopa");
         setImages(VoogaUtilities.getImages(IMAGE_FILE, 1, 1));
         getPhysicsAttribute().setMovable(true);
