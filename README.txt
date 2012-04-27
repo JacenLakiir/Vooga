@@ -13,11 +13,11 @@ Names:
 	- Michael Zhou (mz43)
 
 Started:	3/27/12
-Finished:	4/20/12
+Finished:	4/27/12
 
 Project Length:
-	- 550 hours [Actual]
-	- 550 hours [Estimated]
+	- 1000 hours [Actual]
+	- 1000 hours [Estimated]
 	- Good estimate [Estimate evaluation]
 
 Group Meetings:
@@ -26,6 +26,8 @@ Group Meetings:
 	- April 4, 10 PM - 11 PM (assigned UTAs present)
 	- April 11, 10 PM - 12 AM (assigned UTAs present)
 	- April 18, 10 PM - 11:30 PM (assigned UTAs present)
+	- April 24, 10 PM - 11 PM
+	- April 26, 6 PM - April 27, 8 AM
 
 Discussed with:
 	- Jim Posen & Ethan Goh (assigned UTAs)
@@ -42,6 +44,7 @@ Resources:
 
 Files Used to Start and Test:
 	- LoadSaveTest.java (src/test package)
+	- SpecificSpriteGroup.java (src/test package)
 
 Data / Resource Files Required:
 	- 'configurations' folder (JSON files for keyboard input)
@@ -55,14 +58,10 @@ Instructions:
 	- Run 'LevelEditorMain.java' in src/leveleditor package for the level
 	  editor
 	  
-	- Run 'SimpleGameToTestLevelEditor.java' in src/levelio package to see our
-	  framework load a level from a saved level file created in the level editor
-	  
 	- Run 'DemoGameEngine' in src/demo package. On the menu screen, use the
 	  up/down arrows to choose a demo and press 'Enter' to select it. DemoAI
-	  is a simple testing environment for Player-NPC interaction. DemoPlayfield
-	  is a short game coded by hand that showcases many of the advanced features
-	  we've implemented so far or are currently testing. DemoHUD is a testing
-	  environment for the new HUD feature. Press 'ESC' at anytime during one of
-	  these games to pause the action and pull up options for continuing the
-	  game, restarting the game, or returning to the main menu.
+	  is a simple testing environment for Character AI behavior. DemoPlayfield
+	  is a short game coded by hand that showcases a few of our advanced features.
+	  DemoHUD is our final demo. Press 'ESC' at anytime during one of these games
+	  to pause the action and pull up options for continuing the game, restarting
+	  the game, or returning to the main menu.
