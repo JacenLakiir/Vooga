@@ -54,7 +54,7 @@ public class DemoHUD extends Game2D {
 	public void initResources() {
 
 		// Playfield Init
-		myPlayfield = new AdvancedPlayField(2000, 500, this.getWidth(),
+		myPlayfield = new AdvancedPlayField(3000, 500, this.getWidth(),
 		        this.getHeight());
 		myPlayfield.setBackground(new ColorBackground(Color.gray));
 		myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());

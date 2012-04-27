@@ -23,7 +23,7 @@ public class Goomba extends Character {
     
     public Goomba(PhysicsAttributes physicsAttribute) {
         super(physicsAttribute);
-        addDefaultBaseAttributeEntry("hitPoints", 1);
+        addAttribute("hitPoints", 1);
         setTag("Goomba");
         setImages(VoogaUtilities.getImages(IMAGE_FILE, 1, 1));
         getPhysicsAttribute().setMovable(true);
