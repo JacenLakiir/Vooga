@@ -1,6 +1,6 @@
 package core.characters;
 
-import io.annotations.DefaultValueMap;
+import io.annotations.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,13 +25,16 @@ public class Character extends GameElement {
 	
 	private transient ItemInventory inventory;
 	
-	private transient Map<String, Double> myAttributeValues, myBaseAttributeValues;
+	@ModifiableMap(classification = "Gameplay")
+	private Map<String, Double> myAttributeValues;
+	
+	@DefaultValueMap(classification = "Gameplay")
+	private Map<String, Double> myBaseAttributeValues;
+	
 	private transient Map<String, State> myPossibleStates;
 	
 	private Set<Projectile> myProjectiles;
 	    
-	@DefaultValueMap(classification = "Gameplay")
-	private Map<String, Double> myDefaultBaseAttributeValues;
 
 	public Character(GameObject game, PhysicsAttributes physicsAttribute) {
 		this(physicsAttribute);
@@ -44,7 +47,6 @@ public class Character extends GameElement {
 		myBaseAttributeValues = new HashMap<String, Double>();
 		myAttributeValues = new HashMap<String, Double>();
 		inventory = new ItemInventory();
-		myDefaultBaseAttributeValues = new HashMap<String, Double>();
 		myPossibleStates = new HashMap<String, State>();
 		myProjectiles = new HashSet<Projectile>();
 	}
@@ -160,9 +162,5 @@ public class Character extends GameElement {
 	        }    
 	    }
 	}
-	
-    protected void addDefaultBaseAttributeEntry(String str, double init) {
-        myDefaultBaseAttributeValues.put(str, init);
-    }
 
 }

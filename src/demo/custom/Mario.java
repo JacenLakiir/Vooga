@@ -40,12 +40,9 @@ public class Mario extends Character {
         jumpTimer.setActive(false);
         reversed = false;
         addAttribute("hitPoints", 10);
-		addAttribute("points", 0);
-		addAttribute("lives", 3);
-        setTag("Mario");
         addAttribute("points", 0);
-        addAttribute("hitPoints", 10);
         addAttribute("lives", 3);
+        setTag("Mario");
     }
 
     @Override
