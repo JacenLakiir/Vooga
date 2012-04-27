@@ -1,5 +1,7 @@
 package demo;
 
+import io.SimpleGameToTestLevelEditor;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -37,6 +39,7 @@ public class Menu extends MenuGameObject{
         addOptionToMenu("DemoPlayfield", DemoPlayfield.class);
         addOptionToMenu("DemoHUD", DemoHUD.class);
         addOptionToMenu("DemoAntigravity", DemoAntigravity.class);
+        addOptionToMenu("LevelEditorTest", SimpleGameToTestLevelEditor.class);
         addOptionToMenu("Exit");
     }
     

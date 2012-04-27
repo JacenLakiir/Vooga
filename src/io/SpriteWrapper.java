@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Set;
 import leveleditor.VoogaUtilities;
 import core.characters.GameElement;
+import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 public class SpriteWrapper implements Cloneable, Serializable {
 
@@ -31,7 +32,8 @@ public class SpriteWrapper implements Cloneable, Serializable {
     private Map<SpriteAttribute, Serializable> myPhysicsAttributeMap;
     private Map<SpriteAttribute, Serializable> myGamePlayAttributeMapForMap;
     private Map<SpriteAttribute, Serializable> myGamePlayAttributeMapForIndividual;
-    
+    private transient Field myDummyAttributeMapForMap;
+    private transient Set<Field> myDummyIndividualFields;
     private GameElement myGameElement;
 
    /* public SpriteWrapper(String name, SpriteGroupIdentifier group,
@@ -61,6 +63,7 @@ public class SpriteWrapper implements Cloneable, Serializable {
 		physicsattributes);
 	myGamePlayAttributeMapForMap = new HashMap<SpriteAttribute, Serializable>();
 	myGamePlayAttributeMapForIndividual = new HashMap<SpriteAttribute, Serializable>();
+	myDummyIndividualFields = new HashSet<Field>();
 	buildMapAttributeMap();
 	buildIndividualAttributeMap();
 	reconstruct();
@@ -77,10 +80,10 @@ public class SpriteWrapper implements Cloneable, Serializable {
 		    if (!annotation.type().equals("Map"))
 			return;
 		    Map<SpriteAttribute, Serializable> attrmap = null;
+		    myDummyAttributeMapForMap = f;
 		    try {
 			Map<String, Serializable> dummymap = 
 				(Map<String, Serializable>) f.get(myGameElement);
-			//System.out.println(dummymap);
 			attrmap = SpriteAttribute.convertkeyToAttribute(dummymap, 
 				annotation.classification());
 		    } catch (IllegalArgumentException e) {
@@ -111,6 +114,7 @@ public class SpriteWrapper implements Cloneable, Serializable {
 		    Class<?> ftype = f.getType();
 		    String fclassification = ((Modifiable) f
 			    .getAnnotation(Modifiable.class)).classification();
+		    myDummyIndividualFields.add(f);
 		    try {
 			myGamePlayAttributeMapForIndividual.put(new SpriteAttribute(
 				fname, ftype, fclassification),
@@ -197,6 +201,26 @@ public class SpriteWrapper implements Cloneable, Serializable {
 	    throws ClassNotFoundException, IOException {
 	stream.defaultReadObject();
 	reconstruct();
+    }
+
+    public void saveAttributes() {
+	Map<String, Serializable> dummymapphysics = 
+		SpriteAttribute.convertkeyToString(myPhysicsAttributeMap);
+	System.out.println(dummymapphysics);
+	myGameElement.setPhysicsAttribute(new PhysicsAttributes(dummymapphysics));
+	try {
+	    for (SpriteAttribute sa: myGamePlayAttributeMapForIndividual.keySet())
+		for (Field f: myDummyIndividualFields)
+		    f.set(myGameElement, myGamePlayAttributeMapForIndividual.get(sa));
+	    //System.out.println(myGamePlayAttributeMapForMap);
+	    Map<String, Serializable> dummymapgameplay = 
+		    SpriteAttribute.convertkeyToString(myGamePlayAttributeMapForMap);
+	    myDummyAttributeMapForMap.set(myGameElement, dummymapgameplay);
+	} catch (IllegalArgumentException e) {
+	    e.printStackTrace();
+	} catch (IllegalAccessException e) {
+	    e.printStackTrace();
+	}
     }
     
 }

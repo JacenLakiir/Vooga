@@ -23,14 +23,14 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
  */
 public class Character extends GameElement {
 	
-	private transient ItemInventory inventory;
+	private ItemInventory inventory;
 	
 	private Map<String, Double> myAttributeValues;
 	
 	@Modifiable(classification = "Gameplay", type = "Map")
 	private Map<String, Double> myBaseAttributeValues;
 	
-	private transient Map<String, State> myPossibleStates;
+	private Map<String, State> myPossibleStates;
 	
 	private Set<Projectile> myProjectiles;
 	    

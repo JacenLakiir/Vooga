@@ -34,6 +34,7 @@ public class LevelEditorController {
 	    SpriteWrapper tosave = canvas.getLabelWrapperMap().get(l).clone();
 	    tosave.getGameElement().setX(l.getX());
 	    tosave.getGameElement().setY(l.getY());
+	    tosave.saveAttributes();
 	    sprites.add(tosave);
 	}
 	try {

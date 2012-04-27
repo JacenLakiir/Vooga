@@ -17,7 +17,7 @@ public abstract class CollectibleItem extends GameElement {
 
 	protected transient GameObject game;
 	private boolean isInUse;
-	protected transient HashMap<String, Double> myAttributeValues;
+	protected HashMap<String, Double> myAttributeValues;
 
 	// Constructor for a collectible item
 	public CollectibleItem(GameObject game, PhysicsAttributes physicsAttribute) {

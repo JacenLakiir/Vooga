@@ -62,7 +62,7 @@ public class SpriteAttribute implements Comparable<SpriteAttribute>, Serializabl
 	Map<String, Serializable> dummymap = new HashMap<String, Serializable>();
 	for (SpriteAttribute attr: realmap.keySet()) {
 	    String str = attr.getName();
-	    dummymap.put(str, dummymap.get(str));
+	    dummymap.put(str, realmap.get(attr));
 	}
 	return dummymap;
     }

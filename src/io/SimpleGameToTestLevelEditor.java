@@ -12,13 +12,24 @@ import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.*;
 import com.golden.gamedev.object.background.*;
+
+import core.gamestate.Game2D;
+import core.gamestate.GameEngine2D;
+import core.playfield.AdvancedPlayField;
 import core.playfield.scroller.GameScroller;
+import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
+import demo.DemoGameEngine;
 
 
-public class SimpleGameToTestLevelEditor extends Game
+public class SimpleGameToTestLevelEditor extends Game2D
 {
 
-    private PlayField myPlayfield;
+    public SimpleGameToTestLevelEditor(GameEngine2D engine) {
+	super(engine);
+    }
+
+    
+    private AdvancedPlayField myPlayfield;
     private Background myBackground;
     private GameScroller myGameScroller;
     private SpriteGroup myPlayers;
@@ -29,28 +40,19 @@ public class SimpleGameToTestLevelEditor extends Game
     private int LEVEL_HEIGHT = 500;
 
 
-    public static void main (String[] args)
-    {
-        GameLoader game = new GameLoader();
-        game.setup(new SimpleGameToTestLevelEditor(),
-                   new Dimension(800, 600),
-                   false);
-        game.start();
-    }
-
-
     private void hardCodedLoadLevel ()
     {
-        LevelState loadedState = LevelState.load(new File("saves/level2.lvl"));
+        LevelState loadedState = LevelState.load(new File("saves/level1.lvl"));
+        myPlayfield = LevelLoader.loadLevel(loadedState, this);
         /*
          * for (Point p: loadedState.getSpriteMap().keySet()) { Sprite tocreate
          * = loadedState.getSpriteMap().get(p).getSprite();
          * tocreate.setLocation(p.x, p.y); myPlayfield.add(tocreate); }
          */
-        myHero = myPlayfield.getExtraGroup().getActiveSprite(); // RANDOM
-        myBackground =
-            new ImageBackground(getImage(loadedState.getBackgroundImageSrc()));
-        myPlayfield.setBackground(myBackground);
+        myHero = myPlayfield.getPlayers().getActiveSprite(); // RANDOM
+       //myBackground =
+       //     new ImageBackground(getImage(loadedState.getBackgroundImageSrc()));
+        //myPlayfield.setBackground(myBackground);
         //myGameScroller = new GameScroller(myPlayers, myBackground);
     }
 
@@ -58,9 +60,8 @@ public class SimpleGameToTestLevelEditor extends Game
     public void initResources ()
     {
         // TODO LOAD STUFF GOES HERE
-        myPlayfield = new PlayField();
         hardCodedLoadLevel();
-        super.initEngine();
+        myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
         // Sprite Loading
         myPlayers = myPlayfield.addGroup(new SpriteGroup("Player Group"));
         myCharacters = myPlayfield.addGroup(new SpriteGroup("Character Group"));
@@ -95,6 +96,34 @@ public class SimpleGameToTestLevelEditor extends Game
     {
         //myGameScroller.scroll();
         myPlayfield.render(arg0);
+    }
+
+
+    @Override
+    public boolean isWin() {
+	// TODO Auto-generated method stub
+	return false;
+    }
+
+
+    @Override
+    public boolean isFail() {
+	// TODO Auto-generated method stub
+	return false;
+    }
+
+
+    @Override
+    public void registerNextLevel() {
+	// TODO Auto-generated method stub
+	
+    }
+
+
+    @Override
+    public void registerGameOverEvent() {
+	// TODO Auto-generated method stub
+	
     }
 
 }

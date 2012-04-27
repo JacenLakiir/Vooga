@@ -1,6 +1,8 @@
 package demo;
 
 
+import io.SimpleGameToTestLevelEditor;
+
 import java.awt.Dimension;
 import core.gamestate.GameEngine2D;
 import com.golden.gamedev.GameLoader;
@@ -33,6 +35,7 @@ public class DemoGameEngine extends GameEngine2D{
         addGameObject(new DemoAI(this));
         addGameObject(new DemoPlayfield(this));
         addGameObject(new DemoHUD(this));
+        addGameObject(new SimpleGameToTestLevelEditor(this));
         addGameObject(new DemoAntigravity(this));
         addGameObject(new Pause(this));        
     }  

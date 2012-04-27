@@ -3,9 +3,9 @@ package core.items;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemInventory {
+public class ItemInventory implements java.io.Serializable {
 
-	private transient List<CollectibleItem> myInventory;
+	private List<CollectibleItem> myInventory;
 
 	public ItemInventory() {
 		myInventory = new ArrayList<CollectibleItem>();

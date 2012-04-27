@@ -49,13 +49,7 @@ public class SpriteBuilder extends JFrame {
     private JRadioButton myCharacterButton;
     private JRadioButton mySettingButton;
     private JRadioButton myItemButton;
-    private Map<JRadioButton, SpriteGroupIdentifier> myTypeMap = 
-	    new HashMap<JRadioButton, SpriteGroupIdentifier>() {{
-	put(myPlayerButton, SpriteGroupIdentifier.PLAYER);
-	put(myCharacterButton, SpriteGroupIdentifier.CHARACTER);
-	put(mySettingButton, SpriteGroupIdentifier.SETTING);
-	put(myItemButton, SpriteGroupIdentifier.ITEM);
-    }};
+    private Map<JRadioButton, SpriteGroupIdentifier> myTypeMap;
     
     public static SpriteBuilder getInstance(LevelEditor view) {
 	if (myInstance != null)
@@ -108,6 +102,11 @@ public class SpriteBuilder extends JFrame {
    	radiopanel.add(myCharacterButton);
    	radiopanel.add(mySettingButton);
    	radiopanel.add(myItemButton);
+   	myTypeMap = new HashMap<JRadioButton, SpriteGroupIdentifier>();
+   	myTypeMap.put(myPlayerButton, SpriteGroupIdentifier.PLAYER);
+   	myTypeMap.put(myCharacterButton, SpriteGroupIdentifier.CHARACTER);
+   	myTypeMap.put(mySettingButton, SpriteGroupIdentifier.SETTING);
+   	myTypeMap.put(myItemButton, SpriteGroupIdentifier.ITEM);
    	rightpanel.add(radiopanel);
 	JPanel namepanel = new JPanel();
 	//namepanel.setLayout(new GridLayout(1, 2));
@@ -201,9 +200,8 @@ public class SpriteBuilder extends JFrame {
     private SpriteGroupIdentifier checkSelectedButton() {
 	for (Enumeration<AbstractButton> e = myTypeGroup.getElements(); e.hasMoreElements(); ) {
 	    JRadioButton b = (JRadioButton) e.nextElement();
-	    if (b.getModel() == myTypeGroup.getSelection()) {
-	    	return myTypeMap.get(b);
-	    }
+	    if (b.getModel().equals(myTypeGroup.getSelection()))
+		return myTypeMap.get(b);
 	}
 	return null;
     }

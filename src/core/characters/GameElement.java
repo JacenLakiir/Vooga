@@ -206,13 +206,13 @@ public class GameElement extends AdvanceSprite {
     @Override
     public void setX(double xs) {
         super.setX(xs);
-        setDisplacementFromLocation();
+        //setDisplacementFromLocation();
     }
 
     @Override
     public void setY(double ys) {
         super.setY(ys);
-        setDisplacementFromLocation();
+        //setDisplacementFromLocation();
     }
 
     @Override

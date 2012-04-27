@@ -1,14 +1,17 @@
 package core.tiles;
 
 
+import io.annotations.Modifiable;
 import core.characters.GameElement;
 
 
 public class MovingDecorator extends TileDecorator{
+    
 	public MovingDecorator(Tile decoratedPlatform) {
 		super(decoratedPlatform);
 	}
-
+	
+	@Modifiable(classification = "Gameplay", type = "Individual")
 	private double startX, startY, endX, endY, speed;
 	
 	@Override
