@@ -3,8 +3,6 @@
  */
 package leveleditor;
 
-import io.LevelState;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
@@ -35,8 +33,6 @@ public class VoogaUtilities {
 		    Color.MAGENTA);
 	} catch (MalformedURLException e) {
 	    e.printStackTrace();
-	} catch (IOException e) {
-	    e.printStackTrace();
 	}
 	return toreturn;
     }
@@ -47,8 +43,6 @@ public class VoogaUtilities {
 	    toreturn = ImageUtil.getImages(new File(src).toURI().toURL(), row, col, 
 		    Color.MAGENTA);
 	} catch (MalformedURLException e) {
-	    e.printStackTrace();
-	} catch (IOException e) {
 	    e.printStackTrace();
 	}
 	return toreturn;

@@ -25,10 +25,9 @@ public class Character extends GameElement {
 	
 	private transient ItemInventory inventory;
 	
-	@ModifiableMap(classification = "Gameplay")
 	private Map<String, Double> myAttributeValues;
 	
-	@DefaultValueMap(classification = "Gameplay")
+	@Modifiable(classification = "Gameplay", type = "Map")
 	private Map<String, Double> myBaseAttributeValues;
 	
 	private transient Map<String, State> myPossibleStates;

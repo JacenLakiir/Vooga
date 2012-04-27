@@ -7,5 +7,6 @@ import java.lang.annotation.*;
 public @interface Modifiable {
     
     public String classification();
+    public String type();
     
 }

@@ -3,7 +3,8 @@
  */
 package io;
 
-import io.annotations.Modifiable;
+import io.annotations.*;
+import java.lang.annotation.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.lang.reflect.Field;
@@ -25,15 +26,15 @@ public class SpriteWrapper implements Cloneable, Serializable {
 
     private String myName;
     private SpriteGroupIdentifier myGroup;
-    private Class<?> myClass;
+   // private Class<?> myClass;
     private String myImagesrc;
-    private Map<SpriteAttribute, Serializable> myModifiableAttributeMap;
     private Map<SpriteAttribute, Serializable> myPhysicsAttributeMap;
-    private Map<SpriteAttribute, Serializable> myGamePlayAttributeMap;
+    private Map<SpriteAttribute, Serializable> myGamePlayAttributeMapForMap;
+    private Map<SpriteAttribute, Serializable> myGamePlayAttributeMapForIndividual;
     
     private GameElement myGameElement;
 
-    public SpriteWrapper(String name, SpriteGroupIdentifier group,
+   /* public SpriteWrapper(String name, SpriteGroupIdentifier group,
 	    Class<?> clazz, Map<SpriteAttribute, Serializable> attributes,
 	    String imgsrc) {
 	System.out.println(attributes);
@@ -46,48 +47,79 @@ public class SpriteWrapper implements Cloneable, Serializable {
 		attributes);
 	buildAttributeMap(clazz, null);
 	reconstruct();
-    }
+    }*/
 
     public SpriteWrapper(String name, SpriteGroupIdentifier group,
-	    Map<SpriteAttribute, Serializable> attributes, String imgsrc,
+	    Map<SpriteAttribute, Serializable> physicsattributes, String imgsrc,
 	    GameElement sprite) {
 	myName = name;
 	myGroup = group;
-	myClass = sprite.getClass();
+	//myClass = sprite.getClass();
 	myImagesrc = imgsrc;
 	myGameElement = sprite;
 	myPhysicsAttributeMap = new HashMap<SpriteAttribute, Serializable>(
-		attributes);
-	buildAttributeMap(sprite.getClass(), sprite);
+		physicsattributes);
+	myGamePlayAttributeMapForMap = new HashMap<SpriteAttribute, Serializable>();
+	myGamePlayAttributeMapForIndividual = new HashMap<SpriteAttribute, Serializable>();
+	buildMapAttributeMap();
+	buildIndividualAttributeMap();
 	reconstruct();
     }
-
-    private void buildAttributeMap(Class<?> clazz, GameElement sprite) {
-	myModifiableAttributeMap = new HashMap<SpriteAttribute, Serializable>();
-	Set<Field> fieldset = new HashSet<Field>();
-	Class<?> curr = clazz;
-	while (true) {
-	    for (Field f : curr.getDeclaredFields()) {
+    
+    @SuppressWarnings("unchecked")
+    private void buildMapAttributeMap() {
+	Class<?> curr = myGameElement.getClass();
+	while(true) {
+	    for (Field f: curr.getDeclaredFields()) {
 		f.setAccessible(true);
 		if (f.isAnnotationPresent(Modifiable.class)) {
-		    String fname = f.getName();
-		    Class<?> ftype = f.getType();
-		    String fclassification = ((Modifiable) f
-			    .getAnnotation(Modifiable.class)).classification();
+		    Modifiable annotation = f.getAnnotation(Modifiable.class);
+		    if (!annotation.type().equals("Map"))
+			return;
+		    Map<SpriteAttribute, Serializable> attrmap = null;
 		    try {
-			if (sprite != null)
-			    myModifiableAttributeMap.put(new SpriteAttribute(
-				    fname, ftype, fclassification),
-				    (Serializable) f.get(sprite));
-			else
-			    myModifiableAttributeMap.put(new SpriteAttribute(
-				    fname, ftype, fclassification), null);
+			Map<String, Serializable> dummymap = 
+				(Map<String, Serializable>) f.get(myGameElement);
+			//System.out.println(dummymap);
+			attrmap = SpriteAttribute.convertkeyToAttribute(dummymap, 
+				annotation.classification());
 		    } catch (IllegalArgumentException e) {
 			e.printStackTrace();
 		    } catch (IllegalAccessException e) {
 			e.printStackTrace();
 		    }
-		    fieldset.add(f);
+		    myGamePlayAttributeMapForMap = 
+			    new HashMap<SpriteAttribute, Serializable>(attrmap);
+		    return;
+		}
+	    }
+	    if (curr.equals(GameElement.class))
+		return;
+	    curr = curr.getSuperclass();
+	}
+    }
+
+    private void buildIndividualAttributeMap() {
+	Class<?> curr = myGameElement.getClass();
+	while (true) {
+	    for (Field f : curr.getDeclaredFields()) {
+		f.setAccessible(true);
+		if (f.isAnnotationPresent(Modifiable.class)) {
+		    if (!f.getAnnotation(Modifiable.class).type().equals("Individual"))
+			return;
+		    String fname = f.getName();
+		    Class<?> ftype = f.getType();
+		    String fclassification = ((Modifiable) f
+			    .getAnnotation(Modifiable.class)).classification();
+		    try {
+			myGamePlayAttributeMapForIndividual.put(new SpriteAttribute(
+				fname, ftype, fclassification),
+				(Serializable) f.get(myGameElement));
+		    } catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		    } catch (IllegalAccessException e) {
+			e.printStackTrace();
+		    }
 		}
 	    }
 	    if (curr.equals(GameElement.class))
@@ -99,22 +131,25 @@ public class SpriteWrapper implements Cloneable, Serializable {
     public SpriteWrapper clone() {
 	SpriteWrapper cloned = new SpriteWrapper(myName, myGroup,
 		myPhysicsAttributeMap, myImagesrc, myGameElement);
-	cloned.myModifiableAttributeMap = new HashMap<SpriteAttribute, Serializable>(
-		myModifiableAttributeMap);
+	cloned.myGamePlayAttributeMapForMap = new HashMap<SpriteAttribute, Serializable>(
+		myGamePlayAttributeMapForMap);
+	cloned.myGamePlayAttributeMapForIndividual = new HashMap<SpriteAttribute, Serializable>(
+		myGamePlayAttributeMapForIndividual);
 	return cloned;
     }
 
     public void updateAttributeMap(SpriteAttribute sa, Serializable o) {
-	myModifiableAttributeMap.put(sa, o);
+	if (myGamePlayAttributeMapForMap.containsKey(sa))
+	    myGamePlayAttributeMapForMap.put(sa, o);
+	if (myGamePlayAttributeMapForIndividual.containsKey(sa))
+	    myGamePlayAttributeMapForIndividual.put(sa, o);
+	if (myPhysicsAttributeMap.containsKey(sa))
+	    myPhysicsAttributeMap.put(sa, o);
     }
 
-    public void updatePhysicsAttributeMap(SpriteAttribute sa, Serializable o) {
-	myPhysicsAttributeMap.put(sa, o);
-    }
-
-    public Class<?> getSpriteClass() {
+    /*public Class<?> getSpriteClass() {
 	return myClass;
-    }
+    }*/
 
     public String getName() {
 	return myName;
@@ -132,12 +167,24 @@ public class SpriteWrapper implements Cloneable, Serializable {
 	return myGameElement;
     }
 
-    public Map<SpriteAttribute, Serializable> getAttributeMap() {
-	return Collections.unmodifiableMap(myModifiableAttributeMap);
+    public Map<SpriteAttribute, Serializable> getAttributeMapForMap() {
+	return Collections.unmodifiableMap(myGamePlayAttributeMapForMap);
+    }
+    
+    public Map<SpriteAttribute, Serializable> getAttributeMapForIndividual() {
+	return Collections.unmodifiableMap(myGamePlayAttributeMapForIndividual);
     }
 
     public Map<SpriteAttribute, Serializable> getPhysicsAttributeMap() {
 	return Collections.unmodifiableMap(myPhysicsAttributeMap);
+    }
+    
+    public Map<SpriteAttribute, Serializable> getMergedAttributeMap() {
+	Map<SpriteAttribute, Serializable> mergedmap = new HashMap<SpriteAttribute, Serializable>();
+	mergedmap.putAll(myPhysicsAttributeMap);
+	mergedmap.putAll(myGamePlayAttributeMapForMap);
+	mergedmap.putAll(myGamePlayAttributeMapForIndividual);
+	return Collections.unmodifiableMap(mergedmap);
     }
     
     private void reconstruct() {

@@ -67,4 +67,8 @@ public class SpriteAttribute implements Comparable<SpriteAttribute>, Serializabl
 	return dummymap;
     }
     
+    public String toString() {
+	return myName + " " + myType + " " + myClassification;
+    }
+    
 }

@@ -12,7 +12,9 @@ public class LevelLoader {
 
     public static AdvancedPlayField loadLevel(LevelState state) {
 	Background bkg = state.getBackground();
-	AdvancedPlayField playfield = new AdvancedPlayField(bkg.getWidth(), bkg.getHeight());
+	//TODO
+	AdvancedPlayField playfield = new AdvancedPlayField(bkg.getWidth(), bkg.getHeight(), 640
+		, 480);
 	Map<SpriteGroupIdentifier, SpriteGroup> groupmap 
 	= new HashMap<SpriteGroupIdentifier, SpriteGroup>();
 	playfield.addGroup(new SpriteGroup("Player"));

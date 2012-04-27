@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +31,9 @@ import javax.swing.JTree;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
+
+import core.characters.GameElement;
+import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 
 @SuppressWarnings("serial")
@@ -142,6 +146,7 @@ public class SpriteBuilder extends JFrame {
 		myImageSrc = f.getCanonicalPath();
 		imagelabel.setIcon(new ImageIcon(myImageSrc));
 		imagelabel.setLayout(null);
+		myInstance.toFront();
 	    } catch (IOException ex) {
 		ex.printStackTrace();
 	    }
@@ -154,6 +159,7 @@ public class SpriteBuilder extends JFrame {
 	public void actionPerformed(ActionEvent e) {
 	    if (myImageSrc == null) {
 		myView.showError("Please specify an image file!");
+		myInstance.toFront();
 		return;
 	    }
 	    SpriteGroupIdentifier gid = checkSelectedButton();
@@ -165,10 +171,29 @@ public class SpriteBuilder extends JFrame {
 		return;
 	    }
 	    Class<?> clazz = (Class<?>) node.getUserObject();
-	    SpriteWrapper created = new SpriteWrapper(name, gid, clazz, 
-		    myView.getDefaultPhysicsAttributesMap(), myImageSrc);
+	    GameElement kernel = null;
+	    try {
+		kernel = (GameElement) clazz.getConstructor(PhysicsAttributes.class)
+		    .newInstance(myView.getDefaultPhysicsAttributes());
+	    } catch (InstantiationException e1) {
+		e1.printStackTrace();
+	    } catch (IllegalAccessException e1) {
+		e1.printStackTrace();
+	    } catch (IllegalArgumentException e1) {
+		e1.printStackTrace();
+	    } catch (InvocationTargetException e1) {
+		e1.printStackTrace();
+	    } catch (NoSuchMethodException e1) {
+		e1.printStackTrace();
+	    } catch (SecurityException e1) {
+		e1.printStackTrace();
+	    }
+	    kernel.setTag(namefield.getText());
+	    SpriteWrapper created = new SpriteWrapper(name, gid, myView.getDefaultPhysicsAttributesMap(), 
+		    myImageSrc, kernel);
 	    myView.getSpritePanel().importSprite(created);
 	    myInstance.dispose();
+	    SpriteEditor.getInstance(myView, created);
 	}
 	
     }
