@@ -93,6 +93,7 @@ public class DemoHUD extends Game2D {
 
 		myPlayfield.addHUDWidget(new BarWidget("HP", new BarProxy() {
 			public double get() {
+				System.out.println(myPlayfield.getPlayer().getAttributeValue("hitPoints"));
 				return myPlayfield.getPlayer().getAttributeValue("hitPoints");
 			}
 
@@ -214,7 +215,7 @@ public class DemoHUD extends Game2D {
 		spike.getPhysicsAttribute().setMovable(false);
 		spike.setLocation(400, 430);
 		spike.setActive(true);
-		spike.addAttribute("hitPoints", -10);
+		spike.addAttribute("hitPoints", -1);
 		myPlayfield.addItem(spike);
 		
 		Weapon fireball = new Weapon(this, new PhysicsAttributes());
