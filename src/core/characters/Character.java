@@ -16,6 +16,7 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
  * @author Kathleen Oshima
  * @author Eric Mercer (JacenLakiir)
  */
+@SuppressWarnings("serial")
 public class Character extends GameElement {
 	
 	private ItemInventory inventory;

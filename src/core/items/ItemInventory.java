@@ -3,6 +3,7 @@ package core.items;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("serial")
 public class ItemInventory implements java.io.Serializable {
 
 	private List<CollectibleItem> myInventory;

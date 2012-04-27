@@ -1,5 +1,6 @@
 package core.gamestate;
 
+@SuppressWarnings("serial")
 public abstract class Game2D extends GameObject2D{
     private Class<? extends GameObject2D> mclass;
     private Class<? extends GameObject2D> over;

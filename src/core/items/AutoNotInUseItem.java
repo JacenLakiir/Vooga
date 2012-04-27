@@ -10,6 +10,7 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
  *
  *For one-time-use items that automatically disable after they have been used
  */
+@SuppressWarnings("serial")
 public abstract class AutoNotInUseItem extends CollectibleItem {
 
 	Timer timerStart;
