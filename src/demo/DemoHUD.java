@@ -18,8 +18,7 @@ import core.gamestate.GameEngine2D;
 import core.items.AutoInUseAutoNotInUseItem;
 import core.items.AutoNotInUseItem;
 import core.items.CollectibleItem;
-import core.items.FiringWeapon;
-import core.items.SetInUseSetNotInUseItem;
+import core.items.Weapon;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import core.playfield.AdvancedPlayField;
 import core.playfield.hud.BarWidget;
@@ -55,30 +54,9 @@ public class DemoHUD extends Game2D {
 	public void initResources() {
 
 		// Playfield Init
-		myPlayfield = new AdvancedPlayField(2000, 500);
+		myPlayfield = new AdvancedPlayField(2000, 500, this.getWidth(), this.getHeight());
 		myPlayfield.setBackground(new ColorBackground(Color.gray));
 		myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
-
-		// Collisions
-		myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-		        myPlayfield.getSetting(), new GameElementCollision());
-
-		myPlayfield
-		        .addCollisionGroup(myPlayfield.getPlayers(),
-		                myPlayfield.getItems(),
-		                new CharacterCollectibleItemCollision());
-
-		myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-		        myPlayfield.getSetting(), new GameElementCollision());
-
-		myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-		        myPlayfield.getCharacters(), new GameElementCollision());
-
-		myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-		        myPlayfield.getCharacters(), new GameElementCollision());
-
-		myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-		        myPlayfield.getItems(), new GameElementCollision());
 
 		// Sprite Init / Or load funcitonality
 		// SpriteGroups already exist in AdvancedPlayfield
@@ -91,9 +69,6 @@ public class DemoHUD extends Game2D {
 		addKeyListeners(mario);
 		addKeyListeners(this);
 		mario.setLocation(25, 400);
-		mario.addAttribute("hitPoints", 10);
-		mario.addAttribute("points", 0);
-		mario.addAttribute("lives", 3);
 		myPlayfield.addPlayer(mario);
 
 		// HUD must be init after player
@@ -110,7 +85,7 @@ public class DemoHUD extends Game2D {
 				return myPlayfield.getPlayer().getAttributeValue("lives")
 				        .intValue();
 			}
-		}), HUD.TOP_LEFT);
+		}), HUD.TOP_CENTER);
 
 		myPlayfield.addHUDWidget(new BarWidget("HP", new BarProxy() {
 			public double get() {
@@ -120,13 +95,13 @@ public class DemoHUD extends Game2D {
 			public double getInit() {
 				return myPlayfield.getPlayer().getBaseValue("hitPoints");
 			}
-		}), HUD.TOP_LEFT);
+		}), HUD.TOP_CENTER);
 		
-		myPlayfield.addHUDWidget(new InventoryWidget("Inventory:", new InventoryProxy() {
+		myPlayfield.addHUDWidget(new InventoryWidget("Inventory", new InventoryProxy() {
 			public List<CollectibleItem> get() {
 				return myPlayfield.getPlayer().getInventory();
 			}
-		}), HUD.BOTTOM_LEFT);
+		}), HUD.TOP_RIGHT);
 
 		Character koopa1 = new Koopa(this, new PhysicsAttributes());
 		koopa1.addPossibleState("Move", new MoveState(koopa1, 1, true));
@@ -191,7 +166,6 @@ public class DemoHUD extends Game2D {
 			CollectibleItem coin = new AutoInUseAutoNotInUseItem(this,
 			        new PhysicsAttributes());
 			coin.setImages(this.getImages("resources/Coin.png", 1, 1));
-			coin.setActive(false);
 			coin.addAttribute("points", 3);
 			block1.addItem(coin);
 			myPlayfield.addItem(coin);
@@ -200,43 +174,28 @@ public class DemoHUD extends Game2D {
 		CollectibleItem coin2 = new AutoInUseAutoNotInUseItem(this,
 		        new PhysicsAttributes());
 		coin2.setImages(this.getImages("resources/Coin.png", 1, 1));
-		coin2.setActive(true);
 		coin2.getPhysicsAttribute().setMovable(false);
 		coin2.setLocation(300, 300);
 		coin2.addAttribute("points", 3);
 		myPlayfield.addItem(coin2);
 
-		SetInUseSetNotInUseItem fireball = new FiringWeapon(this,
-		        new PhysicsAttributes());
+		Weapon fireball = new Weapon(this, new PhysicsAttributes());
 		fireball.setImages(this.getImages("resources/Fireball.png", 4, 1));
 		fireball.setLoopAnim(true);
 		fireball.setAnimate(true);
-		fireball.setActive(true);
 		fireball.getPhysicsAttribute().setMovable(false);
 		fireball.setLocation(350, 400);
-		fireball.addAttribute("hitPoints", -2);
 		myPlayfield.addItem(fireball);
 
 		AutoNotInUseItem poison = new AutoInUseAutoNotInUseItem(this,
 		        new PhysicsAttributes());
 		poison.setImages(this.getImages("resources/Poison.png", 1, 1));
-		poison.setActive(true);
 		poison.getPhysicsAttribute().setMovable(false);
 		poison.setLocation(300, 400);
 		poison.setTimerStart(1000);
 		poison.setTimerEnd(4000);
 		poison.addAttribute("hitPoints", -1);
 		myPlayfield.addItem(poison);
-
-		FiringWeapon bullets = new FiringWeapon(this, new PhysicsAttributes());
-		bullets.setImages(this.getImages("resources/Bullet.png", 1, 1));
-		bullets.setActive(false);
-		bullets.setLocation(myPlayfield.getPlayer().getX(), myPlayfield
-		        .getPlayer().getY());
-		bullets.getPhysicsAttribute().setMovable(false);
-		bullets.setSpeed(.2, 0);
-		bullets.addAttribute("hitPoints", -1);
-		myPlayfield.addItem(bullets);
 
 		MovingDecorator middleBar = new MovingDecorator(new Tile(this,
 		        new PhysicsAttributes()));

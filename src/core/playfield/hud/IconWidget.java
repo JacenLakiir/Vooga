@@ -15,7 +15,7 @@ public class IconWidget extends HUDWidget {
 	IntProxy dp;
 
 	public IconWidget(String title, BufferedImage img, IntProxy dp) {
-		super(50, 15);
+		super(150, 15);
 		this.title = title;
 		this.img = img;
 		this.dp = dp;

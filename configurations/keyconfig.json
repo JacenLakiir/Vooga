@@ -6,5 +6,6 @@
  {"key_value":"27","action":"ESC","key_type":"keypress"},
  {"key_value":"38","action":"up","key_type":"keypress"},
  {"key_value":"40","action":"down","key_type":"keypress"},
- {"key_value":"10","action":"enter","key_type":"keypress"} 
+ {"key_value":"10","action":"enter","key_type":"keypress"},
+ {"key_value":"32","action":"space","key_type":"keypress"}
  ]

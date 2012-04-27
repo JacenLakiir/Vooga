@@ -1,16 +1,20 @@
 package core.characters;
 
-import io.annotations.DefaultValueMap;
+import io.annotations.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import com.golden.gamedev.GameObject;
 import core.characters.ai.State;
 import core.items.CollectibleItem;
 import core.items.ItemInventory;
+import core.items.Projectile;
+import core.items.Weapon;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 /**
@@ -21,11 +25,16 @@ public class Character extends GameElement {
 	
 	private transient ItemInventory inventory;
 	
-	private transient Map<String, Double> myAttributeValues, myBaseAttributeValues;
-	private transient Map<String, State> myPossibleStates;
-	    
+	@ModifiableMap(classification = "Gameplay")
+	private Map<String, Double> myAttributeValues;
+	
 	@DefaultValueMap(classification = "Gameplay")
-	private Map<String, Double> myDefaultBaseAttributeValues;
+	private Map<String, Double> myBaseAttributeValues;
+	
+	private transient Map<String, State> myPossibleStates;
+	
+	private Set<Projectile> myProjectiles;
+	    
 
 	public Character(GameObject game, PhysicsAttributes physicsAttribute) {
 		this(physicsAttribute);
@@ -34,36 +43,32 @@ public class Character extends GameElement {
 
 	public Character(PhysicsAttributes physicsAttribute) {
 		super(physicsAttribute);
+		setTag("Character");
 		myBaseAttributeValues = new HashMap<String, Double>();
 		myAttributeValues = new HashMap<String, Double>();
 		inventory = new ItemInventory();
-		myDefaultBaseAttributeValues = new HashMap<String, Double>();
 		myPossibleStates = new HashMap<String, State>();
+		myProjectiles = new HashSet<Projectile>();
 	}
 	
 	@Override
     public void update(long milliSec) {
         updateAbilities();
-        updateState(milliSec);              
+        updateState(milliSec);  
+        for (Projectile p : myProjectiles)
+            p.update(milliSec);
         super.update(milliSec);
         checkIfDead();
-    }
-    
+	}
+
     public void updateAbilities() {
-        for (CollectibleItem item : inventory.getMyInventory()) {
-            if (item.isInUse()) {
-                inventory.getMyActiveInventory().add(item);
-            } else {
-                inventory.getMyActiveInventory().remove(item);
-            }
+        List<CollectibleItem> activeInventory = new ArrayList<CollectibleItem>();
+        for (CollectibleItem item : inventory.getInventory()) {
+            if (item.isInUse())
+                activeInventory.add(item);
         }
-        for (CollectibleItem item : inventory.getMyActiveInventory()) {
+        for (CollectibleItem item : activeInventory)
             item.updatePlayerAttributes(this);
-//            for (String state : myAttributeValues.keySet()) {
-//                System.out.print(state + myAttributeValues.get(state));
-//                System.out.println();
-//            }
-        }
     }
 
     public void updateState (long milliSec)
@@ -82,8 +87,7 @@ public class Character extends GameElement {
         if (currHP != null && currHP <= 0) {
             updateBaseValue("lives", -1);
             addAttribute("hitPoints", 10);
-            this.setLocation(0, 0);
-            System.out.println("dead");
+            setLocation(0, 0);
         }
     }
 	
@@ -140,23 +144,26 @@ public class Character extends GameElement {
     }
 	
 	public List<CollectibleItem> getInventory() {
-		return inventory.getMyInventory();
-	}
-	
-	public List<CollectibleItem> getActiveInventory() {
-		return inventory.getMyActiveInventory();
+		return inventory.getInventory();
 	}
 	
     public State getPossibleState(String label) {
         return myPossibleStates.get(label);
     }
-    
-    protected void addDefaultBaseAttributeEntry(String str, double init) {
-	myDefaultBaseAttributeValues.put(str, init);
-    }
 
 	public Collection<State> getPossibleStates() {
 		return myPossibleStates.values();
+	}
+	
+	public void useWeapon() {
+	    for (CollectibleItem item : inventory.getInventory()) {
+	        if (item instanceof Weapon && item.isInUse()) {
+	            Projectile p = ((Weapon) item).useWeapon();
+	            p.setLocation(getX(), getY());
+	            p.setSpeed(getDirection() * 0.2, 0);
+	            myProjectiles.add(p);
+	        }    
+	    }
 	}
 
 }

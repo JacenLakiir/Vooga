@@ -13,7 +13,7 @@ public class BarWidget extends HUDWidget {
 	BarProxy dp;
 
 	public BarWidget(String title, BarProxy dp) {
-		super(50, 15);
+		super(150, 15);
 		this.title = title;
 		this.dp = dp;
 	}

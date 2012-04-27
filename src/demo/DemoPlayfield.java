@@ -39,29 +39,9 @@ public class DemoPlayfield extends Game2D {
 
     public void initResources() {
         // Playfield Init
-        myPlayfield = new AdvancedPlayField(10000, 500);
+        myPlayfield = new AdvancedPlayField(10000, 500, this.getWidth(), this.getHeight());
         myPlayfield.setBackground(new ColorBackground(Color.gray));
         myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
-
-        // Collisions
-        myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-                myPlayfield.getSetting(), new GameElementCollision());
-
-        myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-                myPlayfield.getItems(), new CharacterCollectibleItemCollision());
-        
-        myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-                myPlayfield.getSetting(), new GameElementCollision());
-        
-        myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-                myPlayfield.getCharacters(), new GameElementCollision());
-        
-        myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-                myPlayfield.getCharacters(), new GameElementCollision());
-
-		// Sprite Init / Or load funcitonality
-		// SpriteGroups already exist in AdvancedPlayfield
-		// use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
 
         // Sprite Init / Or load funcitonality
         // SpriteGroups already exist in AdvancedPlayfield

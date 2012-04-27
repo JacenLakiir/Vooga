@@ -11,17 +11,19 @@ public class HUD implements Serializable
     
 	private static final long serialVersionUID = 2509857881191452463L;
 
-	public final static int TOP_LEFT = 0, TOP_RIGHT = 1, BOTTOM_LEFT = 2, BOTTOM_RIGHT = 3;
+	public final static int TOP_LEFT = 0, TOP_RIGHT = 1, BOTTOM_LEFT = 2, BOTTOM_RIGHT = 3, TOP_CENTER = 4, BOTTOM_CENTER = 5;
     
-    HUDGroup[] myHUDGroups = new HUDGroup[4];
+    HUDGroup[] myHUDGroups = new HUDGroup[6];
 
 
-    public HUD ()
+    public HUD (int w, int h)
     {
-    	myHUDGroups[TOP_LEFT] = new HUDGroup(new VerticalFlowLayout(0, 0));
-    	myHUDGroups[TOP_RIGHT] = new HUDGroup(new VerticalFlowLayout(300, 0));
-    	myHUDGroups[BOTTOM_LEFT] = new HUDGroup(new VerticalFlowLayout(0, 300));
-    	myHUDGroups[BOTTOM_RIGHT] = new HUDGroup(new VerticalFlowLayout(300, 300));
+    	myHUDGroups[TOP_LEFT] = new HUDGroup(new VerticalFlowLayout(w, h, VerticalFlowLayout.DOWNWARD, VerticalFlowLayout.LEFT));
+    	myHUDGroups[TOP_CENTER] = new HUDGroup(new VerticalFlowLayout(w, h, VerticalFlowLayout.DOWNWARD, VerticalFlowLayout.CENTER));
+    	myHUDGroups[TOP_RIGHT] = new HUDGroup(new VerticalFlowLayout(w, h, VerticalFlowLayout.DOWNWARD, VerticalFlowLayout.RIGHT));
+    	myHUDGroups[BOTTOM_LEFT] = new HUDGroup(new VerticalFlowLayout(w, h, VerticalFlowLayout.UPWARD, VerticalFlowLayout.LEFT));
+    	myHUDGroups[BOTTOM_CENTER] = new HUDGroup(new VerticalFlowLayout(w, h, VerticalFlowLayout.UPWARD, VerticalFlowLayout.CENTER));
+    	myHUDGroups[BOTTOM_RIGHT] = new HUDGroup(new VerticalFlowLayout(w, h, VerticalFlowLayout.UPWARD, VerticalFlowLayout.RIGHT));
     }
 
 
@@ -33,19 +35,15 @@ public class HUD implements Serializable
 
     public void update (long t)
     {
-    	myHUDGroups[TOP_LEFT].update(t);
-    	myHUDGroups[TOP_RIGHT].update(t);
-    	myHUDGroups[BOTTOM_LEFT].update(t);
-    	myHUDGroups[BOTTOM_RIGHT].update(t);
+    	for (HUDGroup hg: myHUDGroups)
+    		hg.update(t);
     }
 
 
     public void render (Graphics2D g)
     {
-    	myHUDGroups[TOP_LEFT].render(g);
-    	myHUDGroups[TOP_RIGHT].render(g);
-    	myHUDGroups[BOTTOM_LEFT].render(g);
-    	myHUDGroups[BOTTOM_RIGHT].render(g);
+    	for (HUDGroup hg: myHUDGroups)
+    		hg.render(g);
     }
 
 

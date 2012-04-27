@@ -48,7 +48,7 @@ public class DemoAI extends Game2D
     public void initResources ()
     { 
         
-        myPlayfield = new AdvancedPlayField(10000, 500);
+        myPlayfield = new AdvancedPlayField(10000, 500, this.getWidth(), this.getHeight());
         myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
         myPlayfield.setBackground(new ColorBackground(Color.gray, 640, 480));
         
@@ -60,9 +60,9 @@ public class DemoAI extends Game2D
         addKeyListeners(this);
         addMouseListeners(mario);
         mario.setLocation(25, 400);
-        mario.addAttribute("points", 0);
-        mario.addAttribute("hitPoints", 10);
-        mario.addAttribute("lives", 3);
+//        mario.addAttribute("points", 0);
+//        mario.addAttribute("hitPoints", 10);
+//        mario.addAttribute("lives", 3);
         myPlayfield.addPlayer(mario);
         
 //        Character goomba1 = new Goomba(this, new PhysicsAttributes());
@@ -90,7 +90,7 @@ public class DemoAI extends Game2D
 //        myPlayfield.addCharacter(koopa2);
         
 //        Character goomba4 = new Goomba(this, new PhysicsAttributes());
-//        goomba4.addPossibleState("Evade", new FollowState(goomba4, mario, 1, 200));
+//        goomba4.addPossibleState("Follow", new FollowState(goomba4, mario, 1, 200));
 //        goomba4.setLocation(300, 400);
 //        myPlayfield.addCharacter(goomba4);
 //        
@@ -147,30 +147,6 @@ public class DemoAI extends Game2D
         wall2.setImages(this.getImages("resources/Wall.png", 1, 1));
         wall2.setLocation(620, 0);
         myPlayfield.addSetting(wall2);
-        
-        myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-                                      myPlayfield.getItems(),
-                                      new CharacterCollectibleItemCollision());
-        
-        // currently no way to check all characters against setting in one collision
-        
-        // tried adding 'mario' to player and character spritegroups and then
-        // checking characters against setting, but physics didn't work
-        myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-                                      myPlayfield.getSetting(),
-                                      new GameElementCollision());
-        myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-                                      myPlayfield.getSetting(),
-                                      new GameElementCollision());
-        
-        // same flaws as the two collisions above and uses GameElementCollision
-        // since no PlayerCharacterCollision or CharacterCharacterCollision exists
-        myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-                                      myPlayfield.getCharacters(),
-                                      new GameElementCollision());
-        myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-                                      myPlayfield.getCharacters(),
-                                      new GameElementCollision());
     }
     
     @Override

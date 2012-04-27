@@ -15,6 +15,7 @@ import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ParallaxBackground;
 import core.characters.Character;
+import core.collision.CharacterCollectibleItemCollision;
 import core.collision.GameElementCollision;
 import core.collision.SideScrollerBoundsCollision;
 import core.items.CollectibleItem;
@@ -24,179 +25,199 @@ import core.physicsengine.physicsplugin.RestitutionAndFrictionPlugin;
 import core.physicsengine.physicsplugin.ViscosityPlugin;
 import core.playfield.hud.HUD;
 import core.playfield.hud.HUDWidget;
-import core.playfield.hud.VerticalFlowLayout;
 import core.playfield.scroller.GameScroller;
 import core.tiles.Tile;
 
 public class AdvancedPlayField extends PlayField implements Serializable {
-    private final static long serialVersionUID = 7728006129947893063L;
-    private GameScroller gamescroller;
-    private HUD hud;
+	private final static long serialVersionUID = 7728006129947893063L;
+	private GameScroller gamescroller;
+	private HUD hud;
 
-    private SpriteGroup Players;
-    private SpriteGroup Characters;
-    private SpriteGroup Setting;
-    private SpriteGroup Items;
-    private List<PhysicsPlugin> physicsPlugins;
+	private SpriteGroup Players;
+	private SpriteGroup Characters;
+	private SpriteGroup Setting;
+	private SpriteGroup Items;
+	private List<PhysicsPlugin> physicsPlugins;
 
-    /*
-     * Initialize PlayField, Background, and common SpriteGroups
-     */
-    public AdvancedPlayField (int width, int height)
-    {
-        super(new ParallaxBackground(new Background[] {
-                new Background(width, height),
-                new Background() }));
-        Setting = this.addGroup(new SpriteGroup("Setting Group"));
-        Items = this.addGroup(new SpriteGroup("Setting Group"));
-        Characters = this.addGroup(new SpriteGroup("Character Group"));
-        Players = this.addGroup(new SpriteGroup("Player Group"));
-        physicsPlugins = new ArrayList<PhysicsPlugin>();
-        initializeDefaultPhysicsPlugins();
+	/*
+	 * Initialize PlayField, Background, and common SpriteGroups
+	 */
+	public AdvancedPlayField(int PlayFieldWidth, int PlayFieldHeight,
+			int ScreenWidth, int ScreenHeight) {
+		super(new ParallaxBackground(new Background[] {
+				new Background(PlayFieldWidth, PlayFieldHeight),
+				new Background() }));
+		Setting = this.addGroup(new SpriteGroup("Setting Group"));
+		Items = this.addGroup(new SpriteGroup("Setting Group"));
+		Characters = this.addGroup(new SpriteGroup("Character Group"));
+		Players = this.addGroup(new SpriteGroup("Player Group"));
+		physicsPlugins = new ArrayList<PhysicsPlugin>();
+		initializeDefaultPhysicsPlugins();
 
-	// Add Bounds Collsion
-	this.addCollisionGroup(this.getPlayers(), null,
-		new SideScrollerBoundsCollision(this.getBackground()));
+		// Add Collision Managers
+		initCollisions();
 
-	//hud = new HUD(new VerticalFlowLayout(100, 100));
-        hud = new HUD();
-    }
-
-    public SpriteGroup addGroup(SpriteGroup group) {
-	super.addGroup(group);
-	return group;
-    }
-
-    /*
-     * Initialize Default PhysicsPlugins
-     */
-    private void initializeDefaultPhysicsPlugins() {
-	physicsPlugins.add(new BuoyancyPlugin());
-	physicsPlugins.add(new ViscosityPlugin());
-	physicsPlugins.add(new RestitutionAndFrictionPlugin());
-    }
-
-    /*
-     * Add Customized PhysicsPlugins
-     */
-    public void addPhysicsPlugin(PhysicsPlugin p) {
-	physicsPlugins.add(p);
-    }
-
-    /*
-     * Remove PhysicsPlugins
-     */
-    public void removePhysicsPlugin(PhysicsPlugin p) {
-	physicsPlugins.remove(p);
-    }
-
-    /*
-     * Override default method to add physics plug-ins.
-     */
-    public void addCollisionGroup(SpriteGroup group1, SpriteGroup group2,
-	    CollisionManager collisionGroup) {
-	if (collisionGroup instanceof GameElementCollision) {
-	    ((GameElementCollision) collisionGroup)
-		    .setPhysicsPlugIns(physicsPlugins);
+		// Init HUD
+		hud = new HUD(ScreenWidth, ScreenHeight);
 	}
-	super.addCollisionGroup(group1, group2, collisionGroup);
-    }
 
-    /*
-     * GameScroller Methods
-     */
+	public void initCollisions() {
+		this.addCollisionGroup(this.getPlayers(), null,
+				new SideScrollerBoundsCollision(this.getBackground()));
 
-    public void setGameScroller(GameScroller gs) {
-	gamescroller = gs;
-	gs.setBackground(this.getBackground());
-	gs.setPlayers(Players);
-    }
+		this.addCollisionGroup(this.getPlayers(), this.getSetting(),
+				new GameElementCollision());
 
-    /*
-     * Heads Up Display
-     */
-    public void addHUDWidget(HUDWidget w) {
-	hud.addWidget(w, 0);
-    }
-    
-    public void addHUDWidget (HUDWidget w, int Position)
-    {
-        hud.addWidget(w, Position);
-    }
+		this.addCollisionGroup(this.getPlayers(), this.getItems(),
+				new CharacterCollectibleItemCollision());
 
-    /*
-     * Additional Render Stuff
-     */
-    public void render(Graphics2D g) {
-	gamescroller.scroll();
-	super.render(g);
-	hud.render(g);
-    }
+		this.addCollisionGroup(this.getCharacters(), this.getSetting(),
+				new GameElementCollision());
 
-    public void update(long t) {
-	super.update(t);
-	hud.update(t);
-    }
+		this.addCollisionGroup(this.getPlayers(), this.getCharacters(),
+				new GameElementCollision());
 
-    /*
-     * Set Background
-     */
+		this.addCollisionGroup(this.getCharacters(), this.getCharacters(),
+				new GameElementCollision());
 
-    public void setBackground(Background backgr) {
-	Background[] bkg = ((ParallaxBackground) this.getBackground())
-		.getParallaxBackground();
-	bkg[1] = backgr;
-	super.setBackground(new ParallaxBackground(bkg));
-    }
+		this.addCollisionGroup(this.getCharacters(), this.getItems(),
+				new GameElementCollision());
+	}
 
-    public void setBackground() {
-	setBackground(Background.getDefaultBackground());
-    }
+	public SpriteGroup addGroup(SpriteGroup group) {
+		super.addGroup(group);
+		return group;
+	}
 
-    /*
-     * Common Sprite Groups
-     */
-    public void addPlayer(Character p) {
-	Players.add(p);
-    }
+	/*
+	 * Initialize Default PhysicsPlugins
+	 */
+	private void initializeDefaultPhysicsPlugins() {
+		physicsPlugins.add(new BuoyancyPlugin());
+		physicsPlugins.add(new ViscosityPlugin());
+		physicsPlugins.add(new RestitutionAndFrictionPlugin());
+	}
 
-    public void addCharacter(Character c) {
-	Characters.add(c);
-    }
+	/*
+	 * Add Customized PhysicsPlugins
+	 */
+	public void addPhysicsPlugin(PhysicsPlugin p) {
+		physicsPlugins.add(p);
+	}
 
-    public void addItem(CollectibleItem ci) {
-	Items.add(ci);
-    }
+	/*
+	 * Remove PhysicsPlugins
+	 */
+	public void removePhysicsPlugin(PhysicsPlugin p) {
+		physicsPlugins.remove(p);
+	}
 
-    public void addSetting(Tile p) {
-	Setting.add(p);
-    }
+	/*
+	 * Override default method to add physics plug-ins.
+	 */
+	public void addCollisionGroup(SpriteGroup group1, SpriteGroup group2,
+			CollisionManager collisionGroup) {
+		if (collisionGroup instanceof GameElementCollision) {
+			((GameElementCollision) collisionGroup)
+					.setPhysicsPlugIns(physicsPlugins);
+		}
+		super.addCollisionGroup(group1, group2, collisionGroup);
+	}
 
-    /*
-     * Get Groups
-     */
-    public SpriteGroup getPlayers() {
-	return Players;
-    }
+	/*
+	 * GameScroller Methods
+	 */
 
-    public Character getPlayer() {
-	return (Character) Players.getActiveSprite();
-    }
+	public void setGameScroller(GameScroller gs) {
+		gamescroller = gs;
+		gs.setBackground(this.getBackground());
+		gs.setPlayers(Players);
+	}
 
-    public SpriteGroup getCharacters() {
-	return Characters;
-    }
+	/*
+	 * Heads Up Display
+	 */
+	public void addHUDWidget(HUDWidget w) {
+		hud.addWidget(w, 0);
+	}
 
-    public SpriteGroup getItems() {
-	return Items;
-    }
+	public void addHUDWidget(HUDWidget w, int Position) {
+		hud.addWidget(w, Position);
+	}
 
-    public SpriteGroup getSetting() {
-	return Setting;
-    }
+	/*
+	 * Additional Render Stuff
+	 */
+	public void render(Graphics2D g) {
+		gamescroller.scroll();
+		super.render(g);
+		hud.render(g);
+	}
 
-    public List<PhysicsPlugin> getPhysicsPlugins() {
-	return Collections.unmodifiableList(physicsPlugins);
-    }
+	public void update(long t) {
+		super.update(t);
+		hud.update(t);
+	}
+
+	/*
+	 * Set Background
+	 */
+
+	public void setBackground(Background backgr) {
+		Background[] bkg = ((ParallaxBackground) this.getBackground())
+				.getParallaxBackground();
+		bkg[1] = backgr;
+		super.setBackground(new ParallaxBackground(bkg));
+	}
+
+	public void setBackground() {
+		setBackground(Background.getDefaultBackground());
+	}
+
+	/*
+	 * Common Sprite Groups
+	 */
+	public void addPlayer(Character p) {
+		Players.add(p);
+	}
+
+	public void addCharacter(Character c) {
+		Characters.add(c);
+	}
+
+	public void addItem(CollectibleItem ci) {
+		Items.add(ci);
+	}
+
+	public void addSetting(Tile p) {
+		Setting.add(p);
+	}
+
+	/*
+	 * Get Groups
+	 */
+	public SpriteGroup getPlayers() {
+		return Players;
+	}
+
+	public Character getPlayer() {
+		return (Character) Players.getActiveSprite();
+	}
+
+	public SpriteGroup getCharacters() {
+		return Characters;
+	}
+
+	public SpriteGroup getItems() {
+		return Items;
+	}
+
+	public SpriteGroup getSetting() {
+		return Setting;
+	}
+
+	public List<PhysicsPlugin> getPhysicsPlugins() {
+		return Collections.unmodifiableList(physicsPlugins);
+	}
 
 }

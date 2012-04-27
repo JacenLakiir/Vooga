@@ -5,7 +5,6 @@ import java.awt.Graphics2D;
 
 
 import com.golden.gamedev.object.background.ColorBackground;
-
 import core.characters.ai.EvadeState;
 import core.characters.ai.FollowState;
 import core.collision.GameElementCollision;
@@ -41,7 +40,7 @@ public class DemoAntigravity extends Game2D {
 
     @Override
     public void initResources () { 
-        myPlayfield = new AdvancedPlayField(10000, 500);
+        myPlayfield = new AdvancedPlayField(10000, 500, this.getWidth(), this.getHeight());
         myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
         myPlayfield.setBackground(new ColorBackground(Color.gray, 640, 480));
         
@@ -72,7 +71,7 @@ public class DemoAntigravity extends Game2D {
         myPlayfield.addItem(magicBlock);
         
         goomba4 = new Goomba(this, new PhysicsAttributes());
-        goomba4.addPossibleState("Evade", new FollowState(goomba4, mario, 1, 200));
+        goomba4.addPossibleState("Follow", new FollowState(goomba4, mario, 1, 200));
         goomba4.setLocation(300, 400);
         myPlayfield.addCharacter(goomba4);
         
@@ -117,23 +116,7 @@ public class DemoAntigravity extends Game2D {
         wall2.setImages(this.getImages("resources/Wall.png", 1, 1));
         wall2.setLocation(620, 0);
         myPlayfield.addSetting(wall2);
-        
-        
-        myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-                                      myPlayfield.getItems(),
-                                      new CharacterCollectibleItemCollision());
-        myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-                                      myPlayfield.getSetting(),
-                                      new GameElementCollision());
-        myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-                                      myPlayfield.getSetting(),
-                                      new GameElementCollision());
-        myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-                                      myPlayfield.getCharacters(),
-                                      new GameElementCollision());
-        myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-                                      myPlayfield.getCharacters(),
-                                      new GameElementCollision());
+
     }
     
     @Override
