@@ -15,7 +15,6 @@ import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ParallaxBackground;
 import core.characters.Character;
-import core.characters.GameElement;
 import core.collision.CharacterCollectibleItemCollision;
 import core.collision.GameElementCollision;
 import core.collision.SideScrollerBoundsCollision;
@@ -52,7 +51,6 @@ public class AdvancedPlayField extends PlayField implements Serializable {
 				new Background() }));
 		width = PlayFieldWidth;
 		height = PlayFieldHeight;
-		GameElement.setGameStatics(width, height);
 		Setting = this.addGroup(new SpriteGroup("Setting Group"));
 		Items = this.addGroup(new SpriteGroup("Setting Group"));
 		Characters = this.addGroup(new SpriteGroup("Character Group"));

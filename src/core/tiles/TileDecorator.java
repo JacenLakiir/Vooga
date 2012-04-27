@@ -441,6 +441,14 @@ public class TileDecorator extends Tile {
 		return decoratedPlatform;
 	}
 
+	public void setGame(GameObject game) {
+		myGame = game;
+	}
+
+	public GameObject getGame() {
+		return myGame;
+	}
+
 	public void addAcceleration(double x, double y) {
 		decoratedPlatform.addAcceleration(x, y);
 	}
