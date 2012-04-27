@@ -5,8 +5,6 @@ import java.awt.Graphics2D;
 
 
 import com.golden.gamedev.object.background.ColorBackground;
-
-import core.characters.Character;
 import core.characters.ai.EvadeState;
 import core.characters.ai.FollowState;
 import core.collision.GameElementCollision;
@@ -28,6 +26,7 @@ import demo.custom.Mario;
 import demo.custom.Water;
 
 
+@SuppressWarnings("serial")
 public class DemoAntigravity extends Game2D {
 
     private AdvancedPlayField   myPlayfield;  
@@ -72,7 +71,7 @@ public class DemoAntigravity extends Game2D {
         myPlayfield.addItem(magicBlock);
         
         goomba4 = new Goomba(this, new PhysicsAttributes());
-        goomba4.addPossibleState("Evade", new FollowState(goomba4, mario, 1, 200));
+        goomba4.addPossibleState("Follow", new FollowState(goomba4, mario, 1, 200));
         goomba4.setLocation(300, 400);
         myPlayfield.addCharacter(goomba4);
         

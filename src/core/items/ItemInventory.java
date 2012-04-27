@@ -5,23 +5,18 @@ import java.util.List;
 
 public class ItemInventory {
 
-	private transient List<CollectibleItem> myInventory, myActiveInventory;
+	private transient List<CollectibleItem> myInventory;
 
 	public ItemInventory() {
 		myInventory = new ArrayList<CollectibleItem>();
-		myActiveInventory = new ArrayList<CollectibleItem>();
 	}
 	
     public void updateInventory(CollectibleItem item) {
     	myInventory.remove(item);
     }
 	
-	public List<CollectibleItem> getMyInventory() {
+	public List<CollectibleItem> getInventory() {
 		return myInventory;
-	}
-
-	public List<CollectibleItem> getMyActiveInventory() {
-		return myActiveInventory;
 	}
 	
 	public void useInventoryItem(CollectibleItem item) {
