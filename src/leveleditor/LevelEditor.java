@@ -3,15 +3,30 @@
  */
 package leveleditor;
 
-import io.*;
-import io.annotations.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
+import io.SpriteAttribute;
+import io.SpriteWrapper;
+import io.annotations.DefaultPhysicsAttribute;
+import io.annotations.Modifiable;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.HashMap;
 import java.util.List;
-import javax.swing.*;
+import java.util.Map;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JTree;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 

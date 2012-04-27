@@ -1,17 +1,14 @@
 package core.characters;
 
-import io.annotations.*;
-
+import io.annotations.DefaultValueMap;
+import io.annotations.ModifiableMap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import com.golden.gamedev.GameObject;
 import core.characters.ai.State;
-import core.gamestate.Game2D;
 import core.items.CollectibleItem;
 import core.items.ItemInventory;
 import core.physicsengine.physicsplugin.PhysicsAttributes;

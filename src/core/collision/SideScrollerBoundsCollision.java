@@ -1,10 +1,9 @@
 package core.collision;
 
-import core.characters.Character;
-
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionBounds;
+import core.characters.Character;
 
 public class SideScrollerBoundsCollision extends CollisionBounds {
 

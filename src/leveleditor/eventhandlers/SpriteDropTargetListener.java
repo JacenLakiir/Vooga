@@ -11,7 +11,6 @@ import java.awt.dnd.DropTargetAdapter;
 import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import javax.swing.TransferHandler;
-
 import leveleditor.LevelEditor;
 
 public class SpriteDropTargetListener extends DropTargetAdapter {

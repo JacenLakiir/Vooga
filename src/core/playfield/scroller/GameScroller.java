@@ -6,7 +6,6 @@ package core.playfield.scroller;
 import java.io.Serializable;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.SpriteGroup;
-
 import core.playfield.AdvancedPlayField;
 
 

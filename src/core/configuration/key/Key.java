@@ -2,7 +2,6 @@ package core.configuration.key;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.golden.gamedev.GameObject;
 
 /**

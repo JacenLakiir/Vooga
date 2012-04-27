@@ -4,21 +4,15 @@
 package io;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
+import leveleditor.VoogaUtilities;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
 import com.golden.gamedev.object.background.ParallaxBackground;
-
-import leveleditor.VoogaUtilities;
-import core.playfield.AdvancedPlayField;
 
 public class LevelState implements Serializable {
     private static final long serialVersionUID = 3910981230998281239L;

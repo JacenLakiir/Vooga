@@ -3,16 +3,15 @@
  */
 package io;
 
-import io.annotations.*;
-import java.lang.annotation.*;
+import io.annotations.Modifiable;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import leveleditor.VoogaUtilities;
 import core.characters.GameElement;
 

@@ -2,11 +2,9 @@ package core.playfield.hud;
 
 import java.awt.Graphics2D;
 import java.util.List;
-
+import com.golden.gamedev.object.GameFont;
 import core.items.AutoInUseAutoNotInUseItem;
 import core.items.CollectibleItem;
-
-import com.golden.gamedev.object.GameFont;
 
 public class InventoryWidget extends HUDWidget {
 	

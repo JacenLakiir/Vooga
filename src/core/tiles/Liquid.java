@@ -1,7 +1,6 @@
 package core.tiles;
 
 import com.golden.gamedev.GameObject;
-
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 public class Liquid extends Tile{
