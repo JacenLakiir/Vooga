@@ -98,7 +98,6 @@ public class Canvas extends JScrollPane {
 	else myLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
 	for (SpriteWrapper sw: sprites) {
 	    GameElement sp = sw.getGameElement();
-	    System.out.println(sp + " " + sp.getX());
 	    BufferedImage currentImage = sp.getImage();
 	    JLabel label = new JLabel();
 	    ImageIcon icon = new ImageIcon(currentImage);

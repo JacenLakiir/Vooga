@@ -183,6 +183,8 @@ public class SpriteWrapper implements Cloneable, Serializable {
 		myGamePlayAttributeMapForMap);
 	cloned.myGamePlayAttributeMapForIndividual = new HashMap<SpriteAttribute, Serializable>(
 		myGamePlayAttributeMapForIndividual);
+	cloned.myPhysicsAttributeMap 
+	= new HashMap<SpriteAttribute, Serializable>(myPhysicsAttributeMap);
 	return cloned;
     }
 
