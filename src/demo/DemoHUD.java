@@ -226,7 +226,7 @@ public class DemoHUD extends Game2D {
 		spike3.addAttribute("hitPoints", -1*mario.getBaseValue("hitPoints"));
 		myPlayfield.addItem(spike3);
 
-		CollectibleItem fireball = new SetInUseSetNotInUseItem(new PhysicsAttributes());
+		CollectibleItem fireball = new SetInUseSetNotInUseItem(this, new PhysicsAttributes());
 		fireball.setImages(this.getImages("resources/Fireball.png", 4, 1));
 		fireball.setLoopAnim(true);
 		fireball.setAnimate(true);
