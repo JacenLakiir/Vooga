@@ -1,7 +1,6 @@
 package demo.custom;
 
 import leveleditor.VoogaUtilities;
-import io.annotations.Modifiable;
 
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Timer;
@@ -22,11 +21,15 @@ public class Mario extends Character {
 
     private boolean jumpEnable, reversed;
     private Timer jumpTimer;
-    @Modifiable(classification = "Gameplay")
     private int jumpTime;
 
     public Mario(GameObject game, PhysicsAttributes physicsAttribute) {
-        super(game, physicsAttribute);
+        this(physicsAttribute);
+        setGame(game);
+    }
+    
+    public Mario(PhysicsAttributes physicsAttribute) {
+        super(physicsAttribute);
         setImages(VoogaUtilities.getImages(IMAGE_FILE, 1, 1));
         resetStrength();
         setMaximumSpeedInX(0.8);
