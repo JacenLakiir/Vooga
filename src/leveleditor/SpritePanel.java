@@ -51,7 +51,10 @@ public class SpritePanel extends JScrollPane {
     }
     
     protected void importSprite(SpriteWrapper wrapper) {
-	//System.out.println(wrapper.getPhysicsAttributeMap());
+	if (myUniqueNameSet.contains(wrapper.getName())) {
+	    return;
+	}
+	myUniqueNameSet.add(wrapper.getName());
 	myUniqueWrapperSet.add(wrapper);
 	myInternalPanel.setLayout(new GridLayout(myUniqueWrapperSet.size(), 1));
 	CopySpriteListener listener = new CopySpriteListener(myView);
@@ -77,15 +80,10 @@ public class SpritePanel extends JScrollPane {
     }
 
     protected void loadSprites(List<SpriteWrapper> sprites) {
-	myInternalPanel.removeAll();
-	myInternalPanel.revalidate();
+	//myInternalPanel.removeAll();
 	for (SpriteWrapper sw: sprites)
-	    if (!myUniqueNameSet.contains(sw.getName())) {
-		myUniqueWrapperSet.add(sw);
-		myUniqueNameSet.add(sw.getName());
-	    }
-	for (SpriteWrapper wrapper: myUniqueWrapperSet)
-	    importSprite(wrapper);
+	    importSprite(sw);
+	myInternalPanel.revalidate();
     }
     
     public Map<JLabel, SpriteWrapper> getUniqueLabelWrapperMap() {

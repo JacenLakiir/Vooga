@@ -223,8 +223,7 @@ public class SpriteBuilder extends JFrame {
 		    e1.printStackTrace();
 		}
 		myKernel.setTag(namefield.getText());
-	    SpriteWrapper created = new SpriteWrapper(name, gid, myView.getDefaultPhysicsAttributesMap(), 
-		    myImageSrc, myKernel);
+	    SpriteWrapper created = new SpriteWrapper(name, gid, myImageSrc, myKernel);
 	    /*if (willdecorate)
 		created.addAdditionalAttributes(myAdditionalClassesForDecorator);*/
 	    myView.getSpritePanel().importSprite(created);
@@ -234,9 +233,9 @@ public class SpriteBuilder extends JFrame {
 	
     }
     
-    protected void addAdditionalClass(Class<?> clazz) {
-	myAdditionalClassesForDecorator.add(clazz);
-    }
+//    protected void addAdditionalClass(Class<?> clazz) {
+//	myAdditionalClassesForDecorator.add(clazz);
+//    }
     
     private SpriteGroupIdentifier checkSelectedButton() {
 	for (Enumeration<AbstractButton> e = myTypeGroup.getElements(); e.hasMoreElements(); ) {

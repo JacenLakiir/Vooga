@@ -112,6 +112,15 @@ public class LevelEditor extends JFrame {
 	    }
 	});
 	myMenu[1].add(myChangeBackground);
+	JMenuItem myImportSpriteMenu = new JMenuItem("Import Sprite");
+	myImportSpriteMenu.addActionListener(new ActionListener() {
+	    public void actionPerformed(ActionEvent event) {
+		File f = loadFile("Import Sprite From File...");
+		if (f == null) return;
+		    mySpritePanel.importSprite(SpriteWrapper.load(f));
+	    }
+	});
+	myMenu[1].add(myImportSpriteMenu);
 	JMenuItem myCreateSpriteMunu = new JMenuItem("Create Sprite");
 	myCreateSpriteMunu.addActionListener(new ActionListener() {
 	    public void actionPerformed(ActionEvent e) {

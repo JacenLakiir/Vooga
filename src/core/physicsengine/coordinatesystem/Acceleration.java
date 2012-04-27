@@ -15,5 +15,6 @@ public class Acceleration extends Vector {
     public Acceleration(double rad, double r, boolean isAngularSystem) {
         super(rad, r, isAngularSystem);
     }
+   
     
 }

@@ -8,6 +8,8 @@ import io.SpriteWrapper;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -73,7 +75,9 @@ public class SpriteEditor extends JFrame {
    	editpanel.addTab("Physics", physicspanel);
    	rightpanel.add(editpanel);
    	JPanel confirmcancelpanel = new JPanel();
-   	confirmcancelpanel.setLayout(new GridLayout(2, 1));
+   	confirmcancelpanel.setLayout(new GridLayout(3, 1));
+   	JButton save = new JButton("Save");
+   	save.addActionListener(new SaveSpriteListener());
    	JButton confirm = new JButton("Confirm");
    	JButton cancel = new JButton("Cancel");
    	cancel.addActionListener(new ActionListener() {
@@ -81,6 +85,7 @@ public class SpriteEditor extends JFrame {
    		myInstance.dispose();
    	    }
    	});
+   	confirmcancelpanel.add(save);
    	confirmcancelpanel.add(confirm);
    	confirm.addActionListener(new EditSpriteListener());
    	confirmcancelpanel.add(cancel);
@@ -160,4 +165,17 @@ public class SpriteEditor extends JFrame {
 	
     }
     
+    private class SaveSpriteListener implements ActionListener {
+
+	public void actionPerformed(ActionEvent e) {
+	    File f = myView.loadFile("Save Sprite As...");
+	    if (f == null) return;
+	    try {
+		mySprite.save(f.getCanonicalPath());
+	    } catch (IOException e1) {
+		e1.printStackTrace();
+	    }
+	}
+	
+    }
 }

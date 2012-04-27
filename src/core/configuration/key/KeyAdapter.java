@@ -58,8 +58,6 @@ public abstract class KeyAdapter implements JsonDeserializer<Key>, JsonSerialize
             throw new RuntimeException(e);
         }
     }
-    
-
 
     @Override
     public JsonElement serialize(Key key, Type type,

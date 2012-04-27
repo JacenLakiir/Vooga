@@ -39,13 +39,14 @@ public class DecoratorSelector extends JDialog {
 	myConfirmButton.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
-		getDecoratedSprite();
+		buildDecoratedSprite();
 		myInstance.dispose();
 	    }
 	});
 	setLocationRelativeTo(null);
 	setSize(300, 200);
 	pack();
+	setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 	setVisible(true);
     }
     
@@ -66,22 +67,16 @@ public class DecoratorSelector extends JDialog {
 	}
     }
     
-    protected void getDecoratedSprite() {
-	List<Class<?>> toconstruct = new ArrayList<Class<?>>();
-	for (JCheckBox tocheck: myCheckBoxClassMap.keySet()) {
-	    if (tocheck.isSelected())
-		toconstruct.add(myCheckBoxClassMap.get(tocheck));
-	}
-	GameElement target = null;
+    public static GameElement getDecoratedSprite(Set<Class<?>> decorators, Class<?> targetclass
+	    , PhysicsAttributes physicsAttributes) {
+	GameElement targetsprite = null;
 	try {
-	    target = (GameElement) myTarget.getConstructor(PhysicsAttributes.class)
-		    .newInstance(myView.getDefaultPhysicsAttributes());
-	    for (Class<?> decorator: toconstruct) {
-		target = (GameElement) decorator.getConstructor(myTarget)
-			.newInstance(target);
-		myParent.addAdditionalClass(decorator);
+	    targetsprite = (GameElement) targetclass.getConstructor(PhysicsAttributes.class)
+		    .newInstance(physicsAttributes);
+	    for (Class<?> decorator: decorators) {
+		targetsprite = (GameElement) decorator.getConstructor(targetclass)
+			.newInstance(targetsprite);
 	    }
-	    myParent.setKernel(target);
 	} catch (InstantiationException e) {
 	    e.printStackTrace();
 	} catch (IllegalAccessException e) {
@@ -95,7 +90,17 @@ public class DecoratorSelector extends JDialog {
 	} catch (SecurityException e) {
 	    e.printStackTrace();
 	}
-
+	return targetsprite;
+    }
+    
+    protected void buildDecoratedSprite() {
+	Set<Class<?>> toconstruct = new HashSet<Class<?>>();
+	for (JCheckBox tocheck: myCheckBoxClassMap.keySet()) {
+	    if (tocheck.isSelected())
+		toconstruct.add(myCheckBoxClassMap.get(tocheck));
+	}
+	 myParent.setKernel(getDecoratedSprite(toconstruct, myTarget.getClass(), 
+		 myView.getDefaultPhysicsAttributes()));
     }
 
 }

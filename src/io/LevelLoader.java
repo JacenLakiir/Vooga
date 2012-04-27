@@ -35,6 +35,8 @@ public class LevelLoader {
 	    //System.out.println(swp.getGameElement().getPhysicsAttribute().getPhysicsAttrMap());
 	    GameElement toadd = swp.getGameElement();
 	    toadd.setGame(game);
+	    toadd.setX(toadd.getX());
+	    toadd.setY(toadd.getY());
 //	    if (TileDecorator.class.isAssignableFrom(toadd.getClass()))
 //		doNastySetGame(toadd, game);
 	    groupmap.get(swp.getGroup()).add(toadd);

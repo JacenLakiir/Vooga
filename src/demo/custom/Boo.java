@@ -21,14 +21,18 @@ public class Boo extends Character {
     }
     
     public Boo(PhysicsAttributes physicsAttribute, Character toTrack) {
+        this(physicsAttribute);
+        addPossibleState("Homing", new HomingState(this, toTrack, 750, 1));
+    }
+    
+    public Boo(PhysicsAttributes physicsAttribute) {
         super(physicsAttribute);
         addAttribute("hitPoints", 1);
         setTag("Boo");
         setImages(VoogaUtilities.getImages(IMAGE_FILE, 1, 1));
         getPhysicsAttribute().setMovable(false);
-        addPossibleState("Homing", new HomingState(this, toTrack, 750, 1));
     }
-
+    
     @Override
     public void afterHitFromRightBy(GameElement e, String tag) {
         if (tag.equals("Mario")) {

@@ -32,8 +32,8 @@ public class LevelEditorController {
 	List<SpriteWrapper> sprites = new ArrayList<SpriteWrapper>();
 	for (JLabel l : canvas.getLabelWrapperMap().keySet()) {
 	    SpriteWrapper tosave = canvas.getLabelWrapperMap().get(l).clone();
-	    tosave.getGameElement().setX(l.getX());
-	    tosave.getGameElement().setY(l.getY());
+	    tosave.getGameElement().setOriginalX(l.getX());
+	    tosave.getGameElement().setOriginalY(l.getY());
 	    tosave.saveAttributes();
 	    sprites.add(tosave);
 	}

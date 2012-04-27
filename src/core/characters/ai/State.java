@@ -5,7 +5,7 @@ import core.characters.Character;
 /**
  * @author Eric Mercer (JacenLakiir)
  */
-public abstract class State
+public abstract class State implements java.io.Serializable
 {
     protected Character myCharacter;
     private boolean isActivated;

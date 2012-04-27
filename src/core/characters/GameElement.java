@@ -122,6 +122,9 @@ public class GameElement extends AdvanceSprite {
 
     private void setDisplacementFromLocation() {
         disp.set(this.getX(), myGame.getHeight() - this.getY()); // need to change!!!!
+	//System.out.println(myGame.getHeight());
+        //disp.set(this.getX(), 480 - this.getY()); // need to change!!!!
+
     }
 
     public void addAcceleration(double x, double y) {
@@ -206,13 +209,21 @@ public class GameElement extends AdvanceSprite {
     @Override
     public void setX(double xs) {
         super.setX(xs);
-        //setDisplacementFromLocation();
+        setDisplacementFromLocation();
     }
 
     @Override
     public void setY(double ys) {
         super.setY(ys);
-        //setDisplacementFromLocation();
+        setDisplacementFromLocation();
+    }
+    
+    public void setOriginalX(double xs) {
+        super.setX(xs);
+    }
+
+    public void setOriginalY(double ys) {
+        super.setY(ys);
     }
 
     @Override

@@ -70,4 +70,8 @@ public abstract class Vector implements java.io.Serializable {
         return Math.hypot(x, y);
     }
     
+    public String toString() {
+	return x + " " + y;
+    }
+    
 }

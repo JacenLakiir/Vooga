@@ -63,8 +63,6 @@ public class SimpleGameToTestLevelEditor extends Game2D
          */
         myHero = (Character) myPlayfield.getPlayers().getActiveSprite(); // RANDOM
         Tile myBar = (Tile) myPlayfield.getSetting().getActiveSprite(); // RANDOM
-        System.out.println(myBar.getPhysicsAttribute().getGravitationalAcceleration());
-        
        //myBackground =
        //     new ImageBackground(getImage(loadedState.getBackgroundImageSrc()));
         //myPlayfield.setBackground(myBackground);

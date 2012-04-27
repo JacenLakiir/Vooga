@@ -90,7 +90,6 @@ public class Canvas extends JScrollPane {
 	if (myLabelWrapperMap != null) {
 	    for (JLabel l: myLabelWrapperMap.keySet()) {
 		l.setVisible(false);
-		//System.out.println("clearing out l!!!!!!!!");
 		myCanvasPane.remove(l);
 	    }
 	    myLabelWrapperMap.clear();
@@ -99,6 +98,7 @@ public class Canvas extends JScrollPane {
 	else myLabelWrapperMap = new HashMap<JLabel, SpriteWrapper>();
 	for (SpriteWrapper sw: sprites) {
 	    GameElement sp = sw.getGameElement();
+	    System.out.println(sp + " " + sp.getX());
 	    BufferedImage currentImage = sp.getImage();
 	    JLabel label = new JLabel();
 	    ImageIcon icon = new ImageIcon(currentImage);

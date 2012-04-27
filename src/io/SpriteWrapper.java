@@ -5,19 +5,25 @@ package io;
 
 import io.annotations.Modifiable;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import leveleditor.DecoratorSelector;
 import leveleditor.VoogaUtilities;
 import core.characters.GameElement;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
+import core.tiles.Tile;
+import core.tiles.TileDecorator;
 
 public class SpriteWrapper implements Cloneable, Serializable {
 
@@ -53,16 +59,43 @@ public class SpriteWrapper implements Cloneable, Serializable {
 	reconstruct();
     }*/
 
-    public SpriteWrapper(String name, SpriteGroupIdentifier group,
-	    Map<SpriteAttribute, Serializable> physicsattributes, String imgsrc,
+    public SpriteWrapper(String name, SpriteGroupIdentifier group, String imgsrc,
 	    GameElement sprite) {
 	myName = name;
 	myGroup = group;
 	//myClass = sprite.getClass();
 	myImagesrc = imgsrc;
-	myGameElement = sprite;
-	myPhysicsAttributeMap = new HashMap<SpriteAttribute, Serializable>(
-		physicsattributes);
+	try {
+	    sprite.getClass().getConstructor(PhysicsAttributes.class);
+		myGameElement = sprite.getClass().getConstructor(PhysicsAttributes.class)
+	    	.newInstance(sprite.getPhysicsAttribute());
+	
+	} catch (InstantiationException e) {
+	    e.printStackTrace();
+	} catch (IllegalAccessException e) {
+	    e.printStackTrace();
+	} catch (IllegalArgumentException e) {
+	    e.printStackTrace();
+	} catch (NoSuchMethodException e) {
+		Tile t = (TileDecorator) sprite;
+		Set<Class<?>> decorators = new HashSet<Class<?>>();
+		while(t.getClass().equals(Tile.class)) {
+		    decorators.add(t.getClass());
+		    t = t.removeDecorator();
+		}
+		myGameElement = 
+			DecoratorSelector.getDecoratedSprite(decorators, Tile.class, 
+				sprite.getPhysicsAttribute());
+		
+	} catch (SecurityException e) {
+	    e.printStackTrace();
+	} catch (InvocationTargetException e) {
+	    e.printStackTrace();
+	} 
+	Map<SpriteAttribute, Serializable> realmap
+	= SpriteAttribute.convertkeyToAttribute(sprite.getPhysicsAttribute().getPhysicsAttrMap(),
+		"Physics");
+	myPhysicsAttributeMap = new HashMap<SpriteAttribute, Serializable>(realmap);
 	myGamePlayAttributeMapForMap = new HashMap<SpriteAttribute, Serializable>();
 	myGamePlayAttributeMapForIndividual = new HashMap<SpriteAttribute, Serializable>();
 	myDummyIndividualFields = new HashSet<Field>();
@@ -145,8 +178,7 @@ public class SpriteWrapper implements Cloneable, Serializable {
     }*/
     
     public SpriteWrapper clone() {
-	SpriteWrapper cloned = new SpriteWrapper(myName, myGroup,
-		myPhysicsAttributeMap, myImagesrc, myGameElement);
+	SpriteWrapper cloned = new SpriteWrapper(myName, myGroup, myImagesrc, myGameElement);
 	cloned.myGamePlayAttributeMapForMap = new HashMap<SpriteAttribute, Serializable>(
 		myGamePlayAttributeMapForMap);
 	cloned.myGamePlayAttributeMapForIndividual = new HashMap<SpriteAttribute, Serializable>(
@@ -235,6 +267,14 @@ public class SpriteWrapper implements Cloneable, Serializable {
 	} catch (IllegalAccessException e) {
 	    e.printStackTrace();
 	}
+    }
+    
+    public void save(String path) {
+	VoogaUtilities.serialize(this, new File(path));
+    }
+    
+    public static SpriteWrapper load(File file) {
+	return (SpriteWrapper) VoogaUtilities.deserialize(file);
     }
     
 }
