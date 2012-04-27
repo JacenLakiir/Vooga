@@ -21,7 +21,8 @@ public class BarWidget extends HUDWidget {
 	@Override
 	public void update(long t) {
 		this.myValue = dp.get();
-		this.maxHP = dp.getInit();
+		if (dp.getInit()>this.maxHP)
+			this.maxHP = dp.getInit();
 	}
 
 	@Override
