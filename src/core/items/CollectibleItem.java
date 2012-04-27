@@ -20,8 +20,8 @@ public abstract class CollectibleItem extends GameElement {
 	protected transient HashMap<String, Double> myAttributeValues;
 
 	// Constructor for a collectible item
-	public CollectibleItem(PhysicsAttributes physicsAttribute) {
-		super(physicsAttribute);
+	public CollectibleItem(GameObject game, PhysicsAttributes physicsAttribute) {
+		super(game, physicsAttribute);
 		myAttributeValues = new HashMap<String, Double>();
 		setTag("Item");
 	}

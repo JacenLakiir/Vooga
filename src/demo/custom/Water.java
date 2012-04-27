@@ -12,8 +12,8 @@ import core.tiles.Liquid;
 @SuppressWarnings("serial")
 public class Water extends Liquid {
 
-    public Water(PhysicsAttributes physicsAttribute, double strength) {
-        super(physicsAttribute, strength);
+    public Water(GameObject owner, PhysicsAttributes physicsAttribute, double strength) {
+        super(owner, physicsAttribute, strength);
         this.getPhysicsAttribute().setMovable(false);
         this.getPhysicsAttribute().setDensity(1.0);
         this.getPhysicsAttribute().setDragCoefficient(.2);

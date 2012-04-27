@@ -22,8 +22,8 @@ public abstract class AutoNotInUseItem extends CollectibleItem {
 		timePassed = elapsedTime;
 	}
 	
-	public AutoNotInUseItem(PhysicsAttributes physicsAttribute) {
-	    super(physicsAttribute);
+	public AutoNotInUseItem(GameObject game, PhysicsAttributes physicsAttribute) {
+	    super(game, physicsAttribute);
 	    setTimerStart(0);
 		setTimerEnd(0);
     }

@@ -9,8 +9,8 @@ import demo.DemoAntigravity;
 @SuppressWarnings("serial")
 public class MagicBlock extends AutoInUseAutoNotInUseItem{
 
-    public MagicBlock(PhysicsAttributes physicsAttribute) {
-        super(physicsAttribute);
+    public MagicBlock(DemoAntigravity game, PhysicsAttributes physicsAttribute) {
+        super(game, physicsAttribute);
         setTag("MagicBlock");
         this.getPhysicsAttribute().setPenetrable(false);
     }

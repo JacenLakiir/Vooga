@@ -62,7 +62,7 @@ public class DemoHUD extends Game2D {
 		// SpriteGroups already exist in AdvancedPlayfield
 		// use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
 
-		mario = new Mario(new PhysicsAttributes());
+		mario = new Mario(this, new PhysicsAttributes());
 		setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type"))
 		        .parseKeyConfig("configurations/keyconfig.json"));
 		// add the element or the game you want the key to control
@@ -105,50 +105,53 @@ public class DemoHUD extends Game2D {
 			        }
 		        }), HUD.TOP_RIGHT);
 
-		Character koopa1 = new Koopa(new PhysicsAttributes());
+		Character koopa1 = new Koopa(this, new PhysicsAttributes());
 		koopa1.addPossibleState("Move", new MoveState(koopa1, 1, true));
 		koopa1.setLocation(500, 400);
 		myPlayfield.addCharacter(koopa1);
 
-		Character goomba1 = new Goomba(new PhysicsAttributes());
+		Character goomba1 = new Goomba(this, new PhysicsAttributes());
 		goomba1.addPossibleState("Move", new MoveState(goomba1, 1, true));
 		goomba1.setLocation(800, 407);
 		myPlayfield.addCharacter(goomba1);
 
-		Character goomba2 = new Goomba(new PhysicsAttributes());
+		Character goomba2 = new Goomba(this, new PhysicsAttributes());
 		goomba2.addPossibleState("Move", new MoveState(goomba2, 1, true));
 		goomba2.setLocation(900, 407);
 		myPlayfield.addCharacter(goomba2);
 
-		Character goomba3 = new Goomba(new PhysicsAttributes());
+		Character goomba3 = new Goomba(this, new PhysicsAttributes());
 		goomba3.addPossibleState("Move", new MoveState(goomba3, 1, true));
 		goomba3.setLocation(1000, 407);
 		myPlayfield.addCharacter(goomba3);
 
-		Character goomba4 = new Goomba(new PhysicsAttributes());
+		Character goomba4 = new Goomba(this, new PhysicsAttributes());
 		goomba4.addPossibleState("Patrol", new PatrolState(goomba4, 1, 325));
 		goomba4.setLocation(575, 200);
 		myPlayfield.addCharacter(goomba4);
 
-		Tile temp1 = new FrictionlessDecorator(new Tile(new PhysicsAttributes()));
+		Tile temp1 = new FrictionlessDecorator(new Tile(this,
+		        new PhysicsAttributes()));
 		temp1.setImages(this.getImages("resources/IceFloor.png", 1, 1));
 		temp1.setLocation(1200, 440);
 		myPlayfield.addSetting(temp1);
 		
 		for(int i=0;i<2;i++){
-		    Tile temp2 = new Tile(new PhysicsAttributes());
+		    Tile temp2 = new Tile(this, new PhysicsAttributes());
 		    temp2.setImages(this.getImages("resources/Bar.png", 1, 1));
 		    temp2.setLocation(temp2.getWidth()*i, 440);
 		    myPlayfield.addSetting(temp2);
         }
 
-		ActionDecorator block2 = new BreakableDecorator(new Tile(new PhysicsAttributes()), 1);
+		ActionDecorator block2 = new BreakableDecorator(new Tile(this,
+		        new PhysicsAttributes()), 1);
 		block2.setBottomAction(true);
 		block2.setImages(this.getImages("resources/Block2Break.png", 8, 1));
 		block2.setLocation(160, 200);
 		myPlayfield.addSetting(block2);
 
-		ItemDecorator block1 = new ItemDecorator(new Tile(new PhysicsAttributes()));
+		ItemDecorator block1 = new ItemDecorator(new Tile(this,
+		        new PhysicsAttributes()));
 		block1.setBottomAction(true);
 		block1.setImages(this.getImages("resources/Block1.png", 1, 1));
 		block1.setLocation(100, 200);
@@ -156,7 +159,7 @@ public class DemoHUD extends Game2D {
 
 		for (int i = 0; i < 10; i++) {
 			AutoInUseAutoNotInUseItem coin = new AutoInUseAutoNotInUseItem(
-			        new PhysicsAttributes());
+			        this, new PhysicsAttributes());
 			coin.setImages(this.getImages("resources/Coin.png", 1, 1));
 			coin.setActive(false);
 			coin.addAttribute("points", 1);
@@ -164,35 +167,40 @@ public class DemoHUD extends Game2D {
 			myPlayfield.addItem(coin);
 		}
 
-		CollectibleItem coin2 = new AutoInUseAutoNotInUseItem(new PhysicsAttributes());
+		CollectibleItem coin2 = new AutoInUseAutoNotInUseItem(this,
+		        new PhysicsAttributes());
 		coin2.setImages(this.getImages("resources/Coin.png", 1, 1));
 		coin2.getPhysicsAttribute().setMovable(false);
 		coin2.setLocation(300, 300);
 		coin2.addAttribute("points", 1);
 		myPlayfield.addItem(coin2);
 
-		CollectibleItem coin3 = new AutoInUseAutoNotInUseItem(new PhysicsAttributes());
+		CollectibleItem coin3 = new AutoInUseAutoNotInUseItem(this,
+		        new PhysicsAttributes());
 		coin3.setImages(this.getImages("resources/Coin.png", 1, 1));
 		coin3.getPhysicsAttribute().setMovable(false);
 		coin3.setLocation(700, 150);
 		coin3.addAttribute("points", 1);
 		myPlayfield.addItem(coin3);
 
-		CollectibleItem coin4 = new AutoInUseAutoNotInUseItem(new PhysicsAttributes());
+		CollectibleItem coin4 = new AutoInUseAutoNotInUseItem(this,
+		        new PhysicsAttributes());
 		coin4.setImages(this.getImages("resources/Coin.png", 1, 1));
 		coin4.getPhysicsAttribute().setMovable(false);
 		coin4.setLocation(900, 200);
 		coin4.addAttribute("points", 1);
 		myPlayfield.addItem(coin4);
 
-		CollectibleItem coin5 = new AutoInUseAutoNotInUseItem(new PhysicsAttributes());
+		CollectibleItem coin5 = new AutoInUseAutoNotInUseItem(this,
+		        new PhysicsAttributes());
 		coin5.setImages(this.getImages("resources/Coin.png", 1, 1));
 		coin5.getPhysicsAttribute().setMovable(false);
 		coin5.setLocation(1300, 300);
 		coin5.addAttribute("points", 1);
 		myPlayfield.addItem(coin5);
 
-		CollectibleItem spike = new AutoInUseAutoNotInUseItem(new PhysicsAttributes());
+		CollectibleItem spike = new AutoInUseAutoNotInUseItem(this,
+		        new PhysicsAttributes());
 		spike.setImages(this.getImages("resources/Spikes.png", 1, 1));
 		spike.getPhysicsAttribute().setMovable(false);
 		spike.setLocation(400, 426);
@@ -200,7 +208,8 @@ public class DemoHUD extends Game2D {
 		spike.addAttribute("hitPoints", mario.getBaseValue("hitPoints"));
 		myPlayfield.addItem(spike);
 
-		CollectibleItem spike2 = new AutoInUseAutoNotInUseItem(new PhysicsAttributes());
+		CollectibleItem spike2 = new AutoInUseAutoNotInUseItem(this,
+		        new PhysicsAttributes());
 		spike2.setImages(this.getImages("resources/Spikes.png", 1, 1));
 		spike2.getPhysicsAttribute().setMovable(false);
 		spike2.setLocation(800, 427);
@@ -208,7 +217,8 @@ public class DemoHUD extends Game2D {
 		spike2.addAttribute("hitPoints", -1*mario.getBaseValue("hitPoints"));
 		myPlayfield.addItem(spike2);
 
-		CollectibleItem spike3 = new AutoInUseAutoNotInUseItem(new PhysicsAttributes());
+		CollectibleItem spike3 = new AutoInUseAutoNotInUseItem(this,
+		        new PhysicsAttributes());
 		spike3.setImages(this.getImages("resources/Spikes.png", 1, 1));
 		spike3.getPhysicsAttribute().setMovable(false);
 		spike3.setLocation(2300, 285);
@@ -224,7 +234,8 @@ public class DemoHUD extends Game2D {
 		fireball.setLocation(350, 400);
 		myPlayfield.addItem(fireball);
 
-		AutoNotInUseItem poison = new AutoInUseAutoNotInUseItem(new PhysicsAttributes());
+		AutoNotInUseItem poison = new AutoInUseAutoNotInUseItem(this,
+		        new PhysicsAttributes());
 		poison.setImages(this.getImages("resources/Poison.png", 1, 1));
 		poison.getPhysicsAttribute().setMovable(false);
 		poison.setLocation(300, 400);
@@ -233,33 +244,36 @@ public class DemoHUD extends Game2D {
 		poison.addAttribute("hitPoints", -1);
 		myPlayfield.addItem(poison);
 
-		AutoNotInUseItem life = new AutoInUseAutoNotInUseItem(new PhysicsAttributes());
+		AutoNotInUseItem life = new AutoInUseAutoNotInUseItem(this,
+		        new PhysicsAttributes());
 		life.setImages(this.getImages("resources/life.png", 1, 1));
 		life.getPhysicsAttribute().setMovable(false);
 		life.setLocation(400, 100);
 		life.addAttribute("lives", 1);
 		myPlayfield.addItem(life);
 		
-		AutoNotInUseItem life2 = new AutoInUseAutoNotInUseItem(new PhysicsAttributes());
+		AutoNotInUseItem life2 = new AutoInUseAutoNotInUseItem(this,
+		        new PhysicsAttributes());
 		life2.setImages(this.getImages("resources/life.png", 1, 1));
 		life2.getPhysicsAttribute().setMovable(false);
 		life2.setLocation(1600, 120);
 		life2.addAttribute("lives", 1);
 		myPlayfield.addItem(life2);
 		
-		MovingDecorator middleBar = new MovingDecorator(new Tile(new PhysicsAttributes()));
+		MovingDecorator middleBar = new MovingDecorator(new Tile(this,
+		        new PhysicsAttributes()));
 		middleBar.setLocation(260, 240);
 		middleBar.setEndLocation(700, 60);
 		middleBar.setMoveSpeed(0.05);
 		middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
 		myPlayfield.addSetting(middleBar);
 
-		Character boo = new Boo(new PhysicsAttributes(), mario);
+		Character boo = new Boo(this, new PhysicsAttributes(), mario);
 		boo.setLocation(2500, 150);
 		myPlayfield.addCharacter(boo);
 		
 		for (int i = 0; i < 4; i++){
-			FallingDecorator fallingBar = new FallingDecorator(new Tile(new PhysicsAttributes()), 2000);
+			FallingDecorator fallingBar = new FallingDecorator(new Tile(this, new PhysicsAttributes()), 2000);
 			fallingBar.setLocation(1800+i*150, 350);
 			fallingBar.setTopAction(true);
 			fallingBar.setImages(getImages("resources/Bar2.png", 1, 1));
@@ -267,7 +281,7 @@ public class DemoHUD extends Game2D {
 		}
 		
 		for (int i = 0; i < 3; i++){
-			MovingDecorator movingBar = new MovingDecorator(new Tile(new PhysicsAttributes()));
+			MovingDecorator movingBar = new MovingDecorator(new Tile(this, new PhysicsAttributes()));
 			movingBar.setLocation(2400 + i*150, 200+i*75);
 			movingBar.setEndLocation(2400+i*150, 400);
 			movingBar.setMoveSpeed(0.05);
@@ -276,13 +290,13 @@ public class DemoHUD extends Game2D {
 		}
 
 		for (int i = 0; i < 5; i++) {
-			Tile temp3 = new Tile(new PhysicsAttributes());
+			Tile temp3 = new Tile(this, new PhysicsAttributes());
 			temp3.setImages(this.getImages("resources/Platform.png", 1, 1));
 			temp3.setLocation(2900+temp3.getWidth()*i, 300);
 			myPlayfield.addSetting(temp3);
 		}
 
-		Tile flag = new Tile(new PhysicsAttributes());
+		Tile flag = new Tile(this, new PhysicsAttributes());
 		flag.setImages(getImages("resources/Flag.png", 4, 1));
 		flag.setLoopAnim(true);
 		flag.setAnimate(true);

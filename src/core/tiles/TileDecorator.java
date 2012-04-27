@@ -25,6 +25,7 @@ public class TileDecorator extends Tile {
 
 	public TileDecorator(Tile decoratedPlatform) {
 		this.decoratedPlatform = decoratedPlatform;
+		this.myGame = decoratedPlatform.getGame();
 	}
 
 	@Override
