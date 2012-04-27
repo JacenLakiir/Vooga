@@ -14,7 +14,7 @@ public class InventoryWidget extends HUDWidget {
 	InventoryProxy dp;
 
 	public InventoryWidget(String title, InventoryProxy dp) {
-		super(150, 15);
+		super(250, 15);
 		this.title = title;
 		this.dp = dp;
 	}
@@ -30,7 +30,7 @@ public class InventoryWidget extends HUDWidget {
 				yPos, 100);
 		int i = 0;
 		for (CollectibleItem item : myInv) {
-			g.drawImage(item.getImage(), null, xPos + i*15 +50, yPos);
+			g.drawImage(item.getImage(), null, xPos + i*15 +70, yPos);
 			i++;
 		}
 	}
