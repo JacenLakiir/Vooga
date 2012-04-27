@@ -54,7 +54,8 @@ public class DemoHUD extends Game2D {
 	public void initResources() {
 
 		// Playfield Init
-		myPlayfield = new AdvancedPlayField(2000, 500, this.getWidth(), this.getHeight());
+		myPlayfield = new AdvancedPlayField(2000, 500, this.getWidth(),
+		        this.getHeight());
 		myPlayfield.setBackground(new ColorBackground(Color.gray));
 		myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
 
@@ -79,13 +80,14 @@ public class DemoHUD extends Game2D {
 			}
 		}), HUD.TOP_LEFT);
 
-		myPlayfield.addHUDWidget(new IconWidget("Lives", this
-		        .getImage("resources/life.png"), new IntProxy() {
-			public int get() {
-				return myPlayfield.getPlayer().getAttributeValue("lives")
-				        .intValue();
-			}
-		}), HUD.TOP_CENTER);
+		myPlayfield.addHUDWidget(
+		        new IconWidget("Lives", this.getImage("resources/life.png"),
+		                new IntProxy() {
+			                public int get() {
+				                return myPlayfield.getPlayer()
+				                        .getAttributeValue("lives").intValue();
+			                }
+		                }), HUD.TOP_LEFT);
 
 		myPlayfield.addHUDWidget(new BarWidget("HP", new BarProxy() {
 			public double get() {
@@ -96,12 +98,22 @@ public class DemoHUD extends Game2D {
 				return myPlayfield.getPlayer().getBaseValue("hitPoints");
 			}
 		}), HUD.TOP_CENTER);
-		
-		myPlayfield.addHUDWidget(new InventoryWidget("Inventory", new InventoryProxy() {
-			public List<CollectibleItem> get() {
-				return myPlayfield.getPlayer().getInventory();
-			}
-		}), HUD.TOP_RIGHT);
+
+		myPlayfield.addHUDWidget(
+		        new IconWidget("Lives", this.getImage("resources/life.png"),
+		                new IntProxy() {
+			                public int get() {
+				                return myPlayfield.getPlayer()
+				                        .getAttributeValue("lives").intValue();
+			                }
+		                }), HUD.TOP_RIGHT);
+
+		myPlayfield.addHUDWidget(new InventoryWidget("Inventory",
+		        new InventoryProxy() {
+			        public List<CollectibleItem> get() {
+				        return myPlayfield.getPlayer().getInventory();
+			        }
+		        }), HUD.BOTTOM_RIGHT);
 
 		Character koopa1 = new Koopa(this, new PhysicsAttributes());
 		koopa1.addPossibleState("Move", new MoveState(koopa1, 1, true));
@@ -178,6 +190,30 @@ public class DemoHUD extends Game2D {
 		coin2.setLocation(300, 300);
 		coin2.addAttribute("points", 3);
 		myPlayfield.addItem(coin2);
+
+		CollectibleItem coin3 = new AutoInUseAutoNotInUseItem(this,
+		        new PhysicsAttributes());
+		coin3.setImages(this.getImages("resources/Coin.png", 1, 1));
+		coin3.getPhysicsAttribute().setMovable(false);
+		coin3.setLocation(700, 150);
+		coin3.addAttribute("points", 3);
+		myPlayfield.addItem(coin3);
+		
+		CollectibleItem coin4 = new AutoInUseAutoNotInUseItem(this,
+		        new PhysicsAttributes());
+		coin4.setImages(this.getImages("resources/Coin.png", 1, 1));
+		coin4.getPhysicsAttribute().setMovable(false);
+		coin4.setLocation(900, 200);
+		coin4.addAttribute("points", 3);
+		myPlayfield.addItem(coin4);
+		
+		CollectibleItem coin5 = new AutoInUseAutoNotInUseItem(this,
+		        new PhysicsAttributes());
+		coin5.setImages(this.getImages("resources/Coin.png", 1, 1));
+		coin5.getPhysicsAttribute().setMovable(false);
+		coin5.setLocation(1300, 300);
+		coin5.addAttribute("points", 3);
+		myPlayfield.addItem(coin5);
 
 		Weapon fireball = new Weapon(this, new PhysicsAttributes());
 		fireball.setImages(this.getImages("resources/Fireball.png", 4, 1));
