@@ -38,8 +38,10 @@ public class AdvancedPlayField extends PlayField implements Serializable {
 	private SpriteGroup Setting;
 	private SpriteGroup Items;
 	private List<PhysicsPlugin> physicsPlugins;
+	
+	private int width, height;
 
-	/*
+	/**
 	 * Initialize PlayField, Background, and common SpriteGroups
 	 */
 	public AdvancedPlayField(int PlayFieldWidth, int PlayFieldHeight,
@@ -47,6 +49,8 @@ public class AdvancedPlayField extends PlayField implements Serializable {
 		super(new ParallaxBackground(new Background[] {
 				new Background(PlayFieldWidth, PlayFieldHeight),
 				new Background() }));
+		width = PlayFieldWidth;
+		height = PlayFieldHeight;
 		Setting = this.addGroup(new SpriteGroup("Setting Group"));
 		Items = this.addGroup(new SpriteGroup("Setting Group"));
 		Characters = this.addGroup(new SpriteGroup("Character Group"));
@@ -149,6 +153,7 @@ public class AdvancedPlayField extends PlayField implements Serializable {
 	 * Additional Render Stuff
 	 */
 	public void render(Graphics2D g) {
+		g.clearRect(0,0,width,height);
 		gamescroller.scroll();
 		super.render(g);
 		hud.render(g);
