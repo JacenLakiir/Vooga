@@ -13,6 +13,11 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
 @SuppressWarnings("serial")
 public class HammerBrother extends Character {
     private static final String IMAGE_FILE = "resources/HammerBrother.gif";
+
+    public HammerBrother(GameObject game, PhysicsAttributes physicsAttribute) {
+    this(physicsAttribute);
+    setGame(game);
+    }
     
     public HammerBrother(PhysicsAttributes physicsAttribute) {
 	super(physicsAttribute);

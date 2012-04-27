@@ -22,6 +22,11 @@ public class Mario extends Character {
     private boolean jumpEnable, reversed;
     private Timer jumpTimer;
     private int jumpTime;
+
+    public Mario(GameObject game, PhysicsAttributes physicsAttribute) {
+        this(physicsAttribute);
+        setGame(game);
+    }
     
     public Mario(PhysicsAttributes physicsAttribute) {
         super(physicsAttribute);

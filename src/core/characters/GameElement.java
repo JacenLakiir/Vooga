@@ -15,13 +15,6 @@ import core.physicsengine.coordinatesystem.Velocity;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 public class GameElement extends AdvanceSprite {
-	
-	public static int gameHeight, gameWidth;
-	
-	public static void setGameStatics(int w, int h) {
-		gameHeight = h;
-		gameWidth = w;
-	}
 
     private static final long serialVersionUID = 2989579123989132598L;
 
@@ -34,6 +27,8 @@ public class GameElement extends AdvanceSprite {
 
     private double maximumSpeedInX = Double.MAX_VALUE;
     private double maximumSpeedInY = Double.MAX_VALUE;
+
+    protected transient GameObject myGame;
     
     private String tag = "GameElement";
 
@@ -45,9 +40,22 @@ public class GameElement extends AdvanceSprite {
         disp = new Displacement(0, 0);
         duringAccList = new ArrayList<DuringAcceleration>();
     }
+
+    public GameElement(GameObject game, PhysicsAttributes physicsAttribute) {
+        this(physicsAttribute);
+        myGame = game;
+    }
     
     // for decorators
     public GameElement() {}
+    
+    public void setGame(GameObject game) {
+        myGame = game;
+    }
+
+    public GameObject getGame() {
+        return myGame;
+    }
     
     public void setPhysicsAttribute(PhysicsAttributes a) {
         this.physicsAttribute = a;
@@ -108,12 +116,12 @@ public class GameElement extends AdvanceSprite {
 
     private void moveToDisplacement() {
         double dx = disp.getX() - this.getX();
-        double dy = gameHeight - disp.getY() - this.getY(); // need to change!!!!
+        double dy = myGame.getHeight() - disp.getY() - this.getY(); // need to change!!!!
         this.move(dx, dy);
     }
 
     private void setDisplacementFromLocation() {
-        disp.set(this.getX(), gameHeight - this.getY()); // need to change!!!!
+        disp.set(this.getX(), myGame.getHeight() - this.getY()); // need to change!!!!
     }
 
     public void addAcceleration(double x, double y) {

@@ -7,8 +7,8 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
 public class Liquid extends Tile{
 	private double strength;
 	
-	public Liquid(PhysicsAttributes physicsAttribute, double strength) {
-		super(physicsAttribute);
+	public Liquid(GameObject owner,  PhysicsAttributes physicsAttribute, double strength) {
+		super(owner, physicsAttribute);
 		this.getPhysicsAttribute().setPenetrable(true);
 		this.strength = strength;
 	}

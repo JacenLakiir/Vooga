@@ -17,8 +17,8 @@ public class Tile extends GameElement {
     /*
      * Constructor for a Concrete Platform
      */
-    public Tile(PhysicsAttributes physicsAttribute) {
-        super(physicsAttribute);
+    public Tile(GameObject owner, PhysicsAttributes physicsAttribute) {
+        super(owner, physicsAttribute);
         this.getPhysicsAttribute().setMovable(false);
         this.getPhysicsAttribute().setPenetrable(false);
     }

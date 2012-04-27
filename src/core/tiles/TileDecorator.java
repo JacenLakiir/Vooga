@@ -25,6 +25,7 @@ public class TileDecorator extends Tile {
 
 	public TileDecorator(Tile decoratedPlatform) {
 		this.decoratedPlatform = decoratedPlatform;
+		this.myGame = decoratedPlatform.getGame();
 	}
 
 	@Override
@@ -438,6 +439,14 @@ public class TileDecorator extends Tile {
 
 	protected Tile getDecoratedPlatform() {
 		return decoratedPlatform;
+	}
+
+	public void setGame(GameObject game) {
+		myGame = game;
+	}
+
+	public GameObject getGame() {
+		return myGame;
 	}
 
 	public void addAcceleration(double x, double y) {

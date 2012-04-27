@@ -15,6 +15,11 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
 public class Boo extends Character {
 
     private static final String IMAGE_FILE = "resources/Boo.png";
+        
+    public Boo(GameObject game, PhysicsAttributes physicsAttribute, Character toTrack) {
+        this(physicsAttribute, toTrack);
+        setGame(game);
+    }
     
     public Boo(PhysicsAttributes physicsAttribute, Character toTrack) {
         super(physicsAttribute);
