@@ -33,6 +33,9 @@ public class Mario extends Character {
         jumpTimer = new Timer(jumpTime);
         jumpTimer.setActive(false);
         reversed = false;
+        addAttribute("hitPoints", 10);
+		addAttribute("points", 0);
+		addAttribute("lives", 3);
         setTag("Mario");
     }
 
