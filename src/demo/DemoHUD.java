@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.util.List;
 
 import com.golden.gamedev.object.background.ColorBackground;
+import com.golden.gamedev.object.background.ImageBackground;
 
 import core.characters.Character;
 import core.characters.ai.MoveState;
@@ -56,7 +57,7 @@ public class DemoHUD extends Game2D {
 		// Playfield Init
 		myPlayfield = new AdvancedPlayField(2000, 500, this.getWidth(),
 		        this.getHeight());
-		myPlayfield.setBackground(new ColorBackground(Color.gray));
+		myPlayfield.setBackground(new ImageBackground(getImage("resources/clouds.png")));
 		myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
 
 		// Sprite Init / Or load funcitonality
