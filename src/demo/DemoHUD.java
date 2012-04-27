@@ -245,6 +245,15 @@ public class DemoHUD extends Game2D {
 		fireball.setLocation(350, 400);
 		myPlayfield.addItem(fireball);
 
+		Weapon bullet = new Weapon(this, new PhysicsAttributes());
+		bullet.setImages(this.getImages("resources/Fireball.png", 4, 1));
+		bullet.setLoopAnim(true);
+		bullet.setAnimate(true);
+		bullet.getPhysicsAttribute().setMovable(false);
+		bullet.setActive(false);
+		bullet.setLocation(mario.getX(), mario.getY());
+		myPlayfield.addItem(bullet);
+		
 		AutoNotInUseItem poison = new AutoInUseAutoNotInUseItem(this,
 		        new PhysicsAttributes());
 		poison.setImages(this.getImages("resources/Poison.png", 1, 1));
@@ -262,6 +271,14 @@ public class DemoHUD extends Game2D {
 		life.setLocation(400, 100);
 		life.addAttribute("lives", 1);
 		myPlayfield.addItem(life);
+		
+		AutoNotInUseItem life2 = new AutoInUseAutoNotInUseItem(this,
+		        new PhysicsAttributes());
+		life2.setImages(this.getImages("resources/life.png", 1, 1));
+		life2.getPhysicsAttribute().setMovable(false);
+		life2.setLocation(1600, 120);
+		life2.addAttribute("lives", 1);
+		myPlayfield.addItem(life2);
 		
 		MovingDecorator middleBar = new MovingDecorator(new Tile(this,
 		        new PhysicsAttributes()));
