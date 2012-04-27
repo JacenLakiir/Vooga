@@ -5,6 +5,7 @@
 package core.physicsengine.physicsplugin;
 
 import io.annotations.*;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +31,6 @@ public class PhysicsAttributes implements java.io.Serializable {
     
     private static final long serialVersionUID = 4195772754476104956L;
     
-    @DefaultValueMap(classification = "Physics")
     protected static Map<String, Serializable> defaultPhysicsPara;
     static {
         defaultPhysicsPara = new HashMap<String, Serializable>();
@@ -46,7 +46,7 @@ public class PhysicsAttributes implements java.io.Serializable {
         defaultPhysicsPara.put("isPenetrable", false);
     }
     
-    @ModifiableMap(classification = "Physics")
+    @Modifiable(classification = "Physics", type = "Map")
     protected HashMap<String, Serializable> physicsPara;
 
     public PhysicsAttributes() {
