@@ -22,6 +22,7 @@ public class HammerBrother extends Character {
     public HammerBrother(PhysicsAttributes physicsAttribute) {
 	super(physicsAttribute);
 	setTag("HammerBrother");
+	addAttribute("hitPoints", 1);
 	setImages(VoogaUtilities.getImages(IMAGE_FILE, 1, 1));
 	getPhysicsAttribute().setMovable(true);
 	addPossibleState("Jump", new JumpState(this, 2, 150));
