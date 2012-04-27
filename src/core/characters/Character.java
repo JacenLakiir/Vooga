@@ -60,10 +60,13 @@ public class Character extends GameElement {
 	}
 
     public void updateAbilities() {
+        List<CollectibleItem> activeInventory = new ArrayList<CollectibleItem>();
         for (CollectibleItem item : inventory.getInventory()) {
             if (item.isInUse())
-                item.updatePlayerAttributes(this);
+                activeInventory.add(item);
         }
+        for (CollectibleItem item : activeInventory)
+            item.updatePlayerAttributes(this);
     }
 
     public void updateState (long milliSec)

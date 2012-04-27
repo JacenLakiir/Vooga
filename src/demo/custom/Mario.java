@@ -27,7 +27,7 @@ public class Mario extends Character {
 
     public Mario(GameObject game, PhysicsAttributes physicsAttribute) {
         super(game, physicsAttribute);
-        setImages(game.getImages(IMAGE_FILE, 1, 1));
+        setImages(VoogaUtilities.getImages(IMAGE_FILE, 1, 1));
         resetStrength();
         setMaximumSpeedInX(0.8);
         jumpTime = 220;
@@ -35,8 +35,8 @@ public class Mario extends Character {
         jumpTimer.setActive(false);
         reversed = false;
         addAttribute("hitPoints", 10);
-		addAttribute("points", 0);
-		addAttribute("lives", 3);
+        addAttribute("points", 0);
+        addAttribute("lives", 3);
         setTag("Mario");
     }
 
@@ -75,15 +75,10 @@ public class Mario extends Character {
         addAcceleration(strengthRight * Math.abs(this.getPhysicsAttribute().getGravitationalAcceleration()), 0);
     }
 
-//    @KeyAnnotation(action = "space")
-//    public SetInUseSetNotInUseItem keySpacePressed() {
-//    	for (CollectibleItem item : this.getMyActiveInventory()) {
-//    		if (item.canSetInUse() && item.isInUse()) {
-//    			return ((FiringWeapon) item).useWeapon();
-//    		}    
-//    	}
-//    	return null;
-//    }
+    @KeyAnnotation(action = "space")
+    public void keySpacePressed() {
+        useWeapon();
+    }
 
     public void specialSkill() {
     }
