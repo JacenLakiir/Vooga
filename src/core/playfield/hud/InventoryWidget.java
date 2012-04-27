@@ -3,6 +3,7 @@ package core.playfield.hud;
 import java.awt.Graphics2D;
 import java.util.List;
 
+import core.items.AutoInUseAutoNotInUseItem;
 import core.items.CollectibleItem;
 
 import com.golden.gamedev.object.GameFont;
@@ -30,6 +31,7 @@ public class InventoryWidget extends HUDWidget {
 				yPos, 100);
 		int i = 0;
 		for (CollectibleItem item : myInv) {
+			if (item instanceof AutoInUseAutoNotInUseItem) continue;
 			g.drawImage(item.getImage(), null, xPos + i*15 +70, yPos);
 			i++;
 		}
