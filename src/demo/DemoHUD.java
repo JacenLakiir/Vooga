@@ -1,17 +1,13 @@
 package demo;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.List;
 
-import com.golden.gamedev.object.background.ColorBackground;
 import com.golden.gamedev.object.background.ImageBackground;
 
 import core.characters.Character;
 import core.characters.ai.MoveState;
 import core.characters.ai.PatrolState;
-import core.collision.GameElementCollision;
-import core.collision.CharacterCollectibleItemCollision;
 import core.configuration.key.KeyAnnotation;
 import core.configuration.key.KeyParser;
 import core.gamestate.Game2D;
@@ -31,9 +27,9 @@ import core.playfield.hud.IntProxy;
 import core.playfield.hud.BarProxy;
 import core.playfield.hud.InventoryProxy;
 import core.playfield.hud.TextWidget;
-import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
 import core.playfield.scroller.ShowPlayfieldGameScroller;
 import core.tiles.*;
+import demo.custom.Boo;
 import demo.custom.DemoKeyAdapter;
 import demo.custom.Goomba;
 import demo.custom.Koopa;
@@ -45,7 +41,6 @@ import demo.custom.Mario;
 @SuppressWarnings("serial")
 public class DemoHUD extends Game2D {
 
-	private AdvancedPlayField myPlayfield;
 	private double endOfPlatform;
 	private Character mario;
 
@@ -56,7 +51,7 @@ public class DemoHUD extends Game2D {
 	public void initResources() {
 
 		// Playfield Init
-		myPlayfield = new AdvancedPlayField(2600, 500, this.getWidth(),
+		myPlayfield = new AdvancedPlayField(3300, 500, this.getWidth(),
 		        this.getHeight());
 		myPlayfield.setBackground(new ImageBackground(
 		        getImage("resources/clouds.png")));
@@ -116,17 +111,17 @@ public class DemoHUD extends Game2D {
 
 		Character goomba1 = new Goomba(this, new PhysicsAttributes());
 		goomba1.addPossibleState("Move", new MoveState(goomba1, 1, true));
-		goomba1.setLocation(800, 400);
+		goomba1.setLocation(800, 407);
 		myPlayfield.addCharacter(goomba1);
 
 		Character goomba2 = new Goomba(this, new PhysicsAttributes());
 		goomba2.addPossibleState("Move", new MoveState(goomba2, 1, true));
-		goomba2.setLocation(900, 400);
+		goomba2.setLocation(900, 407);
 		myPlayfield.addCharacter(goomba2);
 
 		Character goomba3 = new Goomba(this, new PhysicsAttributes());
 		goomba3.addPossibleState("Move", new MoveState(goomba3, 1, true));
-		goomba3.setLocation(1000, 400);
+		goomba3.setLocation(1000, 407);
 		myPlayfield.addCharacter(goomba3);
 
 		Character goomba4 = new Goomba(this, new PhysicsAttributes());
@@ -137,14 +132,15 @@ public class DemoHUD extends Game2D {
 		Tile temp1 = new FrictionlessDecorator(new Tile(this,
 		        new PhysicsAttributes()));
 		temp1.setImages(this.getImages("resources/IceFloor.png", 1, 1));
-		temp1.setLocation(600, 440);
-		endOfPlatform = temp1.getX() * 50 + temp1.getWidth() - 30;
+		temp1.setLocation(1200, 440);
 		myPlayfield.addSetting(temp1);
-
-		Tile temp2 = new Tile(this, new PhysicsAttributes());
-		temp2.setImages(this.getImages("resources/Bar.png", 1, 1));
-		temp2.setLocation(0, 440);
-		myPlayfield.addSetting(temp2);
+		
+		for(int i=0;i<2;i++){
+		    Tile temp2 = new Tile(this, new PhysicsAttributes());
+		    temp2.setImages(this.getImages("resources/Bar.png", 1, 1));
+		    temp2.setLocation(temp2.getWidth()*i, 440);
+		    myPlayfield.addSetting(temp2);
+        }
 
 		ActionDecorator block2 = new BreakableDecorator(new Tile(this,
 		        new PhysicsAttributes()), 1);
@@ -152,14 +148,6 @@ public class DemoHUD extends Game2D {
 		block2.setImages(this.getImages("resources/Block2Break.png", 8, 1));
 		block2.setLocation(160, 200);
 		myPlayfield.addSetting(block2);
-
-		ActionDecorator block3 = new PushableDecorator(new Tile(this,
-		        new PhysicsAttributes()));
-		block3.setRightAction(true);
-		block3.setLeftAction(true);
-		block3.setImages(getImages("resources/Block3.png", 1, 1));
-		block3.setLocation(200, 400);
-		myPlayfield.addSetting(block3);
 
 		ItemDecorator block1 = new ItemDecorator(new Tile(this,
 		        new PhysicsAttributes()));
@@ -279,20 +267,22 @@ public class DemoHUD extends Game2D {
 		middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
 		myPlayfield.addSetting(middleBar);
 
-		for (int i = 0; i < 4; i++) {
-			FallingDecorator fallingBar = new FallingDecorator(new Tile(this,
-			        new PhysicsAttributes()), 500);
-			fallingBar.setLocation(1200 + i * 150, 350);
+		Character boo = new Boo(this, new PhysicsAttributes(), mario);
+		boo.setLocation(2500, 150);
+		myPlayfield.addCharacter(boo);
+		
+		for (int i = 0; i < 4; i++){
+			FallingDecorator fallingBar = new FallingDecorator(new Tile(this, new PhysicsAttributes()), 2000);
+			fallingBar.setLocation(1800+i*150, 350);
 			fallingBar.setTopAction(true);
 			fallingBar.setImages(getImages("resources/Bar2.png", 1, 1));
 			myPlayfield.addSetting(fallingBar);
 		}
-
-		for (int i = 0; i < 3; i++) {
-			MovingDecorator movingBar = new MovingDecorator(new Tile(this,
-			        new PhysicsAttributes()));
-			movingBar.setLocation(1800 + i * 150, 200 + i * 75);
-			movingBar.setEndLocation(1800 + i * 150, 400);
+		
+		for (int i = 0; i < 3; i++){
+			MovingDecorator movingBar = new MovingDecorator(new Tile(this, new PhysicsAttributes()));
+			movingBar.setLocation(2400 + i*150, 200+i*75);
+			movingBar.setEndLocation(2400+i*150, 400);
 			movingBar.setMoveSpeed(0.05);
 			movingBar.setImages(getImages("resources/Bar2.png", 1, 1));
 			myPlayfield.addSetting(movingBar);
@@ -301,7 +291,7 @@ public class DemoHUD extends Game2D {
 		for (int i = 0; i < 5; i++) {
 			Tile temp3 = new Tile(this, new PhysicsAttributes());
 			temp3.setImages(this.getImages("resources/Platform.png", 1, 1));
-			temp3.setLocation(2300 + temp3.getWidth() * i, 300);
+			temp3.setLocation(2900+temp3.getWidth()*i, 300);
 			myPlayfield.addSetting(temp3);
 		}
 
@@ -309,7 +299,7 @@ public class DemoHUD extends Game2D {
 		flag.setImages(getImages("resources/Flag.png", 4, 1));
 		flag.setLoopAnim(true);
 		flag.setAnimate(true);
-		flag.setLocation(2500, 300 - flag.getHeight());
+		flag.setLocation(3100, 300-flag.getHeight());
 		endOfPlatform = flag.getX();
 		myPlayfield.addSetting(flag);
 

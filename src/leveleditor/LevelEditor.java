@@ -151,14 +151,16 @@ public class LevelEditor extends JFrame {
 		    myPhysicsAttributes = (PhysicsAttributes) clazz.newInstance();
 		    for (Field f: myPhysicsAttributes.getClass().getDeclaredFields()) {
 			f.setAccessible(true);
-			if (f.isAnnotationPresent(ModifiableMap.class)) {
+			if (f.isAnnotationPresent(Modifiable.class)) {
+			    if (!f.getAnnotation(Modifiable.class).type().equals("Map") ||
+				    !f.getAnnotation(Modifiable.class).classification().equals("Physics"))
+				return;
 			    @SuppressWarnings("unchecked")
 			    Map<String, Serializable> dummymap = 
 				    (Map<String, Serializable>) f.get(myPhysicsAttributes);
 			    myDefaultPhysicsAttributeMap = 
 				    SpriteAttribute.convertkeyToAttribute(dummymap,
-					    ((ModifiableMap)f.getAnnotation(ModifiableMap.class))
-						.classification());
+					    f.getAnnotation(Modifiable.class).classification());
 			    return;
 			}
 		    }
