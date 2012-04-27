@@ -14,7 +14,7 @@ public class ShowPlayfieldGameScroller extends GameScroller
         myBackground.setLocation(xPos, 0);
         xPos += 5;
         // After scroll, change to normal screenscroller
-        if (xPos > this.myBackground.getWidth() - 100) {
+        if (xPos > this.myBackground.getWidth() - 400) {
         	GameScroller newgs = new KeepLeftFirstPlayerGameScroller();
     		newgs.setPF(myPF);
     		newgs.setBackground(myBackground);
