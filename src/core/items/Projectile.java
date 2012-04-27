@@ -14,9 +14,10 @@ public class Projectile extends SetInUseSetNotInUseItem{
 	    setImages(VoogaUtilities.getImages(IMAGE_FILE, 4, 1));
 	    setLoopAnim(true);
 	    setAnimate(true);
+	    getPhysicsAttribute().setMovable(false);
 	    setTag("Projectile");
 	    addAttribute("hitPoints", -2);
-	    setActive(true);
+	    setActive(false);
 	}
 	
 }

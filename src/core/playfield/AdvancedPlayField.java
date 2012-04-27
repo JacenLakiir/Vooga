@@ -134,6 +134,7 @@ public class AdvancedPlayField extends PlayField implements Serializable {
 
 	public void setGameScroller(GameScroller gs) {
 		gamescroller = gs;
+		gs.setPF(this);
 		gs.setBackground(this.getBackground());
 		gs.setPlayers(Players);
 	}

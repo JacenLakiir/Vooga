@@ -154,15 +154,20 @@ public class Character extends GameElement {
 		return myPossibleStates.values();
 	}
 	
-	public void useWeapon() {
+	public Projectile useWeapon() {
 	    for (CollectibleItem item : inventory.getInventory()) {
 	        if (item instanceof Weapon && item.isInUse()) {
 	            Projectile p = ((Weapon) item).useWeapon();
+	            p.setActive(true);
+
 	            p.setLocation(getX(), getY());
-	            p.setSpeed(getDirection() * 0.2, 0);
-	            myProjectiles.add(p);
+	            p.setSpeed(0.2, 0);
+//	            myProjectiles.add(p);
+	            System.out.println(p.toString());
+	            return p;
 	        }    
 	    }
+	    return null;
 	}
 
 }
