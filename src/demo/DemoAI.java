@@ -60,9 +60,9 @@ public class DemoAI extends Game2D
         addKeyListeners(this);
         addMouseListeners(mario);
         mario.setLocation(25, 400);
-        mario.addAttribute("points", 0);
-        mario.addAttribute("hitPoints", 10);
-        mario.addAttribute("lives", 3);
+//        mario.addAttribute("points", 0);
+//        mario.addAttribute("hitPoints", 10);
+//        mario.addAttribute("lives", 3);
         myPlayfield.addPlayer(mario);
         
 //        Character goomba1 = new Goomba(this, new PhysicsAttributes());
