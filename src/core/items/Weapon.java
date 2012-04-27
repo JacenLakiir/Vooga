@@ -12,8 +12,15 @@ public class Weapon extends SetInUseSetNotInUseItem
         setIsInUse(true);
     }
     
-    public Projectile useWeapon() {
-        return new Projectile(getGame(), new PhysicsAttributes());
+    public void useWeapon(double x, double y) {
+    	System.out.println(x+ "moving!" +y);
+    	setActive(true);
+    	setLocation(x,y);
+    	setSpeed(.2,0);
+    	setLoopAnim(true);
+    	setAnimate(true);
+    	getPhysicsAttribute().setMovable(false);
+    	
     }
 
 }

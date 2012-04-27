@@ -11,13 +11,21 @@ public class Projectile extends SetInUseSetNotInUseItem{
     
 	public Projectile(GameObject game, PhysicsAttributes physicsAttribute) {
 	    super(game, physicsAttribute);
-	    setImages(VoogaUtilities.getImages(IMAGE_FILE, 4, 1));
-	    setLoopAnim(true);
-	    setAnimate(true);
-	    getPhysicsAttribute().setMovable(false);
-	    setTag("Projectile");
-	    addAttribute("hitPoints", -2);
 	    setActive(false);
+	    useWeapon();
+//	    setImages(VoogaUtilities.getImages(IMAGE_FILE, 4, 1));
+//	    setLoopAnim(true);
+//	    setAnimate(true);
+//	    getPhysicsAttribute().setMovable(false);
+//	    setTag("Projectile");
+//	    addAttribute("hitPoints", -2);
+//	    setActive(false);
+	}
+	
+	public Projectile useWeapon() {
+		this.setActive(true);
+		this.setSpeed(.2,0);
+		return this;
 	}
 	
 }

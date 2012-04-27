@@ -225,7 +225,7 @@ public class DemoHUD extends Game2D {
 		spike2.getPhysicsAttribute().setMovable(false);
 		spike2.setLocation(800, 427);
 		spike2.setActive(true);
-		spike2.addAttribute("hitPoints", mario.getBaseValue("hitPoints"));
+		spike2.addAttribute("hitPoints", -1*mario.getBaseValue("hitPoints"));
 		myPlayfield.addItem(spike2);
 
 		CollectibleItem spike3 = new AutoInUseAutoNotInUseItem(this,
@@ -234,7 +234,7 @@ public class DemoHUD extends Game2D {
 		spike3.getPhysicsAttribute().setMovable(false);
 		spike3.setLocation(2300, 285);
 		spike3.setActive(true);
-		spike3.addAttribute("hitPoints", mario.getBaseValue("hitPoints"));
+		spike3.addAttribute("hitPoints", -1*mario.getBaseValue("hitPoints"));
 		myPlayfield.addItem(spike3);
 
 		Weapon fireball = new Weapon(this, new PhysicsAttributes());
@@ -245,15 +245,6 @@ public class DemoHUD extends Game2D {
 		fireball.setLocation(350, 400);
 		myPlayfield.addItem(fireball);
 
-		Weapon bullet = new Weapon(this, new PhysicsAttributes());
-		bullet.setImages(this.getImages("resources/Fireball.png", 4, 1));
-		bullet.setLoopAnim(true);
-		bullet.setAnimate(true);
-		bullet.getPhysicsAttribute().setMovable(false);
-		bullet.setActive(false);
-		bullet.setLocation(mario.getX(), mario.getY());
-		myPlayfield.addItem(bullet);
-		
 		AutoNotInUseItem poison = new AutoInUseAutoNotInUseItem(this,
 		        new PhysicsAttributes());
 		poison.setImages(this.getImages("resources/Poison.png", 1, 1));
