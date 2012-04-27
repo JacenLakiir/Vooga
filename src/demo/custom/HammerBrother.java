@@ -51,6 +51,7 @@ public class HammerBrother extends Character {
 
     @Override
     public void afterHitFromBottomBy(GameElement e, String tag) {
-	((JumpState) getPossibleState("Jump")).notifyHitFromBottom();
+        if (!tag.equals("Item"))
+            ((JumpState) getPossibleState("Jump")).notifyHitFromBottom();
     }
 }
