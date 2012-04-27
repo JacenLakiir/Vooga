@@ -4,17 +4,26 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import com.golden.gamedev.object.background.ColorBackground;
 import core.characters.Character;
-import core.characters.ai.*;
-import core.collision.*;
+import core.characters.ai.MoveState;
+import core.characters.ai.PatrolState;
 import core.configuration.key.KeyAnnotation;
 import core.configuration.key.KeyParser;
-import core.gamestate.*;
-import core.items.*;
+import core.gamestate.Game2D;
+import core.gamestate.GameEngine2D;
+import core.items.AutoInUseAutoNotInUseItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
-import core.playfield.*;
-import core.playfield.scroller.*;
-import core.tiles.*;
-import demo.custom.*;
+import core.playfield.AdvancedPlayField;
+import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
+import core.tiles.ActionDecorator;
+import core.tiles.BreakableDecorator;
+import core.tiles.FallingDecorator;
+import core.tiles.ItemDecorator;
+import core.tiles.MovingDecorator;
+import core.tiles.Tile;
+import demo.custom.DemoKeyAdapter;
+import demo.custom.Goomba;
+import demo.custom.Koopa;
+import demo.custom.Mario;
 
 /**
  * @author Siyang Chen

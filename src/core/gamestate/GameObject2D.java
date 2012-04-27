@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.engine.timer.SystemTimer;
-
 import core.configuration.key.Key;
 import core.configuration.mouse.Mouse;
 

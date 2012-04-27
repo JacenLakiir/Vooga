@@ -2,9 +2,7 @@ package core.configuration.mouse;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.golden.gamedev.GameObject;
-
 import core.configuration.key.InputObserver;
 public abstract class Mouse {
     private List<InputObserver> observers;

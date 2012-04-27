@@ -5,13 +5,15 @@ package io;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
-import com.golden.gamedev.object.*;
-import com.golden.gamedev.object.background.*;
+import com.golden.gamedev.object.Background;
+import com.golden.gamedev.object.PlayField;
+import com.golden.gamedev.object.Sprite;
+import com.golden.gamedev.object.SpriteGroup;
+import com.golden.gamedev.object.background.ImageBackground;
 import core.playfield.scroller.GameScroller;
 
 

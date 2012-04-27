@@ -15,7 +15,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -31,7 +30,6 @@ import javax.swing.JTree;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
-
 import core.characters.GameElement;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 

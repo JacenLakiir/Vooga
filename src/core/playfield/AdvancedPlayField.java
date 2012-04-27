@@ -57,7 +57,6 @@ public class AdvancedPlayField extends PlayField implements Serializable
                 new Background() }));
         width = PlayFieldWidth;
         height = PlayFieldHeight;
-        GameElement.setGameStatics(width, height);
         Setting = this.addGroup(new AdvancedSpriteGroup("Setting Group"));
         Items = this.addGroup(new AdvancedSpriteGroup("Setting Group"));
         Characters = this.addGroup(new AdvancedSpriteGroup("Character Group"));

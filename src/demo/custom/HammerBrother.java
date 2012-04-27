@@ -1,10 +1,10 @@
 package demo.custom;
 
+import leveleditor.VoogaUtilities;
 import com.golden.gamedev.GameObject;
 import core.characters.Character;
 import core.characters.GameElement;
 import core.characters.ai.JumpState;
-import leveleditor.VoogaUtilities;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 /**

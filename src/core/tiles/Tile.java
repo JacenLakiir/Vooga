@@ -8,7 +8,6 @@
 package core.tiles;
 
 import com.golden.gamedev.GameObject;
-
 import core.characters.GameElement;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 

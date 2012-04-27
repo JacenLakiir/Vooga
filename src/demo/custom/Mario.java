@@ -1,12 +1,10 @@
 package demo.custom;
 
 import leveleditor.VoogaUtilities;
-
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Timer;
-
-import core.characters.GameElement;
 import core.characters.Character;
+import core.characters.GameElement;
 import core.configuration.key.KeyAnnotation;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 

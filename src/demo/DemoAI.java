@@ -1,19 +1,16 @@
 package demo;
 
-import java.awt.Color;	
+import java.awt.Color;
 import java.awt.Graphics2D;
 import com.golden.gamedev.object.background.ColorBackground;
-
 import core.characters.Character;
 import core.characters.ai.HomingState;
 import core.characters.ai.MoveState;
-import core.collision.GameElementCollision;
-import core.collision.CharacterCollectibleItemCollision;
 import core.configuration.key.KeyAnnotation;
 import core.configuration.key.KeyParser;
 import core.configuration.mouse.MouseInput;
-import core.gamestate.GameEngine2D;
 import core.gamestate.Game2D;
+import core.gamestate.GameEngine2D;
 import core.items.AutoInUseAutoNotInUseItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import core.playfield.AdvancedPlayField;

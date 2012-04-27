@@ -4,7 +4,7 @@
 package leveleditor;
 
 import javax.swing.JTree;
-import javax.swing.tree.*;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 @SuppressWarnings("serial")
 public class ClassTree extends JTree {

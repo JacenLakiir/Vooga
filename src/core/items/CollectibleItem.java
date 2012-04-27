@@ -2,9 +2,7 @@ package core.items;
 
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
-
 import com.golden.gamedev.GameObject;
-
 import core.characters.Character;
 import core.characters.GameElement;
 import core.physicsengine.physicsplugin.PhysicsAttributes;

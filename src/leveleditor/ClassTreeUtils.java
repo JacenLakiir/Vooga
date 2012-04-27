@@ -3,14 +3,21 @@
  */
 package leveleditor;
 
-import java.util.*;
-import java.util.zip.*;
-import java.io.*;
-import java.net.*;
-import java.util.regex.*;
+import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.regex.Pattern;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 import javax.swing.JTree;
-import javax.swing.tree.*;
-
+import javax.swing.tree.DefaultMutableTreeNode;
 import core.characters.GameElement;
 
 public class ClassTreeUtils {

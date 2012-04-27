@@ -1,11 +1,10 @@
 package io;
 
-import java.util.*;
-
+import io.SpriteWrapper.SpriteGroupIdentifier;
+import java.util.HashMap;
+import java.util.Map;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.SpriteGroup;
-import io.SpriteWrapper.SpriteGroupIdentifier;
-
 import core.playfield.AdvancedPlayField;
 
 public class LevelLoader {

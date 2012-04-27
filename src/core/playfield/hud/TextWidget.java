@@ -1,10 +1,7 @@
 package core.playfield.hud;
 
 import java.awt.Graphics2D;
-
 import com.golden.gamedev.object.GameFont;
-
-import core.playfield.hud.StringProxy;
 
 public class TextWidget extends HUDWidget {
 

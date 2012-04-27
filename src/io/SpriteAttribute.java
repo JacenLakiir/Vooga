@@ -4,7 +4,8 @@
 package io;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SpriteAttribute implements Comparable<SpriteAttribute>, Serializable {
 
