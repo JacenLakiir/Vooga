@@ -1,13 +1,8 @@
 package core.gamestate;
 
-import core.playfield.AdvancedPlayField;
-
 public abstract class Game2D extends GameObject2D{
     private Class<? extends GameObject2D> mclass;
     private Class<? extends GameObject2D> over;
-    
-    protected AdvancedPlayField myPlayfield;
-    
     public Game2D(GameEngine2D engine) {
         super(engine);
         registerNextLevel();
