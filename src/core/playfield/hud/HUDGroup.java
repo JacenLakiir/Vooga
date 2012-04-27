@@ -15,8 +15,6 @@ public class HUDGroup implements Serializable
 {
     private final static long serialVersionUID = 912402285760541314L;
     
-    public final static int TOP_LEFT = 0, TOP_RIGHT = 1, BOTTOM_LEFT = 2, BOTTOM_RIGHT = 3;
-    
     private GameFont font =
         new SystemFont(new Font("Monospaced", Font.BOLD, 12));
     private ArrayList<HUDWidget> myWidgets = new ArrayList<HUDWidget>();
