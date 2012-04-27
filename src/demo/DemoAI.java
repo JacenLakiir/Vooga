@@ -147,30 +147,6 @@ public class DemoAI extends Game2D
         wall2.setImages(this.getImages("resources/Wall.png", 1, 1));
         wall2.setLocation(620, 0);
         myPlayfield.addSetting(wall2);
-        
-        myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-                                      myPlayfield.getItems(),
-                                      new CharacterCollectibleItemCollision());
-        
-        // currently no way to check all characters against setting in one collision
-        
-        // tried adding 'mario' to player and character spritegroups and then
-        // checking characters against setting, but physics didn't work
-        myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-                                      myPlayfield.getSetting(),
-                                      new GameElementCollision());
-        myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-                                      myPlayfield.getSetting(),
-                                      new GameElementCollision());
-        
-        // same flaws as the two collisions above and uses GameElementCollision
-        // since no PlayerCharacterCollision or CharacterCharacterCollision exists
-        myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-                                      myPlayfield.getCharacters(),
-                                      new GameElementCollision());
-        myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-                                      myPlayfield.getCharacters(),
-                                      new GameElementCollision());
     }
     
     @Override

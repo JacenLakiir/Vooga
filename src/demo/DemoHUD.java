@@ -58,27 +58,6 @@ public class DemoHUD extends Game2D {
 		myPlayfield.setBackground(new ColorBackground(Color.gray));
 		myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
 
-		// Collisions
-		myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-		        myPlayfield.getSetting(), new GameElementCollision());
-
-		myPlayfield
-		        .addCollisionGroup(myPlayfield.getPlayers(),
-		                myPlayfield.getItems(),
-		                new CharacterCollectibleItemCollision());
-
-		myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-		        myPlayfield.getSetting(), new GameElementCollision());
-
-		myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-		        myPlayfield.getCharacters(), new GameElementCollision());
-
-		myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-		        myPlayfield.getCharacters(), new GameElementCollision());
-
-		myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-		        myPlayfield.getItems(), new GameElementCollision());
-
 		// Sprite Init / Or load funcitonality
 		// SpriteGroups already exist in AdvancedPlayfield
 		// use addItem(sprite), addPlayer(), addCharacter(), or addSetting()
@@ -106,7 +85,7 @@ public class DemoHUD extends Game2D {
 				return myPlayfield.getPlayer().getAttributeValue("lives")
 				        .intValue();
 			}
-		}), HUD.TOP_LEFT);
+		}), HUD.TOP_CENTER);
 
 		myPlayfield.addHUDWidget(new BarWidget("HP", new BarProxy() {
 			public double get() {
@@ -118,19 +97,11 @@ public class DemoHUD extends Game2D {
 			}
 		}), HUD.TOP_CENTER);
 		
-		myPlayfield.addHUDWidget(new IconWidget("Lives", this
-		        .getImage("resources/life.png"), new IntProxy() {
-			public int get() {
-				return myPlayfield.getPlayer().getAttributeValue("lives")
-				        .intValue();
-			}
-		}), HUD.TOP_RIGHT);
-		
 		myPlayfield.addHUDWidget(new InventoryWidget("Inventory", new InventoryProxy() {
 			public List<CollectibleItem> get() {
 				return myPlayfield.getPlayer().getInventory();
 			}
-		}), HUD.BOTTOM_RIGHT);
+		}), HUD.TOP_RIGHT);
 
 		Character koopa1 = new Koopa(this, new PhysicsAttributes());
 		koopa1.addPossibleState("Move", new MoveState(koopa1, 1, true));
