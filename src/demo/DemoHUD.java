@@ -93,7 +93,6 @@ public class DemoHUD extends Game2D {
 
 		myPlayfield.addHUDWidget(new BarWidget("HP", new BarProxy() {
 			public double get() {
-				System.out.println(myPlayfield.getPlayer().getAttributeValue("hitPoints"));
 				return myPlayfield.getPlayer().getAttributeValue("hitPoints");
 			}
 
