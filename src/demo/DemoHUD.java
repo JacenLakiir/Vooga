@@ -212,7 +212,7 @@ public class DemoHUD extends Game2D {
 		        new PhysicsAttributes());
 		spike2.setImages(this.getImages("resources/Spikes.png", 1, 1));
 		spike2.getPhysicsAttribute().setMovable(false);
-		spike2.setLocation(800, 427);
+		spike2.setLocation(1100, 427);
 		spike2.setActive(true);
 		spike2.addAttribute("hitPoints", -1*mario.getBaseValue("hitPoints"));
 		myPlayfield.addItem(spike2);
@@ -221,7 +221,7 @@ public class DemoHUD extends Game2D {
 		        new PhysicsAttributes());
 		spike3.setImages(this.getImages("resources/Spikes.png", 1, 1));
 		spike3.getPhysicsAttribute().setMovable(false);
-		spike3.setLocation(2300, 285);
+		spike3.setLocation(3000, 285);
 		spike3.setActive(true);
 		spike3.addAttribute("hitPoints", -1*mario.getBaseValue("hitPoints"));
 		myPlayfield.addItem(spike3);
