@@ -1,21 +1,19 @@
 package core.collision;
 
+import core.characters.Character;
+
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.collision.CollisionBounds;
 
+public class SideScrollerBoundsCollision extends CollisionBounds {
 
-public class SideScrollerBoundsCollision extends CollisionBounds
-{
+	public SideScrollerBoundsCollision(Background arg0) {
+		super(arg0);
+		// TODO Auto-generated constructor stub
+	}
 
-    public SideScrollerBoundsCollision (Background arg0)
-    {
-        super(arg0);
-        // TODO Auto-generated constructor stub
-    }
-
-
-    @Override
+	@Override
     public void collided (Sprite arg0)
     {
         if (isCollisionSide(LEFT_COLLISION))
@@ -32,8 +30,11 @@ public class SideScrollerBoundsCollision extends CollisionBounds
         }
         else if (isCollisionSide(BOTTOM_COLLISION))
         {
-            System.out.println("DEAD: Out of Bounds");
+        	if (Character.class.isInstance(arg0))
+        	{
+        		Character c = (Character) arg0;
+        		c.updateAttributeValue("hitPoints", -1 * c.getAttributeValue("hitPoints"));
+        	}
         }
     }
-
 }
