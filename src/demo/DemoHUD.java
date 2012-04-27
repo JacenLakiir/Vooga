@@ -176,12 +176,12 @@ public class DemoHUD extends Game2D {
 		myPlayfield.addSetting(block1);
 
 		for (int i = 0; i < 10; i++) {
-			CollectibleItem coin = new AutoInUseAutoNotInUseItem(this,
-			        new PhysicsAttributes());
-			coin.setImages(this.getImages("resources/Coin.png", 1, 1));
-			coin.addAttribute("points", 3);
-			block1.addItem(coin);
-			myPlayfield.addItem(coin);
+			AutoInUseAutoNotInUseItem coin = new AutoInUseAutoNotInUseItem(this, new PhysicsAttributes());
+	        coin.setImages(this.getImages("resources/Coin.png", 1, 1));
+	        coin.setActive(false);
+	        coin.addAttribute("points", 3);
+	        block1.addItem(coin);
+	        myPlayfield.addItem(coin);
 		}
 
 		CollectibleItem coin2 = new AutoInUseAutoNotInUseItem(this,
