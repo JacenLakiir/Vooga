@@ -1,6 +1,5 @@
 package demo.custom;
 
-import leveleditor.VoogaUtilities;
 import io.annotations.Modifiable;
 
 import com.golden.gamedev.GameObject;

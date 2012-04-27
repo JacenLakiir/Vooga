@@ -15,6 +15,7 @@ import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ParallaxBackground;
 import core.characters.Character;
+import core.collision.CharacterCollectibleItemCollision;
 import core.collision.GameElementCollision;
 import core.collision.SideScrollerBoundsCollision;
 import core.items.CollectibleItem;
@@ -53,12 +54,34 @@ public class AdvancedPlayField extends PlayField implements Serializable {
 		physicsPlugins = new ArrayList<PhysicsPlugin>();
 		initializeDefaultPhysicsPlugins();
 
-		// Add Bounds Collsion
+		// Add Collision Managers
+		initCollisions();
+
+		// Init HUD
+		hud = new HUD(ScreenWidth, ScreenHeight);
+	}
+
+	public void initCollisions() {
 		this.addCollisionGroup(this.getPlayers(), null,
 				new SideScrollerBoundsCollision(this.getBackground()));
 
-		// hud = new HUD(new VerticalFlowLayout(100, 100));
-		hud = new HUD(ScreenWidth, ScreenHeight);
+		this.addCollisionGroup(this.getPlayers(), this.getSetting(),
+				new GameElementCollision());
+
+		this.addCollisionGroup(this.getPlayers(), this.getItems(),
+				new CharacterCollectibleItemCollision());
+
+		this.addCollisionGroup(this.getCharacters(), this.getSetting(),
+				new GameElementCollision());
+
+		this.addCollisionGroup(this.getPlayers(), this.getCharacters(),
+				new GameElementCollision());
+
+		this.addCollisionGroup(this.getCharacters(), this.getCharacters(),
+				new GameElementCollision());
+
+		this.addCollisionGroup(this.getCharacters(), this.getItems(),
+				new GameElementCollision());
 	}
 
 	public SpriteGroup addGroup(SpriteGroup group) {

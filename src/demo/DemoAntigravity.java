@@ -116,23 +116,7 @@ public class DemoAntigravity extends Game2D {
         wall2.setImages(this.getImages("resources/Wall.png", 1, 1));
         wall2.setLocation(620, 0);
         myPlayfield.addSetting(wall2);
-        
-        
-        myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-                                      myPlayfield.getItems(),
-                                      new CharacterCollectibleItemCollision());
-        myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-                                      myPlayfield.getSetting(),
-                                      new GameElementCollision());
-        myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-                                      myPlayfield.getSetting(),
-                                      new GameElementCollision());
-        myPlayfield.addCollisionGroup(myPlayfield.getPlayers(),
-                                      myPlayfield.getCharacters(),
-                                      new GameElementCollision());
-        myPlayfield.addCollisionGroup(myPlayfield.getCharacters(),
-                                      myPlayfield.getCharacters(),
-                                      new GameElementCollision());
+
     }
     
     @Override
