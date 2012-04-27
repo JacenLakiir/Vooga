@@ -17,7 +17,6 @@ public class CharacterCollectibleItemCollision extends GameElementCollision
     public void collided (Sprite character, Sprite item)
     {
         super.collided(character, item);
-        character.setActive(true);
         item.setActive(false);
         ((CollectibleItem) item).setIsInUse(true);
         ((Character) character).getInventory().add((CollectibleItem) item);

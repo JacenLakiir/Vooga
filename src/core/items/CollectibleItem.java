@@ -23,6 +23,7 @@ public abstract class CollectibleItem extends GameElement {
 	public CollectibleItem(GameObject game, PhysicsAttributes physicsAttribute) {
 		super(game, physicsAttribute);
 		myAttributeValues = new HashMap<String, Double>();
+		setTag("Item");
 	}
 
 	public CollectibleItem() {
