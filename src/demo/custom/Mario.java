@@ -78,14 +78,6 @@ public class Mario extends Character {
         addAcceleration(strengthRight * Math.abs(this.getPhysicsAttribute().getGravitationalAcceleration()), 0);
     }
 
-    @KeyAnnotation(action = "space")
-    public void keySpacePressed() {
-        useWeapon();
-    }
-
-    public void specialSkill() {
-    }
-
     public void giveStrengthUp() {
         if (!jumpEnable)
             return;

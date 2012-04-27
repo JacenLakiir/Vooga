@@ -15,7 +15,7 @@ import core.gamestate.GameEngine2D;
 import core.items.AutoInUseAutoNotInUseItem;
 import core.items.AutoNotInUseItem;
 import core.items.CollectibleItem;
-import core.items.Weapon;
+import core.items.SetInUseSetNotInUseItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import core.playfield.AdvancedPlayField;
 import core.playfield.hud.BarWidget;
@@ -226,7 +226,7 @@ public class DemoHUD extends Game2D {
 		spike3.addAttribute("hitPoints", -1*mario.getBaseValue("hitPoints"));
 		myPlayfield.addItem(spike3);
 
-		Weapon fireball = new Weapon(this, new PhysicsAttributes());
+		CollectibleItem fireball = new SetInUseSetNotInUseItem(this, new PhysicsAttributes());
 		fireball.setImages(this.getImages("resources/Fireball.png", 4, 1));
 		fireball.setLoopAnim(true);
 		fireball.setAnimate(true);
