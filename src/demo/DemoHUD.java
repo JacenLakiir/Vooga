@@ -32,6 +32,7 @@ import core.playfield.hud.BarProxy;
 import core.playfield.hud.InventoryProxy;
 import core.playfield.hud.TextWidget;
 import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
+import core.playfield.scroller.ShowPlayfieldGameScroller;
 import core.tiles.*;
 import demo.custom.DemoKeyAdapter;
 import demo.custom.Goomba;
@@ -58,7 +59,7 @@ public class DemoHUD extends Game2D {
 		myPlayfield = new AdvancedPlayField(2000, 500, this.getWidth(),
 		        this.getHeight());
 		myPlayfield.setBackground(new ImageBackground(getImage("resources/clouds.png")));
-		myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
+		myPlayfield.setGameScroller(new ShowPlayfieldGameScroller());
 
 		// Sprite Init / Or load funcitonality
 		// SpriteGroups already exist in AdvancedPlayfield
