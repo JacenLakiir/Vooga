@@ -267,11 +267,13 @@ public class DemoHUD extends Game2D {
 			myPlayfield.addSetting(temp3);
 		}
 		
-		Tile pipe = new Tile(this, new PhysicsAttributes());
-		pipe.setImages(getImages("resources/Pipe.png",1,1));
-		pipe.setLocation(2500, 300-pipe.getHeight());
-		endOfPlatform = pipe.getX();
-		myPlayfield.addSetting(pipe);
+		Tile flag = new Tile(this, new PhysicsAttributes());
+		flag.setImages(getImages("resources/Flag.png",4,1));
+		flag.setLoopAnim(true);
+		flag.setAnimate(true);
+		flag.setLocation(2500, 300-flag.getHeight());
+		endOfPlatform = flag.getX();
+		myPlayfield.addSetting(flag);
 		
 	}
 
