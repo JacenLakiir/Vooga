@@ -1,12 +1,11 @@
 package demo.custom;
 
+import leveleditor.VoogaUtilities;
 import com.golden.gamedev.GameObject;
 import core.characters.Character;
 import core.characters.GameElement;
 import core.characters.ai.DeadState;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
-import demo.custom.ShellState;
-import leveleditor.VoogaUtilities;
 
 /**
  * @author Eric Mercer (JacenLakiir)

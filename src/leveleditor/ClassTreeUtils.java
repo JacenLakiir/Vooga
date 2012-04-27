@@ -3,26 +3,35 @@
  */
 package leveleditor;
 
-import java.util.*;
-import java.util.zip.*;
-import java.io.*;
-import java.net.*;
-import java.util.regex.*;
-import javax.swing.JTree;
-import javax.swing.tree.*;
+import io.annotations.Decorator;
 
+import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.regex.Pattern;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
 import core.characters.GameElement;
 
 public class ClassTreeUtils {
 
-    public static JTree getClassTree(String packageName) {
+    public static JTree getClassTree(String packageNames) {
 	Map<Class<?>, DefaultMutableTreeNode> nodemap = new HashMap<Class<?>, DefaultMutableTreeNode>();
 	Set<Class<?>> seen = new HashSet<Class<?>>();
 	DefaultMutableTreeNode root = new DefaultMutableTreeNode(
 		GameElement.class);
 	nodemap.put(GameElement.class, root);
 	JTree classtree = new ClassTree(root);
-	Class<?>[] classes = getClassesInPackages(packageName, null);
+	Class<?>[] classes = getClassesInPackages(packageNames, null);
 	boolean flag = false;
 	while (!flag) {
 	    flag = true;
@@ -39,6 +48,19 @@ public class ClassTreeUtils {
 	    }
 	}
 	return classtree;
+    }
+    
+    public static Set<Class<?>> getDecorators(String packageNames, Class<?> target) {
+	Class<?>[] classes = getClassesInPackages(packageNames, null);
+	Set<Class<?>> decorators = new HashSet<Class<?>>();
+	for (Class<?> clazz: classes) {
+	    if (clazz.isAnnotationPresent(Decorator.class)) {
+		Decorator decorator = clazz.getAnnotation(Decorator.class);
+		if (!decorator.target().equals(target)) continue;
+		decorators.add(clazz);
+	    }
+	}
+	return decorators;
     }
 
     /**

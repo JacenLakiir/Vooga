@@ -6,16 +6,13 @@ package core.tiles;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.Timer;
-
 import core.characters.GameElement;
 import core.physicsengine.coordinatesystem.Acceleration;
 import core.physicsengine.coordinatesystem.Displacement;
-import core.physicsengine.coordinatesystem.DuringAcceleration;
 import core.physicsengine.coordinatesystem.Velocity;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 

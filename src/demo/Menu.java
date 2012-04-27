@@ -5,14 +5,12 @@ import io.SimpleGameToTestLevelEditor;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-
+import com.golden.gamedev.object.Background;
+import com.golden.gamedev.object.background.ImageBackground;
 import core.configuration.key.KeyAnnotation;
 import core.configuration.key.KeyParser;
 import core.gamestate.GameEngine2D;
 import core.gamestate.MenuGameObject;
-
-import com.golden.gamedev.object.Background;
-import com.golden.gamedev.object.background.ImageBackground;
 import demo.custom.DemoKeyAdapter;
 
 /**

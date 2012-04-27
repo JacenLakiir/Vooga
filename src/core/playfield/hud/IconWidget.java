@@ -2,9 +2,6 @@ package core.playfield.hud;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-
-import core.playfield.hud.IntProxy;
-
 import com.golden.gamedev.object.GameFont;
 
 public class IconWidget extends HUDWidget {

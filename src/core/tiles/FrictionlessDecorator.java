@@ -1,5 +1,8 @@
 package core.tiles;
 
+import io.annotations.Decorator;
+
+@Decorator(target = Tile.class)
 public class FrictionlessDecorator extends TileDecorator{
 
 	public FrictionlessDecorator(Tile decoratedPlatform) {

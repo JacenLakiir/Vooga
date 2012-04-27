@@ -7,4 +7,8 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface DefaultPhysicsAttribute {}
+public @interface Decorator {
+    
+    public Class<?> target();
+    
+}

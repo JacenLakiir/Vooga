@@ -4,8 +4,8 @@ package demo;
 import io.SimpleGameToTestLevelEditor;
 
 import java.awt.Dimension;
-import core.gamestate.GameEngine2D;
 import com.golden.gamedev.GameLoader;
+import core.gamestate.GameEngine2D;
 
 
 /**

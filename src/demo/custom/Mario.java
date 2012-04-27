@@ -1,12 +1,10 @@
 package demo.custom;
 
 import leveleditor.VoogaUtilities;
-
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Timer;
-
-import core.characters.GameElement;
 import core.characters.Character;
+import core.characters.GameElement;
 import core.configuration.key.KeyAnnotation;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
@@ -55,7 +53,7 @@ public class Mario extends Character {
 
     @KeyAnnotation(action = "sequence")
     public void sequenceKey() {
-        setImages(myGame.getImages("resources/Mushroom.png", 1, 1));
+        setImages(VoogaUtilities.getImages("resources/Mushroom.png", 1, 1));
     }
 
     @KeyAnnotation(action = "up")
@@ -76,14 +74,6 @@ public class Mario extends Character {
     @KeyAnnotation(action = "right")
     public void keyRightPressed() {
         addAcceleration(strengthRight * Math.abs(this.getPhysicsAttribute().getGravitationalAcceleration()), 0);
-    }
-
-    @KeyAnnotation(action = "space")
-    public void keySpacePressed() {
-        useWeapon();
-    }
-
-    public void specialSkill() {
     }
 
     public void giveStrengthUp() {

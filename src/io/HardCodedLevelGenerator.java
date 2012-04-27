@@ -3,13 +3,16 @@
  */
 package io;
 
-import core.characters.*;
+import io.SpriteWrapper.SpriteGroupIdentifier;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import javazoom.jl.player.Player;
 import core.characters.Character;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
-import demo.*;
-import io.SpriteWrapper.SpriteGroupIdentifier;
-import java.util.*;
-import java.io.Serializable;
+import demo.DemoGameEngine;
+import demo.DemoPlayfield;
 
 public class HardCodedLevelGenerator {
     

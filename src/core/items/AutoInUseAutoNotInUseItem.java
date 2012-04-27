@@ -1,7 +1,6 @@
 package core.items;
 
 import com.golden.gamedev.GameObject;
-
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 /**

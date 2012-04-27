@@ -1,10 +1,12 @@
 package core.tiles;
 
+import io.annotations.Decorator;
+
 import java.util.LinkedList;
 import java.util.Queue;
-
 import core.items.CollectibleItem;
 
+@Decorator(target = Tile.class)
 public class ItemDecorator extends ActionDecorator {
     private Queue<CollectibleItem> itemList;
 

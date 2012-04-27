@@ -1,10 +1,11 @@
 package core.tiles;
 
 
+import io.annotations.Decorator;
 import io.annotations.Modifiable;
 import core.characters.GameElement;
 
-
+@Decorator(target = Tile.class)
 public class MovingDecorator extends TileDecorator{
     
 	public MovingDecorator(Tile decoratedPlatform) {

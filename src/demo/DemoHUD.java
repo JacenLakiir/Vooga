@@ -15,7 +15,7 @@ import core.gamestate.GameEngine2D;
 import core.items.AutoInUseAutoNotInUseItem;
 import core.items.AutoNotInUseItem;
 import core.items.CollectibleItem;
-import core.items.Weapon;
+import core.items.SetInUseSetNotInUseItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import core.playfield.AdvancedPlayField;
 import core.playfield.hud.BarWidget;
@@ -212,21 +212,21 @@ public class DemoHUD extends Game2D {
 		        new PhysicsAttributes());
 		spike2.setImages(this.getImages("resources/Spikes.png", 1, 1));
 		spike2.getPhysicsAttribute().setMovable(false);
-		spike2.setLocation(800, 427);
+		spike2.setLocation(1100, 427);
 		spike2.setActive(true);
-		spike2.addAttribute("hitPoints", mario.getBaseValue("hitPoints"));
+		spike2.addAttribute("hitPoints", -1*mario.getBaseValue("hitPoints"));
 		myPlayfield.addItem(spike2);
 
 		CollectibleItem spike3 = new AutoInUseAutoNotInUseItem(this,
 		        new PhysicsAttributes());
 		spike3.setImages(this.getImages("resources/Spikes.png", 1, 1));
 		spike3.getPhysicsAttribute().setMovable(false);
-		spike3.setLocation(2300, 285);
+		spike3.setLocation(3000, 285);
 		spike3.setActive(true);
-		spike3.addAttribute("hitPoints", mario.getBaseValue("hitPoints"));
+		spike3.addAttribute("hitPoints", -1*mario.getBaseValue("hitPoints"));
 		myPlayfield.addItem(spike3);
 
-		Weapon fireball = new Weapon(this, new PhysicsAttributes());
+		CollectibleItem fireball = new SetInUseSetNotInUseItem(this, new PhysicsAttributes());
 		fireball.setImages(this.getImages("resources/Fireball.png", 4, 1));
 		fireball.setLoopAnim(true);
 		fireball.setAnimate(true);
@@ -234,15 +234,6 @@ public class DemoHUD extends Game2D {
 		fireball.setLocation(350, 400);
 		myPlayfield.addItem(fireball);
 
-		Weapon bullet = new Weapon(this, new PhysicsAttributes());
-		bullet.setImages(this.getImages("resources/Fireball.png", 4, 1));
-		bullet.setLoopAnim(true);
-		bullet.setAnimate(true);
-		bullet.getPhysicsAttribute().setMovable(false);
-		bullet.setActive(false);
-		bullet.setLocation(mario.getX(), mario.getY());
-		myPlayfield.addItem(bullet);
-		
 		AutoNotInUseItem poison = new AutoInUseAutoNotInUseItem(this,
 		        new PhysicsAttributes());
 		poison.setImages(this.getImages("resources/Poison.png", 1, 1));

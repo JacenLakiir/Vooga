@@ -7,11 +7,13 @@
 
 package core.tiles;
 
-import com.golden.gamedev.GameObject;
+import io.annotations.Decorable;
 
+import com.golden.gamedev.GameObject;
 import core.characters.GameElement;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
+@Decorable
 public class Tile extends GameElement {
 
     /*

@@ -1,9 +1,11 @@
 package core.tiles;
 
+import io.annotations.Decorator;
 import io.annotations.Modifiable;
-import core.characters.GameElement;
 
-public class PushableDecorator extends ActionDecorator{
+import core.characters.GameElement;
+@Decorator(target = Tile.class)
+public class PushableDecorator extends ActionDecorator {
     
 	@Modifiable(classification = "Gameplay", type = "Individual")
 	private boolean pushed,positiveDirection;

@@ -3,13 +3,22 @@
  */
 package core.tiles;
 
+import io.annotations.Decorator;
+
+
+@Decorator(target = Tile.class)
 public class BreakableDecorator extends ActionDecorator {
 	private boolean broken;
-	private int blockStrength;
+	private int blockStrength = 1;
 
 	public BreakableDecorator(Tile decoratedPlatform, int blockStrength) {
 		super(decoratedPlatform);
 		this.blockStrength = blockStrength;
+		setAnimate(false);
+	}
+	
+	public BreakableDecorator(Tile decoratedPlatform) {
+		super(decoratedPlatform);
 		setAnimate(false);
 	}
 

@@ -1,10 +1,9 @@
 package demo.custom;
 
 import leveleditor.VoogaUtilities;
-
 import com.golden.gamedev.GameObject;
-import core.characters.GameElement;
 import core.characters.Character;
+import core.characters.GameElement;
 import core.characters.ai.HomingState;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 

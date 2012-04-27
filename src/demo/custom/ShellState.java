@@ -1,7 +1,7 @@
 package demo.custom;
 
-import core.characters.ai.State;
 import leveleditor.VoogaUtilities;
+import core.characters.ai.State;
 
 public class ShellState extends State
 {

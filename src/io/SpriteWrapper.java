@@ -3,16 +3,18 @@
  */
 package io;
 
-import io.annotations.*;
-import java.lang.annotation.*;
+import io.annotations.Modifiable;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
 import leveleditor.VoogaUtilities;
 import core.characters.GameElement;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
@@ -101,10 +103,18 @@ public class SpriteWrapper implements Cloneable, Serializable {
 	    curr = curr.getSuperclass();
 	}
     }
-
+    
     private void buildIndividualAttributeMap() {
 	Class<?> curr = myGameElement.getClass();
 	while (true) {
+	    checkAndAddIndividual(curr);
+	    if (curr.equals(GameElement.class))
+		return;
+	    curr = curr.getSuperclass();
+	}	
+    }
+    
+    private void checkAndAddIndividual(Class<?> curr) {
 	    for (Field f : curr.getDeclaredFields()) {
 		f.setAccessible(true);
 		if (f.isAnnotationPresent(Modifiable.class)) {
@@ -126,12 +136,15 @@ public class SpriteWrapper implements Cloneable, Serializable {
 		    }
 		}
 	    }
-	    if (curr.equals(GameElement.class))
-		return;
-	    curr = curr.getSuperclass();
-	}
     }
 
+    //TODO
+    /*public void addAdditionalAttributes(Set<Class<?>> additionalclasses) {
+	for (Class<?> clazz: additionalclasses) {
+	    this.checkAndAddIndividual(clazz);
+	}
+    }*/
+    
     public SpriteWrapper clone() {
 	SpriteWrapper cloned = new SpriteWrapper(myName, myGroup,
 		myPhysicsAttributeMap, myImagesrc, myGameElement);

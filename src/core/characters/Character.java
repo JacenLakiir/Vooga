@@ -1,20 +1,16 @@
 package core.characters;
 
-import io.annotations.*;
-
+import io.annotations.DefaultValueMap;
+import io.annotations.ModifiableMap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import com.golden.gamedev.GameObject;
 import core.characters.ai.State;
 import core.items.CollectibleItem;
 import core.items.ItemInventory;
-import core.items.Projectile;
-import core.items.Weapon;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 /**
@@ -25,14 +21,14 @@ public class Character extends GameElement {
 	
 	private ItemInventory inventory;
 	
+	@ModifiableMap(classification = "Gameplay")
 	private Map<String, Double> myAttributeValues;
 	
-	@Modifiable(classification = "Gameplay", type = "Map")
+	@DefaultValueMap(classification = "Gameplay")
 	private Map<String, Double> myBaseAttributeValues;
 	
 	private Map<String, State> myPossibleStates;
-	
-	private Set<Projectile> myProjectiles;
+	//private Set<Projectile> myProjectiles;
 	    
 
 	public Character(GameObject game, PhysicsAttributes physicsAttribute) {
@@ -47,15 +43,12 @@ public class Character extends GameElement {
 		myAttributeValues = new HashMap<String, Double>();
 		inventory = new ItemInventory();
 		myPossibleStates = new HashMap<String, State>();
-		myProjectiles = new HashSet<Projectile>();
 	}
 	
 	@Override
     public void update(long milliSec) {
         updateAbilities();
         updateState(milliSec);  
-        for (Projectile p : myProjectiles)
-            p.update(milliSec);
         super.update(milliSec);
         checkIfDead();
 	}
@@ -153,21 +146,6 @@ public class Character extends GameElement {
 	public Collection<State> getPossibleStates() {
 		return myPossibleStates.values();
 	}
-	
-	public Projectile useWeapon() {
-	    for (CollectibleItem item : inventory.getInventory()) {
-	        if (item instanceof Weapon && item.isInUse()) {
-	            Projectile p = ((Weapon) item).useWeapon();
-	            p.setActive(true);
 
-	            p.setLocation(getX(), getY());
-	            p.setSpeed(0.2, 0);
-//	            myProjectiles.add(p);
-	            System.out.println(p.toString());
-	            return p;
-	        }    
-	    }
-	    return null;
-	}
 
 }

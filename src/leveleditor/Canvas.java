@@ -20,11 +20,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
-import core.characters.GameElement;
-
 import leveleditor.eventhandlers.MoveSpriteListener;
-import leveleditor.eventhandlers.SpriteDropTargetListener;
 import leveleditor.eventhandlers.SpriteCreateTransferHandler;
+import leveleditor.eventhandlers.SpriteDropTargetListener;
+import core.characters.GameElement;
 
 @SuppressWarnings("serial")
 public class Canvas extends JScrollPane {

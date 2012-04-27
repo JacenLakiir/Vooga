@@ -5,6 +5,9 @@ package leveleditor;
 
 import io.SpriteWrapper;
 import io.SpriteWrapper.SpriteGroupIdentifier;
+import io.annotations.Decorable;
+import io.annotations.Decorator;
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -12,10 +15,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
-
+import java.lang.reflect.Modifier;
+import java.util.*;
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -23,6 +24,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -31,7 +33,6 @@ import javax.swing.JTree;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
-
 import core.characters.GameElement;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
@@ -44,12 +45,14 @@ public class SpriteBuilder extends JFrame {
     private JTextField namefield;
     private String myImageSrc;
     private JLabel imagelabel;
+    private GameElement myKernel;
     private ButtonGroup myTypeGroup;
     private JRadioButton myPlayerButton;
     private JRadioButton myCharacterButton;
     private JRadioButton mySettingButton;
     private JRadioButton myItemButton;
     private Map<JRadioButton, SpriteGroupIdentifier> myTypeMap;
+    private Set<Class<?>> myAdditionalClassesForDecorator;
     
     public static SpriteBuilder getInstance(LevelEditor view) {
 	if (myInstance != null)
@@ -153,6 +156,14 @@ public class SpriteBuilder extends JFrame {
 	
     }
     
+    public GameElement getKernel() {
+	return myKernel;
+    }
+    
+    public void setKernel(GameElement kernel) {
+	myKernel = kernel;
+    }
+    
     private class SpriteCreateListener implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
@@ -170,31 +181,61 @@ public class SpriteBuilder extends JFrame {
 		return;
 	    }
 	    Class<?> clazz = (Class<?>) node.getUserObject();
-	    GameElement kernel = null;
-	    try {
-		kernel = (GameElement) clazz.getConstructor(PhysicsAttributes.class)
-		    .newInstance(myView.getDefaultPhysicsAttributes());
-	    } catch (InstantiationException e1) {
-		e1.printStackTrace();
-	    } catch (IllegalAccessException e1) {
-		e1.printStackTrace();
-	    } catch (IllegalArgumentException e1) {
-		e1.printStackTrace();
-	    } catch (InvocationTargetException e1) {
-		e1.printStackTrace();
-	    } catch (NoSuchMethodException e1) {
-		e1.printStackTrace();
-	    } catch (SecurityException e1) {
-		e1.printStackTrace();
+	    if (Modifier.isAbstract(clazz.getModifiers())) {
+		myView.showError("The selected class is abstract, try something else.");
+		return;
 	    }
-	    kernel.setTag(namefield.getText());
+	    if (clazz.isAnnotationPresent(Decorator.class)) {
+		myView.showError("The selected class is a decorator, " +
+				"please select the target to decorate.");
+		return;
+	    }
+	    myKernel = null;
+	    boolean willdecorate = false;
+	    if (clazz.isAnnotationPresent(Decorable.class)) {
+		int n = JOptionPane.showConfirmDialog(
+		    myInstance,
+		    "Would you like to add decorators?",
+		    "Add decorators",
+		    JOptionPane.YES_NO_OPTION);
+		if (n == JOptionPane.YES_OPTION) 
+		    willdecorate = true;
+	    }
+		try {
+		if (!willdecorate)
+		    myKernel = (GameElement) clazz.getConstructor(PhysicsAttributes.class)
+		    .newInstance(myView.getDefaultPhysicsAttributes());
+		else {
+		    myAdditionalClassesForDecorator = new HashSet<Class<?>>();
+		    new DecoratorSelector(myView, myInstance, clazz, myKernel);
+		}
+		} catch (InstantiationException e1) {
+		    e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+		    e1.printStackTrace();
+		} catch (IllegalArgumentException e1) {
+		    e1.printStackTrace();
+		} catch (InvocationTargetException e1) {
+		    e1.printStackTrace();
+		} catch (NoSuchMethodException e1) {
+		    e1.printStackTrace();
+		} catch (SecurityException e1) {
+		    e1.printStackTrace();
+		}
+		myKernel.setTag(namefield.getText());
 	    SpriteWrapper created = new SpriteWrapper(name, gid, myView.getDefaultPhysicsAttributesMap(), 
-		    myImageSrc, kernel);
+		    myImageSrc, myKernel);
+	    /*if (willdecorate)
+		created.addAdditionalAttributes(myAdditionalClassesForDecorator);*/
 	    myView.getSpritePanel().importSprite(created);
 	    myInstance.dispose();
 	    SpriteEditor.getInstance(myView, created);
 	}
 	
+    }
+    
+    protected void addAdditionalClass(Class<?> clazz) {
+	myAdditionalClassesForDecorator.add(clazz);
     }
     
     private SpriteGroupIdentifier checkSelectedButton() {
