@@ -5,6 +5,12 @@ import com.golden.gamedev.object.Timer;
 public class FallingDecorator extends ActionDecorator {
 	private Timer fallTimer;
 	private boolean falling;
+	
+	public FallingDecorator(Tile decoratedPlatform){
+		super(decoratedPlatform);
+		fallTimer = new Timer(1000);
+		fallTimer.setActive(false);
+	}
 
 	public FallingDecorator(Tile decoratedPlatform, int timeToFall) {
 		super(decoratedPlatform);

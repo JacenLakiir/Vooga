@@ -7,6 +7,12 @@ public class BreakableDecorator extends ActionDecorator {
 	private boolean broken;
 	private int blockStrength;
 
+	public BreakableDecorator(Tile decoratedPlatform) {
+		super(decoratedPlatform);
+		this.blockStrength = 1;
+		setAnimate(false);
+	}
+	
 	public BreakableDecorator(Tile decoratedPlatform, int blockStrength) {
 		super(decoratedPlatform);
 		this.blockStrength = blockStrength;
