@@ -4,24 +4,30 @@
 package core.tiles;
 
 import io.annotations.Decorator;
+import io.annotations.Modifiable;
 
 
 @Decorator(target = Tile.class)
 public class BreakableDecorator extends ActionDecorator {
+    
+    	@Modifiable(classification = "Gameplay", type = "Individual")
 	private boolean broken;
-	private int blockStrength = 1;
+    	
+        @Modifiable(classification = "Gameplay", type = "Individual")
+	private int blockStrength;
 
+	public BreakableDecorator(Tile decoratedPlatform) {
+		super(decoratedPlatform);
+		this.blockStrength = 1;
+		setAnimate(false);
+	}
+	
 	public BreakableDecorator(Tile decoratedPlatform, int blockStrength) {
 		super(decoratedPlatform);
 		this.blockStrength = blockStrength;
 		setAnimate(false);
 	}
 	
-	public BreakableDecorator(Tile decoratedPlatform) {
-		super(decoratedPlatform);
-		setAnimate(false);
-	}
-
 	public void doAction(){
 		blockStrength--;
 		if(blockStrength<=0){

@@ -8,12 +8,16 @@ import core.characters.GameElement;
 @Decorator(target = Tile.class)
 public class MovingDecorator extends TileDecorator{
     
+    @Modifiable(classification = "Gameplay", type = "Individual")
+	private double startX, startY, endX, endY, speed;
+	
 	public MovingDecorator(Tile decoratedPlatform) {
 		super(decoratedPlatform);
+		startX = 0;
+		startY = 0;
+		endX = getWidth();
+		endY = getHeight();
 	}
-	
-	@Modifiable(classification = "Gameplay", type = "Individual")
-	private double startX, startY, endX, endY, speed;
 	
 	@Override
 	public void setLocation(double xs, double ys){

@@ -1,10 +1,20 @@
 package core.tiles;
 
+import io.annotations.Modifiable;
+
 import com.golden.gamedev.object.Timer;
 
 public class FallingDecorator extends ActionDecorator {
 	private Timer fallTimer;
+	
+	@Modifiable(classification = "Gameplay", type = "Individual")
 	private boolean falling;
+	
+	public FallingDecorator(Tile decoratedPlatform){
+		super(decoratedPlatform);
+		fallTimer = new Timer(1000);
+		fallTimer.setActive(false);
+	}
 
 	public FallingDecorator(Tile decoratedPlatform, int timeToFall) {
 		super(decoratedPlatform);

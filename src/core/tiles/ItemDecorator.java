@@ -8,6 +8,7 @@ import core.items.CollectibleItem;
 
 @Decorator(target = Tile.class)
 public class ItemDecorator extends ActionDecorator {
+    
     private Queue<CollectibleItem> itemList;
 
     public ItemDecorator(Tile decoratedPlatform) {
