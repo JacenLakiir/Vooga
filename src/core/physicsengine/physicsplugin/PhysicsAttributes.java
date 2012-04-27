@@ -12,21 +12,6 @@ import java.io.*;
 
 @DefaultPhysicsAttribute
 public class PhysicsAttributes implements java.io.Serializable {
-
-/*  @Deprecated   
-    public static enum Attribute {
-        mass,
-        density,
-        coefOfFrictionInX,
-        coefOfFrictionInY,
-        coefOfRestitutionInX,
-        coefOfRestitutionInY,
-        dragCoef,
-        stdGravity,
-        isUnmovable,
-        isPenetrable
-    }
-*/
     
     private static final long serialVersionUID = 4195772754476104956L;
     
