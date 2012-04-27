@@ -32,6 +32,7 @@ import core.playfield.hud.BarProxy;
 import core.playfield.hud.InventoryProxy;
 import core.playfield.hud.TextWidget;
 import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
+import core.playfield.scroller.ShowPlayfieldGameScroller;
 import core.tiles.*;
 import demo.custom.DemoKeyAdapter;
 import demo.custom.Goomba;
@@ -58,7 +59,7 @@ public class DemoHUD extends Game2D {
 		myPlayfield = new AdvancedPlayField(2600, 500, this.getWidth(),
 		        this.getHeight());
 		myPlayfield.setBackground(new ImageBackground(getImage("resources/clouds.png")));
-		myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
+		myPlayfield.setGameScroller(new ShowPlayfieldGameScroller());
 
 		// Sprite Init / Or load funcitonality
 		// SpriteGroups already exist in AdvancedPlayfield
@@ -170,7 +171,7 @@ public class DemoHUD extends Game2D {
 			AutoInUseAutoNotInUseItem coin = new AutoInUseAutoNotInUseItem(this, new PhysicsAttributes());
 	        coin.setImages(this.getImages("resources/Coin.png", 1, 1));
 	        coin.setActive(false);
-	        coin.addAttribute("points", 3);
+	        coin.addAttribute("points", 1);
 	        block1.addItem(coin);
 	        myPlayfield.addItem(coin);
 		}
@@ -180,7 +181,7 @@ public class DemoHUD extends Game2D {
 		coin2.setImages(this.getImages("resources/Coin.png", 1, 1));
 		coin2.getPhysicsAttribute().setMovable(false);
 		coin2.setLocation(300, 300);
-		coin2.addAttribute("points", 3);
+		coin2.addAttribute("points", 1);
 		myPlayfield.addItem(coin2);
 
 		CollectibleItem coin3 = new AutoInUseAutoNotInUseItem(this,
@@ -188,7 +189,7 @@ public class DemoHUD extends Game2D {
 		coin3.setImages(this.getImages("resources/Coin.png", 1, 1));
 		coin3.getPhysicsAttribute().setMovable(false);
 		coin3.setLocation(700, 150);
-		coin3.addAttribute("points", 3);
+		coin3.addAttribute("points", 1);
 		myPlayfield.addItem(coin3);
 
 		CollectibleItem coin4 = new AutoInUseAutoNotInUseItem(this,
@@ -196,7 +197,7 @@ public class DemoHUD extends Game2D {
 		coin4.setImages(this.getImages("resources/Coin.png", 1, 1));
 		coin4.getPhysicsAttribute().setMovable(false);
 		coin4.setLocation(900, 200);
-		coin4.addAttribute("points", 3);
+		coin4.addAttribute("points", 1);
 		myPlayfield.addItem(coin4);
 
 		CollectibleItem coin5 = new AutoInUseAutoNotInUseItem(this,
@@ -204,7 +205,7 @@ public class DemoHUD extends Game2D {
 		coin5.setImages(this.getImages("resources/Coin.png", 1, 1));
 		coin5.getPhysicsAttribute().setMovable(false);
 		coin5.setLocation(1300, 300);
-		coin5.addAttribute("points", 3);
+		coin5.addAttribute("points", 1);
 		myPlayfield.addItem(coin5);
 
 		CollectibleItem spike = new AutoInUseAutoNotInUseItem(this,
@@ -213,7 +214,7 @@ public class DemoHUD extends Game2D {
 		spike.getPhysicsAttribute().setMovable(false);
 		spike.setLocation(400, 430);
 		spike.setActive(true);
-		spike.addAttribute("hitPoints", -2);
+		spike.addAttribute("hitPoints", -1);
 		myPlayfield.addItem(spike);
 		
 		Weapon fireball = new Weapon(this, new PhysicsAttributes());
