@@ -12,6 +12,7 @@ public class MagicBlock extends AutoInUseAutoNotInUseItem{
     public MagicBlock(DemoAntigravity game, PhysicsAttributes physicsAttribute) {
         super(game, physicsAttribute);
         setTag("MagicBlock");
+        this.getPhysicsAttribute().setPenetrable(false);
     }
 
     @Override
