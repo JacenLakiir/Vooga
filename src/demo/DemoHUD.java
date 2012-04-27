@@ -90,9 +90,6 @@ public class DemoHUD extends Game2D {
 		addKeyListeners(mario);
 		addKeyListeners(this);
 		mario.setLocation(25, 400);
-		mario.addAttribute("hitPoints", 10);
-		mario.addAttribute("points", 0);
-		mario.addAttribute("lives", 3);
 		myPlayfield.addPlayer(mario);
 
 		// HUD must be init after player
