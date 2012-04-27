@@ -9,6 +9,7 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
  *
  *For items that can be stored in the player's inventory and used at will
  */
+@SuppressWarnings("serial")
 public class SetInUseSetNotInUseItem extends CollectibleItem {
 
 	public SetInUseSetNotInUseItem(GameObject game, PhysicsAttributes physicsAttribute) {

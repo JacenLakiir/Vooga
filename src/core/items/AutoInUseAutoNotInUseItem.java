@@ -9,6 +9,7 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
  *
  *For items whose effects are immediate and one-time
  */
+@SuppressWarnings("serial")
 public class AutoInUseAutoNotInUseItem extends AutoNotInUseItem {
 
 	public AutoInUseAutoNotInUseItem(GameObject game, PhysicsAttributes physicsAttribute) {

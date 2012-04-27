@@ -10,6 +10,7 @@ import core.configuration.key.KeyAnnotation;
  * @author Hui Dong
  *
  */
+@SuppressWarnings("serial")
 public abstract  class MenuGameObject extends GameObject2D{
     private int optionID = 0;
     private int id = 0;
