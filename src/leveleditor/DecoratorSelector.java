@@ -51,7 +51,6 @@ public class DecoratorSelector extends JDialog {
     
     private void setupCheckBoxes(JPanel boxpanel) {
 	Set<Class<?>> decorators = ClassTreeUtils.getDecorators("core, demo", myTarget);
-	System.out.println(decorators);
 	int rows = (int) Math.ceil((double)decorators.size() / 2.0);
 	boxpanel.setLayout(new GridLayout(rows, 4));
 	for (Class<?> clazz: decorators) {

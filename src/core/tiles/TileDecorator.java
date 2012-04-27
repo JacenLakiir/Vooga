@@ -440,6 +440,7 @@ public class TileDecorator extends Tile {
 
 	public void setGame(GameObject game) {
 		myGame = game;
+		decoratedPlatform.setGame(game);
 	}
 
 	public GameObject getGame() {

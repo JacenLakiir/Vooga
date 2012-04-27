@@ -93,8 +93,7 @@ public class SpriteWrapper implements Cloneable, Serializable {
 		    } catch (IllegalAccessException e) {
 			e.printStackTrace();
 		    }
-		    myGamePlayAttributeMapForMap = 
-			    new HashMap<SpriteAttribute, Serializable>(attrmap);
+		    myGamePlayAttributeMapForMap.putAll(attrmap);
 		    return;
 		}
 	    }
@@ -219,16 +218,18 @@ public class SpriteWrapper implements Cloneable, Serializable {
     public void saveAttributes() {
 	Map<String, Serializable> dummymapphysics = 
 		SpriteAttribute.convertkeyToString(myPhysicsAttributeMap);
-	System.out.println(dummymapphysics);
 	myGameElement.setPhysicsAttribute(new PhysicsAttributes(dummymapphysics));
 	try {
 	    for (SpriteAttribute sa: myGamePlayAttributeMapForIndividual.keySet())
 		for (Field f: myDummyIndividualFields)
-		    f.set(myGameElement, myGamePlayAttributeMapForIndividual.get(sa));
+		    if (f.getName().equals(sa.getName()))
+			f.set(myGameElement, myGamePlayAttributeMapForIndividual.get(sa));
 	    //System.out.println(myGamePlayAttributeMapForMap);
-	    Map<String, Serializable> dummymapgameplay = 
-		    SpriteAttribute.convertkeyToString(myGamePlayAttributeMapForMap);
-	    myDummyAttributeMapForMap.set(myGameElement, dummymapgameplay);
+	    if (!myGamePlayAttributeMapForMap.isEmpty()) {
+		Map<String, Serializable> dummymapgameplay = 
+			SpriteAttribute.convertkeyToString(myGamePlayAttributeMapForMap);
+		myDummyAttributeMapForMap.set(myGameElement, dummymapgameplay);
+	    }
 	} catch (IllegalArgumentException e) {
 	    e.printStackTrace();
 	} catch (IllegalAccessException e) {

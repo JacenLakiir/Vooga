@@ -14,6 +14,8 @@ import java.util.Map;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.SpriteGroup;
 import core.playfield.AdvancedPlayField;
+import core.tiles.Tile;
+import core.tiles.TileDecorator;
 
 public class LevelLoader {
 
@@ -33,10 +35,21 @@ public class LevelLoader {
 	    //System.out.println(swp.getGameElement().getPhysicsAttribute().getPhysicsAttrMap());
 	    GameElement toadd = swp.getGameElement();
 	    toadd.setGame(game);
+//	    if (TileDecorator.class.isAssignableFrom(toadd.getClass()))
+//		doNastySetGame(toadd, game);
 	    groupmap.get(swp.getGroup()).add(toadd);
 	}
 	playfield.setBackground(bkg);
 	return playfield;
     }
+    
+//    private static void doNastySetGame(GameElement decoratedtile, GameObject game) {
+//	TileDecorator t = (TileDecorator) decoratedtile;
+//	Tile inner = null;
+//	while(inner.getClass().getSimpleName().equals("Tile")) {
+//	    inner = t.removeDecorator();
+//	    inner.setGame(game);
+//	}
+//    }
     
 }

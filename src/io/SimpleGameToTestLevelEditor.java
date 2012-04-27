@@ -12,6 +12,11 @@ import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.*;
 import com.golden.gamedev.object.background.*;
 
+import core.characters.*;
+import core.characters.Character;
+import core.configuration.key.KeyAnnotation;
+import core.configuration.key.KeyParser;
+import core.configuration.mouse.MouseInput;
 import core.gamestate.Game2D;
 import core.gamestate.GameEngine2D;
 import core.playfield.AdvancedPlayField;
@@ -22,7 +27,10 @@ import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.background.ImageBackground;
 import core.playfield.scroller.GameScroller;
 import core.playfield.scroller.KeepLeftFirstPlayerGameScroller;
+import core.tiles.Tile;
 import demo.DemoGameEngine;
+import demo.Pause;
+import demo.custom.DemoKeyAdapter;
 
 
 public class SimpleGameToTestLevelEditor extends Game2D
@@ -39,7 +47,7 @@ public class SimpleGameToTestLevelEditor extends Game2D
     private SpriteGroup myPlayers;
     private SpriteGroup myCharacters;
     private SpriteGroup mySetting;
-    private Sprite myHero;
+    private Character myHero;
     private int LEVEL_WIDTH = 1000;
     private int LEVEL_HEIGHT = 500;
 
@@ -53,7 +61,10 @@ public class SimpleGameToTestLevelEditor extends Game2D
          * = loadedState.getSpriteMap().get(p).getSprite();
          * tocreate.setLocation(p.x, p.y); myPlayfield.add(tocreate); }
          */
-        myHero = myPlayfield.getPlayers().getActiveSprite(); // RANDOM
+        myHero = (Character) myPlayfield.getPlayers().getActiveSprite(); // RANDOM
+        Tile myBar = (Tile) myPlayfield.getSetting().getActiveSprite(); // RANDOM
+        System.out.println(myBar.getPhysicsAttribute().getGravitationalAcceleration());
+        
        //myBackground =
        //     new ImageBackground(getImage(loadedState.getBackgroundImageSrc()));
         //myPlayfield.setBackground(myBackground);
@@ -66,39 +77,29 @@ public class SimpleGameToTestLevelEditor extends Game2D
         // TODO LOAD STUFF GOES HERE
         hardCodedLoadLevel();
         myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
+        setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type"))
+        .parseKeyConfig("configurations/keyconfig.json"));
+        addMouse(new MouseInput(this, myHero,"sequence"));
+        //add the element or game you want the key to control
+        addKeyListeners(myHero);
+        addKeyListeners(this);
+        addMouseListeners(myHero);
         // Sprite Loading
-        myPlayers = myPlayfield.addGroup(new SpriteGroup("Player Group"));
-        myCharacters = myPlayfield.addGroup(new SpriteGroup("Character Group"));
-        mySetting = myPlayfield.addGroup(new SpriteGroup("Setting Group"));
+       // myPlayers = myPlayfield.addGroup(new SpriteGroup("Player Group"));
+       // myCharacters = myPlayfield.addGroup(new SpriteGroup("Character Group"));
+       // mySetting = myPlayfield.addGroup(new SpriteGroup("Setting Group"));
     }
 
 
     public void update (long arg0)
     {
+        super.update(arg0);
         myPlayfield.update(arg0);
-        if (keyDown(KeyEvent.VK_UP))
-        {
-            myHero.setVerticalSpeed(-0.5);
-        }
-        else if (keyDown(KeyEvent.VK_DOWN))
-        {
-            myHero.setVerticalSpeed(0.5);
-        }
-        else if (keyDown(KeyEvent.VK_RIGHT))
-        {
-            myHero.setHorizontalSpeed(0.5);
-        }
-        else if (keyDown(KeyEvent.VK_LEFT))
-        {
-            myHero.setHorizontalSpeed(-0.5);
-        }
-        else myHero.setSpeed(0, 0);
     }
 
 
     public void render (Graphics2D arg0)
     {
-        //myGameScroller.scroll();
         myPlayfield.render(arg0);
     }
 
@@ -128,6 +129,11 @@ public class SimpleGameToTestLevelEditor extends Game2D
     public void registerGameOverEvent() {
 	// TODO Auto-generated method stub
 	
+    }
+    
+    @KeyAnnotation(action = "ESC")
+    public void pause(){
+        switchToGameObject(Pause.class);
     }
 
 }
