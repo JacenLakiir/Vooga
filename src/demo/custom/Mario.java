@@ -50,7 +50,7 @@ public class Mario extends Character {
 
     @KeyAnnotation(action = "sequence")
     public void sequenceKey() {
-        setImages(myGame.getImages("resources/Mushroom.png", 1, 1));
+        setImages(VoogaUtilities.getImages("resources/Mushroom.png", 1, 1));
     }
 
     @KeyAnnotation(action = "up")
