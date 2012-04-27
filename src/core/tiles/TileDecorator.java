@@ -18,6 +18,10 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 public class TileDecorator extends Tile {
 
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 7308595463082879318L;
 	private final Tile decoratedPlatform;
 
 	public TileDecorator(Tile decoratedPlatform) {

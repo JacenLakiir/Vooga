@@ -4,6 +4,7 @@ import core.characters.GameElement;
 
 public abstract class ActionDecorator extends TileDecorator {
 
+    private static final long serialVersionUID = -2300606344978587014L;
     private boolean rightAction, leftAction, topAction, bottomAction;
 
     public ActionDecorator(Tile decoratedPlatform) {

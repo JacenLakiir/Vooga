@@ -7,6 +7,10 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 public class Liquid extends Tile{
     
+	/**
+     * 
+     */
+    private static final long serialVersionUID = -3896466688596899058L;
 	@Modifiable(classification = "Gameplay", type = "Individual")
 	private double strength = 0.5;
 	

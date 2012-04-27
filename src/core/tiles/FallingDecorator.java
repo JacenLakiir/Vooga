@@ -5,6 +5,11 @@ import io.annotations.Modifiable;
 import com.golden.gamedev.object.Timer;
 
 public class FallingDecorator extends ActionDecorator {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = -3657189131846894696L;
+
 	private Timer fallTimer;
 	
 	@Modifiable(classification = "Gameplay", type = "Individual")

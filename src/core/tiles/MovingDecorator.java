@@ -8,6 +8,10 @@ import core.characters.GameElement;
 @Decorator(target = Tile.class)
 public class MovingDecorator extends TileDecorator{
     
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3246310429913082407L;
     @Modifiable(classification = "Gameplay", type = "Individual")
 	private double startX, startY, endX, endY, speed;
 	

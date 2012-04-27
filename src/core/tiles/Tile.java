@@ -16,6 +16,11 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
 @Decorable
 public class Tile extends GameElement {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8811036246722569523L;
+
     /*
      * Constructor for a Concrete Platform
      */

@@ -7,6 +7,11 @@ import core.characters.GameElement;
 @Decorator(target = Tile.class)
 public class PushableDecorator extends ActionDecorator {
     
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 5926869970709503396L;
+
 	@Modifiable(classification = "Gameplay", type = "Individual")
 	private boolean pushed,positiveDirection;
 	

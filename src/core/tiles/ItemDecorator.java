@@ -9,6 +9,10 @@ import core.items.CollectibleItem;
 @Decorator(target = Tile.class)
 public class ItemDecorator extends ActionDecorator {
     
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6052464330464750072L;
     private Queue<CollectibleItem> itemList;
 
     public ItemDecorator(Tile decoratedPlatform) {

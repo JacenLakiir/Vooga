@@ -10,7 +10,9 @@ import io.annotations.Modifiable;
 @Decorator(target = Tile.class)
 public class BreakableDecorator extends ActionDecorator {
     
-    	@Modifiable(classification = "Gameplay", type = "Individual")
+    private static final long serialVersionUID = 7455338340514721807L;
+
+	@Modifiable(classification = "Gameplay", type = "Individual")
 	private boolean broken;
     	
         @Modifiable(classification = "Gameplay", type = "Individual")
