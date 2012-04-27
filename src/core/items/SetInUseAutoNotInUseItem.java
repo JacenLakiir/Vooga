@@ -12,8 +12,8 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
  */
 public class SetInUseAutoNotInUseItem extends AutoNotInUseItem {
 
-	public SetInUseAutoNotInUseItem(GameObject game, PhysicsAttributes physicsAttribute) {
-	    super(game, physicsAttribute);
+	public SetInUseAutoNotInUseItem(PhysicsAttributes physicsAttribute) {
+	    super(physicsAttribute);
     }
 	
 	@Override

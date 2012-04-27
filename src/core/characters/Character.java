@@ -33,12 +33,6 @@ public class Character extends GameElement {
 	private transient Map<String, State> myPossibleStates;
 	
 	private Set<Projectile> myProjectiles;
-	    
-
-	public Character(GameObject game, PhysicsAttributes physicsAttribute) {
-		this(physicsAttribute);
-		setGame(game);
-	}
 
 	public Character(PhysicsAttributes physicsAttribute) {
 		super(physicsAttribute);

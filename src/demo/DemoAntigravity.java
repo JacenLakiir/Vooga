@@ -5,10 +5,8 @@ import java.awt.Graphics2D;
 
 
 import com.golden.gamedev.object.background.ColorBackground;
-import core.characters.ai.EvadeState;
 import core.characters.ai.FollowState;
-import core.collision.GameElementCollision;
-import core.collision.CharacterCollectibleItemCollision;
+import core.characters.ai.HomingState;
 import core.configuration.key.KeyAnnotation;
 import core.configuration.key.KeyParser;
 import core.configuration.mouse.MouseInput;
@@ -44,12 +42,12 @@ public class DemoAntigravity extends Game2D {
         myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
         myPlayfield.setBackground(new ColorBackground(Color.gray, 640, 480));
         
-        water = new Water(this, new PhysicsAttributes(), 0.2);
+        water = new Water(new PhysicsAttributes(), 0.2);
         water.setImages(this.getImages("resources/Water2.png", 1, 1));
         water.setLocation(0, 240);
         myPlayfield.addSetting(water);
 
-        mario = new Mario(this, new PhysicsAttributes());
+        mario = new Mario(new PhysicsAttributes());
         setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type")).parseKeyConfig("configurations/keyconfig.json"));
         addMouse(new MouseInput(this, mario,"sequence"));
         //add the element or game you want the key to control
@@ -63,56 +61,56 @@ public class DemoAntigravity extends Game2D {
         mario.addAttribute("lives", 3);
         myPlayfield.addPlayer(mario);
         
-        AutoInUseAutoNotInUseItem magicBlock = new MagicBlock(this, new PhysicsAttributes());
+        AutoInUseAutoNotInUseItem magicBlock = new MagicBlock(new PhysicsAttributes());
         magicBlock.setImages(this.getImages("resources/MagicBlock.png", 1, 1));
         magicBlock.setActive(true);
         magicBlock.getPhysicsAttribute().setMovable(false);
         magicBlock.setLocation(580, 400);
         myPlayfield.addItem(magicBlock);
         
-        goomba4 = new Goomba(this, new PhysicsAttributes());
-        goomba4.addPossibleState("Follow", new FollowState(goomba4, mario, 1, 200));
+        goomba4 = new Goomba(new PhysicsAttributes());
+        goomba4.addPossibleState("Follow", new FollowState(goomba4, mario, 1, 1000));
         goomba4.setLocation(300, 400);
         myPlayfield.addCharacter(goomba4);
         
-        goomba5 = new Goomba(this, new PhysicsAttributes());
-        goomba5.addPossibleState("Evade", new EvadeState(goomba5, mario, 2, 200));
+        goomba5 = new Goomba(new PhysicsAttributes());
+        goomba5.addPossibleState("Homing", new HomingState(goomba5, mario, 1000, 1));
         goomba5.setLocation(400, 400);
         myPlayfield.addCharacter(goomba5);
 
         
-        Tile floor = new Tile(this, new PhysicsAttributes());
+        Tile floor = new Tile(new PhysicsAttributes());
         floor.setImages(this.getImages("resources/Bar.png", 1, 1));
         floor.setLocation(0, 440);
         myPlayfield.addSetting(floor);
         
-        Tile ceiling = new Tile(this, new PhysicsAttributes());
+        Tile ceiling = new Tile(new PhysicsAttributes());
         ceiling.setImages(this.getImages("resources/Bar.png", 1, 1));
         ceiling.setLocation(70, -20);
         myPlayfield.addSetting(ceiling);
         
-        Tile middleBar = new Tile(this, new PhysicsAttributes());
+        Tile middleBar = new Tile(new PhysicsAttributes());
         middleBar.setImages(this.getImages("resources/SmallBar.png", 1, 1));
         middleBar.setLocation(260, 260);
         myPlayfield.addSetting(middleBar);
 
         
-        Tile block1 = new Tile(this, new PhysicsAttributes());
+        Tile block1 = new Tile(new PhysicsAttributes());
         block1.setImages(this.getImages("resources/Block3.png", 1, 1));
         block1.setLocation(100, 200);
         myPlayfield.addSetting(block1);
 
-        Tile block2 = new Tile(this, new PhysicsAttributes());
+        Tile block2 = new Tile(new PhysicsAttributes());
         block2.setImages(this.getImages("resources/Block3.png", 8, 1));
         block2.setLocation(160, 200);
         myPlayfield.addSetting(block2);
         
-        Tile wall1 = new Tile(this, new PhysicsAttributes());
+        Tile wall1 = new Tile(new PhysicsAttributes());
         wall1.setImages(this.getImages("resources/Wall.png", 1, 1));
         wall1.setLocation(0, 0);
         myPlayfield.addSetting(wall1);
         
-        Tile wall2 = new Tile(this, new PhysicsAttributes());
+        Tile wall2 = new Tile(new PhysicsAttributes());
         wall2.setImages(this.getImages("resources/Wall.png", 1, 1));
         wall2.setLocation(620, 0);
         myPlayfield.addSetting(wall2);

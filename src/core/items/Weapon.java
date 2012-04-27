@@ -6,9 +6,9 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
 public class Weapon extends SetInUseSetNotInUseItem
 {
     
-    public Weapon (GameObject game, PhysicsAttributes physicsAttribute)
+    public Weapon (PhysicsAttributes physicsAttribute)
     {
-        super(game, physicsAttribute);
+        super(physicsAttribute);
         setIsInUse(true);
     }
     

@@ -18,11 +18,6 @@ public class Koopa extends Character {
 
     private ShellState myShellState;
 
-    public Koopa(GameObject game, PhysicsAttributes physicsAttribute) {
-	this(physicsAttribute);
-	setGame(game);
-    }
-
     public Koopa(PhysicsAttributes physicsAttribute) {
 	super(physicsAttribute);
         addAttribute("hitPoints", 1);

@@ -52,7 +52,7 @@ public class DemoAI extends Game2D
         myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
         myPlayfield.setBackground(new ColorBackground(Color.gray, 640, 480));
         
-         mario = new Mario(this, new PhysicsAttributes());
+         mario = new Mario(new PhysicsAttributes());
         setKeyList(new KeyParser(this, false, new DemoKeyAdapter("key_type")).parseKeyConfig("configurations/keyconfig.json"));
         addMouse(new MouseInput(this, mario,"sequence"));
         //add the element or game you want the key to control
@@ -99,51 +99,51 @@ public class DemoAI extends Game2D
 //        goomba5.setLocation(400, 400);
 //        myPlayfield.addCharacter(goomba5);
         
-        Character goomba6 = new Goomba(this, new PhysicsAttributes());
+        Character goomba6 = new Goomba(new PhysicsAttributes());
         goomba6.addPossibleState("Homing", new HomingState(goomba6, mario, 1000, 1));
         goomba6.setLocation(500, 100);
         myPlayfield.addCharacter(goomba6);
         
-        Character hammerBro1 = new HammerBrother(this, new PhysicsAttributes());
+        Character hammerBro1 = new HammerBrother(new PhysicsAttributes());
         hammerBro1.addPossibleState("Patrol", new MoveState(hammerBro1, 1, true));
         hammerBro1.setLocation(575, 395);
         myPlayfield.addCharacter(hammerBro1);
         
-        Tile floor = new Tile(this, new PhysicsAttributes());
+        Tile floor = new Tile(new PhysicsAttributes());
         floor.setImages(this.getImages("resources/Bar.png", 1, 1));
         floor.setLocation(0, 440);
         endOfPlatform = floor.getX() + floor.getWidth() - 50;
         myPlayfield.addSetting(floor);
         
-        Tile ceiling = new Tile(this, new PhysicsAttributes());
+        Tile ceiling = new Tile(new PhysicsAttributes());
         ceiling.setImages(this.getImages("resources/Bar.png", 1, 1));
         ceiling.setLocation(70, -20);
         myPlayfield.addSetting(ceiling);
 
-        AutoInUseAutoNotInUseItem coin = new AutoInUseAutoNotInUseItem(this, new PhysicsAttributes());
+        AutoInUseAutoNotInUseItem coin = new AutoInUseAutoNotInUseItem(new PhysicsAttributes());
         coin.setImages(this.getImages("resources/Coin.png", 1, 1));
         coin.setActive(false);
         coin.addAttribute("points", 3);
         myPlayfield.addItem(coin);
         
-        ItemDecorator block1 = new ItemDecorator(new Tile(this, new PhysicsAttributes()));
+        ItemDecorator block1 = new ItemDecorator(new Tile(new PhysicsAttributes()));
         block1.setImages(this.getImages("resources/Block1.png", 1, 1));
         block1.setLocation(100, 200);
         block1.addItem(coin);
         myPlayfield.addSetting(block1);
 
-        ActionDecorator block2 = new BreakableDecorator(new Tile(this, new PhysicsAttributes()), 1);
+        ActionDecorator block2 = new BreakableDecorator(new Tile(new PhysicsAttributes()), 1);
         block2.setBottomAction(true);
         block2.setImages(this.getImages("resources/Block2Break.png", 8, 1));
         block2.setLocation(160, 200);
         myPlayfield.addSetting(block2);
         
-        Tile wall1 = new Tile(this, new PhysicsAttributes());
+        Tile wall1 = new Tile(new PhysicsAttributes());
         wall1.setImages(this.getImages("resources/Wall.png", 1, 1));
         wall1.setLocation(0, 0);
         myPlayfield.addSetting(wall1);
         
-        Tile wall2 = new Tile(this, new PhysicsAttributes());
+        Tile wall2 = new Tile(new PhysicsAttributes());
         wall2.setImages(this.getImages("resources/Wall.png", 1, 1));
         wall2.setLocation(620, 0);
         myPlayfield.addSetting(wall2);

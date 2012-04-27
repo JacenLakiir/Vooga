@@ -12,8 +12,8 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
  */
 public class SetInUseSetNotInUseItem extends CollectibleItem {
 
-	public SetInUseSetNotInUseItem(GameObject game, PhysicsAttributes physicsAttribute) {
-	    super(game, physicsAttribute);
+	public SetInUseSetNotInUseItem(PhysicsAttributes physicsAttribute) {
+	    super(physicsAttribute);
 	}
 	
 	@Override

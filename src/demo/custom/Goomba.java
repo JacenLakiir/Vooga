@@ -16,11 +16,6 @@ public class Goomba extends Character {
 
     private static final String IMAGE_FILE = "resources/Goomba.png";
     
-    public Goomba(GameObject game, PhysicsAttributes physicsAttribute) {
-    this(physicsAttribute);
-    setGame(game);
-    }
-    
     public Goomba(PhysicsAttributes physicsAttribute) {
         super(physicsAttribute);
         addAttribute("hitPoints", 1);

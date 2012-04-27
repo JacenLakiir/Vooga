@@ -12,8 +12,8 @@ import core.physicsengine.physicsplugin.PhysicsAttributes;
  */
 public class AutoInUseAutoNotInUseItem extends AutoNotInUseItem {
 
-	public AutoInUseAutoNotInUseItem(GameObject game, PhysicsAttributes physicsAttribute) {
-	    super(game, physicsAttribute);
+	public AutoInUseAutoNotInUseItem(PhysicsAttributes physicsAttribute) {
+	    super(physicsAttribute);
 	}
 
 	public void update(long elapsedTime) {

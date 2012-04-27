@@ -9,8 +9,8 @@ public class Projectile extends SetInUseSetNotInUseItem{
 
     private static final String IMAGE_FILE = "resources/Fireball.png";
     
-	public Projectile(GameObject game, PhysicsAttributes physicsAttribute) {
-	    super(game, physicsAttribute);
+	public Projectile(PhysicsAttributes physicsAttribute) {
+	    super(physicsAttribute);
 	    setActive(false);
 	    useWeapon();
 //	    setImages(VoogaUtilities.getImages(IMAGE_FILE, 4, 1));
