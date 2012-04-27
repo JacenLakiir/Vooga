@@ -88,7 +88,7 @@ public class DemoHUD extends Game2D {
 				                return myPlayfield.getPlayer()
 				                        .getAttributeValue("lives").intValue();
 			                }
-		                }), HUD.TOP_LEFT);
+		                }), HUD.TOP_CENTER);
 
 		myPlayfield.addHUDWidget(new BarWidget("HP", new BarProxy() {
 			public double get() {
@@ -100,21 +100,12 @@ public class DemoHUD extends Game2D {
 			}
 		}), HUD.TOP_CENTER);
 
-		myPlayfield.addHUDWidget(
-		        new IconWidget("Lives", this.getImage("resources/life.png"),
-		                new IntProxy() {
-			                public int get() {
-				                return myPlayfield.getPlayer()
-				                        .getAttributeValue("lives").intValue();
-			                }
-		                }), HUD.TOP_RIGHT);
-
 		myPlayfield.addHUDWidget(new InventoryWidget("Inventory",
 		        new InventoryProxy() {
 			        public List<CollectibleItem> get() {
 				        return myPlayfield.getPlayer().getInventory();
 			        }
-		        }), HUD.BOTTOM_RIGHT);
+		        }), HUD.TOP_RIGHT);
 
 		Character koopa1 = new Koopa(this, new PhysicsAttributes());
 		koopa1.addPossibleState("Move", new MoveState(koopa1, 1, true));
@@ -199,7 +190,7 @@ public class DemoHUD extends Game2D {
 		coin3.setLocation(700, 150);
 		coin3.addAttribute("points", 3);
 		myPlayfield.addItem(coin3);
-		
+
 		CollectibleItem coin4 = new AutoInUseAutoNotInUseItem(this,
 		        new PhysicsAttributes());
 		coin4.setImages(this.getImages("resources/Coin.png", 1, 1));
@@ -207,7 +198,7 @@ public class DemoHUD extends Game2D {
 		coin4.setLocation(900, 200);
 		coin4.addAttribute("points", 3);
 		myPlayfield.addItem(coin4);
-		
+
 		CollectibleItem coin5 = new AutoInUseAutoNotInUseItem(this,
 		        new PhysicsAttributes());
 		coin5.setImages(this.getImages("resources/Coin.png", 1, 1));
@@ -216,6 +207,15 @@ public class DemoHUD extends Game2D {
 		coin5.addAttribute("points", 3);
 		myPlayfield.addItem(coin5);
 
+		CollectibleItem spike = new AutoInUseAutoNotInUseItem(this,
+		        new PhysicsAttributes());
+		spike.setImages(this.getImages("resources/Spikes.png", 1, 1));
+		spike.getPhysicsAttribute().setMovable(false);
+		spike.setLocation(400, 430);
+		spike.setActive(true);
+		spike.addAttribute("hitPoints", -2);
+		myPlayfield.addItem(spike);
+		
 		Weapon fireball = new Weapon(this, new PhysicsAttributes());
 		fireball.setImages(this.getImages("resources/Fireball.png", 4, 1));
 		fireball.setLoopAnim(true);
