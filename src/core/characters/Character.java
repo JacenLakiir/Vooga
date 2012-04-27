@@ -11,10 +11,9 @@ import java.util.Map;
 import java.util.Set;
 import com.golden.gamedev.GameObject;
 import core.characters.ai.State;
+import core.gamestate.Game2D;
 import core.items.CollectibleItem;
 import core.items.ItemInventory;
-import core.items.Projectile;
-import core.items.Weapon;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
 /**
@@ -25,14 +24,13 @@ public class Character extends GameElement {
 	
 	private transient ItemInventory inventory;
 	
+	@ModifiableMap(classification = "Gameplay")
 	private Map<String, Double> myAttributeValues;
 	
-	@Modifiable(classification = "Gameplay", type = "Map")
+	@DefaultValueMap(classification = "Gameplay")
 	private Map<String, Double> myBaseAttributeValues;
 	
 	private transient Map<String, State> myPossibleStates;
-	
-	private Set<Projectile> myProjectiles;
 
 	public Character(PhysicsAttributes physicsAttribute) {
 		super(physicsAttribute);
@@ -41,15 +39,12 @@ public class Character extends GameElement {
 		myAttributeValues = new HashMap<String, Double>();
 		inventory = new ItemInventory();
 		myPossibleStates = new HashMap<String, State>();
-		myProjectiles = new HashSet<Projectile>();
 	}
 	
 	@Override
     public void update(long milliSec) {
         updateAbilities();
         updateState(milliSec);  
-        for (Projectile p : myProjectiles)
-            p.update(milliSec);
         super.update(milliSec);
         checkIfDead();
 	}
@@ -147,14 +142,6 @@ public class Character extends GameElement {
 	public Collection<State> getPossibleStates() {
 		return myPossibleStates.values();
 	}
-	
-	public Weapon useWeapon() {
-	    for (CollectibleItem item : inventory.getInventory()) {
-	        if (item instanceof Weapon && item.isInUse()) {
-	        	((Weapon) item).useWeapon(this.getX()+10, this.getY());
-	        }    
-	    }
-	    return null;
-	}
+
 
 }
