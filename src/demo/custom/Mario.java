@@ -22,12 +22,17 @@ public class Mario extends Character {
 
     private boolean jumpEnable, reversed;
     private Timer jumpTimer;
-    @Modifiable(classification = "Gameplay")
     private int jumpTime;
 
     public Mario(GameObject game, PhysicsAttributes physicsAttribute) {
         super(game, physicsAttribute);
-        setImages(game.getImages(IMAGE_FILE, 1, 1));
+        setGame(game);
+
+    }
+    
+    public Mario(PhysicsAttributes physicsAttribute) {
+        super(physicsAttribute);
+        setImages(VoogaUtilities.getImages(IMAGE_FILE, 1, 1));
         resetStrength();
         setMaximumSpeedInX(0.8);
         jumpTime = 220;
@@ -35,6 +40,9 @@ public class Mario extends Character {
         jumpTimer.setActive(false);
         reversed = false;
         setTag("Mario");
+        addAttribute("points", 0);
+        addAttribute("hitPoints", 10);
+        addAttribute("lives", 3);
     }
 
     @Override
