@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 
 import com.golden.gamedev.object.background.ColorBackground;
 
-import core.characters.Character;
 import core.characters.ai.EvadeState;
 import core.characters.ai.FollowState;
 import core.collision.GameElementCollision;
@@ -28,6 +27,7 @@ import demo.custom.Mario;
 import demo.custom.Water;
 
 
+@SuppressWarnings("serial")
 public class DemoAntigravity extends Game2D {
 
     private AdvancedPlayField   myPlayfield;  

@@ -39,24 +39,6 @@ public class GameElement extends AdvanceSprite {
         vel = new Velocity(0, 0);
         disp = new Displacement(0, 0);
         duringAccList = new ArrayList<DuringAcceleration>();
-//        Treat gravity as a during acceleration.
-//        duringAccList.add(new DuringAcceleration(new Mapping(this) {
-//            @Override
-//            public double getXforTime(int t) {
-//                return 0;
-//            }
-//            @Override
-//            public double getYforTime(int t) {
-//                if (this.getOwner().isUnmovable() == false) {
-//                    return this.getOwner().getGravitationalAcceleration() * -1.0;
-//                }
-//                else {
-//                    return 0;
-//                }
-//            }
-//        }));
-        //myGame = null;
-        //physicsAttribute = null;
     }
 
     public GameElement(GameObject game, PhysicsAttributes physicsAttribute) {
