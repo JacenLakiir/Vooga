@@ -55,7 +55,7 @@ public class DemoHUD extends Game2D {
 	public void initResources() {
 
 		// Playfield Init
-		myPlayfield = new AdvancedPlayField(2000, 500, this.getWidth(),
+		myPlayfield = new AdvancedPlayField(2600, 500, this.getWidth(),
 		        this.getHeight());
 		myPlayfield.setBackground(new ImageBackground(getImage("resources/clouds.png")));
 		myPlayfield.setGameScroller(new KeepLeftFirstPlayerGameScroller());
@@ -136,7 +136,7 @@ public class DemoHUD extends Game2D {
 		        new PhysicsAttributes()));
 		temp1.setImages(this.getImages("resources/IceFloor.png", 1, 1));
 		temp1.setLocation(600, 440);
-		endOfPlatform = temp1.getX() + temp1.getWidth() - 30;
+		endOfPlatform = temp1.getX()*50 + temp1.getWidth() - 30;
 		myPlayfield.addSetting(temp1);
 
 		Tile temp2 = new Tile(this, new PhysicsAttributes());
@@ -242,6 +242,37 @@ public class DemoHUD extends Game2D {
 		middleBar.setImages(getImages("resources/SmallBar.png", 1, 1));
 		myPlayfield.addSetting(middleBar);
 
+		
+		for(int i =0; i<4; i++){
+			FallingDecorator fallingBar = new FallingDecorator(new Tile(this, new PhysicsAttributes()), 500);
+			fallingBar.setLocation(1200+i*150, 350);
+			fallingBar.setTopAction(true);
+			fallingBar.setImages(getImages("resources/Bar2.png",1,1));
+			myPlayfield.addSetting(fallingBar);
+		}
+		
+		for(int i=0; i<3; i++){
+			MovingDecorator movingBar = new MovingDecorator(new Tile(this, new PhysicsAttributes()));
+			movingBar.setLocation(1800 + i*150, 200+i*75);
+			movingBar.setEndLocation(1800+i*150, 400);
+			movingBar.setMoveSpeed(0.05);
+			movingBar.setImages(getImages("resources/Bar2.png",1,1));
+			myPlayfield.addSetting(movingBar);
+		}
+		
+		for(int i=0;i<5;i++){
+			Tile temp3 = new Tile(this, new PhysicsAttributes());
+			temp3.setImages(this.getImages("resources/Platform.png", 1, 1));
+			temp3.setLocation(2300+temp3.getWidth()*i, 300);
+			myPlayfield.addSetting(temp3);
+		}
+		
+		Tile pipe = new Tile(this, new PhysicsAttributes());
+		pipe.setImages(getImages("resources/Pipe.png",1,1));
+		pipe.setLocation(2500, 300-pipe.getHeight());
+		endOfPlatform = pipe.getX();
+		myPlayfield.addSetting(pipe);
+		
 	}
 
 	public void update(long t) {
