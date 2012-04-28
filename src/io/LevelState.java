@@ -48,6 +48,7 @@ public class LevelState implements Serializable {
     }
     
     private void reconstruct() {
+	myBackgroundPath = VoogaUtilities.testFileNotFound(myBackgroundPath);
 	Background[] bkg = new Background[1];
 	bkg[0] = new ImageBackground(VoogaUtilities.getImage(myBackgroundPath));
 	myBackground = new ParallaxBackground(bkg);

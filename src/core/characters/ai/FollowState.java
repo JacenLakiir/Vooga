@@ -8,6 +8,10 @@ import core.characters.Character;
 public class FollowState extends State
 {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5728783313061000178L;
     private Character beingFollowed;
     private double mySpeed;
     private double myFollowRange;

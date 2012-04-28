@@ -5,6 +5,10 @@ import core.characters.Character;
 public class HomingState extends State
 {
     
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5839946213365078507L;
     private Character beingTracked;
     private double myHomingRange;
     private double mySpeed;

@@ -6,6 +6,10 @@ import core.characters.Character;
 public class JumpState extends State
 {
     
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6350855638094972957L;
     private double myJumpStrength;
     private int myJumpTime;
     private Timer myJumpTimer;

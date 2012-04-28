@@ -1,10 +1,8 @@
 package leveleditor;
 
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import javax.swing.*;
@@ -12,6 +10,7 @@ import javax.swing.*;
 import core.characters.GameElement;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
+@SuppressWarnings("serial")
 public class DecoratorSelector extends JDialog {
 
     private DecoratorSelector myInstance;

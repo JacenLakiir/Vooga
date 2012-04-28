@@ -7,6 +7,10 @@ import core.characters.Character;
  */
 public abstract class State implements java.io.Serializable
 {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7591491430198918097L;
     protected Character myCharacter;
     private boolean isActivated;
     

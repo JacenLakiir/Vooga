@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
@@ -238,6 +237,7 @@ public class SpriteWrapper implements Cloneable, Serializable {
     }
     
     private void reconstruct() {
+	myImagesrc = VoogaUtilities.testFileNotFound(myImagesrc);
 	BufferedImage[] dummyimages = new BufferedImage[1];
 	dummyimages[0] = VoogaUtilities.getImage(myImagesrc);
 	myGameElement.setImages(dummyimages);

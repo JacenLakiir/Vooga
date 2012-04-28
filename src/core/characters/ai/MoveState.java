@@ -8,6 +8,10 @@ import core.characters.Character;
 public class MoveState extends State
 {
     
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7007814870157012084L;
     private double mySpeed;
         
     public MoveState (Character character, double speed, boolean isMovingLeft)

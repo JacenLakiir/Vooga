@@ -14,7 +14,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -67,7 +66,6 @@ public class LevelEditor extends JFrame {
 	mySpritePanel = new SpritePanel(this, constraint);
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setVisible(true);
-	//setLocation(0, 0);
 	getContentPane().setBackground(Color.GRAY);
     }
     
@@ -104,11 +102,7 @@ public class LevelEditor extends JFrame {
 	    public void actionPerformed(ActionEvent event) {
 		File f = loadFile("Select Background Image...");
 		if (f == null) return;
-		try {
-		    myCanvas.setUpBackground(f.getCanonicalPath());
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
+		myCanvas.setUpBackground(f.getAbsolutePath());
 	    }
 	});
 	myMenu[1].add(myChangeBackground);

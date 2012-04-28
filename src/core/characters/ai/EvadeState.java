@@ -8,6 +8,10 @@ import core.characters.Character;
 public class EvadeState extends State
 {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -265718653907450582L;
     private Character beingAvoided;
     private double mySpeed;
     private double myEvadeRange;

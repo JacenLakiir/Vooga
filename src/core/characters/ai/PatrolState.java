@@ -8,6 +8,10 @@ import core.characters.Character;
 public class PatrolState extends State
 {
     
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7020694428527111109L;
     private double myPatrolRange;
     private double mySpeed;
     private double myDistanceTraveled;

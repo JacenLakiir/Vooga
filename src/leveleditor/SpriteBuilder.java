@@ -52,7 +52,7 @@ public class SpriteBuilder extends JFrame {
     private JRadioButton mySettingButton;
     private JRadioButton myItemButton;
     private Map<JRadioButton, SpriteGroupIdentifier> myTypeMap;
-    private Set<Class<?>> myAdditionalClassesForDecorator;
+    //private Set<Class<?>> myAdditionalClassesForDecorator;
     
     public static SpriteBuilder getInstance(LevelEditor view) {
 	if (myInstance != null)
@@ -206,7 +206,7 @@ public class SpriteBuilder extends JFrame {
 		    myKernel = (GameElement) clazz.getConstructor(PhysicsAttributes.class)
 		    .newInstance(myView.getDefaultPhysicsAttributes());
 		else {
-		    myAdditionalClassesForDecorator = new HashSet<Class<?>>();
+		    //myAdditionalClassesForDecorator = new HashSet<Class<?>>();
 		    new DecoratorSelector(myView, myInstance, clazz, myKernel);
 		}
 		} catch (InstantiationException e1) {

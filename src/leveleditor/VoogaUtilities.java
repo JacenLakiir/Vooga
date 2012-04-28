@@ -22,6 +22,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.MalformedURLException;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+
 import com.golden.gamedev.util.ImageUtil;
 
 public class VoogaUtilities {
@@ -120,6 +123,22 @@ public class VoogaUtilities {
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
+    }
+    
+    public static String testFileNotFound(String src) {
+	String fixed = src;
+	File f = new File(src);
+	while (!f.exists()) {
+	    JFileChooser fc = new JFileChooser(".");
+	        fc.setDialogTitle(f.getName() + " not found");
+	        int returnVal = fc.showOpenDialog(new JFrame());
+	        if (returnVal == JFileChooser.APPROVE_OPTION) {
+	            f = fc.getSelectedFile();
+	            fixed = f.getAbsolutePath();
+	            break;
+	        }
+	}
+	return fixed;
     }
     
 }
