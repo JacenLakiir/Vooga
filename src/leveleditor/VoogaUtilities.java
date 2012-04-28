@@ -111,6 +111,7 @@ public class VoogaUtilities {
 	} catch (ClassNotFoundException e) {
 	    e.printStackTrace();
 	}
+	serialize(res, file); // Possible change in external references
 	return res;
     }
     

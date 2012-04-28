@@ -1,3 +1,6 @@
+/**
+ * @author Michael Zhou (Dominator008)
+ */
 package io.annotations;
 
 import java.lang.annotation.ElementType;

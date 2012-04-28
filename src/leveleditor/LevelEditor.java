@@ -51,7 +51,6 @@ public class LevelEditor extends JFrame {
 	setUpMenu();
 	setJMenuBar(myMenuBar);
 	setSize(1024, 768);
-	//setLocation(0, 0);
 	int gridx = 0, gridy = 0, gridwidth = 1, gridheight = 1, weightx = 10,
 		weighty = 1, anchor = GridBagConstraints.WEST, 
 		fill = GridBagConstraints.HORIZONTAL, ipadx = 0, ipady = 0;
