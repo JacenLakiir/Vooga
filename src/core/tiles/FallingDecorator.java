@@ -1,7 +1,6 @@
 package core.tiles;
 
 import io.annotations.Modifiable;
-
 import com.golden.gamedev.object.Timer;
 
 public class FallingDecorator extends ActionDecorator {

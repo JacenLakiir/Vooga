@@ -2,7 +2,6 @@ package core.tiles;
 
 import io.annotations.Decorator;
 import io.annotations.Modifiable;
-
 import core.characters.GameElement;
 @Decorator(target = Tile.class)
 public class PushableDecorator extends ActionDecorator {

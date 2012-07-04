@@ -8,7 +8,6 @@
 package core.tiles;
 
 import io.annotations.Decorable;
-
 import com.golden.gamedev.GameObject;
 import core.characters.GameElement;
 import core.physicsengine.physicsplugin.PhysicsAttributes;

@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
 import leveleditor.DecoratorSelector;
 import leveleditor.VoogaUtilities;
 import core.characters.GameElement;

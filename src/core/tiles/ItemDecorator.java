@@ -1,7 +1,6 @@
 package core.tiles;
 
 import io.annotations.Decorator;
-
 import java.util.LinkedList;
 import java.util.Queue;
 import core.items.CollectibleItem;

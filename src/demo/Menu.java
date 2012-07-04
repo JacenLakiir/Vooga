@@ -1,7 +1,6 @@
 package demo;
 
 import io.SimpleGameToTestLevelEditor;
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;

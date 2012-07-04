@@ -1,7 +1,6 @@
 package core.sprites;
 
 import java.io.Serializable;
-
 import com.golden.gamedev.object.SpriteGroup;
 
 

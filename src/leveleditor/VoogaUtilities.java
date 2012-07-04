@@ -24,7 +24,6 @@ import java.net.MalformedURLException;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-
 import com.golden.gamedev.util.ImageUtil;
 
 public class VoogaUtilities {

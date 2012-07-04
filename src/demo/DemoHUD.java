@@ -2,9 +2,7 @@ package demo;
 
 import java.awt.Graphics2D;
 import java.util.List;
-
 import com.golden.gamedev.object.background.ImageBackground;
-
 import core.characters.Character;
 import core.characters.ai.MoveState;
 import core.characters.ai.PatrolState;
@@ -18,17 +16,23 @@ import core.items.CollectibleItem;
 import core.items.SetInUseSetNotInUseItem;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 import core.playfield.AdvancedPlayField;
+import core.playfield.hud.BarProxy;
 import core.playfield.hud.BarWidget;
 import core.playfield.hud.HUD;
 import core.playfield.hud.IconWidget;
+import core.playfield.hud.IntProxy;
+import core.playfield.hud.InventoryProxy;
 import core.playfield.hud.InventoryWidget;
 import core.playfield.hud.StringProxy;
-import core.playfield.hud.IntProxy;
-import core.playfield.hud.BarProxy;
-import core.playfield.hud.InventoryProxy;
 import core.playfield.hud.TextWidget;
 import core.playfield.scroller.ShowPlayfieldGameScroller;
-import core.tiles.*;
+import core.tiles.ActionDecorator;
+import core.tiles.BreakableDecorator;
+import core.tiles.FallingDecorator;
+import core.tiles.FrictionlessDecorator;
+import core.tiles.ItemDecorator;
+import core.tiles.MovingDecorator;
+import core.tiles.Tile;
 import demo.custom.Boo;
 import demo.custom.DemoKeyAdapter;
 import demo.custom.Goomba;

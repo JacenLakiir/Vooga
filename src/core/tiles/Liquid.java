@@ -1,7 +1,6 @@
 package core.tiles;
 
 import io.annotations.Modifiable;
-
 import com.golden.gamedev.GameObject;
 import core.physicsengine.physicsplugin.PhysicsAttributes;
 
